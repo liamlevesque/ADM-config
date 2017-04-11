@@ -1,0 +1,36 @@
+.c-history{
+	overflow: hidden;
+}
+
+	.c-history--header{
+		padding: spacing(x-small);
+
+		&.s-error{
+			background-color: palette(error);
+			color: white
+		}
+	}
+
+	.c-history--body{
+		overflow: hidden;
+	}
+
+	.c-history--list{
+		height: 200px;
+		overflow-y: auto;
+		background-color: white;
+		color: palette(grey,dark);
+	}
+
+		.c-history--item{
+			padding: spacing(x-small);
+			//@include ellipsize;
+
+			&:nth-child(even){
+				background-color: palette(grey, x-light);
+			}
+
+			&.s-error{
+				color: palette(error);
+			}
+		}

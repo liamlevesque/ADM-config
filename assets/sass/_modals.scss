@@ -1,0 +1,51 @@
+.c-modal{
+	position: fixed;
+	top: 100vh;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+	padding: 20px 0;
+
+	background-color: rgba(black,0.8);
+
+	transition: $transition;
+
+	overflow-y: auto;
+
+	&.s-visible{
+		top: 0;
+	}
+
+}
+
+	.c-modal--content{
+		width: 600px;
+		margin: 0 auto;
+		position: relative;
+		top: calc(50% + 20px);
+		transform: translateY(-50%);
+		max-height: 100%;
+		
+		background-color: white;
+		box-shadow: $ritchie-shadow;
+		border-radius: $default-border-radius;
+		overflow: hidden;
+
+	}
+
+		.c-modal--body{
+			padding: spacing(large);	
+			flex: auto;
+		}
+
+		.c-modal--footer{
+			flex: 75px;
+			padding: spacing(small) spacing(large);
+			background-color: palette(grey,light);
+		}
+
+		.c-modal--sub-box{
+			background-color: palette(grey,light);
+			padding: spacing(medium);
+		}

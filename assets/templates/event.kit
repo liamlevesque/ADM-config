@@ -1,0 +1,181 @@
+<!-- @include '/assets/partials/header_event' -->
+
+	<header class="o-subheader--large">
+		<div class="o-width-wrapper">
+			<div class="h-mb-200 h-pt-200">
+				<h1 class="h1 h-mb-100">Regina, Sk &middot; Ring 1</h1>
+				<div> Lots: 1 - 451, 8001 - 8012</div>
+				<div class="l-abs-right h-pt-200">
+					<button class="o-button--outline_white " rv-on-click="controller.toggleGetOtherSales">Refresh Event Data</button>
+					<button class="o-button--light">Launch Clerk</button>
+				</div>
+			</div>
+
+			<nav class="o-navigation-tabs">
+				<div class="o-navigation-tab s-active">
+					<i class="icon-settings h-mr-100"></i>Configure Event
+				</div>
+				<div class="o-navigation-tab">
+					<i class="icon-settings h-mr-100"></i>Manage Lot Media
+				</div>
+				<div class="o-navigation-tab">
+					<i class="icon-settings h-mr-100"></i>Presentation Setup
+				</div>
+				<div class="o-navigation-tab">
+					<i class="icon-settings h-mr-100"></i>Reports
+				</div>
+				<div class="o-navigation-tab">
+					<i class="icon-warning"></i>
+				</div>
+			</nav>
+		</div>
+		
+	</header>
+
+	<div class="o-width-wrapper h-mt-300">
+
+		<section class="c-container-box h-mb-300">
+			<div class="h-overflow-hidden">
+				<div class="l-grid-sixth"></div>
+				<div class="l-grid-fivesixths">
+					<div class="l-grid-half">
+						<h3 class="h3">Inventory</h3>
+						<hr>
+						<div class="">
+							<label class="">Lots Downloaded</label>
+							<div>No data yet. Please get latest inventory.</div>
+						</div>
+						<button class="o-button">Get Latest Inventory</button>
+					</div>
+					<div class="l-grid-half">
+						<h3 class="h3">Photos</h3>
+						<hr>
+						<div class="l-grid-third"><label for="">Photos Downloaded</label></div>
+						<div class="l-grid-third"><label for="">Missing Hero Photo</label></div>
+						<div class="l-grid-third"><label for="">Lots With Video</label></div>
+
+						<button class="o-button">Get Latest Photos</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="c-container-box--footer">
+				<div class="c-history">
+					<div class="l-grid-sixth">
+						<span class="t-allcaps">Transfer history</span>
+						<button rv-on-click="controller.toggleHistoryExpanded"><span rv-if="dataObject.historyExpanded">Hide</span><span rv-unless="dataObject.historyExpanded">Show All</span></button>
+					</div>
+					<div class="l-grid-fivesixths">
+						<div class="l-grid-half c-history--header">15/12 3:14PM - 721 Lots Downloaded</div>
+						<div class="l-grid-half c-history--header s-error">15/12 3:14PM - 2000 Photos Downloaded</div>
+					</div>
+				</div>
+				<div class="c-history--body" rv-if="dataObject.historyExpanded">
+					<div class="l-grid-sixth"></div>
+					<div class="l-grid-fivesixths">
+						<div class="l-grid-half">
+							<ul class="c-history--list">
+								<li class="c-history--item">15/12 3:14PM - 721 Lots Downloaded</li>
+								<li class="c-history--item s-error">15/12 3:14PM - Error Completing Download</li>
+								<li class="c-history--item">15/12 3:14PM - 721 Lots Downloaded</li>
+							</ul>
+						</div>
+						<div class="l-grid-half">
+							<ul class="c-history--list">
+								<li class="c-history--item">15/12 3:14PM - 2000 Photos Downloaded</li>
+								<li class="c-history--item">15/12 3:14PM - 2000 Photos Downloaded</li>
+								<li class="c-history--item">15/12 3:14PM - 2000 Photos Downloaded</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="c-container-box l-grid-two-thirds">
+			<h3 class="c-container-box_header h3">Configure Displays</h3>
+			<div class="empty" rv-unless="dataObject.displayList | lengthToBool">
+				No Displays are configured. Please add one.
+			</div>
+			<div class="" rv-if="dataObject.displayList | lengthToBool">
+				<div class="c-list-grid--header">
+					<div class="l-grid-third">Name</div>
+					<div class="l-grid-third">Display Type</div>
+					<div class="l-grid-third"></div>
+				</div>
+				<ul class="c-list-grid">
+					<li class="c-list-grid--item" rv-each-display="dataObject.displayList">
+						<div class="l-grid-third">{ display.name }</div>
+						<div class="l-grid-third">{ display.type }</div>
+						<div class="l-grid-third h-ta-right">
+							<span rv-if="display.status | compare 'active'">Active</span>
+							<span rv-unless="display.status | compare 'active'">Inactive</span>
+							<i class="icon-settings h-ml-100 h-mr-100" rv-on-click="controller.editDisplay"></i>
+							<button class="o-button_affirmative">Launch</button>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<button class="o-button h-mt-200" rv-on-click="controller.toggleAddDisplayVisible">+ Add A Display</button>
+		</section>
+
+		<section class="c-container-box l-grid-third">
+			<h3 class="c-container-box_header h3">Currencies</h3>
+			<div class="c-list-grid--header">
+				<div class="l-grid-half">Auction Currency</div>
+				<div class="l-grid-half">Format</div>
+			</div>
+			<hr>
+			<div class="h-overflow-hidden">
+				<div class="l-grid-half">$ CAD <span class="h-ml-100 ccy-flag CAD"></span></div>
+				<div class="l-grid-half"><input type="text" class="o-input--text" value="$999,999.99"></div>
+			</div>
+
+			<div class="c-list-grid--header">
+				<div class="l-grid-half">Alternate Currencies</div>
+				<div class="l-grid-half h-ta-right"><i class="icon-settings o-button--large-icon" rv-on-click="controller.toggleCCYSettingsVisible"></i></div>
+			</div>
+			<hr>
+			<ul class="c-list-grid">
+				<li class="c-list-grid--item">
+					<div class="l-grid-half">$ CAD <span class="h-ml-100 ccy-flag CAD"></span></div>
+					<div class="l-grid-half">@ 1.231</div>
+				</li>
+				<li class="c-list-grid--item">
+					<div class="l-grid-half">$ AUD <span class="h-ml-100 ccy-flag AUD"></span></div>
+					<div class="l-grid-half">@ 1.051</div>
+				</li>
+			</ul>
+
+
+		</section>
+
+	</div>
+
+
+	<!-- @include '/assets/partials/createDisplayModal' --> 
+
+	<!-- @include '/assets/partials/ccySettings' --> 
+
+
+
+	<div class="c-modal" rv-class-s-visible="dataObject.deleteEventVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header h-color-error">Delete this Display?</h3>
+				
+				<p>Are you sure you want to delete this display and it&rquo;s settings?</p>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleDeleteEventVisible">Cancel</button>
+				<button class="o-button_error h-float-right">Yes, Delete Display</button>
+			</div>
+
+		</div>
+
+	</div> 
+
+
+<!-- @include '/assets/partials/footer' --> 

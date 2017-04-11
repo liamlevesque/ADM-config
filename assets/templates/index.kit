@@ -1,0 +1,160 @@
+<!-- @include '/assets/partials/header' -->
+	
+	<header class="o-subheader--small">
+		<div class="o-width-wrapper">
+			<h1 class="o-subheader--text h-color-white">All Events</h1>
+			<button class="o-button--outline_white h-float-right h-mt-100" rv-on-click="controller.toggleGetOtherSales">+ Get Other Sales</button>
+		</div>
+	</header>
+
+	<div class="o-width-wrapper">
+		<section class="c-event-list">
+
+			<div class="o-event-tile">
+				<h2 class="o-event-tile--name">Regina Sk</h2>
+				<h3 class="o-event-tile--ring">Ring 1</h3>
+				<div class="o-event-tile--number">2017554-1</div>
+				<div class="o-event-tile--footer">115 Lots
+					<div class="h-float-right">450 Photos</div>
+				</div>
+				<button class="o-button--outline_white o-event-tile--delete" rv-on-click="controller.toggleDeleteEventVisible"><i class="icon-trash"></i></button>
+			</div>
+
+			<div class="o-event-tile">
+				<h2 class="o-event-tile--name">Regina Sk</h2>
+				<h3 class="o-event-tile--ring">Ring 1</h3>
+				<div class="o-event-tile--number">2017554-1</div>
+				<div class="o-event-tile--footer">115 Lots
+					<div class="h-float-right">450 Photos</div>
+				</div>
+				<button class="o-button--outline_white o-event-tile--delete" rv-on-click="controller.toggleDeleteEventVisible"><i class="icon-trash"></i></button>
+			</div>
+			<div class="o-event-tile">
+				<h2 class="o-event-tile--name">Regina Sk</h2>
+				<h3 class="o-event-tile--ring">Ring 1</h3>
+				<div class="o-event-tile--number">2017554-1</div>
+				<div class="o-event-tile--footer">115 Lots
+					<div class="h-float-right">450 Photos</div>
+				</div>
+				<button class="o-button--outline_white o-event-tile--delete" rv-on-click="controller.toggleDeleteEventVisible"><i class="icon-trash"></i></button>
+			</div>
+			<div class="o-event-tile">
+				<h2 class="o-event-tile--name">Regina Sk</h2>
+				<h3 class="o-event-tile--ring">Ring 1</h3>
+				<div class="o-event-tile--number">2017554-1</div>
+				<div class="o-event-tile--footer">115 Lots
+					<div class="h-float-right">450 Photos</div>
+				</div>
+				<button class="o-button--outline_white o-event-tile--delete" rv-on-click="controller.toggleDeleteEventVisible"><i class="icon-trash"></i></button>
+			</div>
+			<div class="o-event-tile">
+				<h2 class="o-event-tile--name">Regina Sk</h2>
+				<h3 class="o-event-tile--ring">Ring 1</h3>
+				<div class="o-event-tile--number">2017554-1</div>
+				<div class="o-event-tile--footer">115 Lots
+					<div class="h-float-right">450 Photos</div>
+				</div>
+				<button class="o-button--outline_white o-event-tile--delete" rv-on-click="controller.toggleDeleteEventVisible"><i class="icon-trash"></i></button>
+			</div>
+		</section>
+	</div>
+
+	<div class="c-modal" rv-class-s-visible="dataObject.getOtherSalesVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header">Get Other Sales</h3>
+
+				<span class="h-mr-100">Find a sale:</span><input type="text" class="o-inpute--text-inline" tabindex="1" placeholder="Sale Name or Number"> 
+
+				<hr>
+				
+				<ul class="c-list-grid">
+					<li class="c-list-grid--item">
+						<div class="l-grid-quarter">20170221-2</div>
+						<div class="l-grid-half">Chilliwack, BC - Ring 1</div>
+						<div class="l-grid-quarter h-ta-right"><button class="o-button">Select</button></div>
+					</li>
+					<li class="c-list-grid--item">
+						<div class="l-grid-quarter">20170221-2</div>
+						<div class="l-grid-half">Chilliwack, BC - Ring 1</div>
+						<div class="l-grid-quarter h-ta-right"><button class="o-button">Select</button></div>
+					</li>
+					<li class="c-list-grid--item">
+						<div class="l-grid-quarter">20170221-2</div>
+						<div class="l-grid-half">Chilliwack, BC - Ring 1</div>
+						<div class="l-grid-quarter h-ta-right"><button class="o-button">Select</button></div>
+					</li>
+					<li class="c-list-grid--item">
+						<div class="l-grid-quarter">20170221-2</div>
+						<div class="l-grid-half">Chilliwack, BC - Ring 1</div>
+						<div class="l-grid-quarter h-ta-right"><button class="o-button">Select</button></div>
+					</li>
+					<li class="c-list-grid--item">
+						<div class="l-grid-quarter">20170221-2</div>
+						<div class="l-grid-half">Chilliwack, BC - Ring 1</div>
+						<div class="l-grid-quarter h-ta-right"><button class="o-button">Select</button></div>
+					</li>
+				</ul>
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleGetOtherSales">Cancel</button>
+			</div>
+
+		</div>
+
+	</div> 
+
+	<div class="c-modal" rv-class-s-visible="dataObject.dataCenterSwitchVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header">Switch Data Centers</h3>
+				
+				<div>
+					<label class="o-input--toggle_vertical">
+						<input type="radio" name="dataswitch" checked>
+						<div>
+							<div class="l-grid-quarter t-allcaps">Primary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
+						</div>
+					</label>
+					<label class="o-input--toggle_vertical">
+						<input type="radio" name="dataswitch">
+						<div>
+							<div class="l-grid-quarter t-allcaps">Secondary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
+						</div>
+					</label>
+				</div>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleDataCenterSwitch">Cancel</button>
+				<button class="o-button h-float-right" disabled>Switch</button>
+			</div>
+
+		</div>
+
+	</div> 
+
+
+	<div class="c-modal" rv-class-s-visible="dataObject.deleteEventVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header h-color-error">Delete Regina Sk Ring 1?</h3>
+				
+				<p>Are you sure you want to delete this sale and all of it&rsquo;s data from this machine?</p>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleDeleteEventVisible">Cancel</button>
+				<button class="o-button_error h-float-right">Yes, Delete Event</button>
+			</div>
+
+		</div>
+
+	</div> 
+	
+
+
+<!-- @include '/assets/partials/footer' --> 

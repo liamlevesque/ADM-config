@@ -1,0 +1,264 @@
+<div class="c-modal" rv-class-s-visible="dataObject.addDisplayVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header">Create Display</h3>
+				
+				<div class="o-input--radio-group" rv-unless="dataObject.tempDisplay.type">
+					<label class="o-input--radio">
+						<input type="radio" name="displaytype" rv-on-click="controller.setDisplayType" data-type="vramp">
+						<div>
+							VRamp
+						</div>
+					</label>
+					<label class="o-input--radio">
+						<input type="radio" name="displaytype" rv-on-click="controller.setDisplayType" data-type="digitalsignboard">
+						<div>
+							Digital Signboard
+						</div>
+					</label>
+					<label class="o-input--radio">
+						<input type="radio" name="displaytype" rv-on-click="controller.setDisplayType" data-type="ledsignboards">
+						<div>
+							LED Signboards
+						</div>
+					</label>
+				</div>
+
+				<div class="h-mt-200" rv-if="dataObject.tempDisplay.type | compare 'vramp'">
+					<h5 class="h5">VRamp Settings</h5>
+					<hr>
+					<div class="o-input--row">
+						<label class="o-input--label">Display Name</label>
+						<input type="text" class="o-input--text" rv-on-keyup="controller.updateDisplayName" rv-value="dataObject.tempDisplay.name">
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Primary Ring</label>
+						<h5 class="h4 h-color-brand">Ring 1</h5>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Secondary Ring</label>
+						<div class="o-input--toggle-group">
+							<label class="o-input--toggle">
+								<input type="radio" name="ring2" checked>
+								<div>None</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="ring2">
+								<div>Ring 2</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="ring2">
+								<div>Ring 3</div>
+							</label>
+						</div>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Third Ring</label>
+						<div class="o-input--toggle-group">
+							<label class="o-input--toggle">
+								<input type="radio" name="ring3" checked>
+								<div>None</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="ring3">
+								<div>Ring 2</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="ring3">
+								<div>Ring 3</div>
+							</label>
+						</div>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Timed Auction Ring</label>
+						<div class="o-input--toggle-group">
+							<label class="o-input--toggle">
+								<input type="radio" name="talring" checked>
+								<div>No</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="talring">
+								<div>Yes</div>
+							</label>
+						</div>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Language</label>
+						<select class="o-input--select">
+							<option selected>English</option>
+							<option>French</option>
+							<option>French</option>
+							<option>French</option>
+							<option>French</option>
+							<option>French</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="h-mt-200" rv-if="dataObject.tempDisplay.type | compare 'digitalsignboard'">
+					<h5 class="h5">Digital Signboard Settings</h5>
+					<hr>
+					<div class="o-input--row">
+						<label class="o-input--label">Display Name</label>
+						<input type="text" class="o-input--text" rv-on-keyup="controller.updateDisplayName" rv-value="dataObject.tempDisplay.name">
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Primary Ring</label>
+						<h5 class="h4 h-color-brand">Ring 1</h5>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Secondary Ring</label>
+						<div class="o-input--toggle-group">
+							<label class="o-input--toggle">
+								<input type="radio" name="ring2b" checked>
+								<div>None</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="ring2b">
+								<div>Ring 2</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="ring2b">
+								<div>Ring 3</div>
+							</label>
+						</div>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Third Ring</label>
+						<div class="o-input--toggle-group">
+							<label class="o-input--toggle">
+								<input type="radio" name="ring3b" checked>
+								<div>None</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="ring3b">
+								<div>Ring 2</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="ring3b">
+								<div>Ring 3</div>
+							</label>
+						</div>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Currency</label>
+						<div class="o-input--toggle-group">
+							<label class="o-input--toggle">
+								<input type="radio" name="ccy" checked>
+								<div>Auction</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="ccy">
+								<div>Alternate</div>
+							</label>
+						</div>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Language</label>
+						<select class="o-input--select">
+							<option selected>English</option>
+							<option>French</option>
+							<option>French</option>
+							<option>French</option>
+							<option>French</option>
+							<option>French</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="h-mt-200" rv-if="dataObject.tempDisplay.type | compare 'ledsignboards'">
+					<h5 class="h5">Settings</h5>
+					<hr>
+					<div class="o-input--row">
+						<label class="o-input--label">Display Name</label>
+						<input type="text" class="o-input--text" rv-on-keyup="controller.updateDisplayName" rv-value="dataObject.tempDisplay.name">
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">IP Address</label>
+						<div>
+							<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">
+						</div>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Language</label>
+						<select class="o-input--select">
+							<option selected>English</option>
+							<option>French</option>
+							<option>French</option>
+							<option>French</option>
+							<option>French</option>
+							<option>French</option>
+						</select>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Line 1 Display</label>
+						<div class="o-input--toggle-group">
+							<label class="o-input--toggle">
+								<input type="radio" name="row1" checked>
+								<div>Lot</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="row1">
+								<div>Ask</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="row1">
+								<div>Alt</div>
+							</label>
+						</div>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Line 2 Display</label>
+						<div class="o-input--toggle-group">
+							<label class="o-input--toggle">
+								<input type="radio" name="row2">
+								<div>Lot</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="row2" checked>
+								<div>Ask</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="row2">
+								<div>Alt</div>
+							</label>
+						</div>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Currency Display</label>
+						<div class="o-input--toggle-group">
+							<label class="o-input--toggle">
+								<input type="radio" name="ccysymbol" checked>
+								<div>Symbol (ie $)</div>
+							</label>
+							<label class="o-input--toggle">
+								<input type="radio" name="ccysymbol">
+								<div>Code (ie USD)</div>
+							</label>
+						</div>
+					</div>
+					<div class="o-input--row">
+						<label class="o-input--label">Language</label>
+						<select class="o-input--select">
+							<option selected>55%</option>
+							<option>65%</option>
+							<option>75%</option>
+							<option>85%</option>
+							<option>95%</option>
+							<option>100%</option>
+						</select>
+					</div>
+				</div>
+				
+			</div>
+
+			
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleAddDisplayVisible">Cancel</button>
+				<button class="o-button h-float-right" rv-enabled="dataObject.saveDisplayAllowed" rv-on-click="controller.createDisplay">Create Display</button>
+			</div>
+
+		</div>
+
+	</div> 

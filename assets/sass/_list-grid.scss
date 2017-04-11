@@ -1,0 +1,18 @@
+.c-list-grid{
+}
+
+	.c-list-grid--header{
+		@include allcaps;
+		font-size: fontsize(50);
+		color: palette(grey);
+		margin-bottom: spacing(x-small);
+	}
+
+	.c-list-grid--item{
+		padding: spacing(small) spacing(medium);
+		overflow: hidden;
+
+		&:nth-child(odd){
+			background-color: palette(grey,x-light);
+		}
+	}

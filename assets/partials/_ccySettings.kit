@@ -1,0 +1,72 @@
+
+	<div class="c-modal" rv-class-s-visible="dataObject.CCYSettingsVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header">Edit Alternate Currencies</h3>
+				<div class="c-list-grid--header">
+					<div class="l-grid-quarter">Alternate Currency 1</div>
+					<div class="l-grid-quarter">Exchange Rate</div>
+					<div class="l-grid-quarter">Format</div>
+					<div class="l-grid-quarter"></div>
+				</div>
+				<div class="h-overflow-hidden">
+					<div class="l-grid-quarter">
+						<select class="o-input--select">
+							<option selected disabled>Select</option>
+							<option>USD</option>
+							<option>CAD</option>
+							<option>AUD</option>
+							<option>GBP</option>
+							<option>EUR</option>
+						</select>
+					</div>
+					<div class="l-grid-quarter">
+						<input type="text" class="o-input--text">
+					</div>
+					<div class="l-grid-quarter">
+						<input type="text" class="o-input--text">
+					</div>
+					<div class="l-grid-quarter h-color-error">
+						<i class="icon-trash"></i>Clear
+					</div>
+				</div>
+				
+				<div class="c-list-grid--header">
+					<div class="l-grid-quarter">Alternate Currency 2</div>
+					<div class="l-grid-quarter">Exchange Rate</div>
+					<div class="l-grid-quarter">Format</div>
+					<div class="l-grid-quarter"></div>
+				</div>
+				<div class="h-overflow-hidden">
+					<div class="l-grid-quarter">
+						<select class="o-input--select">
+							<option selected disabled>Select</option>
+							<option>USD</option>
+							<option>CAD</option>
+							<option>AUD</option>
+							<option>GBP</option>
+							<option>EUR</option>
+						</select>
+					</div>
+					<div class="l-grid-quarter">
+						<input type="text" class="o-input--text">
+					</div>
+					<div class="l-grid-quarter">
+						<input type="text" class="o-input--text">
+					</div>
+					<div class="l-grid-quarter h-color-error">
+						<i class="icon-trash"></i>Clear
+					</div>
+				</div>
+				
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleCCYSettingsVisible">Cancel</button>
+				<button class="o-button h-float-right" rv-on-click="controller.toggleCCYSettingsVisible">Save</button>
+			</div>
+
+		</div>
+
+	</div>

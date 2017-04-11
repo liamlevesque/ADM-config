@@ -1,0 +1,21 @@
+.o-navigation-tabs{
+
+}
+
+	.o-navigation-tab{
+		display: inline-block;
+		padding: spacing(x-small) spacing(medium);
+		@include allcaps;
+		margin-right: spacing(small);
+		cursor: pointer;
+
+		&:hover{
+			background-color: palette(brand,dark);
+			color: white;
+		}
+
+		&.s-active{
+			background-color: palette(grey,x-light);
+			color: palette(grey,dark);
+		}
+	}

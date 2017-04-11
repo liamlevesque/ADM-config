@@ -1,0 +1,44 @@
+.c-header--upper{
+	background-color: black;
+	width: 100%;
+	height: $upper-header-height;
+	overflow: hidden;
+	text-align: center;
+	padding: 0 spacing(medium);
+}
+
+	.logo{
+		display: inline-block;
+		width: 200px;
+		height: 46px;
+	}
+
+.o-width-wrapper{
+	max-width: 1200px;
+	margin: 0 auto;
+	position: relative;
+}
+
+
+.o-subheader--small{
+	width: 100%;
+	height: $subheader-small-height;
+	background-color: palette(brand);
+	
+	.o-subheader--text{
+		display: inline-block;
+		line-height: $subheader-small-height;
+	}
+}
+
+.o-subheader--large{
+	width: 100%;
+	background-color: palette(brand);
+	color: white;
+	position: relative;
+	
+	.o-subheader--text{
+		display: inline-block;
+		line-height: $subheader-small-height;
+	}
+}

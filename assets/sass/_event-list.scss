@@ -1,0 +1,56 @@
+.c-event-list{
+	padding: spacing(large) 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+}
+
+	.o-event-tile{
+		border-radius: $default-border-radius;
+		box-shadow: $ritchie-shadow;
+		background-color: palette(grey,light);
+		padding: spacing(medium);
+		width: 220px;
+		height: 220px;
+		position: relative;
+		margin-right: spacing(medium);
+		margin-bottom: spacing(medium);
+		cursor: pointer;
+
+		&:hover{
+			background-color: palette(grey,dark);
+			color: white;
+
+			.o-event-tile--delete{
+				display: block;
+			}
+			.o-event-tile--footer{
+				display: none;
+			}
+		}
+	}
+		
+		.o-event-tile--name{
+			//margin-bottom: spacing(xx-small);
+		}
+
+		.o-event-tile--ring{
+			color: palette(brand);
+			margin-bottom: spacing(x-small);
+		}
+
+		.o-event-tile--footer{
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			padding: spacing(medium);
+		}
+
+		.o-event-tile--delete{
+			position: absolute;
+			bottom: spacing(medium);
+			right: spacing(medium);
+			display: none;
+		}
