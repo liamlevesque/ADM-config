@@ -87,24 +87,28 @@
 		<section class="c-container-box h-mb-300">
 			<div class="h-overflow-hidden">
 				<div class="l-grid-sixth"></div>
-				<div class="l-grid-fivesixths">
+				<div class="l-grid-fivesixths h-ta-center">
 					<div class="l-grid-half">
 						<h3 class="h3">Inventory</h3>
 						<hr>
-						<div class="">
+						<div class="c-list-grid--header">
 							<label class="">Lots Downloaded</label>
-							<div>No data yet. Please get latest inventory.</div>
 						</div>
-						<button class="o-button" rv-on-click="controller.startLotDownload" rv-disabled="dataObject.downloads.1.active">Get Latest Inventory</button>
+						<hr>
+						<div class="t-empty">No data yet. Please get latest inventory.</div>
+						<button class="o-button h-mt-200" rv-on-click="controller.startLotDownload" rv-disabled="dataObject.downloads.1.active">Get Latest Inventory</button>
 					</div>
 					<div class="l-grid-half">
 						<h3 class="h3">Photos</h3>
 						<hr>
-						<div class="l-grid-third"><label for="">Photos Downloaded</label></div>
-						<div class="l-grid-third"><label for="">Missing Hero Photo</label></div>
-						<div class="l-grid-third"><label for="">Lots With Video</label></div>
-
-						<button class="o-button" rv-on-click="controller.startPhotoDownload" rv-disabled="dataObject.downloads.0.active">Get Latest Photos</button>
+						<div class="c-list-grid--header">
+							<div class="l-grid-third">Photos Downloaded</div>
+							<div class="l-grid-third">Missing Hero Photo</div>
+							<div class="l-grid-third">Lots With Video</div>
+						</div>
+						<hr>
+						<div class="t-empty">No data yet. Please get latest photos.</div>
+						<button class="o-button h-mt-200" rv-on-click="controller.startPhotoDownload" rv-disabled="dataObject.downloads.0.active">Get Latest Photos</button>
 					</div>
 				</div>
 			</div>
@@ -113,7 +117,7 @@
 				<div class="c-history">
 					<div class="l-grid-sixth">
 						<span class="t-allcaps">Transfer history</span>
-						<button rv-on-click="controller.toggleHistoryExpanded"><span rv-if="dataObject.historyExpanded">Hide</span><span rv-unless="dataObject.historyExpanded">Show All</span></button>
+						<button class="o-text-button_white" rv-on-click="controller.toggleHistoryExpanded"><span rv-if="dataObject.historyExpanded">Hide</span><span rv-unless="dataObject.historyExpanded">Show All</span></button>
 					</div>
 					<div class="l-grid-fivesixths">
 						<div class="l-grid-half c-history--header">15/12 3:14PM - 721 Lots Downloaded</div>
@@ -144,7 +148,7 @@
 
 		<section class="c-container-box l-grid-two-thirds">
 			<h3 class="c-container-box_header h3">Configure Displays</h3>
-			<div class="empty" rv-unless="dataObject.displayList | lengthToBool">
+			<div class="t-empty h-ta-center" rv-unless="dataObject.displayList | lengthToBool">
 				No Displays are configured. Please add one.
 			</div>
 			<div class="" rv-if="dataObject.displayList | lengthToBool">

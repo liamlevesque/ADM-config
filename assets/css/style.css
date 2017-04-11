@@ -146,6 +146,10 @@
   text-transform: uppercase;
   letter-spacing: 0.06em; }
 
+.t-empty {
+  font-style: italic;
+  color: #bfc0be; }
+
 body {
   font-family: 'Trebuchet MS', Verdana, sans-serif;
   font-size: 16px; }
