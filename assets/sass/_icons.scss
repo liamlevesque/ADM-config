@@ -36,16 +36,7 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.i-large-icon{
-  font-size: 20px;
-  color: palette(grey,dark);
-  cursor: pointer;
-  padding: spacing(small);
 
-  &:hover{
-    color: palette(brand);
-  }
-}
 
 .i-size-med{
     font-size: 20px;

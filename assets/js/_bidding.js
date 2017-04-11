@@ -13,6 +13,7 @@ const dataObject = {
 	saveDisplayAllowed: false,
 	historyExpanded: false,
 	CCYSettingsVisible: false,
+	confirmDeleteDisplayVisible: false,
 };
 
 const controller = {
@@ -42,23 +43,36 @@ const controller = {
 	},
 
 	//DISPLAY SETUP CONTROLS
-	setDisplayType: function(e){
-		dataObject.tempDisplay.type = $(e.currentTarget).data('type');
-	},
-	updateDisplayName: function(e){
-		if($(e.currentTarget).val().length > 0) dataObject.saveDisplayAllowed = true;
-		else dataObject.saveDisplayAllowed = false;
-	},
-	createDisplay: function(e){
-		dataObject.displayList.push(dataObject.tempDisplay);
-		controller.toggleAddDisplayVisible();
-	},
-	editDisplay: function(e,context){
-		console.log(context);
-		dataObject.addDisplayVisible = true;
-		dataObject.tempDisplay.type = context.display.type;
-		dataObject.tempDisplay.name = context.display.name;
-	}
+		setDisplayType: function(e){
+			dataObject.tempDisplay.type = $(e.currentTarget).data('type');
+		},
+		updateDisplayName: function(e){
+			if($(e.currentTarget).val().length > 0) dataObject.saveDisplayAllowed = true;
+			else dataObject.saveDisplayAllowed = false;
+		},
+		createDisplay: function(e){
+			dataObject.displayList.push(dataObject.tempDisplay);
+			controller.toggleAddDisplayVisible();
+		},
+		editDisplay: function(e,context){
+			dataObject.addDisplayVisible = true;
+			dataObject.tempDisplay.type = context.display.type;
+			dataObject.tempDisplay.name = context.display.name;
+			dataObject.tempDisplay.editing = true;
+		},
+		toggleDisplay: function(e,context){
+			context.display.status = (context.display.status === "active") ? "inactive" : "active";
+		},
+		toggleConfirmDeleteDisplay: function(e,context){
+			dataObject.confirmDeleteDisplayVisible = !dataObject.confirmDeleteDisplayVisible;
+		},
+		confirmDeleteDisplay: function(e,context){
+			
+			dataObject.confirmDeleteDisplayVisible = false;
+			dataObject.addDisplayVisible = false;
+			dataObject.displayList.pop();
+		},
+
 };
 
 const focusFirstInput = function(container){

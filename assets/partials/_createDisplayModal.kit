@@ -250,8 +250,12 @@
 					</div>
 				</div>
 				
-			</div>
+				<div class="h-ta-center" rv-if="dataObject.tempDisplay.editing">
+					<hr>
+					<button class="o-button--outline" rv-on-click="controller.toggleConfirmDeleteDisplay">Delete This Display</button>
+				</div>
 
+			</div>
 			
 
 			<div class="c-modal--footer">
@@ -262,3 +266,23 @@
 		</div>
 
 	</div> 
+
+
+	<div class="c-modal" rv-class-s-visible="dataObject.confirmDeleteDisplayVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header h-color-error">Delete this Display?</h3>
+				
+				<p>Are you sure you want to delete this display and all of it&rsquo;s settings?</p>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleConfirmDeleteDisplay">Cancel</button>
+				<button class="o-button_error h-float-right" rv-on-click="controller.confirmDeleteDisplay">Yes, Delete Display</button>
+			</div>
+
+		</div>
+
+	</div> 
+	

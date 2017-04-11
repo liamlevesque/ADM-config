@@ -108,10 +108,11 @@
 						<div class="l-grid-third">{ display.name }</div>
 						<div class="l-grid-third">{ display.type }</div>
 						<div class="l-grid-third h-ta-right">
-							<span rv-if="display.status | compare 'active'">Active</span>
-							<span rv-unless="display.status | compare 'active'">Inactive</span>
-							<i class="icon-settings h-ml-100 h-mr-100" rv-on-click="controller.editDisplay"></i>
-							<button class="o-button_affirmative">Launch</button>
+							<span class="h-color-affirmative" rv-if="display.status | compare 'active'">Active</span>
+							<span class="h-color-error" rv-unless="display.status | compare 'active'">Inactive</span>
+							<i class="icon-settings o-button--icon_large" rv-on-click="controller.editDisplay"></i>
+							<button class="o-button_affirmative" rv-on-click="controller.toggleDisplay" rv-unless="display.status | compare 'active'">Launch</button>
+							<button class="o-button_error" rv-on-click="controller.toggleDisplay" rv-if="display.status | compare 'active'">Close</button>
 						</div>
 					</li>
 				</ul>
@@ -133,7 +134,7 @@
 
 			<div class="c-list-grid--header">
 				<div class="l-grid-half">Alternate Currencies</div>
-				<div class="l-grid-half h-ta-right"><i class="icon-settings o-button--large-icon" rv-on-click="controller.toggleCCYSettingsVisible"></i></div>
+				<div class="l-grid-half h-ta-right"><i class="icon-settings o-button--icon_large" rv-on-click="controller.toggleCCYSettingsVisible"></i></div>
 			</div>
 			<hr>
 			<ul class="c-list-grid">

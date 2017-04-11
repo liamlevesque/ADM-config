@@ -50,6 +50,17 @@
 	}
 }
 
+.o-button--icon_large{
+  font-size: 20px;
+  color: palette(grey,dark);
+  cursor: pointer;
+  padding: spacing(small);
+
+  &:hover{
+    color: palette(brand);
+  }
+}
+
 
 .o-button{
 	@include button();
