@@ -8,6 +8,12 @@
 	color: white;
 	border-radius: $large-border-radius;
 	overflow: hidden;
+	transform: translateY(150%);
+	transition: $transition;
+
+	&.s-visible{
+		transform: translateY(0);
+	}
 }
 
 	.c-download-monitor--item{
