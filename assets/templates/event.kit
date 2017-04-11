@@ -45,7 +45,7 @@
 							<label class="">Lots Downloaded</label>
 							<div>No data yet. Please get latest inventory.</div>
 						</div>
-						<button class="o-button">Get Latest Inventory</button>
+						<button class="o-button" rv-on-click="controller.startLotDownload" rv-disabled="dataObject.downloads.1.active">Get Latest Inventory</button>
 					</div>
 					<div class="l-grid-half">
 						<h3 class="h3">Photos</h3>
@@ -54,7 +54,7 @@
 						<div class="l-grid-third"><label for="">Missing Hero Photo</label></div>
 						<div class="l-grid-third"><label for="">Lots With Video</label></div>
 
-						<button class="o-button">Get Latest Photos</button>
+						<button class="o-button" rv-on-click="controller.startPhotoDownload" rv-disabled="dataObject.downloads.0.active">Get Latest Photos</button>
 					</div>
 				</div>
 			</div>
@@ -67,7 +67,7 @@
 					</div>
 					<div class="l-grid-fivesixths">
 						<div class="l-grid-half c-history--header">15/12 3:14PM - 721 Lots Downloaded</div>
-						<div class="l-grid-half c-history--header s-error">15/12 3:14PM - 2000 Photos Downloaded</div>
+						<div class="l-grid-half c-history--header s-error">15/12 3:14PM - Error Completing Download</div>
 					</div>
 				</div>
 				<div class="c-history--body" rv-if="dataObject.historyExpanded">
@@ -158,7 +158,7 @@
 
 	<!-- @include '/assets/partials/ccySettings' --> 
 
-
+	
 
 	<div class="c-modal" rv-class-s-visible="dataObject.deleteEventVisible">
 		<div class="c-modal--content">
@@ -177,6 +177,8 @@
 		</div>
 
 	</div> 
+
+	<!-- @include '/assets/partials/downloadMonitor' --> 
 
 
 <!-- @include '/assets/partials/footer' --> 

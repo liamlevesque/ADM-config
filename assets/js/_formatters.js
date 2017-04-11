@@ -31,7 +31,15 @@ rivets.formatters.compare = function(value, comparisons){
 rivets.binders.addtextclass = function(el,value){
 	if(value === "") return false;
 	$(el).removeClass().addClass('s-'+ value);
-}
+};
+
+rivets.binders.percenttowidth = function(el,value){
+	$(el).css({'transform':"scaleX("+value/100+")"});
+};
+
+rivets.formatters.divide = function(value,divisor){
+	return Math.floor((value/divisor*100));
+};
 
 rivets.formatters.lengthToBool = function(value){
 	if(typeof value == 'undefined') return false;
@@ -54,3 +62,4 @@ rivets.formatters.propertyList = function(obj) {
     return properties
   })();
 }
+

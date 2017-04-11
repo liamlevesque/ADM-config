@@ -96,6 +96,10 @@
 	@include text-button(palette(brand),palette(brand,dark),50);
 }
 
+.o-text-button_white{
+	@include text-button(white,palette(brand),50);
+}
+
 .o-text-button--large{
 	@include text-button(palette(brand),palette(brand,dark));
 }

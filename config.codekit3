@@ -141,6 +141,12 @@
 		"oAP": "\/assets\/partials\/_createDisplayModal.html",
 		"oF": 0
 		},
+	"\/assets\/partials\/_downloadMonitor.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_downloadMonitor.html",
+		"oF": 0
+		},
 	"\/assets\/partials\/_footer.kit": {
 		"ft": 2048,
 		"oA": 1,
@@ -259,6 +265,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/assets\/css\/_defaults.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/assets\/sass\/_download-monitor.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/assets\/css\/_download-monitor.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1

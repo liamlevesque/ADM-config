@@ -14,6 +14,24 @@ const dataObject = {
 	historyExpanded: false,
 	CCYSettingsVisible: false,
 	confirmDeleteDisplayVisible: false,
+
+	downloads:[
+		{
+			title: "Downloading Photos",
+			progress: 8,
+			items: 20,
+			error: false,
+			active: false,
+		},
+		{
+			title: "Downloading Lots",
+			progress: 5,
+			items: 200,
+			error: false,
+			active: false,
+		}
+	],
+	downloadStarted: false,
 };
 
 const controller = {
@@ -73,7 +91,32 @@ const controller = {
 			dataObject.displayList.pop();
 		},
 
+	//DOWNLOAD MONITOR
+		startPhotoDownload:function(){
+			dataObject.downloadStarted = true;
+			startDownload(dataObject.downloads[0]);
+
+		},
+		startLotDownload:function(){
+			dataObject.downloadStarted = true;
+			startDownload(dataObject.downloads[1]);
+		},
+		cancelDownload: function(e,context){
+			context.download.active = false;
+		}
 };
+
+const startDownload = function(target){
+	target.active = true;
+	target.progress = 0;
+	var progressTimer = setInterval(function(){
+		target.progress++;
+		if(target.progress >= target.items){
+			clearInterval(progressTimer);
+			target.active = false;
+		}
+	},500);
+}
 
 const focusFirstInput = function(container){
 	container.find('input').first().focus();

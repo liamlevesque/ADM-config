@@ -1096,6 +1096,27 @@ hr {
   .o-text-button:hover, .o-text-button:focus {
     color: #C1631C; }
 
+.o-text-button_white {
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  height: 45px;
+  border: 2px solid transparent;
+  padding: 8px 20px;
+  font-size: 0.8rem;
+  background-color: transparent;
+  color: white; }
+  .o-text-button_white:disabled {
+    opacity: 0.4;
+    cursor: normal;
+    pointer-events: none; }
+  .o-text-button_white:hover, .o-text-button_white:focus {
+    color: #E87722; }
+
 .o-text-button--large {
   font-weight: 700;
   outline: none;
@@ -1536,3 +1557,55 @@ hr {
   background-size: 100% auto;
   background-image: url(../img/ccy-flags.png);
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5); }
+
+.c-download-monitor {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 350px;
+  background-color: black;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 15px;
+  overflow: hidden; }
+
+.c-download-monitor--item {
+  padding: 15px;
+  border-bottom: 1px solid #585858; }
+  .c-download-monitor--item:last-child {
+    border-bottom: none; }
+  .c-download-monitor--item.s-error {
+    background-color: #c4483a; }
+    .c-download-monitor--item.s-error .o-download-item--body {
+      display: none; }
+    .c-download-monitor--item.s-error .o-download-item--error {
+      display: block; }
+
+.o-download-item--error {
+  display: none; }
+
+.o-download-item--header {
+  overflow: hidden; }
+
+.o-download-item--body {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9); }
+
+.o-download-item--progress {
+  width: 100%;
+  height: 6px;
+  background-color: #585858;
+  position: relative;
+  margin-top: 10px; }
+
+.o-download-item--progress-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #E87722;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+  transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1); }

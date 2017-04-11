@@ -1,0 +1,24 @@
+
+<div class="c-download-monitor" rv-class-s-visible="dataObject.downloadStarted">
+	<div class="c-download-monitor--item" rv-each-download="dataObject.downloads" rv-class-s-error="download.error" rv-show="download.active">
+		<div class="o-download-item--header">
+			<i class="icon-photo"></i>{ download.title }
+			<button class="o-text-button h-float-right" rv-unless="download.error" rv-on-click="controller.cancelDownload">Cancel</button>
+			<button class="o-text-button_white h-float-right" rv-if="download.error">Dismiss</button>
+		</div>
+		<div class="o-download-item--body" rv-unless="download.error">
+			<div class="">
+				<span>{ download.progress | divide download.items }%</span>
+				<span class="h-float-right">{ download.progress } of { download.items } Lots downloaded</span>
+			</div>
+			<div class="o-download-item--progress">
+				<div class="o-download-item--progress-indicator" rv-percenttowidth="download.progress | divide download.items"></div>
+			</div>
+		</div>
+		<div class="o-download-item--error" rv-if="download.error">
+			There was an error downloading inventory.
+			<button class="o-text-button_white">Retry</button>
+			<button class="o-text-button_white h-float-right">View Error</button>
+		</div>
+	</div>
+</div>
