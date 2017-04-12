@@ -37,6 +37,16 @@ rivets.binders.percenttowidth = function(el,value){
 	$(el).css({'transform':"scaleX("+value/100+")"});
 };
 
+rivets.binders.sortclasses = function(el,value){
+	var thiscolumn = $(el).data('column');
+	var direction = dataObject.sortdirection;
+	$(el).removeClass('s-active-sort s-sort-asc s-sort-desc');
+	
+	if(value === thiscolumn) $(el).addClass('s-active-sort s-sort-'+direction);
+};
+
+
+
 rivets.formatters.divide = function(value,divisor){
 	return Math.floor((value/divisor*100));
 };
@@ -45,6 +55,11 @@ rivets.formatters.lengthToBool = function(value){
 	if(typeof value == 'undefined') return false;
 	if(value.length === 0) return false;
 	return true;
+};
+
+rivets.formatters.length = function(value){
+	if(typeof value == 'undefined') return 0;
+	return value.length;
 };
 
 rivets.formatters.invert = function(value){

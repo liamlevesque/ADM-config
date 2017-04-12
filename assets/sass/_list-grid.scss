@@ -2,10 +2,22 @@
 }
 
 	.c-list-grid--header{
-		@include allcaps;
-		font-size: fontsize(50);
-		color: palette(grey);
+		@include smalllabel;
 		margin-bottom: spacing(x-small);
+		overflow: hidden;
+
+		&.s-fixed{
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			max-width: 1160px;
+			padding: spacing(x-small) spacing(small);
+			margin: 0 auto;
+			box-shadow: $ritchie-shadow;
+			background-color: white;
+			z-index: 100;
+		}
 	}
 
 	.c-list-grid--item{

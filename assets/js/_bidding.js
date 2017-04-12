@@ -1,7 +1,25 @@
 $(function(){
+	medialist = new List('js-media-list',listOptions);
+	medialist.sort(dataObject.sortedColumn,{order:dataObject.sortdirection});
 
-
+	var waypoint = new Waypoint({
+	  element: $('.js-header-waypoint'),
+	  handler: function(direction) {
+	    $('.js-sticky-header').toggleClass('s-fixed');
+	  }
+	})
 });
+
+var medialist;
+const listOptions = {
+	valueNames:["js-lotnumber",
+				"js-lotequipid",
+				"js-lotvideo",
+				"js-lotphoto",
+				"js-lotnotes",
+				"js-lotflagged",
+				"js-lotupdated"],
+};
 
 const dataObject = {
 	getOtherSalesVisible: false,
@@ -14,6 +32,11 @@ const dataObject = {
 	historyExpanded: false,
 	CCYSettingsVisible: false,
 	confirmDeleteDisplayVisible: false,
+	downloadPhotosSettingsVisible: false,
+	activeTab: window.location.pathname,
+	lots: lotlist,
+	sortedColumn: 'js-lotnumber',
+	sortdirection: 'asc',
 
 	downloads:[
 		{
@@ -35,6 +58,11 @@ const dataObject = {
 };
 
 const controller = {
+	gotoPage: function(e){
+		var target = $(e.currentTarget).data('targetpage');
+		window.location = target;
+	},
+
 	toggleGetOtherSales: function(e){
 		dataObject.getOtherSalesVisible = !dataObject.getOtherSalesVisible;
 	},
@@ -54,6 +82,9 @@ const controller = {
 	},
 	toggleCCYSettingsVisible: function(){
 		dataObject.CCYSettingsVisible = !dataObject.CCYSettingsVisible;
+	},
+	toggleDownloadPhotosSettingsVisible: function(){
+		dataObject.downloadPhotosSettingsVisible = !dataObject.downloadPhotosSettingsVisible;
 	},
 
 	goToEventList: function(){
@@ -94,6 +125,7 @@ const controller = {
 	//DOWNLOAD MONITOR
 		startPhotoDownload:function(){
 			dataObject.downloadStarted = true;
+			dataObject.downloadPhotosSettingsVisible = false;
 			startDownload(dataObject.downloads[0]);
 
 		},
@@ -103,6 +135,25 @@ const controller = {
 		},
 		cancelDownload: function(e,context){
 			context.download.active = false;
+		},
+
+	//MANAGE LOT MEDIA
+		toggleExpandLot: function(e,context){
+			if(typeof context.lot.expanded == "undefined") context.lot.expanded = true;
+			else context.lot.expanded = !context.lot.expanded;
+
+			if(context.lot.expanded) $(e.currentTarget).parent().addClass('s-expanded');
+			else $(e.currentTarget).parent().removeClass('s-expanded');
+		},
+		sortColumn: function(e){
+			let targetColumn = $(e.currentTarget).data('column');
+			if(dataObject.sortedColumn == targetColumn)
+				dataObject.sortdirection = (dataObject.sortdirection === 'asc')? 'desc': 'asc';
+			else{
+				dataObject.sortedColumn = targetColumn;
+				dataObject.sortdirection = 'asc';
+			}
+			medialist.sort(dataObject.sortedColumn,{order:dataObject.sortdirection});
 		}
 };
 

@@ -1,0 +1,133 @@
+<!-- @include '/assets/partials/header_event' -->
+
+<!-- @include '/assets/partials/eventSubhead' -->
+
+	<div class="o-width-wrapper h-mt-300">
+
+		<div class="h-overflow-hidden">
+			<h3 class="h3 h-d-inline-block">Sale Media</h3>
+			<button class="o-button h-float-right">+ Import Media</button>
+		</div>
+
+		<div class="o-data-row h-mt-100 h-mb-100">
+			<div class="l-grid-quarter t-data-point">452 <label class="t-smalllabel">Lots</label></div>
+			<div class="l-grid-quarter t-data-point">1,562 <label class="t-smalllabel">Photos Downloaded</label></div>
+			<div class="l-grid-quarter t-data-point h-color-error">7 <label class="t-smalllabel">Missing Hero Photos</label></div>
+			<div class="l-grid-quarter t-data-point">27 <label class="t-smalllabel">Lots with Video</label></div>
+		</div>
+
+		<div class="c-container-box">
+			<div class="c-container-box--header">
+				<div class="h-float-left">
+					<label for="" class="t-smalllabel">Filter By Lot Number:</label>
+					<div class="">
+						<span class="t-smalllabel">Lot #</span>
+						<input type="text" class="o-input--text_small" placeholder="from">-
+						<input type="text" class="o-input--text_small" placeholder="to">
+						<button class="o-button">Go</button>
+					</div>
+				</div>
+				<div class="h-float-left">
+					<label class="t-smalllabel">Filter Lots:</label>
+					<div class="">
+						
+					</div>
+				</div>
+				<div class="h-float-right">
+					<div class="o-button--outline_grey">Expand All</div>
+					<button class="o-button--outline_grey">Export List<i class="icon-arrow-down h-ml-100"></i></button>
+				</div>
+			</div>
+		
+			<div class="js-header-waypoint"></div>
+			<div class="c-list-grid--header js-sticky-header">
+				<div class="media-table--col1" rv-on-click="controller.sortColumn" data-column="js-lotnumber" rv-sortclasses="dataObject.sortedColumn < sortdirection">
+					Lot Number
+					<button class="o-icon-button--sort h-ml-100"><i class="icon-arrow-down"></i></button>
+				</div>
+				<div class="media-table--col2" rv-on-click="controller.sortColumn" data-column="js-lotequipid" rv-sortclasses="dataObject.sortedColumn < sortdirection">
+					Equipment ID
+					<button class="o-icon-button--sort h-ml-100"><i class="icon-arrow-down"></i></button>
+				</div>
+				<div class="media-table--col3" rv-on-click="controller.sortColumn" data-column="js-lotvideo" rv-sortclasses="dataObject.sortedColumn < sortdirection">
+					Videos
+					<button class="o-icon-button--sort h-ml-100"><i class="icon-arrow-down"></i></button>
+				</div>
+				<div class="media-table--col4" rv-on-click="controller.sortColumn" data-column="js-lotphoto" rv-sortclasses="dataObject.sortedColumn < sortdirection">
+					Photos
+					<button class="o-icon-button--sort h-ml-100"><i class="icon-arrow-down"></i></button>
+				</div>
+				<div class="media-table--col5" rv-on-click="controller.sortColumn" data-column="js-lotnotes" rv-sortclasses="dataObject.sortedColumn < sortdirection">
+					Notes
+					<button class="o-icon-button--sort h-ml-100"><i class="icon-arrow-down"></i></button>
+				</div>
+				<div class="media-table--col6" rv-on-click="controller.sortColumn" data-column="js-lotflagged" rv-sortclasses="dataObject.sortedColumn < sortdirection">
+					Flagged
+					<button class="o-icon-button--sort h-ml-100"><i class="icon-arrow-down"></i></button>
+				</div>
+				<div class="media-table--col7" rv-on-click="controller.sortColumn" data-column="js-lotupdated" rv-sortclasses="dataObject.sortedColumn < sortdirection">
+					Last Update
+					<button class="o-icon-button--sort h-ml-100"><i class="icon-arrow-down"></i></button>
+				</div>
+			</div>
+			<div id="js-media-list">
+				<ul class="list c-list-grid">
+					<li class="c-list-grid--item" rv-each-lot="dataObject.lots">
+						<div class="media-table--col1 js-lotnumber" rv-on-click="controller.toggleExpandLot">
+							Lot {lot.lotNumber}
+						</div>
+						<div class="media-table--col2 js-lotequipid">
+							{lot.equipid}
+						</div>
+						<div class="media-table--col3 js-lotvideo">
+							{lot.video | length}
+						</div>
+						<div class="media-table--col4 js-lotphoto">
+							{lot.photos | length}
+						</div>
+						<div class="media-table--col5 js-lotnotes">
+							{lot.notes}
+						</div>
+						<div class="media-table--col6 js-lotflagged">
+							<i class="icon-sale" rv-class-s-active="lot.flagged"></i>
+						</div>
+						<div class="media-table--col7 js-lotupdated">
+							{lot.updated}
+						</div>
+
+						<div class="c-list-grid--item-details" rv-if="lot.expanded">
+							<div class="h-float-left">
+								<label for="" class="t-smalllabel">Videos</label>
+								<div class="o-lot-media" rv-each-video="lot.video">
+									<img rv-src="video.src" alt="">
+									<button class="o-lot-media--visibility"><i class="icon-eye"></i></button>
+									<span class="o-lot-media--filename">{ video.src }</span>
+								</div>
+								<button class="o-button--add">
+									<i class="icon-plus"></i>
+								</button>
+							</div>
+							<div class="h-float-left" >
+								<label for="" class="t-smalllabel">Photos</label>
+								<div class="o-lot-media" rv-each-photo="lot.photos">
+									<img rv-src="photo.src" alt="">
+									<button class="o-lot-media--visibility"><i class="icon-eye"></i></button>
+									<span class="o-lot-media--filename">{ photo.src }</span>
+								</div>
+								<button class="o-button--add">
+									<i class="icon-plus"></i>
+								</button>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- @include '/assets/partials/downloadMonitor' --> 
+
+
+<!-- @include '/assets/partials/footer' --> 

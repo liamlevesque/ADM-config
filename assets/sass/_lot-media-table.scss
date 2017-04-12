@@ -1,0 +1,36 @@
+.o-data-row{
+	border-top: $default-border;
+	border-bottom: $default-border;
+	padding: spacing(small) 0;
+	text-align: center;
+}
+
+
+$mediacols: "15%","15%","5%","5%","30%","5%","20%";
+
+@for $i from 1 through length($mediacols) {
+	.media-table--col#{$i}{
+		@include g-cell(#{nth($mediacols,$i)},0);
+	}
+}
+
+[class^="media-table--col"]{
+	cursor: pointer;
+	button{
+		opacity: 0;
+	}
+	
+	&:hover button{
+		opacity: 0.5; 
+	}
+
+	&.s-active-sort{
+		color: black;
+		font-weight: 700;
+
+		button{
+			opacity: 1;
+		}
+	}
+}
+

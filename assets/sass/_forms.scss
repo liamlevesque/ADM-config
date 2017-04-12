@@ -175,6 +175,7 @@ $checkmark-icon_white: url(data:image/svg+xml,%3Csvg%20width%3D%2226px%22%20heig
 		cursor: pointer;
 		transition: $transition;
 		vertical-align: middle;
+		display: block;
 
 		span{
 			vertical-align: middle;
@@ -198,7 +199,7 @@ $checkmark-icon_white: url(data:image/svg+xml,%3Csvg%20width%3D%2226px%22%20heig
 			transition: $transition;
 
 			&:hover{
-				background: rgba(palette(brand),0.5) $checkmark-icon_white center center no-repeat;
+				background: rgba(palette(affirmative),0.5) $checkmark-icon_white center center no-repeat;
 				background-size: 60%;
 			}
 		}
@@ -208,11 +209,11 @@ $checkmark-icon_white: url(data:image/svg+xml,%3Csvg%20width%3D%2226px%22%20heig
 
 			&:checked{
 				+ .o-input--checksymbol{
-					background: palette(brand) $checkmark-icon_white center center no-repeat;
+					background: palette(affirmative) $checkmark-icon_white center center no-repeat;
 					background-size: 60%;
 
 					&:hover{
-						background: rgba(palette(brand),0.5) $checkmark-icon_white center center no-repeat;
+						background: rgba(palette(affirmative),0.5) $checkmark-icon_white center center no-repeat;
 						background-size: 60%;
 					}
 				}

@@ -12,6 +12,14 @@
 		margin-bottom: spacing(medium);
 	}
 
+	.c-container-box--header{
+		margin: -1 * spacing(medium);
+		margin-bottom: spacing(medium);
+		background-color: palette(grey,light);
+		padding: spacing(medium);
+		overflow: hidden;
+	}
+
 	.c-container-box--footer{
 		margin: -1 * spacing(medium);
 		margin-top: spacing(medium);

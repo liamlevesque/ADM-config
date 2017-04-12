@@ -1,0 +1,31 @@
+<header class="o-subheader--large">
+	<div class="o-width-wrapper">
+		<div class="h-mb-200 h-pt-200">
+			<h1 class="h1 h-mb-100">Regina, Sk &middot; Ring 1</h1>
+			<div> Lots: 1 - 451, 8001 - 8012 <span class="h-color-offwhite">(491 Lots)</span></div>
+			<div class="l-abs-right h-pt-200">
+				<button class="o-button--outline_white " rv-on-click="controller.toggleGetOtherSales">Refresh Event Data</button>
+				<button class="o-button--light">Launch Clerk</button>
+			</div>
+		</div>
+
+		<nav class="o-navigation-tabs">
+			<div class="o-navigation-tab" rv-class-s-active="dataObject.activeTab | compare '/event.html'" rv-on-click="controller.gotoPage" data-targetpage="/event.html">
+				<i class="icon-settings h-mr-100"></i>Configure Event
+			</div>
+			<div class="o-navigation-tab" rv-class-s-active="dataObject.activeTab | compare '/managemedia.html'" rv-on-click="controller.gotoPage" data-targetpage="/managemedia.html">
+				<i class="icon-settings h-mr-100"></i>Manage Lot Media
+			</div>
+			<div class="o-navigation-tab" rv-class-s-active="dataObject.activeTab | compare '/presentation.html'" rv-on-click="controller.gotoPage" data-targetpage="/presentation.html">
+				<i class="icon-settings h-mr-100"></i>Presentation Setup
+			</div>
+			<div class="o-navigation-tab" rv-class-s-active="dataObject.activeTab | compare '/reports.html'" rv-on-click="controller.gotoPage" data-targetpage="/reports.html">
+				<i class="icon-settings h-mr-100"></i>Reports
+			</div>
+			<div class="o-navigation-tab" rv-class-s-active="dataObject.activeTab | compare '/advanced.html'" rv-on-click="controller.gotoPage" data-targetpage="/advanced.html">
+				<i class="icon-warning"></i>
+			</div>
+		</nav>
+	</div>
+	
+</header>

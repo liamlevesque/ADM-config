@@ -47,6 +47,60 @@
 		"oAP": "\/assets\/fonts\/ritchie-icons.woff",
 		"oF": 0
 		},
+	"\/assets\/img\/8666603_1.jpg": {
+		"ft": 16384,
+		"iS": 22022,
+		"oA": 0,
+		"oAP": "\/assets\/img\/8666603_1.jpg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/assets\/img\/8686158_1.jpg": {
+		"ft": 16384,
+		"iS": 22497,
+		"oA": 0,
+		"oAP": "\/assets\/img\/8686158_1.jpg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/assets\/img\/8699592_1.jpg": {
+		"ft": 16384,
+		"iS": 24526,
+		"oA": 0,
+		"oAP": "\/assets\/img\/8699592_1.jpg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/assets\/img\/8699594_1.jpg": {
+		"ft": 16384,
+		"iS": 23745,
+		"oA": 0,
+		"oAP": "\/assets\/img\/8699594_1.jpg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/assets\/img\/8709802_1.jpg": {
+		"ft": 16384,
+		"iS": 24740,
+		"oA": 0,
+		"oAP": "\/assets\/img\/8709802_1.jpg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/assets\/img\/8709802_2.jpg": {
+		"ft": 16384,
+		"iS": 324346,
+		"oA": 0,
+		"oAP": "\/assets\/img\/8709802_2.jpg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
 	"\/assets\/img\/ccy-flags.png": {
 		"ft": 32768,
 		"iS": 14707,
@@ -93,6 +147,42 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
+	"\/assets\/img\/vramp1.jpg": {
+		"ft": 16384,
+		"iS": 211497,
+		"oA": 0,
+		"oAP": "\/assets\/img\/vramp1.jpg",
+		"oF": 0,
+		"opt": 1,
+		"q": 100
+		},
+	"\/assets\/img\/vramp2.jpg": {
+		"ft": 16384,
+		"iS": 252194,
+		"oA": 0,
+		"oAP": "\/assets\/img\/vramp2.jpg",
+		"oF": 0,
+		"opt": 1,
+		"q": 100
+		},
+	"\/assets\/img\/vramp3.jpg": {
+		"ft": 16384,
+		"iS": 241650,
+		"oA": 0,
+		"oAP": "\/assets\/img\/vramp3.jpg",
+		"oF": 0,
+		"opt": 1,
+		"q": 100
+		},
+	"\/assets\/img\/vramp4.jpg": {
+		"ft": 16384,
+		"iS": 222454,
+		"oA": 0,
+		"oAP": "\/assets\/img\/vramp4.jpg",
+		"oF": 0,
+		"opt": 1,
+		"q": 100
+		},
 	"\/assets\/js\/_bidding.js": {
 		"ft": 64,
 		"mi": 1,
@@ -107,6 +197,15 @@
 		"mi": 1,
 		"oA": 1,
 		"oAP": "\/assets\/js\/min\/_formatters-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/assets\/js\/_lotlist.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/assets\/js\/min\/_lotlist-min.js",
 		"oF": 0,
 		"sC": 1,
 		"tS": 0
@@ -145,6 +244,12 @@
 		"ft": 2048,
 		"oA": 1,
 		"oAP": "\/assets\/partials\/_downloadMonitor.html",
+		"oF": 0
+		},
+	"\/assets\/partials\/_eventSubhead.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_eventSubhead.html",
 		"oF": 0
 		},
 	"\/assets\/partials\/_footer.kit": {
@@ -425,6 +530,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/assets\/sass\/_lot-media-table.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/assets\/css\/_lot-media-table.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/assets\/sass\/_mixins.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -516,6 +634,12 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/assets\/templates\/advanced.kit": {
+		"ft": 2048,
+		"oA": 0,
+		"oAP": "\/advanced.html",
+		"oF": 2
+		},
 	"\/assets\/templates\/event.kit": {
 		"ft": 2048,
 		"oA": 0,
@@ -526,6 +650,24 @@
 		"ft": 2048,
 		"oA": 0,
 		"oAP": "\/index.html",
+		"oF": 2
+		},
+	"\/assets\/templates\/managemedia.kit": {
+		"ft": 2048,
+		"oA": 0,
+		"oAP": "\/managemedia.html",
+		"oF": 2
+		},
+	"\/assets\/templates\/presentation.kit": {
+		"ft": 2048,
+		"oA": 0,
+		"oAP": "\/presentation.html",
+		"oF": 2
+		},
+	"\/assets\/templates\/reports.kit": {
+		"ft": 2048,
+		"oA": 0,
+		"oAP": "\/reports.html",
 		"oF": 2
 		},
 	"\/bower.json": {
@@ -1798,6 +1940,1029 @@
 		"mi": 1,
 		"oA": 2,
 		"oAP": "\/bower_components\/jquery\/src\/wrap.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/.bower.json": {
+		"ft": 524288,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/.bower.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/bower_components\/list.js\/__test__\/add-get-remove.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/add-get-remove.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/buttons.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/buttons.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/create.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/create.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/defaults.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/defaults.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/filter.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/filter.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/fixtures-fuzzysearch.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/fixtures-fuzzysearch.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/fixtures-pagination.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/fixtures-pagination.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/fixtures.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/fixtures.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/fuzzysearch.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/fuzzysearch.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/index.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/index.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/__test__\/item.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/item.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/off.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/off.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/on.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/on.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/pagination.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/pagination.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/parse.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/parse.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/re-index.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/re-index.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/search-filter.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/search-filter.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/search.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/search.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/show.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/show.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/sort.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/sort.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/trigger.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/trigger.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/amd.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/amd.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/boba.jpeg": {
+		"ft": 16384,
+		"iS": 3271,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/boba.jpeg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/classic.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/classic.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/darth.jpeg": {
+		"ft": 16384,
+		"iS": 2109,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/darth.jpeg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/fuzzy-search-pagination.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/fuzzy-search-pagination.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/leia.jpeg": {
+		"ft": 16384,
+		"iS": 1707,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/leia.jpeg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/luke.jpeg": {
+		"ft": 16384,
+		"iS": 2009,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/luke.jpeg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/main.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/main.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/require.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/require.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/rey.jpeg": {
+		"ft": 16384,
+		"iS": 2281,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/rey.jpeg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/bower_components\/list.js\/__test__\/usage\/style.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/usage\/style.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/utils.classes.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/utils.classes.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/__test__\/utils.get-by-class.test.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/__test__\/utils.get-by-class.test.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/bower.json": {
+		"ft": 524288,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/bower.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/bower_components\/list.js\/circle.yml": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/circle.yml",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/dist\/list.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/bower_components\/list.js\/dist\/list.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/dist\/list.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/dist\/list.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/docs\/_config.yml": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/bower_components\/list.js\/docs\/_config.yml",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_data\/pkg.json": {
+		"ft": 524288,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_data\/pkg.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/bower_components\/list.js\/docs\/_examples\/add-get-remove.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_examples\/add-get-remove.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_examples\/data-attributes-custom-attributes.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_examples\/data-attributes-custom-attributes.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_examples\/existing-list-add.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_examples\/existing-list-add.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_examples\/existing-list.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_examples\/existing-list.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_examples\/fuzzy-search.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_examples\/fuzzy-search.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_examples\/new-list.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_examples\/new-list.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_examples\/pagination.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_examples\/pagination.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_examples\/table.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_examples\/table.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_includes\/author.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_includes\/author.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_includes\/carbon.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_includes\/carbon.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_includes\/codepen.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_includes\/codepen.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_includes\/examples\/annotated-example.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_includes\/examples\/annotated-example.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_includes\/javascripts\/vendor\/bootstrap\/tab.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_includes\/javascripts\/vendor\/bootstrap\/tab.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/docs\/_includes\/javascripts\/vendor\/bootstrap\/tooltip.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_includes\/javascripts\/vendor\/bootstrap\/tooltip.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/docs\/_includes\/javascripts\/vendor\/bootstrap\/transition.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_includes\/javascripts\/vendor\/bootstrap\/transition.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/docs\/_includes\/javascripts\/vendor\/highlight.pack.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_includes\/javascripts\/vendor\/highlight.pack.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/docs\/_includes\/javascripts\/vendor\/jquery-1.8.3.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_includes\/javascripts\/vendor\/jquery-1.8.3.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/docs\/_includes\/menu.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_includes\/menu.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_layouts\/default.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_layouts\/default.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/_sass\/_base.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/bower_components\/list.js\/docs\/_sass\/_base.scss",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/bower_components\/list.js\/docs\/_sass\/_carbonads.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/bower_components\/list.js\/docs\/_sass\/_carbonads.scss",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/bower_components\/list.js\/docs\/_sass\/_docs.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/bower_components\/list.js\/docs\/_sass\/_docs.scss",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/bower_components\/list.js\/docs\/_sass\/_menu.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/bower_components\/list.js\/docs\/_sass\/_menu.scss",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/bower_components\/list.js\/docs\/_sass\/_mixins.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/bower_components\/list.js\/docs\/_sass\/_mixins.scss",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/bower_components\/list.js\/docs\/_sass\/_normalize.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/bower_components\/list.js\/docs\/_sass\/_normalize.scss",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/bower_components\/list.js\/docs\/_sass\/vendor\/highlight\/xcode.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/_sass\/vendor\/highlight\/xcode.scss",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/bower_components\/list.js\/docs\/api.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/api.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/assets\/css\/style.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/assets\/css\/style.scss",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/bower_components\/list.js\/docs\/assets\/images\/graphics\/favicon.ico": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/assets\/images\/graphics\/favicon.ico",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/assets\/images\/graphics\/javve-coffee.jpg": {
+		"ft": 16384,
+		"iS": 4436,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/assets\/images\/graphics\/javve-coffee.jpg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/bower_components\/list.js\/docs\/assets\/images\/graphics\/javve-coffee2.jpg": {
+		"ft": 16384,
+		"iS": 6180,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/assets\/images\/graphics\/javve-coffee2.jpg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/bower_components\/list.js\/docs\/assets\/images\/graphics\/javve.jpg": {
+		"ft": 16384,
+		"iS": 7363,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/assets\/images\/graphics\/javve.jpg",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/bower_components\/list.js\/docs\/assets\/images\/graphics\/listjs-logo.png": {
+		"ft": 32768,
+		"iS": 9780,
+		"l": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/assets\/images\/graphics\/listjs-logo.png",
+		"oF": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/bower_components\/list.js\/docs\/assets\/javascripts\/list.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/assets\/javascripts\/list.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/docs\/assets\/javascripts\/main.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/assets\/javascripts\/main.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/docs\/CNAME": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/CNAME",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/docs\/fuzzysearch.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/docs\/fuzzysearch.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/docs\/index.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/docs\/index.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/docs\/item-api.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/docs\/item-api.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/docs\/pagination.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/docs\/pagination.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/docs\/plugins\/build.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/docs\/plugins\/build.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/docs\/plugins\/fuzzysearch.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/docs\/plugins\/fuzzysearch.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/docs\/plugins\/index.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/docs\/plugins\/index.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/docs\/plugins\/pagination.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/docs\/plugins\/pagination.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/feed.xml": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/feed.xml",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/Gemfile": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/Gemfile",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/Gemfile.lock": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/Gemfile.lock",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/index.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/index.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/overview\/changelog.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/overview\/changelog.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/overview\/contribute.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/overview\/contribute.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/overview\/download.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/overview\/download.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/overview\/index.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/overview\/index.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/overview\/press.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/overview\/press.html",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/docs\/README.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/docs\/README.md",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
+	"\/bower_components\/list.js\/History.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/History.md",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
+	"\/bower_components\/list.js\/LICENSE": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/LICENSE",
+		"oF": 0
+		},
+	"\/bower_components\/list.js\/package.json": {
+		"ft": 524288,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/package.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/bower_components\/list.js\/README.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/README.md",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
+	"\/bower_components\/list.js\/Release.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/Release.md",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
+	"\/bower_components\/list.js\/src\/add-async.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/add-async.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/filter.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/filter.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/fuzzy-search.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/fuzzy-search.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/index.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/index.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/item.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/item.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/pagination.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/pagination.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/parse.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/parse.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/search.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/search.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/sort.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/sort.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/templater.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/templater.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/utils\/classes.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/utils\/classes.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/utils\/events.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/utils\/events.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/utils\/extend.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/utils\/extend.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/utils\/fuzzy.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/utils\/fuzzy.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/utils\/get-attribute.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/utils\/get-attribute.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/utils\/get-by-class.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/utils\/get-by-class.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/utils\/index-of.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/utils\/index-of.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/utils\/to-array.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/utils\/to-array.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/src\/utils\/to-string.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/src\/utils\/to-string.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/list.js\/webpack.config.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/list.js\/webpack.config.js",
 		"oF": 0,
 		"sC": 1,
 		"tS": 0
@@ -3380,6 +4545,217 @@
 		"rFN": 0,
 		"uCM": 0
 		},
+	"\/bower_components\/waypoints\/.bower.json": {
+		"ft": 524288,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/.bower.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/bower_components\/waypoints\/.eslintrc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/.eslintrc",
+		"oF": 0
+		},
+	"\/bower_components\/waypoints\/.gitignore": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/.gitignore",
+		"oF": 0
+		},
+	"\/bower_components\/waypoints\/.travis.yml": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/.travis.yml",
+		"oF": 0
+		},
+	"\/bower_components\/waypoints\/bower.json": {
+		"ft": 524288,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/bower.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/bower_components\/waypoints\/CHANGELOG.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/CHANGELOG.md",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
+	"\/bower_components\/waypoints\/CONTRIBUTING.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/CONTRIBUTING.md",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
+	"\/bower_components\/waypoints\/lib\/jquery.waypoints.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/jquery.waypoints.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/jquery.waypoints.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/bower_components\/waypoints\/lib\/jquery.waypoints.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/noframework.waypoints.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/noframework.waypoints.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/noframework.waypoints.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/noframework.waypoints.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/shortcuts\/infinite.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/shortcuts\/infinite.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/shortcuts\/infinite.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/shortcuts\/infinite.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/shortcuts\/inview.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/shortcuts\/inview.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/shortcuts\/inview.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/shortcuts\/inview.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/shortcuts\/sticky.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/shortcuts\/sticky.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/shortcuts\/sticky.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/shortcuts\/sticky.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/waypoints.debug.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/waypoints.debug.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/zepto.waypoints.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/zepto.waypoints.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/lib\/zepto.waypoints.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/lib\/zepto.waypoints.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/bower_components\/waypoints\/licenses.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/licenses.txt",
+		"oF": 0
+		},
+	"\/bower_components\/waypoints\/README.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 2,
+		"oAP": "\/bower_components\/waypoints\/README.md",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
 	"\/event.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -3390,6 +4766,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/index.html",
+		"oF": 0
+		},
+	"\/managemedia.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/managemedia.html",
 		"oF": 0
 		}
 	},
@@ -3410,15 +4792,33 @@
 			"type": 0
 			},
 		{
+			"followForSyntaxChecking": 0,
+			"linkedFileAbbreviatedPath": "\/bower_components\/list.js\/dist\/list.js",
+			"position": 2,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 0,
+			"linkedFileAbbreviatedPath": "\/bower_components\/waypoints\/lib\/jquery.waypoints.min.js",
+			"position": 3,
+			"type": 0
+			},
+		{
 			"followForSyntaxChecking": 1,
 			"linkedFileAbbreviatedPath": "\/assets\/js\/_formatters.js",
-			"position": 2,
+			"position": 4,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/assets\/js\/_lotlist.js",
+			"position": 5,
 			"type": 1
 			},
 		{
 			"followForSyntaxChecking": 1,
 			"linkedFileAbbreviatedPath": "\/assets\/js\/_bidding.js",
-			"position": 3,
+			"position": 6,
 			"type": 1
 			}
 		]

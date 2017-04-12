@@ -50,43 +50,45 @@
 
 		
 
-	<header class="o-subheader--large">
-		<div class="o-width-wrapper">
-			<div class="h-mb-200 h-pt-200">
-				<h1 class="h1 h-mb-100">Regina, Sk &middot; Ring 1</h1>
-				<div> Lots: 1 - 451, 8001 - 8012</div>
-				<div class="l-abs-right h-pt-200">
-					<button class="o-button--outline_white " rv-on-click="controller.toggleGetOtherSales">Refresh Event Data</button>
-					<button class="o-button--light">Launch Clerk</button>
-				</div>
+<header class="o-subheader--large">
+	<div class="o-width-wrapper">
+		<div class="h-mb-200 h-pt-200">
+			<h1 class="h1 h-mb-100">Regina, Sk &middot; Ring 1</h1>
+			<div> Lots: 1 - 451, 8001 - 8012 <span class="h-color-offwhite">(491 Lots)</span></div>
+			<div class="l-abs-right h-pt-200">
+				<button class="o-button--outline_white " rv-on-click="controller.toggleGetOtherSales">Refresh Event Data</button>
+				<button class="o-button--light">Launch Clerk</button>
 			</div>
-
-			<nav class="o-navigation-tabs">
-				<div class="o-navigation-tab s-active">
-					<i class="icon-settings h-mr-100"></i>Configure Event
-				</div>
-				<div class="o-navigation-tab">
-					<i class="icon-settings h-mr-100"></i>Manage Lot Media
-				</div>
-				<div class="o-navigation-tab">
-					<i class="icon-settings h-mr-100"></i>Presentation Setup
-				</div>
-				<div class="o-navigation-tab">
-					<i class="icon-settings h-mr-100"></i>Reports
-				</div>
-				<div class="o-navigation-tab">
-					<i class="icon-warning"></i>
-				</div>
-			</nav>
 		</div>
-		
-	</header>
+
+		<nav class="o-navigation-tabs">
+			<div class="o-navigation-tab" rv-class-s-active="dataObject.activeTab | compare '/event.html'" rv-on-click="controller.gotoPage" data-targetpage="/event.html">
+				<i class="icon-settings h-mr-100"></i>Configure Event
+			</div>
+			<div class="o-navigation-tab" rv-class-s-active="dataObject.activeTab | compare '/managemedia.html'" rv-on-click="controller.gotoPage" data-targetpage="/managemedia.html">
+				<i class="icon-settings h-mr-100"></i>Manage Lot Media
+			</div>
+			<div class="o-navigation-tab" rv-class-s-active="dataObject.activeTab | compare '/presentation.html'" rv-on-click="controller.gotoPage" data-targetpage="/presentation.html">
+				<i class="icon-settings h-mr-100"></i>Presentation Setup
+			</div>
+			<div class="o-navigation-tab" rv-class-s-active="dataObject.activeTab | compare '/reports.html'" rv-on-click="controller.gotoPage" data-targetpage="/reports.html">
+				<i class="icon-settings h-mr-100"></i>Reports
+			</div>
+			<div class="o-navigation-tab" rv-class-s-active="dataObject.activeTab | compare '/advanced.html'" rv-on-click="controller.gotoPage" data-targetpage="/advanced.html">
+				<i class="icon-warning"></i>
+			</div>
+		</nav>
+	</div>
+	
+</header>
 
 	<div class="o-width-wrapper h-mt-300">
 
 		<section class="c-container-box h-mb-300">
 			<div class="h-overflow-hidden">
-				<div class="l-grid-sixth"></div>
+				<div class="l-grid-sixth">
+					<span class="t-allcaps">Sale Data</span>
+				</div>
 				<div class="l-grid-fivesixths h-ta-center">
 					<div class="l-grid-half">
 						<h3 class="h3">Inventory</h3>
@@ -96,7 +98,11 @@
 						</div>
 						<hr>
 						<div class="t-empty">No data yet. Please get latest inventory.</div>
-						<button class="o-button h-mt-200" rv-on-click="controller.startLotDownload" rv-disabled="dataObject.downloads.1.active">Get Latest Inventory</button>
+						<hr>
+						<button class="o-button h-mt-200" rv-on-click="controller.startLotDownload" rv-disabled="dataObject.downloads.1.active">
+							<span rv-unless="dataObject.downloads.1.active">Get Latest Inventory</span>
+							<span rv-if="dataObject.downloads.1.active">Downloading...</span>
+						</button>
 					</div>
 					<div class="l-grid-half">
 						<h3 class="h3">Photos</h3>
@@ -108,7 +114,11 @@
 						</div>
 						<hr>
 						<div class="t-empty">No data yet. Please get latest photos.</div>
-						<button class="o-button h-mt-200" rv-on-click="controller.startPhotoDownload" rv-disabled="dataObject.downloads.0.active">Get Latest Photos</button>
+						<hr>
+						<button class="o-button h-mt-200" rv-on-click="controller.toggleDownloadPhotosSettingsVisible" rv-disabled="dataObject.downloads.0.active">
+							<span rv-unless="dataObject.downloads.0.active">Get Latest Photos</span>
+							<span rv-if="dataObject.downloads.0.active">Downloading...</span>
+						</button>
 					</div>
 				</div>
 			</div>
@@ -570,6 +580,48 @@
 	
 		</div> 
 
+
+	<div class="c-modal" rv-class-s-visible="dataObject.downloadPhotosSettingsVisible">
+		<div class="c-modal--content_small">
+			<div class="c-modal--body">
+				<h3 class="o-container--header">Download Latest Photos</h3>
+				
+				<label class="o-input--checkbox h-mb-100">
+					<input type="radio" name="downloadType" checked>
+					<span class="o-input--checksymbol"></span>
+					<span>Download All Images</span>
+				</label>
+				<label class="o-input--checkbox h-mb-100">
+					<input type="radio" name="downloadType">
+					<span class="o-input--checksymbol"></span>
+					<span>Download Missing Images</span>
+				</label>
+				<label class="o-input--checkbox h-mb-100">
+					<input type="radio" name="downloadType">
+					<span class="o-input--checksymbol"></span>
+					<span>Download Lot Images:</span>
+				</label>
+				<div class="c-modal--sub-box">
+					<span>From:</span>
+					<div class="l-grid-third">
+						<input type="text" placeholder="lot #" class="o-input--text">
+					</div>
+					<span>To:</span>
+					<div class="l-grid-third">
+						<input type="text" placeholder="lot #" class="o-input--text">
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleDownloadPhotosSettingsVisible">Cancel</button>
+				<button class="o-button h-float-right" rv-on-click="controller.startPhotoDownload">Start Download</button>
+			</div>
+
+		</div>
+
+	</div> 
 	
 
 	<div class="c-modal" rv-class-s-visible="dataObject.deleteEventVisible">

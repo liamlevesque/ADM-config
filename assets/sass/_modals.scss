@@ -19,7 +19,9 @@
 
 }
 
-	.c-modal--content{
+	
+
+	.c-modal--content, [class^="c-modal--content_"]{
 		width: 600px;
 		margin: 0 auto;
 		position: relative;
@@ -33,6 +35,9 @@
 		overflow: hidden;
 
 	}
+		.c-modal--content_small{
+			width: 400px;
+		}
 
 		.c-modal--body{
 			padding: spacing(large);	

@@ -50,6 +50,26 @@
 	}
 }
 
+@mixin icon-button($text-color: white, $text-hover: white, $font-size:15px){
+	@include button-base;
+	
+	padding: 2px;
+	font-size: $font-size;
+	background-color: transparent;
+	color: $text-color;
+
+	&:hover, &:focus{
+		color: $text-hover;
+	}
+}
+	.o-icon-button--sort{
+		@include icon-button(palette(grey,dark),black,50);
+		
+		.s-sort-asc &{
+			transform: rotate(180deg);
+		}
+	}
+
 .o-button--icon_large{
   font-size: 20px;
   color: palette(grey,dark);
@@ -85,6 +105,11 @@
 .o-button--outline{
 	@include button(palette(brand), transparent, palette(brand), white);
 	border-color: palette(brand);
+}
+
+.o-button--outline_grey{
+	@include button(palette(grey,dark), transparent, palette(brand), white);
+	border-color: palette(grey,dark);
 }
 
 .o-button--outline_white{

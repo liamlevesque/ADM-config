@@ -22,6 +22,22 @@ $fontsizes: (
     @include allcaps;
 }
 
+@mixin smalllabel{
+  @include allcaps;
+  font-size: fontsize(50);
+  font-weight: 400;
+  color: palette(grey);
+}
+
+.t-smalllabel{
+  @include smalllabel;
+}
+
+.t-data-point{
+  font-size: fontsize(200);
+  font-weight: 700;
+}
+
 .t-empty{
   font-style: italic;
   color: palette(grey);
