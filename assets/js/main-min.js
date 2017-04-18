@@ -3187,8 +3187,6 @@ const lotlist = [
 	];
 
 $(function(){
-	console.log(window.location);
-
 	if($('#js-media-list').length > 0){
 		medialist = new List('js-media-list',listOptions);
 		medialist.sort(dataObject.sortedColumn,{order:dataObject.sortdirection});
@@ -3253,6 +3251,18 @@ const listOptions = {
 				"js-lotupdated"],
 };
 
+const relativeURL = function(target){
+	let location = window.location.pathname.split('/');
+	location.pop();
+	return location.join('/')+target;
+};
+
+const cleanPathname = function(){
+	let location = window.location.pathname.split('/');
+	location = '/' + location.pop();
+	return location;
+};
+
 const dataObject = {
 	getOtherSalesVisible: false,
 	dataCenterSwitchVisible: false,
@@ -3265,7 +3275,7 @@ const dataObject = {
 	CCYSettingsVisible: false,
 	confirmDeleteDisplayVisible: false,
 	downloadPhotosSettingsVisible: false,
-	activePage: window.location.pathname,
+	activePage: cleanPathname(),
 	
 	lots: lotlist,
 	sortedColumn: 'js-lotnumber',
@@ -3322,13 +3332,12 @@ const dataObject = {
 	downloadStarted: false,
 };
 
+
+
 const controller = {
 	gotoPage: function(e){
 		let target = $(e.currentTarget).data('targetpage');
-		let location = window.location.pathname.split('/');
-		location.pop();
-		location = location.join('/') + target;
-		window.location.pathname = location;
+		window.location.pathname = relativeURL(target);
 	},
 
 	gotoTab: function(e){
@@ -3361,7 +3370,7 @@ const controller = {
 	},
 
 	goToEventList: function(){
-		window.location = "/";
+		window.location = "index.html";
 	},
 
 	//DISPLAY SETUP CONTROLS
