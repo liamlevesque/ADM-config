@@ -35,6 +35,14 @@ $fontsizes: (
   @include smalllabel;
 }
 
+.t-settings-header{
+  @include smalllabel;
+  display: block;
+  padding-bottom: spacing(x-small);
+  margin-bottom: spacing(small);
+  border-bottom: $default-border;
+}
+
 .t-data-point{
   font-size: fontsize(200);
   font-weight: 700;

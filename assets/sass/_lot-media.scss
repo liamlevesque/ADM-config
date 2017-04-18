@@ -1,9 +1,12 @@
-.o-lot-media{
+.o-lot-media, .o-mktg-media{
 	display: inline-block;
 	max-width: 150px;
 	position: relative;
 	margin-right: spacing(small);
 	overflow: hidden;
+	border: $default-border;
+	border-radius: $default-border-radius;
+	// user-select:none;
 	
 	img{
 		width: 100%;
@@ -11,7 +14,48 @@
 	}
 }
 
+	.o-lot-media--overlay{
+		position: relative;
+
+		img{
+			display: block;
+		}
+
+		&:after{
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: transparent;
+		}
+	}
+
+	.o-mktg-media{
+		cursor: grab;
+
+		&:hover{
+		 	.o-lot-media--overlay:after{
+				background-color: rgba(palette(grey,dark),0.8);
+			}
+
+			.o-lot-media--delete{
+				display: block;
+			}
+		}
+	}
+
+	.o-lot-media--delete{
+		position: absolute;
+		bottom: spacing(x-small);
+		right: spacing(x-small);
+		display: none;
+		z-index: 10;
+	}
+
 	.o-lot-media--filename{
 		display: block;
+		padding: 2px spacing(x-small);
 		@include ellipsize;
 	}

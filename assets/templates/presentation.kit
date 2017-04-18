@@ -2,11 +2,70 @@
 
 <!-- @include '/assets/partials/eventSubhead' -->
 
+<!-- @include '/assets/partials/presentation-nav' -->
+
 	<div class="o-width-wrapper h-mt-300">
+		<section class="c-container-box">
+			<div>
+				<div class="l-grid-third">
+					<h3 class="h3 h-mb-200">Slideshow Settings</h3>
+					<div class="h-mb-200">
+						<label for="" class="t-settings-header">Videos</label>
+						<div>
+							<span>Show Videos</span>
+							<label class="h-float-right o-input--setting-toggle">
+								<input type="checkbox" class="o-input--toggle" checked>
+								<div class="toggle-control"></div>
+							</label>
+						</div>
+					</div>
 
-		
-
-
+					<div class="">
+						<label for="" class="t-settings-header">Slideshow</label>
+						<div class="h-overflow-hidden h-mb-200">
+							<span>Autoplay</span>
+							<label class="h-float-right o-input--setting-toggle">
+								<input type="checkbox" class="o-input--toggle" checked>
+								<div class="toggle-control"></div>
+							</label>
+						</div>
+						<div class="h-overflow-hidden h-mb-200">
+							<span>Image Duration(seconds)</span>
+							<input type="range" min="5" max="20" class="o-input--range" rv-value="dataObject.slideDuration">
+							<span rv-text="dataObject.slideDuration">0</span>
+						</div>
+						<div class="h-overflow-hidden h-mb-200">
+							<span>Cycle Through Choice Group</span>
+							<label class="h-float-right o-input--setting-toggle">
+								<input type="checkbox" class="o-input--toggle" checked>
+								<div class="toggle-control"></div>
+							</label>
+						</div>
+					</div>
+					<div>
+						<label for="" class="t-settings-header">Overlay Message</label>
+						<textarea class="o-input--textarea" placeholder="enter a persistent message for special situations"></textarea>
+					</div>
+				</div>
+				<div class="l-grid-two-thirds"></div>
+			</div>
+			<hr class="h-mb-200">
+			<div>
+				<h3 class="h3 h-mb-200">Other Rings</h3>
+				<div class="l-grid-third">
+					<label for="" class="t-smalllabel">Ring 2 Start Time</label>
+					<input type="text" class="o-input--text" placeholder="eg. Starts - 9:00AM">
+				</div>
+				<div class="l-grid-third">
+					<label for="" class="t-smalllabel">Ring 3 Start Time</label>
+					<input type="text" class="o-input--text" placeholder="eg. Starts - 10:00AM">
+				</div>
+				<div class="l-grid-third">
+					<label for="" class="t-smalllabel">TAL Message</label>
+					<input type="text" class="o-input--text" placeholder="eg. Lots start closing Tuesday">
+				</div>
+			</div>
+		</section>
 	</div>
 
 	<!-- @include '/assets/partials/downloadMonitor' --> 

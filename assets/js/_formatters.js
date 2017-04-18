@@ -21,6 +21,7 @@ rivets.formatters.compare = function(value, comparisons){
 	
 	if(typeof comparisons == "string"){
 		var args = comparisons.split(',');
+		console.log(args,value);
 		if(args.includes(value)) return true;
 	}
 	else if(comparisons === value) return true;

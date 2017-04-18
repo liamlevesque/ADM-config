@@ -29,6 +29,9 @@ $(function(){
 	    }
 	); 
 
+
+	dragula([$('js-media-drag')]);
+
 	
 }); 
 
@@ -62,6 +65,17 @@ const dataObject = {
 	sortdirection: 'asc',
 	mediaFilters: ['All Lots'],
 	sendEmailVisible: false,
+
+	slideDuration: 8,
+	
+	slideshowSettingVisibile:false,
+	mktgSlideDuration: 8,
+	mktgpres: [
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
+			],
 
 	downloads:[
 		{
@@ -215,6 +229,11 @@ const controller = {
 		toggleEmailVisibility: function(e){
 			dataObject.sendEmailVisible = !dataObject.sendEmailVisible;
 			$('.js-export-popup').removeClass('s-visible');
+		},
+
+	//PRESENTATION SETUP
+		toggleSlideshowSettingVisibility: function(e){
+			dataObject.slideshowSettingVisibile = !dataObject.slideshowSettingVisibile;
 		},
 };
 

@@ -19,3 +19,29 @@
 			color: palette(grey,dark);
 		}
 	}
+
+
+.o-navigation--sub-tabs{
+	border-bottom: 1px solid palette(grey);
+}
+
+	.o-navigation--sub-tab{
+		display: inline-block;
+		padding: spacing(x-small) spacing(medium);
+		@include allcaps;
+		margin-right: spacing(small);
+		cursor: pointer;
+		color: palette(grey,dark);
+		border-bottom: 0 solid palette(brand);
+		margin-bottom: -3px;
+		transition: $transition;
+
+		&:hover{
+			color: palette(brand,dark);
+		}
+
+		&.s-active{
+			color: palette(brand);
+			border-bottom-width: 5px;
+		}
+	}

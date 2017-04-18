@@ -33,12 +33,6 @@
   ],
   "private": true,
   "dependencies": {
-    "rivets": "^0.9.6",
-    "jquery": "^3.1.1",
-    "firebase": "^3.6.10",
-    "jquery.select-to-autocomplete": "*",
-    "list.js": "^1.5.0",
-    "waypoints": "jquery-waypoints#^4.0.1",
-    "popper.js": "^1.0.8"
+    "dragula.js": "dragula#^3.7.2"
   }
 }

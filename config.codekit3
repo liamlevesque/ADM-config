@@ -9,6 +9,12 @@
 	],
 "creatorBuild": "25813",
 "files": {
+	"\/advanced.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/advanced.html",
+		"oF": 0
+		},
 	"\/assets\/css\/style.css": {
 		"aP": 1,
 		"bl": 0,
@@ -18,6 +24,34 @@
 		"oAP": "\/assets\/css\/style-min.css",
 		"oF": 0,
 		"oS": 0
+		},
+	"\/assets\/fonts\/ritchie-icons.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/assets\/fonts\/ritchie-icons.eot",
+		"oF": 0
+		},
+	"\/assets\/fonts\/ritchie-icons.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/assets\/fonts\/ritchie-icons.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/assets\/fonts\/ritchie-icons.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/assets\/fonts\/ritchie-icons.ttf",
+		"oF": 0
+		},
+	"\/assets\/fonts\/ritchie-icons.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/assets\/fonts\/ritchie-icons.woff",
+		"oF": 0
 		},
 	"\/assets\/img\/8666603_1.jpg": {
 		"ft": 16384,
@@ -261,6 +295,18 @@
 		"ft": 2048,
 		"oA": 1,
 		"oAP": "\/assets\/partials\/_header_event.html",
+		"oF": 0
+		},
+	"\/assets\/partials\/_mktg-presentation-settings.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_mktg-presentation-settings.html",
+		"oF": 0
+		},
+	"\/assets\/partials\/_presentation-nav.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_presentation-nav.html",
 		"oF": 0
 		},
 	"\/assets\/sass\/_aligned-fields.scss": {
@@ -690,6 +736,24 @@
 		"oAP": "\/managemedia.html",
 		"oF": 2
 		},
+	"\/assets\/templates\/presentation-paused.kit": {
+		"ft": 2048,
+		"oA": 0,
+		"oAP": "\/presentation-paused.html",
+		"oF": 2
+		},
+	"\/assets\/templates\/presentation-post.kit": {
+		"ft": 2048,
+		"oA": 0,
+		"oAP": "\/presentation-post.html",
+		"oF": 2
+		},
+	"\/assets\/templates\/presentation-pre.kit": {
+		"ft": 2048,
+		"oA": 0,
+		"oAP": "\/presentation-pre.html",
+		"oF": 2
+		},
 	"\/assets\/templates\/presentation.kit": {
 		"ft": 2048,
 		"oA": 0,
@@ -701,6 +765,389 @@
 		"oA": 0,
 		"oAP": "\/reports.html",
 		"oF": 2
+		},
+	"\/bower.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/bower-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/bower_components\/dragula.js\/.bower.json": {
+		"ft": 524288,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/.bower.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/bower_components\/dragula.js\/.editorconfig": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/.editorconfig",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/.github\/contributing.markdown": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/.github\/contributing.markdown",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/.github\/issue_template.markdown": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/.github\/issue_template.markdown",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/.gitignore": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/.gitignore",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/.jshintignore": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/.jshintignore",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/.jshintrc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/.jshintrc",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/.travis.yml": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/.travis.yml",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/bower.json": {
+		"ft": 524288,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/bower.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/bower_components\/dragula.js\/changelog.markdown": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/changelog.markdown",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/classes.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/classes.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/dist\/dragula.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/dist\/dragula.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/bower_components\/dragula.js\/dist\/dragula.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/dist\/dragula.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/dist\/dragula.min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/dist\/dragula.min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/bower_components\/dragula.js\/dist\/dragula.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/bower_components\/dragula.js\/dist\/dragula.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/dragula.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/dragula.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/dragula.styl": {
+		"aP": 0,
+		"bl": 0,
+		"dS": 0,
+		"ft": 8,
+		"iC": 0,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/dragula.styl",
+		"oF": 0,
+		"oS": 0,
+		"rrU": 0
+		},
+	"\/bower_components\/dragula.js\/example\/example.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/example\/example.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/bower_components\/dragula.js\/example\/example.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/example\/example.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/example\/example.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/example\/example.min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/favicon.ico": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/favicon.ico",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/index.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/index.html",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/license": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/license",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/package.json": {
+		"ft": 524288,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/package.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/bower_components\/dragula.js\/readme.markdown": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/readme.markdown",
+		"oF": 0
+		},
+	"\/bower_components\/dragula.js\/resources\/demo.png": {
+		"ft": 32768,
+		"iS": 511071,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/resources\/demo.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/bower_components\/dragula.js\/resources\/eyes.png": {
+		"ft": 32768,
+		"iS": 51877,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/resources\/eyes.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/bower_components\/dragula.js\/resources\/icon.png": {
+		"ft": 32768,
+		"iS": 15566,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/resources\/icon.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/bower_components\/dragula.js\/resources\/icon.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/resources\/icon.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/bower_components\/dragula.js\/resources\/logo.png": {
+		"ft": 32768,
+		"iS": 25642,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/resources\/logo.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/bower_components\/dragula.js\/resources\/logo.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/resources\/logo.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/bower_components\/dragula.js\/resources\/patreon.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/resources\/patreon.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/bower_components\/dragula.js\/test\/cancel.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/cancel.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/classes.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/classes.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/containers.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/containers.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/defaults.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/defaults.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/destroy.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/destroy.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/drag.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/drag.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/drake-api.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/drake-api.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/end.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/end.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/events.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/events.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/lib\/events.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/lib\/events.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/public-api.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/public-api.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
+		},
+	"\/bower_components\/dragula.js\/test\/remove.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 2,
+		"oAP": "\/bower_components\/dragula.js\/test\/remove.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 1
 		},
 	"\/bower_components\/firebase\/.bower.json": {
 		"ft": 524288,
@@ -5400,6 +5847,30 @@
 		"oAP": "\/managemedia.html",
 		"oF": 0
 		},
+	"\/presentation-paused.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/presentation-paused.html",
+		"oF": 0
+		},
+	"\/presentation-post.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/presentation-post.html",
+		"oF": 0
+		},
+	"\/presentation-pre.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/presentation-pre.html",
+		"oF": 0
+		},
+	"\/presentation.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/presentation.html",
+		"oF": 0
+		},
 	"\/reports.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -5442,21 +5913,27 @@
 			"type": 0
 			},
 		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/assets\/js\/_formatters.js",
+			"followForSyntaxChecking": 0,
+			"linkedFileAbbreviatedPath": "\/bower_components\/dragula.js\/dist\/dragula.min.js",
 			"position": 5,
-			"type": 1
+			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/assets\/js\/_lotlist.js",
+			"linkedFileAbbreviatedPath": "\/assets\/js\/_formatters.js",
 			"position": 6,
 			"type": 1
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/assets\/js\/_bidding.js",
+			"linkedFileAbbreviatedPath": "\/assets\/js\/_lotlist.js",
 			"position": 7,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/assets\/js\/_bidding.js",
+			"position": 8,
 			"type": 1
 			}
 		]

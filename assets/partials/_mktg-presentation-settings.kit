@@ -1,0 +1,27 @@
+<div class="c-modal" rv-class-s-visible="dataObject.slideshowSettingVisibile">
+		<div class="c-modal--content_small">
+			<div class="c-modal--body">
+				<h3 class="o-container--header">Pre/Post Slideshow Settings</h3>
+				
+				<div class="h-overflow-hidden h-mb-200">
+					<span>Autoplay</span>
+					<label class="h-float-right o-input--setting-toggle">
+						<input type="checkbox" class="o-input--toggle" checked>
+						<div class="toggle-control"></div>
+					</label>
+				</div>
+				<div class="h-overflow-hidden h-mb-200">
+					<span>Image Duration(seconds)</span>
+					<input type="range" min="5" max="20" class="o-input--range" rv-value="dataObject.mktgSlideDuration">
+					<span rv-text="dataObject.mktgSlideDuration">0</span>
+				</div>
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleSlideshowSettingVisibility">Cancel</button>
+				<button class="o-button h-float-right" rv-on-click="controller.toggleSlideshowSettingVisibility">Done</button>
+			</div>
+
+		</div>
+
+	</div> 

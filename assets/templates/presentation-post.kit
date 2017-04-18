@@ -1,0 +1,55 @@
+<!-- @include '/assets/partials/header_event' -->
+
+<!-- @include '/assets/partials/eventSubhead' -->
+
+<!-- @include '/assets/partials/presentation-nav' -->
+
+	<div class="o-width-wrapper h-mt-300">
+		<section class="c-container-box">
+			<div>
+				<div class="l-grid-third">
+					<h3 class="h3 h-mb-200">Custom Field Content</h3>
+				
+					<div class="h-overflow-hidden h-mb-200">
+						<label for="" class="t-smalllabel">Bidding Ended Message</label>
+						<input type="text" class="o-input--text" placeholder="eg. Bidding Ended">
+					</div>
+					<div class="h-overflow-hidden h-mb-200">
+						<label for="" class="t-smalllabel">Next Day Label</label>
+						<input type="text" class="o-input--text" placeholder="eg. Starts tomorrow at:">
+					</div>
+					<div class="h-overflow-hidden h-mb-200">
+						<label for="" class="t-smalllabel">Next Day Start Time</label><label class="h-float-right t-smalllabel">(Optional)</label>
+						<input type="text" class="o-input--text" placeholder="eg. 08:00">
+					</div>
+					<div class="h-overflow-hidden h-mb-200">
+						<label for="" class="t-smalllabel">Next Day Lot Range</label>
+						<input type="text" class="o-input--text" placeholder="eg. 1 - 500">
+					</div>
+				</div>
+				<div class="l-grid-two-thirds"></div>
+			</div>
+			<hr class="h-mb-200">
+			<div>
+				<h3 class="h3 h-mb-200 h-d-inline-block">Slideshow Content</h3>
+				<button class="o-button--outline h-float-right" rv-on-click="controller.toggleSlideshowSettingVisibility"><i class="icon-settings h-mr-100"></i>Slideshow Settings</button>
+				<div id="js-media-drag">
+					<div class="o-mktg-media" rv-each-photo="dataObject.mktgpres" rv-class-s-disabled="photo.disabled">
+						<div class="o-lot-media--overlay">
+							<img rv-src="photo.src" alt="">
+							<button class="o-button--outline_white o-lot-media--delete"><i class="icon-trash"></i></button>
+						</div>
+						<span class="o-lot-media--filename"><strong>{index}</strong> { photo.src }</span>
+					</div>
+				</div>
+				<button class="o-button">+ Add Media</button>
+			</div>
+		</section>
+	</div>
+
+	<!-- @include '/assets/partials/mktg-presentation-settings' --> 
+
+	<!-- @include '/assets/partials/downloadMonitor' --> 
+
+
+<!-- @include '/assets/partials/footer' --> 
