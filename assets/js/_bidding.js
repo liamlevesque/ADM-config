@@ -11,7 +11,7 @@ $(function(){
 		    $('.js-sticky-header').toggleClass('s-fixed');
 		  }
 		});
-	}
+	} 
 
 	if($('.js-filter-readout').length > 0){
 		var reference = $('.js-filter-readout');
@@ -75,7 +75,7 @@ const dataObject = {
 	CCYSettingsVisible: false,
 	confirmDeleteDisplayVisible: false,
 	downloadPhotosSettingsVisible: false,
-	activeTab: window.location.pathname,
+	activePage: window.location.pathname,
 	
 	lots: lotlist,
 	sortedColumn: 'js-lotnumber',
