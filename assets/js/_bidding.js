@@ -1,7 +1,5 @@
 $(function(){
 	console.log(window.location);
-	let location = window.location.pathname.split('/');
-		console.log(location);
 
 	if($('#js-media-list').length > 0){
 		medialist = new List('js-media-list',listOptions);
@@ -139,8 +137,10 @@ const dataObject = {
 const controller = {
 	gotoPage: function(e){
 		let target = $(e.currentTarget).data('targetpage');
-
-		window.location.pathname = target;
+		let location = window.location.pathname.split('/');
+		location.pop();
+		location = location.join('/') + target;
+		window.location.pathname = location;
 	},
 
 	gotoTab: function(e){
