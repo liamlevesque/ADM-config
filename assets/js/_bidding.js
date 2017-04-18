@@ -44,6 +44,10 @@ $(function(){
 			console.log('drag');
 		});
 	}
+
+	$('.js-pres-settings').on('change keyup',function(){
+		dataObject.savePresChangeVisible = true;
+	});
 	
 }); 
 
@@ -79,8 +83,10 @@ const dataObject = {
 	mediaFilters: ['All Lots'],
 	sendEmailVisible: false,
 
+	activeTab: 'general',
+	savePresChangeVisible: false,
+	savedConfirmationVisible: false,
 	slideDuration: 8,
-	
 	slideshowSettingVisibile:false,
 	mktgSlideDuration: 8,
 	mktgpres: [
@@ -130,6 +136,11 @@ const controller = {
 	gotoPage: function(e){
 		var target = $(e.currentTarget).data('targetpage');
 		window.location = target;
+	},
+
+	gotoTab: function(e){
+		var target = $(e.currentTarget).data('targetpage');
+		dataObject.activeTab = target;
 	},
 
 	toggleGetOtherSales: function(e){
@@ -267,7 +278,15 @@ const controller = {
 		},
 		toggleDeleteSlideVisible: function(e){
 			dataObject.deleteSlideVisible = !dataObject.deleteSlideVisible;
-		}
+		},
+		showSavedConfirmation: function(e){
+			dataObject.savePresChangeVisible = false;
+			dataObject.savedConfirmationVisible = true;
+			setTimeout(function(){
+				dataObject.savedConfirmationVisible = false;
+			},2000);
+		},
+
 };
 
 const startDownload = function(target){

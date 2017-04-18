@@ -20,7 +20,7 @@
 		padding: 15px;
 	}
 
-	.o-presentation-lower{
+	.o-presentation-lower, .o-presentation-lower_special{
 		position: absolute;
 		top: 40%;
 		right: 0;
@@ -28,6 +28,12 @@
 		height: 52%;
 		padding: 15px;
 	}
+
+		.o-presentation-lower_special{
+			background-color: palette(grey,dark);
+			width: 29.8%;
+			height: 53%;
+		}
 
 	.o-presentation-main{
 		position: absolute;
@@ -60,3 +66,33 @@
 			padding-right: 5px;
 			@include ellipsize;
 		}
+
+@mixin footer-toast{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 5px spacing(medium);
+
+	transform: translateY(100%);
+	transition: $transition;
+
+	&.s-visible{
+		transform: translateY(0);
+	}
+}
+
+.presentation--save-changes{
+	@include footer-toast;
+	background-color: palette(grey,dark);
+	
+}
+
+.presentation--save-confirmation{
+	@include footer-toast;
+	line-height: $input-height;
+	background-color: palette(affirmative);
+	color: white;
+	text-align: center;
+}
+

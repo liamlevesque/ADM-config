@@ -2247,13 +2247,18 @@ hr {
   height: 40%;
   padding: 15px; }
 
-.o-presentation-lower {
+.o-presentation-lower, .o-presentation-lower_special {
   position: absolute;
   top: 40%;
   right: 0;
   width: 30%;
   height: 52%;
   padding: 15px; }
+
+.o-presentation-lower_special {
+  background-color: #585858;
+  width: 29.8%;
+  height: 53%; }
 
 .o-presentation-main {
   position: absolute;
@@ -2296,3 +2301,30 @@ hr {
       .presentation--ring2:last-child, .presentation--ring3:last-child, .presentation--tal:last-child {
         float: right;
         margin-right: 0; } }
+
+.presentation--save-changes {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px 20px;
+  transform: translateY(100%);
+  transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+  background-color: #585858; }
+  .presentation--save-changes.s-visible {
+    transform: translateY(0); }
+
+.presentation--save-confirmation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px 20px;
+  transform: translateY(100%);
+  transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+  line-height: 40px;
+  background-color: #36AE4F;
+  color: white;
+  text-align: center; }
+  .presentation--save-confirmation.s-visible {
+    transform: translateY(0); }

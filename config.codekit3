@@ -184,6 +184,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"\/assets\/img\/presentation-base.png": {
+		"ft": 32768,
+		"iS": 109917,
+		"oA": 0,
+		"oAP": "\/assets\/img\/presentation-base.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"\/assets\/img\/right-arrow.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -272,12 +283,12 @@
 		},
 	"\/assets\/js\/main.js": {
 		"ft": 64,
-		"mi": 0,
+		"mi": 1,
 		"oA": 0,
-		"oAP": "\/assets\/js\/main-min.js",
-		"oF": 2,
+		"oAP": "\/assets\/js\/min\/main-min.js",
+		"oF": 0,
 		"sC": 1,
-		"tS": 0
+		"tS": 1
 		},
 	"\/assets\/js\/min\/main-min.js": {
 		"ft": 64,
@@ -334,6 +345,30 @@
 		"ft": 2048,
 		"oA": 1,
 		"oAP": "\/assets\/partials\/_mktg-presentation-settings.html",
+		"oF": 0
+		},
+	"\/assets\/partials\/_pres-general.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_pres-general.html",
+		"oF": 0
+		},
+	"\/assets\/partials\/_pres-paused.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_pres-paused.html",
+		"oF": 0
+		},
+	"\/assets\/partials\/_pres-post.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_pres-post.html",
+		"oF": 0
+		},
+	"\/assets\/partials\/_pres-pre.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_pres-pre.html",
 		"oF": 0
 		},
 	"\/assets\/partials\/_presentation-nav.kit": {
@@ -761,56 +796,38 @@
 	"\/assets\/templates\/advanced.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/advanced.html",
-		"oF": 2
+		"oAP": "\/assets\/templates\/advanced.html",
+		"oF": 0
 		},
 	"\/assets\/templates\/event.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/event.html",
-		"oF": 2
+		"oAP": "\/assets\/templates\/event.html",
+		"oF": 0
 		},
 	"\/assets\/templates\/index.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/index.html",
-		"oF": 2
+		"oAP": "\/assets\/templates\/index.html",
+		"oF": 0
 		},
 	"\/assets\/templates\/managemedia.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/managemedia.html",
-		"oF": 2
-		},
-	"\/assets\/templates\/presentation-paused.kit": {
-		"ft": 2048,
-		"oA": 0,
-		"oAP": "\/presentation-paused.html",
-		"oF": 2
-		},
-	"\/assets\/templates\/presentation-post.kit": {
-		"ft": 2048,
-		"oA": 0,
-		"oAP": "\/presentation-post.html",
-		"oF": 2
-		},
-	"\/assets\/templates\/presentation-pre.kit": {
-		"ft": 2048,
-		"oA": 0,
-		"oAP": "\/presentation-pre.html",
-		"oF": 2
+		"oAP": "\/assets\/templates\/managemedia.html",
+		"oF": 0
 		},
 	"\/assets\/templates\/presentation.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/presentation.html",
-		"oF": 2
+		"oAP": "\/assets\/templates\/presentation.html",
+		"oF": 0
 		},
 	"\/assets\/templates\/reports.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/reports.html",
-		"oF": 2
+		"oAP": "\/assets\/templates\/reports.html",
+		"oF": 0
 		},
 	"\/bower.json": {
 		"ft": 524288,
@@ -925,7 +942,7 @@
 	"\/bower_components\/dragula.js\/dist\/dragula.min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 1,
+		"oA": 2,
 		"oAP": "\/bower_components\/dragula.js\/dist\/dragula.min.js",
 		"oF": 0,
 		"sC": 1,
@@ -1445,7 +1462,7 @@
 	"\/bower_components\/jquery\/dist\/jquery.min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 1,
+		"oA": 2,
 		"oAP": "\/bower_components\/jquery\/dist\/jquery.min.js",
 		"oF": 0,
 		"sC": 1,
@@ -2795,7 +2812,7 @@
 	"\/bower_components\/list.js\/dist\/list.min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 1,
+		"oA": 2,
 		"oAP": "\/bower_components\/list.js\/dist\/list.min.js",
 		"oF": 0,
 		"sC": 1,
@@ -4012,7 +4029,7 @@
 	"\/bower_components\/popper.js\/dist\/popper.min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 1,
+		"oA": 2,
 		"oAP": "\/bower_components\/popper.js\/dist\/popper.min.js",
 		"oF": 0,
 		"sC": 1,
@@ -4131,7 +4148,7 @@
 	"\/bower_components\/rivets\/dist\/rivets.bundled.min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 1,
+		"oA": 2,
 		"oAP": "\/bower_components\/rivets\/dist\/rivets.bundled.min.js",
 		"oF": 0,
 		"sC": 1,
@@ -5893,24 +5910,6 @@
 		"oAP": "\/managemedia.html",
 		"oF": 0
 		},
-	"\/presentation-paused.html": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/presentation-paused.html",
-		"oF": 0
-		},
-	"\/presentation-post.html": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/presentation-post.html",
-		"oF": 0
-		},
-	"\/presentation-pre.html": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/presentation-pre.html",
-		"oF": 0
-		},
 	"\/presentation.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -5927,66 +5926,10 @@
 "hooks": [
 	],
 "manualImportLinks": {
-	"\/assets\/js\/main.js": [
-		{
-			"followForSyntaxChecking": 0,
-			"linkedFileAbbreviatedPath": "\/bower_components\/jquery\/dist\/jquery.min.js",
-			"position": 0,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 0,
-			"linkedFileAbbreviatedPath": "\/bower_components\/rivets\/dist\/rivets.bundled.min.js",
-			"position": 1,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 0,
-			"linkedFileAbbreviatedPath": "\/bower_components\/popper.js\/dist\/popper.min.js",
-			"position": 2,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 0,
-			"linkedFileAbbreviatedPath": "\/bower_components\/waypoints\/lib\/jquery.waypoints.min.js",
-			"position": 3,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 0,
-			"linkedFileAbbreviatedPath": "\/bower_components\/list.js\/dist\/list.min.js",
-			"position": 4,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 0,
-			"linkedFileAbbreviatedPath": "\/bower_components\/dragula.js\/dist\/dragula.min.js",
-			"position": 5,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/assets\/js\/_formatters.js",
-			"position": 6,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/assets\/js\/_lotlist.js",
-			"position": 7,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/assets\/js\/_bidding.js",
-			"position": 8,
-			"type": 1
-			}
-		]
 	},
 "projectAttributes": {
 	"creationDate": 513815757,
-	"displayValue": "test",
+	"displayValue": "ADM-config",
 	"displayValueWasSetByUser": 0,
 	"iconImageName": "\/assets\/img\/logo-square.png"
 	},
