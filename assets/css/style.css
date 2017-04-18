@@ -1968,9 +1968,10 @@ hr {
       background-color: white; }
 
 .c-list-grid--item {
-  padding: 15px 20px;
+  padding: 5px 20px;
   overflow: hidden;
-  cursor: pointer; }
+  cursor: pointer;
+  line-height: 40px; }
   .c-list-grid--item:nth-child(odd) {
     background-color: #F0F0F0; }
 

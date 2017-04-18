@@ -83,18 +83,21 @@
 			</div>
 			<div class="" rv-if="dataObject.displayList | lengthToBool">
 				<div class="c-list-grid--header">
-					<div class="l-grid-third">Name</div>
-					<div class="l-grid-third">Display Type</div>
-					<div class="l-grid-third"></div>
+					<div class="l-grid-quarter">Name</div>
+					<div class="l-grid-quarter">Display Type</div>
+					<div class="l-grid-quarter">Status</div>
+					<div class="l-grid-quarter"></div>
 				</div>
 				<ul class="c-list-grid">
 					<li class="c-list-grid--item" rv-each-display="dataObject.displayList">
-						<div class="l-grid-third">{ display.name }</div>
-						<div class="l-grid-third">{ display.type }</div>
-						<div class="l-grid-third h-ta-right">
+						<div class="l-grid-quarter">{ display.name }</div>
+						<div class="l-grid-quarter">{ display.type }</div>
+						<div class="l-grid-quarter">
 							<span class="h-color-affirmative" rv-if="display.status | compare 'active'">Active</span>
 							<span class="h-color-error" rv-unless="display.status | compare 'active'">Inactive</span>
-							<i class="icon-settings o-button--icon_large" rv-on-click="controller.editDisplay"></i>
+						</div>
+						<div class="l-grid-quarter h-ta-right">
+							<i class="icon-settings o-button--icon_large h-float-left" rv-on-click="controller.editDisplay"></i>
 							<button class="o-button_affirmative" rv-on-click="controller.toggleDisplay" rv-unless="display.status | compare 'active'">Launch</button>
 							<button class="o-button_error" rv-on-click="controller.toggleDisplay" rv-if="display.status | compare 'active'">Close</button>
 						</div>
@@ -187,7 +190,7 @@
 	
 
 	<div class="c-modal" rv-class-s-visible="dataObject.deleteEventVisible">
-		<div class="c-modal--content">
+		<div class="c-modal--content_small">
 			<div class="c-modal--body">
 				<h3 class="o-container--header h-color-error">Delete this Display?</h3>
 				
