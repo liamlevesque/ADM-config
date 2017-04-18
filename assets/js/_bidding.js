@@ -1,8 +1,10 @@
 $(function(){
+	console.log(window.location);
+
 	if($('#js-media-list').length > 0){
 		medialist = new List('js-media-list',listOptions);
 		medialist.sort(dataObject.sortedColumn,{order:dataObject.sortdirection});
-	}
+	} 
 
 	if($('.js-header-waypoint').length > 0){
 		var waypoint = new Waypoint({

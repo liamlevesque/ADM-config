@@ -289,12 +289,12 @@
 		},
 	"\/assets\/js\/main.js": {
 		"ft": 64,
-		"mi": 1,
+		"mi": 0,
 		"oA": 0,
-		"oAP": "\/assets\/js\/min\/main-min.js",
-		"oF": 0,
+		"oAP": "\/assets\/js\/main-min.js",
+		"oF": 2,
 		"sC": 1,
-		"tS": 1
+		"tS": 0
 		},
 	"\/assets\/js\/min\/main-min.js": {
 		"ft": 64,
@@ -1468,7 +1468,7 @@
 	"\/bower_components\/jquery\/dist\/jquery.min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 2,
+		"oA": 1,
 		"oAP": "\/bower_components\/jquery\/dist\/jquery.min.js",
 		"oF": 0,
 		"sC": 1,
@@ -2818,7 +2818,7 @@
 	"\/bower_components\/list.js\/dist\/list.min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 2,
+		"oA": 1,
 		"oAP": "\/bower_components\/list.js\/dist\/list.min.js",
 		"oF": 0,
 		"sC": 1,
@@ -4035,7 +4035,7 @@
 	"\/bower_components\/popper.js\/dist\/popper.min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 2,
+		"oA": 1,
 		"oAP": "\/bower_components\/popper.js\/dist\/popper.min.js",
 		"oF": 0,
 		"sC": 1,
@@ -4154,7 +4154,7 @@
 	"\/bower_components\/rivets\/dist\/rivets.bundled.min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 2,
+		"oA": 1,
 		"oAP": "\/bower_components\/rivets\/dist\/rivets.bundled.min.js",
 		"oF": 0,
 		"sC": 1,
@@ -5769,7 +5769,7 @@
 	"\/bower_components\/waypoints\/lib\/jquery.waypoints.min.js": {
 		"ft": 64,
 		"mi": 1,
-		"oA": 2,
+		"oA": 1,
 		"oAP": "\/bower_components\/waypoints\/lib\/jquery.waypoints.min.js",
 		"oF": 0,
 		"sC": 1,
@@ -5932,6 +5932,56 @@
 "hooks": [
 	],
 "manualImportLinks": {
+	"\/assets\/js\/main.js": [
+		{
+			"followForSyntaxChecking": 0,
+			"linkedFileAbbreviatedPath": "\/bower_components\/jquery\/dist\/jquery.min.js",
+			"position": 0,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 0,
+			"linkedFileAbbreviatedPath": "\/bower_components\/rivets\/dist\/rivets.bundled.min.js",
+			"position": 1,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 0,
+			"linkedFileAbbreviatedPath": "\/bower_components\/list.js\/dist\/list.min.js",
+			"position": 2,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 0,
+			"linkedFileAbbreviatedPath": "\/bower_components\/popper.js\/dist\/popper.min.js",
+			"position": 3,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 0,
+			"linkedFileAbbreviatedPath": "\/bower_components\/waypoints\/lib\/jquery.waypoints.min.js",
+			"position": 4,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/assets\/js\/_formatters.js",
+			"position": 5,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/assets\/js\/_lotlist.js",
+			"position": 6,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/assets\/js\/_bidding.js",
+			"position": 7,
+			"type": 1
+			}
+		]
 	},
 "projectAttributes": {
 	"creationDate": 513815757,
