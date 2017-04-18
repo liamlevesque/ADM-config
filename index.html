@@ -30,7 +30,7 @@
 			
 			<div class="l-abs-right">
 				<button class="o-text-button--large_white" rv-on-click="controller.toggleDataCenterSwitch">
-					<i class="icon-calculator h-mr-100"></i>Primary Data Center
+					<i class="icon-server h-mr-100"></i>Primary Data Center
 				</button>
 				<button class="o-text-button--large_white">
 					<i class="icon-help h-mr-100"></i>Help
@@ -38,7 +38,38 @@
 			</div>
 		</div>
 
-	</header>
+	</header> 
+
+		<div class="c-modal" rv-class-s-visible="dataObject.dataCenterSwitchVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header">Switch Data Centers</h3>
+				
+				<div>
+					<label class="o-input--toggle_vertical">
+						<input type="radio" name="dataswitch" checked>
+						<div>
+							<div class="l-grid-quarter t-allcaps">Primary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
+						</div>
+					</label>
+					<label class="o-input--toggle_vertical">
+						<input type="radio" name="dataswitch">
+						<div>
+							<div class="l-grid-quarter t-allcaps">Secondary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
+						</div>
+					</label>
+				</div>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleDataCenterSwitch">Cancel</button>
+				<button class="o-button h-float-right" disabled>Switch</button>
+			</div>
+
+		</div>
+
+	</div>
 
 	<div>
 
@@ -147,38 +178,7 @@
 
 		</div>
 
-	</div> 
-
-	<div class="c-modal" rv-class-s-visible="dataObject.dataCenterSwitchVisible">
-		<div class="c-modal--content">
-			<div class="c-modal--body">
-				<h3 class="o-container--header">Switch Data Centers</h3>
-				
-				<div>
-					<label class="o-input--toggle_vertical">
-						<input type="radio" name="dataswitch" checked>
-						<div>
-							<div class="l-grid-quarter t-allcaps">Primary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
-						</div>
-					</label>
-					<label class="o-input--toggle_vertical">
-						<input type="radio" name="dataswitch">
-						<div>
-							<div class="l-grid-quarter t-allcaps">Secondary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
-						</div>
-					</label>
-				</div>
-				
-			</div>
-
-			<div class="c-modal--footer">
-				<button class="o-text-button--large" rv-on-click="controller.toggleDataCenterSwitch">Cancel</button>
-				<button class="o-button h-float-right" disabled>Switch</button>
-			</div>
-
-		</div>
-
-	</div> 
+	</div>  
 
 
 	<div class="c-modal" rv-class-s-visible="dataObject.deleteEventVisible">

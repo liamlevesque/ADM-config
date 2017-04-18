@@ -169,6 +169,14 @@
 		vertical-align: super;
 	}
 
+	.h-va-middle{
+		vertical-align: middle;
+	}
+
+	.h-va-top{
+		vertical-align: top;
+	}
+
 	.h-ws-nowrap{
 		white-space: nowrap;
 	}
@@ -193,21 +201,29 @@
 
 
 .h-color-white{
-	color: white;
+	color: white !important;
 }
 
 .h-color-offwhite{
-	color: rgba(white,0.8);
+	color: rgba(white,0.8) !important;
 }
 
 .h-color-error{
-	color: palette(error);
+	color: palette(error) !important;
 }
 
 .h-color-affirmative{
-	color: palette(affirmative);
+	color: palette(affirmative) !important;
 }
 
 .h-color-brand{
-	color: palette(brand);
+	color: palette(brand) !important;
+}
+
+.h-color-active{
+	color: palette(active) !important;
+}
+
+.h-color-black{
+	color: black !important;
 }

@@ -1,0 +1,32 @@
+.c-combo-pop-up{
+	width: $combo-pop-up-width;
+	background-color: white;
+	box-shadow: $ritchie-shadow;
+	padding: spacing(small);
+	border-radius: $default-border-radius;
+	z-index: 1000;
+	opacity: 0;
+	max-height: 0;
+	transition: $transition;
+	pointer-events: none;
+
+	&.s-visible{
+		opacity: 1;
+		max-height: 500px;
+		pointer-events: initial;
+	}
+}
+
+	.c-combo-pop-up--list{
+
+	}
+
+	.c-combo-pop-up--item{
+		label{
+			display: block;
+			padding: 3px 0;
+		}
+		input{
+			margin-right: spacing(small);
+		}
+	}

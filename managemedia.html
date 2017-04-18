@@ -36,7 +36,7 @@
 			
 			<div class="l-abs-right">
 				<button class="o-text-button--large_white" rv-on-click="controller.toggleDataCenterSwitch">
-					<i class="icon-calculator h-mr-100"></i>Primary Data Center
+					<i class="icon-server h-mr-100"></i>Primary Data Center
 				</button>
 				<button class="o-text-button--large_white">
 					<i class="icon-help h-mr-100"></i>Help
@@ -46,7 +46,40 @@
 
 	</header>
 
+		<div class="c-modal" rv-class-s-visible="dataObject.dataCenterSwitchVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header">Switch Data Centers</h3>
+				
+				<div>
+					<label class="o-input--toggle_vertical">
+						<input type="radio" name="dataswitch" checked>
+						<div>
+							<div class="l-grid-quarter t-allcaps">Primary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
+						</div>
+					</label>
+					<label class="o-input--toggle_vertical">
+						<input type="radio" name="dataswitch">
+						<div>
+							<div class="l-grid-quarter t-allcaps">Secondary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
+						</div>
+					</label>
+				</div>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleDataCenterSwitch">Cancel</button>
+				<button class="o-button h-float-right" disabled>Switch</button>
+			</div>
+
+		</div>
+
+	</div>
+
 	<div>
+
+
 
 		
 
@@ -98,29 +131,32 @@
 
 		<div class="c-container-box">
 			<div class="c-container-box--header">
-				<div class="h-float-left">
+				<div class="h-float-left h-mr-200">
 					<label for="" class="t-smalllabel">Filter By Lot Number:</label>
 					<div class="">
-						<span class="t-smalllabel">Lot #</span>
+						<span class="t-smalllabel h-color-black">Lot #</span>
 						<input type="text" class="o-input--text_small" placeholder="from">-
 						<input type="text" class="o-input--text_small" placeholder="to">
 						<button class="o-button">Go</button>
 					</div>
 				</div>
-				<div class="h-float-left">
+				<div class="h-ml-100 h-float-left">
 					<label class="t-smalllabel">Filter Lots:</label>
 					<div class="">
-						
+						<div class="o-input--select l-input-inline_med js-filter-readout" rv-on-click="controller.toggleFilterVisibility">{dataObject.mediaFilters}</div>
 					</div>
 				</div>
+				<div class="h-ml-100 h-float-left">
+					<button class="o-button--outline-small_error h-mt-100"><i class="icon-close icon-size--medium h-mr-100"></i>Clear</button>
+				</div>
 				<div class="h-float-right">
-					<div class="o-button--outline_grey">Expand All</div>
-					<button class="o-button--outline_grey">Export List<i class="icon-arrow-down h-ml-100"></i></button>
+					<div class="o-button--outline-small_grey h-mt-100">Expand All</div>
+					<button class="o-button--outline-small_grey h-mt-100 js-export-popup-toggle" rv-on-click="controller.toggleExportVisibility">Export List<i class="icon-arrow-down icon-size--small h-ml-100"></i></button>
 				</div>
 			</div>
-		
+			
 			<div class="js-header-waypoint"></div>
-			<div class="c-list-grid--header js-sticky-header">
+			<div class="c-list-grid--header h-ml-200 h-mr-200 js-sticky-header">
 				<div class="media-table--col1" rv-on-click="controller.sortColumn" data-column="js-lotnumber" rv-sortclasses="dataObject.sortedColumn < sortdirection">
 					Lot Number
 					<button class="o-icon-button--sort h-ml-100"><i class="icon-arrow-down"></i></button>
@@ -153,23 +189,26 @@
 			<div id="js-media-list">
 				<ul class="list c-list-grid">
 					<li class="c-list-grid--item" rv-each-lot="dataObject.lots">
-						<div class="media-table--col1 js-lotnumber" rv-on-click="controller.toggleExpandLot">
-							Lot {lot.lotNumber}
+						<div class="media-table--col1 media-table--lot-column js-lotnumber" rv-on-click="controller.toggleExpandLot">
+							Lot {index}
 						</div>
 						<div class="media-table--col2 js-lotequipid">
 							{lot.equipid}
 						</div>
-						<div class="media-table--col3 js-lotvideo">
-							{lot.video | length}
+						<div class="media-table--col3 media-table--video-column s-lotvideo">{lot.video | length}</div>
+						<div class="media-table--col4 media-table--photo-column js-lotphoto" rv-class-s-error="lot.photos | inverseLengthToBool">
+							{lot.photos | length} 
 						</div>
-						<div class="media-table--col4 js-lotphoto">
-							{lot.photos | length}
-						</div>
-						<div class="media-table--col5 js-lotnotes">
+						<div class="media-table--col5 media-table--notes-column js-lotnotes">
 							{lot.notes}
+							<div class="o-input--container" rv-if="lot.editingNote">
+								<input type="text" class="o-input--text" rv-value="lot.notes">
+								<button class="o-icon-button--medium l-input--toggle" rv-on-click="controller.saveNote"><i class="icon-check-inner h-color-affirmative"></i></button>
+							</div>
+							<span class="h-color-error" rv-if="lot.photos | inverseLengthToBool">Missing Hero Photo</span>
 						</div>
-						<div class="media-table--col6 js-lotflagged">
-							<i class="icon-sale" rv-class-s-active="lot.flagged"></i>
+						<div class="media-table--col6 media-table--flag-column js-lotflagged" rv-on-click="controller.toggleFlagged" rv-class-s-active="lot.flagged">
+							<i class="icon-flag icon-size--medium"></i>
 						</div>
 						<div class="media-table--col7 js-lotupdated">
 							{lot.updated}
@@ -178,24 +217,26 @@
 						<div class="c-list-grid--item-details" rv-if="lot.expanded">
 							<div class="h-float-left">
 								<label for="" class="t-smalllabel">Videos</label>
-								<div class="o-lot-media" rv-each-video="lot.video">
-									<img rv-src="video.src" alt="">
-									<button class="o-lot-media--visibility"><i class="icon-eye"></i></button>
-									<span class="o-lot-media--filename">{ video.src }</span>
-								</div>
-								<button class="o-button--add">
-									<i class="icon-plus"></i>
-								</button>
-							</div>
-							<div class="h-float-left" >
-								<label for="" class="t-smalllabel">Photos</label>
-								<div class="o-lot-media" rv-each-photo="lot.photos">
+								<div class="o-lot-media" rv-each-photo="lot.video" rv-class-s-disabled="photo.disabled">
 									<img rv-src="photo.src" alt="">
-									<button class="o-lot-media--visibility"><i class="icon-eye"></i></button>
+									<button class="o-icon-button--toggle-round l-abs-right" rv-on-click="controller.disableImage" rv-class-s-disabled="photo.disabled"><i class="icon-eye"></i></button>
 									<span class="o-lot-media--filename">{ photo.src }</span>
 								</div>
-								<button class="o-button--add">
+								<button class="o-icon-button--medium h-va-top">
 									<i class="icon-plus"></i>
+									<br/>Add Video
+								</button>
+							</div>
+							<div class="h-float-left h-ml-100" >
+								<label for="" class="t-smalllabel">Photos</label>
+								<div class="o-lot-media" rv-each-photo="lot.photos" rv-class-s-disabled="photo.disabled">
+									<img rv-src="photo.src" alt="">
+									<button class="o-icon-button--toggle-round l-abs-right" rv-on-click="controller.disableImage" rv-class-s-disabled="photo.disabled"><i class="icon-eye"></i></button>
+									<span class="o-lot-media--filename">{ photo.src }</span>
+								</div>
+								<button class="o-icon-button--medium h-va-top">
+									<i class="icon-plus"></i>
+									<br/>Add Photo
 								</button>
 							</div>
 						</div>
@@ -206,6 +247,71 @@
 		</div>
 
 	</div>
+
+	<div class="js-export-popup c-combo-pop-up" rv-on-blur="controller.toggleFilterVisibility">
+		<button class="o-button--combo-item">Download as CSV</button>
+		<button class="o-button--combo-item" rv-on-click="controller.toggleEmailVisibility">Send as E-mail</button>
+	</div>
+
+	<div class="js-filter-popup c-combo-pop-up" rv-on-blur="controller.toggleFilterVisibility">
+		<div class="c-combo-pop-up--item">
+			<label>
+				<input type="checkbox" rv-on-change="controller.clearFilters" rv-ischecked="dataObject.mediaFilters | indexof 'All Lots'" data-filter="All Lots">All Lots
+			</label>
+		</div>
+		<hr>
+		<ul class="c-combo-pop-up--list">
+			<li class="c-combo-pop-up--item">
+				<label>
+					<input type="checkbox" rv-on-change="controller.updateFilters" rv-ischecked="dataObject.mediaFilters | indexof 'Lots with video'" data-filter="Lots with video">Lots only with video
+				</label>
+			</li>
+			<li class="c-combo-pop-up--item">
+				<label>
+					<input type="checkbox" rv-on-change="controller.updateFilters" rv-ischecked="dataObject.mediaFilters | indexof 'Lots misssing hero photos'" data-filter="Lots misssing hero photos">Lots missing hero photos
+				</label>
+			</li>
+			<li class="c-combo-pop-up--item">
+				<label>
+					<input type="checkbox" rv-on-change="controller.updateFilters" rv-ischecked="dataObject.mediaFilters | indexof 'Lots with less than 4 photos'" data-filter="Lots with less than 4 photos">Lots with less than 4 photos
+				</label>
+			</li>
+			<li class="c-combo-pop-up--item">
+				<label>
+					<input type="checkbox" rv-on-change="controller.updateFilters" rv-ischecked="dataObject.mediaFilters | indexof 'Flagged Lots'" data-filter="Flagged Lots">Flagged Lots
+				</label>
+			</li>
+		</ul>
+		<hr>
+		<div rv-on-click="controller.selectAllFilters">Select All</div>
+
+	</div>
+
+	
+	<div class="c-modal" rv-class-s-visible="dataObject.sendEmailVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header">Send Data as E-mail</h3>
+				
+				<div>
+					<label class="t-smalllabel">Recipients</label>
+					<input class="o-input--text" placeholder="ie.user@rbauction.com, user2@rbauction.com">
+					<span class="t-empty">Separate multiple recipients with a comma</span>
+				</div>
+				<div class="h-mt-300">
+					<label class="t-smalllabel">Message to Accompany the Data</label><label class="t-smalllabel h-float-right">(Optional)</label>
+					<textarea class="o-input--textarea"></textarea>
+				</div>
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleEmailVisibility">Cancel</button>
+				<button class="o-button h-float-right">Send</button>
+			</div>
+
+		</div>
+
+	</div> 
 
 	
 	<div class="c-download-monitor" rv-class-s-visible="dataObject.downloadStarted">

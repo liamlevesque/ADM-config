@@ -7,8 +7,30 @@ $(function(){
 	  handler: function(direction) {
 	    $('.js-sticky-header').toggleClass('s-fixed');
 	  }
-	})
-});
+	});
+
+	var reference = $('.js-filter-readout');
+	var popper = $('.js-filter-popup');
+	var anotherPopper = new Popper(
+	    reference,
+	    popper,
+	    {
+	        placement: 'bottom-start',
+	    }
+	); 
+
+	var exportreference = $('.js-export-popup-toggle');
+	var exportpopper = $('.js-export-popup');
+	var exportPopper = new Popper(
+	    exportreference,
+	    exportpopper,
+	    {
+	        placement: 'bottom-end',
+	    }
+	); 
+
+	
+}); 
 
 var medialist;
 const listOptions = {
@@ -34,9 +56,12 @@ const dataObject = {
 	confirmDeleteDisplayVisible: false,
 	downloadPhotosSettingsVisible: false,
 	activeTab: window.location.pathname,
+	
 	lots: lotlist,
 	sortedColumn: 'js-lotnumber',
 	sortdirection: 'asc',
+	mediaFilters: ['All Lots'],
+	sendEmailVisible: false,
 
 	downloads:[
 		{
@@ -139,7 +164,7 @@ const controller = {
 
 	//MANAGE LOT MEDIA
 		toggleExpandLot: function(e,context){
-			if(typeof context.lot.expanded == "undefined") context.lot.expanded = true;
+			if(typeof context.lot.expanded === "undefined") context.lot.expanded = true;
 			else context.lot.expanded = !context.lot.expanded;
 
 			if(context.lot.expanded) $(e.currentTarget).parent().addClass('s-expanded');
@@ -147,14 +172,50 @@ const controller = {
 		},
 		sortColumn: function(e){
 			let targetColumn = $(e.currentTarget).data('column');
-			if(dataObject.sortedColumn == targetColumn)
+			if(dataObject.sortedColumn === targetColumn)
 				dataObject.sortdirection = (dataObject.sortdirection === 'asc')? 'desc': 'asc';
 			else{
 				dataObject.sortedColumn = targetColumn;
 				dataObject.sortdirection = 'asc';
 			}
 			medialist.sort(dataObject.sortedColumn,{order:dataObject.sortdirection});
-		}
+		},
+		toggleFilterVisibility: function(e){
+			$('.js-filter-popup').toggleClass('s-visible');
+		},
+		updateFilters: function(e){
+			if(dataObject.mediaFilters.indexOf("All Lots") >= 0)dataObject.mediaFilters.splice(dataObject.mediaFilters.indexOf("All Lots"),1);
+
+			let targetFilter = $(e.currentTarget).data('filter');
+			if(dataObject.mediaFilters.indexOf(targetFilter) < 0) dataObject.mediaFilters.push(targetFilter);
+			else dataObject.mediaFilters.splice(dataObject.mediaFilters.indexOf(targetFilter),1);
+
+			if(dataObject.mediaFilters.length === 0) dataObject.mediaFilters = ['All Lots'];
+			//console.log(dataObject.mediaFilters);
+		},
+		selectAllFilters: function(e){
+			dataObject.mediaFilters = ['Lots with video','Lots misssing hero photos','Lots with less than 4 photos','Flagged Lots'];
+		},
+		clearFilters: function(e){
+			dataObject.mediaFilters = ['All Lots'];
+		},
+		disableImage: function(e,context){
+			context.photo.disabled = !context.photo.disabled;
+		},
+		toggleFlagged: function(e,context){
+			context.lot.flagged = !context.lot.flagged;
+			if(context.lot.flagged) context.lot.editingNote = true;
+		},
+		saveNote: function(e,context){
+			context.lot.editingNote = false;
+		},
+		toggleExportVisibility:function(e){
+			$('.js-export-popup').toggleClass('s-visible');
+		},
+		toggleEmailVisibility: function(e){
+			dataObject.sendEmailVisible = !dataObject.sendEmailVisible;
+			$('.js-export-popup').removeClass('s-visible');
+		},
 };
 
 const startDownload = function(target){
@@ -167,11 +228,11 @@ const startDownload = function(target){
 			target.active = false;
 		}
 	},500);
-}
+};
 
 const focusFirstInput = function(container){
 	container.find('input').first().focus();
-}
+};
 
 
 rivets.bind($('.js--data-context'),{

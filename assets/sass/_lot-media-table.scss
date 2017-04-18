@@ -16,11 +16,11 @@ $mediacols: "15%","15%","5%","5%","30%","5%","20%";
 
 [class^="media-table--col"]{
 	cursor: pointer;
-	button{
+	.o-icon-button--sort{
 		opacity: 0;
 	}
 	
-	&:hover button{
+	&:hover .o-icon-button--sort{
 		opacity: 0.5; 
 	}
 
@@ -32,5 +32,60 @@ $mediacols: "15%","15%","5%","5%","30%","5%","20%";
 			opacity: 1;
 		}
 	}
+
+	&.s-error{
+		color: palette(error);
+	}
 }
+
+
+	
+	.media-table--lot-column{
+		&:before{
+			@include icon-font;
+			font-size: $icon-small;
+			display: inline-block; 
+			transform: rotate(-90deg);
+			margin-right: spacing(small);
+			transition: $transition;
+		}
+		@extend .icon-arrow-down;
+
+		.s-expanded &{
+			&:before{
+				transform: rotate(0);
+			}
+		}
+	}
+
+	.media-table--photo-column, .media-table--video-column{
+		color: palette(affirmative);
+
+		&:before{
+			@include icon-font;
+		}
+	}
+
+	.media-table--photo-column{
+		@extend .icon-Photos;
+	}
+
+	.media-table--video-column:not(:empty){
+		@extend .icon-play;
+		&:before{
+			margin-right: spacing(x-small);
+		}
+	}
+
+	.media-table--flag-column{
+		text-align: center;
+		color: palette(grey);
+		font-size: $icon-medium;
+
+		&.s-active i{
+			color: palette(active);
+		}
+	}
+
+
 

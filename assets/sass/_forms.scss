@@ -53,6 +53,11 @@
 	display: inline-block;
 }
 
+.o-input--textarea{
+	@include textinput;
+	height: 3*$input-height;
+}
+
 .o-input--password, [class^="o-input--password_"]{
 	@include textinput;
 	display: none;
@@ -124,6 +129,7 @@
 	transition: $transition;
 	cursor: pointer;
 	margin-bottom: 0;
+	@include ellipsize;
 
 	&:focus{
 		outline: none;

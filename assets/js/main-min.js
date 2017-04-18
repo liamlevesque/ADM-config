@@ -11,1764 +11,9 @@ null==d?void 0:d))},attrHooks:{type:{set:function(a,b){if(!o.radioValue&&"radio"
 (function(){function t(t,s,i,h){return new e(t,s,i,h)}function e(t,e,i,h){this.options=h||{},this.options.adapters=this.options.adapters||{},this.obj=t,this.keypath=e,this.callback=i,this.objectPath=[],this.update=this.update.bind(this),this.parse(),s(this.target=this.realize())&&this.set(!0,this.key,this.target,this.callback)}function s(t){return"object"==typeof t&&null!==t}function i(t){throw new Error("[sightglass] "+t)}t.adapters={},e.tokenize=function(t,e,s){var i,h,a=[],o={i:s,path:""};for(i=0;i<t.length;i++)h=t.charAt(i),~e.indexOf(h)?(a.push(o),o={i:h,path:""}):o.path+=h;return a.push(o),a},e.prototype.parse=function(){var s,h,a=this.interfaces();a.length||i("Must define at least one adapter interface."),~a.indexOf(this.keypath[0])?(s=this.keypath[0],h=this.keypath.substr(1)):("undefined"==typeof(s=this.options.root||t.root)&&i("Must define a default root adapter."),h=this.keypath),this.tokens=e.tokenize(h,a,s),this.key=this.tokens.pop()},e.prototype.realize=function(){var t,e=this.obj,i=!1;return this.tokens.forEach(function(h,a){s(e)?("undefined"!=typeof this.objectPath[a]?e!==(t=this.objectPath[a])&&(this.set(!1,h,t,this.update),this.set(!0,h,e,this.update),this.objectPath[a]=e):(this.set(!0,h,e,this.update),this.objectPath[a]=e),e=this.get(h,e)):(i===!1&&(i=a),(t=this.objectPath[a])&&this.set(!1,h,t,this.update))},this),i!==!1&&this.objectPath.splice(i),e},e.prototype.update=function(){var t,e;(t=this.realize())!==this.target&&(s(this.target)&&this.set(!1,this.key,this.target,this.callback),s(t)&&this.set(!0,this.key,t,this.callback),e=this.value(),this.target=t,(this.value()instanceof Function||this.value()!==e)&&this.callback())},e.prototype.value=function(){return s(this.target)?this.get(this.key,this.target):void 0},e.prototype.setValue=function(t){s(this.target)&&this.adapter(this.key).set(this.target,this.key.path,t)},e.prototype.get=function(t,e){return this.adapter(t).get(e,t.path)},e.prototype.set=function(t,e,s,i){var h=t?"observe":"unobserve";this.adapter(e)[h](s,e.path,i)},e.prototype.interfaces=function(){var e=Object.keys(this.options.adapters);return Object.keys(t.adapters).forEach(function(t){~e.indexOf(t)||e.push(t)}),e},e.prototype.adapter=function(e){return this.options.adapters[e.i]||t.adapters[e.i]},e.prototype.unobserve=function(){var t;this.tokens.forEach(function(e,s){(t=this.objectPath[s])&&this.set(!1,e,t,this.update)},this),s(this.target)&&this.set(!1,this.key,this.target,this.callback)},"undefined"!=typeof module&&module.exports?module.exports=t:"function"==typeof define&&define.amd?define([],function(){return this.sightglass=t}):this.sightglass=t}).call(this);
 (function(){var t,e,i,n,r,s=function(t,e){return function(){return t.apply(e,arguments)}},o=[].slice,u={}.hasOwnProperty,l=function(t,e){function i(){this.constructor=t}for(var n in e)u.call(e,n)&&(t[n]=e[n]);return i.prototype=e.prototype,t.prototype=new i,t.__super__=e.prototype,t},h=[].indexOf||function(t){for(var e=0,i=this.length;i>e;e++)if(e in this&&this[e]===t)return e;return-1};t={options:["prefix","templateDelimiters","rootInterface","preloadData","handler","executeFunctions"],extensions:["binders","formatters","components","adapters"],"public":{binders:{},components:{},formatters:{},adapters:{},prefix:"rv",templateDelimiters:["{","}"],rootInterface:".",preloadData:!0,executeFunctions:!1,iterationAlias:function(t){return"%"+t+"%"},handler:function(t,e,i){return this.call(t,e,i.view.models)},configure:function(e){var i,n,r,s;null==e&&(e={});for(r in e)if(s=e[r],"binders"===r||"components"===r||"formatters"===r||"adapters"===r)for(n in s)i=s[n],t[r][n]=i;else t["public"][r]=s},bind:function(e,i,n){var r;return null==i&&(i={}),null==n&&(n={}),r=new t.View(e,i,n),r.bind(),r},init:function(e,i,n){var r,s,o;if(null==n&&(n={}),null==i&&(i=document.createElement("div")),e=t["public"].components[e],s=e.template.call(this,i),s instanceof HTMLElement){for(;i.firstChild;)i.removeChild(i.firstChild);i.appendChild(s)}else i.innerHTML=s;return r=e.initialize.call(this,i,n),o=new t.View(i,r),o.bind(),o}}},window.jQuery||window.$?(i=window.jQuery||window.$,r="on"in i.prototype?["on","off"]:["bind","unbind"],e=r[0],n=r[1],t.Util={bindEvent:function(t,n,r){return i(t)[e](n,r)},unbindEvent:function(t,e,r){return i(t)[n](e,r)},getInputValue:function(t){var e;return e=i(t),"checkbox"===e.attr("type")?e.is(":checked"):e.val()}}):t.Util={bindEvent:function(){return"addEventListener"in window?function(t,e,i){return t.addEventListener(e,i,!1)}:function(t,e,i){return t.attachEvent("on"+e,i)}}(),unbindEvent:function(){return"removeEventListener"in window?function(t,e,i){return t.removeEventListener(e,i,!1)}:function(t,e,i){return t.detachEvent("on"+e,i)}}(),getInputValue:function(t){var e,i,n,r;if("checkbox"===t.type)return t.checked;if("select-multiple"===t.type){for(r=[],i=0,n=t.length;n>i;i++)e=t[i],e.selected&&r.push(e.value);return r}return t.value}},t.TypeParser=function(){function t(){}return t.types={primitive:0,keypath:1},t.parse=function(t){return/^'.*'$|^".*"$/.test(t)?{type:this.types.primitive,value:t.slice(1,-1)}:"true"===t?{type:this.types.primitive,value:!0}:"false"===t?{type:this.types.primitive,value:!1}:"null"===t?{type:this.types.primitive,value:null}:"undefined"===t?{type:this.types.primitive,value:void 0}:""===t?{type:this.types.primitive,value:void 0}:isNaN(Number(t))===!1?{type:this.types.primitive,value:Number(t)}:{type:this.types.keypath,value:t}},t}(),t.TextTemplateParser=function(){function t(){}return t.types={text:0,binding:1},t.parse=function(t,e){var i,n,r,s,o,u,l;for(u=[],s=t.length,i=0,n=0;s>n;){if(i=t.indexOf(e[0],n),0>i){u.push({type:this.types.text,value:t.slice(n)});break}if(i>0&&i>n&&u.push({type:this.types.text,value:t.slice(n,i)}),n=i+e[0].length,i=t.indexOf(e[1],n),0>i){o=t.slice(n-e[1].length),r=u[u.length-1],(null!=r?r.type:void 0)===this.types.text?r.value+=o:u.push({type:this.types.text,value:o});break}l=t.slice(n,i).trim(),u.push({type:this.types.binding,value:l}),n=i+e[1].length}return u},t}(),t.View=function(){function e(e,i,n){var r,o,u,l,h,a,p,d,c,f,b,v,m;for(this.els=e,this.models=i,null==n&&(n={}),this.update=s(this.update,this),this.publish=s(this.publish,this),this.sync=s(this.sync,this),this.unbind=s(this.unbind,this),this.bind=s(this.bind,this),this.select=s(this.select,this),this.traverse=s(this.traverse,this),this.build=s(this.build,this),this.buildBinding=s(this.buildBinding,this),this.bindingRegExp=s(this.bindingRegExp,this),this.options=s(this.options,this),this.els.jquery||this.els instanceof Array||(this.els=[this.els]),c=t.extensions,h=0,p=c.length;p>h;h++){if(o=c[h],this[o]={},n[o]){f=n[o];for(r in f)u=f[r],this[o][r]=u}b=t["public"][o];for(r in b)u=b[r],null==(l=this[o])[r]&&(l[r]=u)}for(v=t.options,a=0,d=v.length;d>a;a++)o=v[a],this[o]=null!=(m=n[o])?m:t["public"][o];this.build()}return e.prototype.options=function(){var e,i,n,r,s;for(i={},s=t.extensions.concat(t.options),n=0,r=s.length;r>n;n++)e=s[n],i[e]=this[e];return i},e.prototype.bindingRegExp=function(){return new RegExp("^"+this.prefix+"-")},e.prototype.buildBinding=function(e,i,n,r){var s,o,u,l,h,a,p;return h={},p=function(){var t,e,i,n;for(i=r.match(/((?:'[^']*')*(?:(?:[^\|']*(?:'[^']*')+[^\|']*)+|[^\|]+))|^$/g),n=[],t=0,e=i.length;e>t;t++)a=i[t],n.push(a.trim());return n}(),s=function(){var t,e,i,n;for(i=p.shift().split("<"),n=[],t=0,e=i.length;e>t;t++)o=i[t],n.push(o.trim());return n}(),l=s.shift(),h.formatters=p,(u=s.shift())&&(h.dependencies=u.split(/\s+/)),this.bindings.push(new t[e](this,i,n,l,h))},e.prototype.build=function(){var e,i,n,r,s;for(this.bindings=[],i=function(e){return function(n){var r,s,o,u,l,h,a,p,d,c,f,b,v;if(3===n.nodeType){if(l=t.TextTemplateParser,(o=e.templateDelimiters)&&(p=l.parse(n.data,o)).length&&(1!==p.length||p[0].type!==l.types.text)){for(d=0,f=p.length;f>d;d++)a=p[d],h=document.createTextNode(a.value),n.parentNode.insertBefore(h,n),1===a.type&&e.buildBinding("TextBinding",h,null,a.value);n.parentNode.removeChild(n)}}else 1===n.nodeType&&(r=e.traverse(n));if(!r)for(v=function(){var t,e,i,r;for(i=n.childNodes,r=[],t=0,e=i.length;e>t;t++)u=i[t],r.push(u);return r}(),c=0,b=v.length;b>c;c++)s=v[c],i(s)}}(this),s=this.els,n=0,r=s.length;r>n;n++)e=s[n],i(e);this.bindings.sort(function(t,e){var i,n;return((null!=(i=e.binder)?i.priority:void 0)||0)-((null!=(n=t.binder)?n.priority:void 0)||0)})},e.prototype.traverse=function(e){var i,n,r,s,o,u,l,h,a,p,d,c,f,b,v,m;for(s=this.bindingRegExp(),o="SCRIPT"===e.nodeName||"STYLE"===e.nodeName,b=e.attributes,p=0,c=b.length;c>p;p++)if(i=b[p],s.test(i.name)){if(h=i.name.replace(s,""),!(r=this.binders[h])){v=this.binders;for(u in v)a=v[u],"*"!==u&&-1!==u.indexOf("*")&&(l=new RegExp("^"+u.replace(/\*/g,".+")+"$"),l.test(h)&&(r=a))}r||(r=this.binders["*"]),r.block&&(o=!0,n=[i])}for(m=n||e.attributes,d=0,f=m.length;f>d;d++)i=m[d],s.test(i.name)&&(h=i.name.replace(s,""),this.buildBinding("Binding",e,h,i.value));return o||(h=e.nodeName.toLowerCase(),this.components[h]&&!e._bound&&(this.bindings.push(new t.ComponentBinding(this,e,h)),o=!0)),o},e.prototype.select=function(t){var e,i,n,r,s;for(r=this.bindings,s=[],i=0,n=r.length;n>i;i++)e=r[i],t(e)&&s.push(e);return s},e.prototype.bind=function(){var t,e,i,n;for(n=this.bindings,e=0,i=n.length;i>e;e++)t=n[e],t.bind()},e.prototype.unbind=function(){var t,e,i,n;for(n=this.bindings,e=0,i=n.length;i>e;e++)t=n[e],t.unbind()},e.prototype.sync=function(){var t,e,i,n;for(n=this.bindings,e=0,i=n.length;i>e;e++)t=n[e],"function"==typeof t.sync&&t.sync()},e.prototype.publish=function(){var t,e,i,n;for(n=this.select(function(t){var e;return null!=(e=t.binder)?e.publishes:void 0}),e=0,i=n.length;i>e;e++)t=n[e],t.publish()},e.prototype.update=function(t){var e,i,n,r,s,o;null==t&&(t={});for(i in t)n=t[i],this.models[i]=n;for(o=this.bindings,r=0,s=o.length;s>r;r++)e=o[r],"function"==typeof e.update&&e.update(t)},e}(),t.Binding=function(){function e(t,e,i,n,r){this.view=t,this.el=e,this.type=i,this.keypath=n,this.options=null!=r?r:{},this.getValue=s(this.getValue,this),this.update=s(this.update,this),this.unbind=s(this.unbind,this),this.bind=s(this.bind,this),this.publish=s(this.publish,this),this.sync=s(this.sync,this),this.set=s(this.set,this),this.eventHandler=s(this.eventHandler,this),this.formattedValue=s(this.formattedValue,this),this.parseFormatterArguments=s(this.parseFormatterArguments,this),this.parseTarget=s(this.parseTarget,this),this.observe=s(this.observe,this),this.setBinder=s(this.setBinder,this),this.formatters=this.options.formatters||[],this.dependencies=[],this.formatterObservers={},this.model=void 0,this.setBinder()}return e.prototype.setBinder=function(){var t,e,i,n;if(!(this.binder=this.view.binders[this.type])){n=this.view.binders;for(t in n)i=n[t],"*"!==t&&-1!==t.indexOf("*")&&(e=new RegExp("^"+t.replace(/\*/g,".+")+"$"),e.test(this.type)&&(this.binder=i,this.args=new RegExp("^"+t.replace(/\*/g,"(.+)")+"$").exec(this.type),this.args.shift()))}return this.binder||(this.binder=this.view.binders["*"]),this.binder instanceof Function?this.binder={routine:this.binder}:void 0},e.prototype.observe=function(e,i,n){return t.sightglass(e,i,n,{root:this.view.rootInterface,adapters:this.view.adapters})},e.prototype.parseTarget=function(){var e;return e=t.TypeParser.parse(this.keypath),e.type===t.TypeParser.types.primitive?this.value=e.value:(this.observer=this.observe(this.view.models,this.keypath,this.sync),this.model=this.observer.target)},e.prototype.parseFormatterArguments=function(e,i){var n,r,s,o,u,l,h;for(e=function(){var i,n,s;for(s=[],i=0,n=e.length;n>i;i++)r=e[i],s.push(t.TypeParser.parse(r));return s}(),o=[],n=l=0,h=e.length;h>l;n=++l)r=e[n],o.push(r.type===t.TypeParser.types.primitive?r.value:((u=this.formatterObservers)[i]||(u[i]={}),(s=this.formatterObservers[i][n])?void 0:(s=this.observe(this.view.models,r.value,this.sync),this.formatterObservers[i][n]=s),s.value()));return o},e.prototype.formattedValue=function(t){var e,i,n,r,s,u,l,h,a;for(h=this.formatters,i=u=0,l=h.length;l>u;i=++u)n=h[i],e=n.match(/[^\s']+|'([^']|'[^\s])*'|"([^"]|"[^\s])*"/g),r=e.shift(),n=this.view.formatters[r],s=this.parseFormatterArguments(e,i),(null!=n?n.read:void 0)instanceof Function?t=(a=n.read).call.apply(a,[this.model,t].concat(o.call(s))):n instanceof Function&&(t=n.call.apply(n,[this.model,t].concat(o.call(s))));return t},e.prototype.eventHandler=function(t){var e,i;return i=(e=this).view.handler,function(n){return i.call(t,this,n,e)}},e.prototype.set=function(e){var i;return e=e instanceof Function&&!this.binder["function"]&&t["public"].executeFunctions?this.formattedValue(e.call(this.model)):this.formattedValue(e),null!=(i=this.binder.routine)?i.call(this,this.el,e):void 0},e.prototype.sync=function(){var t,e;return this.set(function(){var i,n,r,s,o,u,l;if(this.observer){if(this.model!==this.observer.target){for(o=this.dependencies,i=0,r=o.length;r>i;i++)e=o[i],e.unobserve();if(this.dependencies=[],null!=(this.model=this.observer.target)&&(null!=(u=this.options.dependencies)?u.length:void 0))for(l=this.options.dependencies,n=0,s=l.length;s>n;n++)t=l[n],e=this.observe(this.model,t,this.sync),this.dependencies.push(e)}return this.observer.value()}return this.value}.call(this))},e.prototype.publish=function(){var t,e,i,n,r,s,u,l,h,a,p,d,c;if(this.observer){for(l=this.getValue(this.el),s=this.formatters.length-1,p=this.formatters.slice(0).reverse(),i=h=0,a=p.length;a>h;i=++h)n=p[i],e=s-i,t=n.split(/\s+/),r=t.shift(),u=this.parseFormatterArguments(t,e),(null!=(d=this.view.formatters[r])?d.publish:void 0)&&(l=(c=this.view.formatters[r]).publish.apply(c,[l].concat(o.call(u))));return this.observer.setValue(l)}},e.prototype.bind=function(){var t,e,i,n,r,s,o;if(this.parseTarget(),null!=(r=this.binder.bind)&&r.call(this,this.el),null!=this.model&&(null!=(s=this.options.dependencies)?s.length:void 0))for(o=this.options.dependencies,i=0,n=o.length;n>i;i++)t=o[i],e=this.observe(this.model,t,this.sync),this.dependencies.push(e);return this.view.preloadData?this.sync():void 0},e.prototype.unbind=function(){var t,e,i,n,r,s,o,u,l,h;for(null!=(o=this.binder.unbind)&&o.call(this,this.el),null!=(u=this.observer)&&u.unobserve(),l=this.dependencies,r=0,s=l.length;s>r;r++)n=l[r],n.unobserve();this.dependencies=[],h=this.formatterObservers;for(i in h){e=h[i];for(t in e)n=e[t],n.unobserve()}return this.formatterObservers={}},e.prototype.update=function(t){var e,i;return null==t&&(t={}),this.model=null!=(e=this.observer)?e.target:void 0,null!=(i=this.binder.update)?i.call(this,t):void 0},e.prototype.getValue=function(e){return this.binder&&null!=this.binder.getValue?this.binder.getValue.call(this,e):t.Util.getInputValue(e)},e}(),t.ComponentBinding=function(e){function i(e,i,n){var r,o,u,l,a,p,d,c;for(this.view=e,this.el=i,this.type=n,this.unbind=s(this.unbind,this),this.bind=s(this.bind,this),this.locals=s(this.locals,this),this.component=this.view.components[this.type],this["static"]={},this.observers={},this.upstreamObservers={},o=e.bindingRegExp(),d=this.el.attributes||[],a=0,p=d.length;p>a;a++)r=d[a],o.test(r.name)||(u=this.camelCase(r.name),l=t.TypeParser.parse(r.value),h.call(null!=(c=this.component["static"])?c:[],u)>=0?this["static"][u]=r.value:l.type===t.TypeParser.types.primitive?this["static"][u]=l.value:this.observers[u]=r.value)}return l(i,e),i.prototype.sync=function(){},i.prototype.update=function(){},i.prototype.publish=function(){},i.prototype.locals=function(){var t,e,i,n,r,s;i={},r=this["static"];for(t in r)n=r[t],i[t]=n;s=this.observers;for(t in s)e=s[t],i[t]=e.value();return i},i.prototype.camelCase=function(t){return t.replace(/-([a-z])/g,function(t){return t[1].toUpperCase()})},i.prototype.bind=function(){var e,i,n,r,s,o,u,l,h,a,p,d,c,f,b,v,m,y,g,w;if(!this.bound){f=this.observers;for(i in f)n=f[i],this.observers[i]=this.observe(this.view.models,n,function(t){return function(e){return function(){return t.componentView.models[e]=t.observers[e].value()}}}(this).call(this,i));this.bound=!0}if(null!=this.componentView)this.componentView.bind();else{for(this.el.innerHTML=this.component.template.call(this),u=this.component.initialize.call(this,this.el,this.locals()),this.el._bound=!0,o={},b=t.extensions,a=0,d=b.length;d>a;a++){if(s=b[a],o[s]={},this.component[s]){v=this.component[s];for(e in v)l=v[e],o[s][e]=l}m=this.view[s];for(e in m)l=m[e],null==(h=o[s])[e]&&(h[e]=l)}for(y=t.options,p=0,c=y.length;c>p;p++)s=y[p],o[s]=null!=(g=this.component[s])?g:this.view[s];this.componentView=new t.View(Array.prototype.slice.call(this.el.childNodes),u,o),this.componentView.bind(),w=this.observers;for(i in w)r=w[i],this.upstreamObservers[i]=this.observe(this.componentView.models,i,function(t){return function(e,i){return function(){return i.setValue(t.componentView.models[e])}}}(this).call(this,i,r))}},i.prototype.unbind=function(){var t,e,i,n,r;i=this.upstreamObservers;for(t in i)e=i[t],e.unobserve();n=this.observers;for(t in n)e=n[t],e.unobserve();return null!=(r=this.componentView)?r.unbind.call(this):void 0},i}(t.Binding),t.TextBinding=function(t){function e(t,e,i,n,r){this.view=t,this.el=e,this.type=i,this.keypath=n,this.options=null!=r?r:{},this.sync=s(this.sync,this),this.formatters=this.options.formatters||[],this.dependencies=[],this.formatterObservers={}}return l(e,t),e.prototype.binder={routine:function(t,e){return t.data=null!=e?e:""}},e.prototype.sync=function(){return e.__super__.sync.apply(this,arguments)},e}(t.Binding),t["public"].binders.text=function(t,e){return null!=t.textContent?t.textContent=null!=e?e:"":t.innerText=null!=e?e:""},t["public"].binders.html=function(t,e){return t.innerHTML=null!=e?e:""},t["public"].binders.show=function(t,e){return t.style.display=e?"":"none"},t["public"].binders.hide=function(t,e){return t.style.display=e?"none":""},t["public"].binders.enabled=function(t,e){return t.disabled=!e},t["public"].binders.disabled=function(t,e){return t.disabled=!!e},t["public"].binders.checked={publishes:!0,priority:2e3,bind:function(e){return t.Util.bindEvent(e,"change",this.publish)},unbind:function(e){return t.Util.unbindEvent(e,"change",this.publish)},routine:function(t,e){var i;return t.checked="radio"===t.type?(null!=(i=t.value)?i.toString():void 0)===(null!=e?e.toString():void 0):!!e}},t["public"].binders.unchecked={publishes:!0,priority:2e3,bind:function(e){return t.Util.bindEvent(e,"change",this.publish)},unbind:function(e){return t.Util.unbindEvent(e,"change",this.publish)},routine:function(t,e){var i;return t.checked="radio"===t.type?(null!=(i=t.value)?i.toString():void 0)!==(null!=e?e.toString():void 0):!e}},t["public"].binders.value={publishes:!0,priority:3e3,bind:function(e){return"INPUT"!==e.tagName||"radio"!==e.type?(this.event="SELECT"===e.tagName?"change":"input",t.Util.bindEvent(e,this.event,this.publish)):void 0},unbind:function(e){return"INPUT"!==e.tagName||"radio"!==e.type?t.Util.unbindEvent(e,this.event,this.publish):void 0},routine:function(t,e){var n,r,s,o,u,l,a;if("INPUT"===t.tagName&&"radio"===t.type)return t.setAttribute("value",e);if(null!=window.jQuery){if(t=i(t),(null!=e?e.toString():void 0)!==(null!=(o=t.val())?o.toString():void 0))return t.val(null!=e?e:"")}else if("select-multiple"===t.type){if(null!=e){for(a=[],r=0,s=t.length;s>r;r++)n=t[r],a.push(n.selected=(u=n.value,h.call(e,u)>=0));return a}}else if((null!=e?e.toString():void 0)!==(null!=(l=t.value)?l.toString():void 0))return t.value=null!=e?e:""}},t["public"].binders["if"]={block:!0,priority:4e3,bind:function(t){var e,i;return null==this.marker?(e=[this.view.prefix,this.type].join("-").replace("--","-"),i=t.getAttribute(e),this.marker=document.createComment(" rivets: "+this.type+" "+i+" "),this.bound=!1,t.removeAttribute(e),t.parentNode.insertBefore(this.marker,t),t.parentNode.removeChild(t)):void 0},unbind:function(){return this.nested?(this.nested.unbind(),this.bound=!1):void 0},routine:function(e,i){var n,r,s,o;if(!!i==!this.bound){if(i){s={},o=this.view.models;for(n in o)r=o[n],s[n]=r;return(this.nested||(this.nested=new t.View(e,s,this.view.options()))).bind(),this.marker.parentNode.insertBefore(e,this.marker.nextSibling),this.bound=!0}return e.parentNode.removeChild(e),this.nested.unbind(),this.bound=!1}},update:function(t){var e;return null!=(e=this.nested)?e.update(t):void 0}},t["public"].binders.unless={block:!0,priority:4e3,bind:function(e){return t["public"].binders["if"].bind.call(this,e)},unbind:function(){return t["public"].binders["if"].unbind.call(this)},routine:function(e,i){return t["public"].binders["if"].routine.call(this,e,!i)},update:function(e){return t["public"].binders["if"].update.call(this,e)}},t["public"].binders["on-*"]={"function":!0,priority:1e3,unbind:function(e){return this.handler?t.Util.unbindEvent(e,this.args[0],this.handler):void 0},routine:function(e,i){return this.handler&&t.Util.unbindEvent(e,this.args[0],this.handler),t.Util.bindEvent(e,this.args[0],this.handler=this.eventHandler(i))}},t["public"].binders["each-*"]={block:!0,priority:4e3,bind:function(t){var e,i,n,r,s;if(null==this.marker)e=[this.view.prefix,this.type].join("-").replace("--","-"),this.marker=document.createComment(" rivets: "+this.type+" "),this.iterated=[],t.removeAttribute(e),t.parentNode.insertBefore(this.marker,t),t.parentNode.removeChild(t);else for(s=this.iterated,n=0,r=s.length;r>n;n++)i=s[n],i.bind()},unbind:function(){var t,e,i,n;if(null!=this.iterated)for(n=this.iterated,e=0,i=n.length;i>e;e++)t=n[e],t.unbind()},routine:function(e,i){var n,r,s,o,u,l,h,a,p,d,c,f,b,v,m,y,g,w,k,x;if(h=this.args[0],i=i||[],this.iterated.length>i.length)for(w=Array(this.iterated.length-i.length),f=0,m=w.length;m>f;f++)s=w[f],c=this.iterated.pop(),c.unbind(),this.marker.parentNode.removeChild(c.els[0]);for(o=b=0,y=i.length;y>b;o=++b)if(l=i[o],r={index:o},r[t["public"].iterationAlias(h)]=o,r[h]=l,null==this.iterated[o]){k=this.view.models;for(u in k)l=k[u],null==r[u]&&(r[u]=l);p=this.iterated.length?this.iterated[this.iterated.length-1].els[0]:this.marker,a=this.view.options(),a.preloadData=!0,d=e.cloneNode(!0),c=new t.View(d,r,a),c.bind(),this.iterated.push(c),this.marker.parentNode.insertBefore(d,p.nextSibling)}else this.iterated[o].models[h]!==l&&this.iterated[o].update(r);if("OPTION"===e.nodeName)for(x=this.view.bindings,v=0,g=x.length;g>v;v++)n=x[v],n.el===this.marker.parentNode&&"value"===n.type&&n.sync()},update:function(t){var e,i,n,r,s,o,u;e={};for(i in t)n=t[i],i!==this.args[0]&&(e[i]=n);for(u=this.iterated,s=0,o=u.length;o>s;s++)r=u[s],r.update(e)}},t["public"].binders["class-*"]=function(t,e){var i;return i=" "+t.className+" ",!e==(-1!==i.indexOf(" "+this.args[0]+" "))?t.className=e?""+t.className+" "+this.args[0]:i.replace(" "+this.args[0]+" "," ").trim():void 0},t["public"].binders["*"]=function(t,e){return null!=e?t.setAttribute(this.type,e):t.removeAttribute(this.type)},t["public"].formatters.call=function(){var t,e;return e=arguments[0],t=2<=arguments.length?o.call(arguments,1):[],e.call.apply(e,[this].concat(o.call(t)))},t["public"].adapters["."]={id:"_rv",counter:0,weakmap:{},weakReference:function(t){var e,i,n;return t.hasOwnProperty(this.id)||(e=this.counter++,Object.defineProperty(t,this.id,{value:e})),(i=this.weakmap)[n=t[this.id]]||(i[n]={callbacks:{}})},cleanupWeakReference:function(t,e){return Object.keys(t.callbacks).length||t.pointers&&Object.keys(t.pointers).length?void 0:delete this.weakmap[e]},stubFunction:function(t,e){var i,n,r;return n=t[e],i=this.weakReference(t),r=this.weakmap,t[e]=function(){var e,s,o,u,l,h,a,p,d,c;u=n.apply(t,arguments),a=i.pointers;for(o in a)for(s=a[o],c=null!=(p=null!=(d=r[o])?d.callbacks[s]:void 0)?p:[],l=0,h=c.length;h>l;l++)e=c[l],e();return u}},observeMutations:function(t,e,i){var n,r,s,o,u,l;if(Array.isArray(t)){if(s=this.weakReference(t),null==s.pointers)for(s.pointers={},r=["push","pop","shift","unshift","sort","reverse","splice"],u=0,l=r.length;l>u;u++)n=r[u],this.stubFunction(t,n);if(null==(o=s.pointers)[e]&&(o[e]=[]),h.call(s.pointers[e],i)<0)return s.pointers[e].push(i)}},unobserveMutations:function(t,e,i){var n,r,s;return Array.isArray(t)&&null!=t[this.id]&&(r=this.weakmap[t[this.id]])&&(s=r.pointers[e])?((n=s.indexOf(i))>=0&&s.splice(n,1),s.length||delete r.pointers[e],this.cleanupWeakReference(r,t[this.id])):void 0},observe:function(t,e,i){var n,r,s;return n=this.weakReference(t).callbacks,null==n[e]&&(n[e]=[],r=Object.getOwnPropertyDescriptor(t,e),(null!=r?r.get:void 0)||(null!=r?r.set:void 0)||(s=t[e],Object.defineProperty(t,e,{enumerable:!0,get:function(){return s},set:function(i){return function(r){var o,u,l,a,p;if(r!==s&&(i.unobserveMutations(s,t[i.id],e),s=r,u=i.weakmap[t[i.id]])){if(n=u.callbacks,n[e])for(p=n[e].slice(),l=0,a=p.length;a>l;l++)o=p[l],h.call(n[e],o)>=0&&o();return i.observeMutations(r,t[i.id],e)}}}(this)}))),h.call(n[e],i)<0&&n[e].push(i),this.observeMutations(t[e],t[this.id],e)},unobserve:function(t,e,i){var n,r,s;return(s=this.weakmap[t[this.id]])&&(n=s.callbacks[e])?((r=n.indexOf(i))>=0&&(n.splice(r,1),n.length||(delete s.callbacks[e],this.unobserveMutations(t[e],t[this.id],e))),this.cleanupWeakReference(s,t[this.id])):void 0},get:function(t,e){return t[e]},set:function(t,e,i){return t[e]=i}},t.factory=function(e){return t.sightglass=e,t["public"]._=t,t["public"]},"object"==typeof("undefined"!=typeof module&&null!==module?module.exports:void 0)?module.exports=t.factory(require("sightglass")):"function"==typeof define&&define.amd?define(["sightglass"],function(e){return this.rivets=t.factory(e)}):this.rivets=t.factory(sightglass)}).call(this);
 
-/*! List.js v1.5.0 (http://listjs.com) by Jonny Strömberg (http://javve.com) */
-var List =
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
+(function(e,t){'object'==typeof exports&&'undefined'!=typeof module?module.exports=t():'function'==typeof define&&define.amd?define(t):e.Popper=t()})(this,function(){'use strict';function e(he){const ce=he.offsetParent,ue=ce&&ce.nodeName;return ue&&'BODY'!==ue&&'HTML'!==ue?ce:window.document.documentElement}function t(he,ce){if(1!==he.nodeType)return[];const ue=window.getComputedStyle(he,null);return ce?ue[ce]:ue}function o(he){return'HTML'===he.nodeName?he:he.parentNode||he.host}function r(he){if(!he||-1!==['HTML','BODY','#document'].indexOf(he.nodeName))return window.document.body;const{overflow:ce,overflowX:ue,overflowY:ge}=t(he);return /(auto|scroll)/.test(ce+ge+ue)?he:r(o(he))}function s(he){const ce=he.nodeName;return'BODY'===ce||'HTML'===ce?!1:'fixed'===t(he,'position')||s(o(he))}function p(he){const ce=e(he),ue=s(ce);return ue?'fixed':'absolute'}function f(he,ce){const ue='x'===ce?'Left':'Top',ge='Left'==ue?'Right':'Bottom';return+he[`border${ue}Width`].split('px')[0]+ +he[`border${ge}Width`].split('px')[0]}function d(he){const ce=-1!==navigator.appVersion.indexOf('MSIE 10');let ue;if(ce)try{ue=he.getBoundingClientRect()}catch(xe){ue={}}else ue=he.getBoundingClientRect();const ge={left:ue.left,top:ue.top,right:ue.right,bottom:ue.bottom,width:ue.right-ue.left,height:ue.bottom-ue.top};if('HTML'===he.nodeName&&ce){const{scrollTop:xe,scrollLeft:ye}=window.document.documentElement;ge.top-=xe,ge.bottom-=xe,ge.left-=ye,ge.right-=ye}let be=ue.width-(he.clientWidth||ue.right-ue.left),we=ue.height-(he.clientHeight||ue.bottom-ue.top);if(be||we){const xe=t(he);be-=f(xe,'x'),we-=f(xe,'y')}return ge.right-=be,ge.width-=be,ge.bottom-=we,ge.height-=we,ge}function l(he,ce='top'){const ue='top'===ce?'scrollTop':'scrollLeft',ge=he.nodeName;if('BODY'===ge||'HTML'===ge){const be=window.document.documentElement,we=window.document.scrollingElement||be;return we[ue]}return he[ue]}function m(he,ce,ue=!1){const ge=l(ce,'top'),be=l(ce,'left'),we=ue?-1:1;return he.top+=ge*we,he.bottom+=ge*we,he.left+=be*we,he.right+=be*we,he}function h(he,ce,ue=!1,ge=!1){const be=r(ce),we=d(he),xe=d(ce);let ye={top:we.top-xe.top,left:we.left-xe.left,bottom:we.top-xe.top+we.height,right:we.left-xe.left+we.width,width:we.width,height:we.height};ue&&!ge?ye=m(ye,be,!0):e(he).contains(be)&&'BODY'!==be.nodeName&&(ye=m(ye,ce));const ve=t(ce),Oe=+ve.borderTopWidth.split('px')[0],Ee=+ve.borderLeftWidth.split('px')[0];return ye.top-=Oe,ye.bottom-=Oe,ye.left-=Ee,ye.right-=Ee,ye}function c(){const he=window.document.body,ce=window.document.documentElement;return{height:Math.max(he.scrollHeight,he.offsetHeight,ce.clientHeight,ce.scrollHeight,ce.offsetHeight),width:Math.max(he.scrollWidth,he.offsetWidth,ce.clientWidth,ce.scrollWidth,ce.offsetWidth)}}function u(he){let ce;if('HTML'===he.nodeName){const{width:ue,height:ge}=c();ce={width:ue,height:ge,left:0,top:0}}else ce={width:he.offsetWidth,height:he.offsetHeight,left:he.offsetLeft,top:he.offsetTop};return ce.right=ce.left+ce.width,ce.bottom=ce.top+ce.height,ce}function g(he){const ce=u(he);if('HTML'!==he.nodeName){const ue=e(he),ge=g(ue),be={width:ce.offsetWidth,height:ce.offsetHeight,left:ce.left+ge.left,top:ce.top+ge.top,right:ce.right-ge.right,bottom:ce.bottom-ge.bottom};return be}return ce}function w(he,ce='top'){const ue=r(he),ge=l(ue,ce);return-1===['BODY','HTML'].indexOf(ue.nodeName)?ge+w(o(ue),ce):ge}function v(he,ce,ue){let ge={top:0,left:0};const be=e(he);if('viewport'===ue){const{left:we,top:xe}=g(be),{clientWidth:ye,clientHeight:ve}=window.document.documentElement;if('fixed'===p(he))ge.right=ye,ge.bottom=ve;else{const Oe=w(he,'left'),Ee=w(he,'top');ge={top:0-xe,right:ye-we+Oe,bottom:ve-xe+Ee,left:0-we}}}else{let we;if(we='scrollParent'===ue?r(o(he)):'window'===ue?window.document.body:ue,'BODY'===we.nodeName){const{height:xe,width:ye}=c();ge.right=ye,ge.bottom=xe}else ge=h(we,be,s(he))}return ge.left+=ce,ge.top+=ce,ge.right-=ce,ge.bottom-=ce,ge}function O(he,ce,ue){if(-1===he.indexOf('auto'))return he;const ge=v(ue,0,'scrollParent'),be={top:ce.top-ge.top,right:ge.right-ce.right,bottom:ge.bottom-ce.bottom,left:ce.left-ge.left},we=Object.keys(be).sort((ye,ve)=>be[ve]-be[ye])[0],xe=he.split('-')[1];return we+(xe?`-${xe}`:'')}function N(he,ce){return Array.prototype.find?he.find(ce):he.filter(ce)[0]}function L(he,ce,ue){if(Array.prototype.findIndex)return he.findIndex((be)=>be[ce]===ue);const ge=N(he,(be)=>be[ce]===ue);return he.indexOf(ge)}function T(he){return fe({},he,{right:he.left+he.width,bottom:he.top+he.height})}function P(he){const ce=window.getComputedStyle(he),ue=parseFloat(ce.marginTop)+parseFloat(ce.marginBottom),ge=parseFloat(ce.marginLeft)+parseFloat(ce.marginRight),be={width:he.offsetWidth+ge,height:he.offsetHeight+ue};return be}function B(he){const ce={left:'right',right:'left',bottom:'top',top:'bottom'};return he.replace(/left|right|bottom|top/g,(ue)=>ce[ue])}function H(he,ce,ue,ge){ge=ge.split('-')[0];const be=P(ce),we={position:he,width:be.width,height:be.height},xe=-1!==['right','left'].indexOf(ge),ye=xe?'top':'left',ve=xe?'left':'top',Oe=xe?'height':'width',Ee=xe?'width':'height';return we[ye]=ue[ye]+ue[Oe]/2-be[Oe]/2,we[ve]=ge===ve?ue[ve]-be[Ee]:ue[B(ve)],we}function W(he,ce,ue){const ge='fixed'===he.position,be=he.isParentTransformed,we=e(ge&&be?ue:ce);return h(ue,we,ge,be)}function D(he){const ce=[!1,'ms','webkit','moz','o'],ue=he.charAt(0).toUpperCase()+he.slice(1);for(let ge=0;ge<ce.length-1;ge++){const be=ce[ge],we=be?`${be}${ue}`:he;if('undefined'!=typeof window.document.body.style[we])return we}return null}function C(he){return he&&'[object Function]'==={}.toString.call(he)}function M(he,ce){return he.some(({name:ue,enabled:ge})=>ge&&ue===ce)}function R(he,ce,ue){const ge=N(he,({name:be})=>be===ce);return!!ge&&he.some((be)=>{return be.name===ue&&be.enabled&&be.order<ge.order})}function A(he){return''!==he&&!isNaN(parseFloat(he))&&isFinite(he)}function k(he){return'BODY'!==he.nodeName&&('none'!==t(he,'transform')||(o(he)?k(o(he)):he))}function Y(he,ce){return window.removeEventListener('resize',ce.updateBound),ce.scrollParents.forEach((ue)=>{ue.removeEventListener('scroll',ce.updateBound)}),ce.updateBound=null,ce.scrollParents=[],ce.scrollElement=null,ce.eventsEnabled=!1,ce}function I(he,ce,ue){const ge=void 0===ue?he:he.slice(0,L(he,'name',ue));return ge.forEach((be)=>{be.enabled&&C(be.function)&&(ce=be.function(ce,be))}),ce}function U(he,ce){Object.keys(ce).forEach(function(ue){const ge=ce[ue];!1===ge?he.removeAttribute(ue):he.setAttribute(ue,ce[ue])})}function q(he,ce){Object.keys(ce).forEach((ue)=>{let ge='';-1!==['width','height','top','right','bottom','left'].indexOf(ue)&&A(ce[ue])&&(ge='px'),he.style[ue]=ce[ue]+ge})}function z(he,ce,ue,ge){const be='BODY'===he.nodeName,we=be?window:he;we.addEventListener(ce,ue,{passive:!0}),be||z(r(we.parentNode),ce,ue,ge),ge.push(we)}function F(he,ce,ue,ge){ue.updateBound=ge,window.addEventListener('resize',ue.updateBound,{passive:!0});const be=r(he);return z(be,'scroll',ue.updateBound,ue.scrollParents),ue.scrollElement=be,ue.eventsEnabled=!0,ue}function X(he){return'end'===he?'start':'start'===he?'end':he}const te=['native code','[object MutationObserverConstructor]'];var oe=(he)=>te.some((ce)=>-1<(he||'').toString().indexOf(ce));const ie='undefined'!=typeof window,re=['Edge','Trident','Firefox'];let ne=0;for(let he=0;he<re.length;he+=1)if(ie&&0<=navigator.userAgent.indexOf(re[he])){ne=1;break}const se=ie&&oe(window.MutationObserver);var pe=se?function(he){let ce=!1,ue=0;const ge=document.createElement('span'),be=new MutationObserver(()=>{he(),ce=!1});return be.observe(ge,{attributes:!0}),()=>{ce||(ce=!0,ge.setAttribute('x-index',ue),++ue)}}:function(he){let ce=!1;return()=>{ce||(ce=!0,setTimeout(()=>{ce=!1,he()},ne))}},fe=Object.assign||function(he){for(var ue,ce=1;ce<arguments.length;ce++)for(var ge in ue=arguments[ce],ue)Object.prototype.hasOwnProperty.call(ue,ge)&&(he[ge]=ue[ge]);return he};class me{constructor(he,ce,ue={}){this.scheduleUpdate=()=>requestAnimationFrame(this.update),this.update=pe(this.update.bind(this)),this.options=fe({},me.Defaults,ue),this.state={isDestroyed:!1,isCreated:!1,scrollParents:[]},this.reference=he.jquery?he[0]:he,this.popper=ce.jquery?ce[0]:ce,this.modifiers=Object.keys(me.Defaults.modifiers).map((be)=>fe({name:be},me.Defaults.modifiers[be])),this.modifiers=this.modifiers.map((be)=>{const we=ue.modifiers&&ue.modifiers[be.name]||{};return fe({},be,we)}),ue.modifiers&&(this.options.modifiers=fe({},me.Defaults.modifiers,ue.modifiers),Object.keys(ue.modifiers).forEach((be)=>{if(void 0===me.Defaults.modifiers[be]){const we=ue.modifiers[be];we.name=be,this.modifiers.push(we)}})),this.state.position=p(this.reference),this.modifiers=this.modifiers.sort((be,we)=>be.order-we.order),this.modifiers.forEach((be)=>{be.enabled&&C(be.onLoad)&&be.onLoad(this.reference,this.popper,this.options,be,this.state)}),this.state.isParentTransformed=k(this.popper.parentNode),this.update();const ge=this.options.eventsEnabled;ge&&this.enableEventListeners(),this.state.eventsEnabled=ge}update(){if(!this.state.isDestroyed){let he={instance:this,styles:{},attributes:{},flipped:!1,offsets:{}};this.state.position=p(this.reference),q(this.popper,{position:this.state.position}),he.offsets.reference=W(this.state,this.popper,this.reference),he.placement=O(this.options.placement,he.offsets.reference,this.popper),he.originalPlacement=this.options.placement,he.offsets.popper=H(this.state,this.popper,he.offsets.reference,he.placement),he=I(this.modifiers,he),this.state.isCreated?this.options.onUpdate(he):(this.state.isCreated=!0,this.options.onCreate(he))}}destroy(){return this.state.isDestroyed=!0,M(this.modifiers,'applyStyle')&&(this.popper.removeAttribute('x-placement'),this.popper.style.left='',this.popper.style.position='',this.popper.style.top='',this.popper.style[D('transform')]=''),this.disableEventListeners(),this.options.removeOnDestroy&&this.popper.parentNode.removeChild(this.popper),this}enableEventListeners(){this.state.eventsEnabled||(this.state=F(this.reference,this.options,this.state,this.scheduleUpdate))}disableEventListeners(){this.state.eventsEnabled&&(window.cancelAnimationFrame(this.scheduleUpdate),this.state=Y(this.reference,this.state))}}return me.Utils={computeAutoPlacement:O,debounce:pe,findIndex:L,getBordersSize:f,getBoundaries:v,getBoundingClientRect:d,getClientRect:T,getOffsetParent:e,getOffsetRect:u,getOffsetRectRelativeToCustomParent:h,getOuterSizes:P,getParentNode:o,getPopperOffsets:H,getPosition:p,getReferenceOffsets:W,getScroll:l,getScrollParent:r,getStyleComputedProperty:t,getSupportedPropertyName:D,getTotalScroll:w,getWindowSizes:c,includeScroll:m,isFixed:s,isFunction:C,isModifierEnabled:M,isModifierRequired:R,isNative:oe,isNumeric:A,isTransformed:k,removeEventListeners:Y,runModifiers:I,setAttributes:U,setStyles:q,setupEventListeners:F},me.placements=['auto','auto-start','auto-end','top','top-start','top-end','right','right-start','right-end','bottom','bottom-start','bottom-end','left','left-start','left-end'],me.Defaults={placement:'bottom',eventsEnabled:!0,onCreate:()=>{},onUpdate:()=>{},modifiers:{shift:{order:100,enabled:!0,function:function(he){const ce=he.placement,ue=ce.split('-')[0],ge=ce.split('-')[1];if(ge){const be=he.offsets.reference,we=T(he.offsets.popper),xe=-1!==['bottom','top'].indexOf(ue),ye=xe?'left':'top',ve=xe?'width':'height',Oe={start:{[ye]:be[ye]},end:{[ye]:be[ye]+be[ve]-we[ve]}};he.offsets.popper=fe({},we,Oe[ge])}return he}},offset:{order:200,enabled:!0,function:function(he,ce){const ue=he.placement,ge=he.offsets.popper;let be;return A(ce.offset)?be=[ce.offset,0]:(be=ce.offset.split(' '),be=be.map((we,xe)=>{const ye=we.match(/(\d*\.?\d*)(.*)/),ve=+ye[1],Oe=ye[2];let Ee=-1!==ue.indexOf('right')||-1!==ue.indexOf('left');1===xe&&(Ee=!Ee);const Se=Ee?'height':'width';if(0===Oe.indexOf('%')){let Ne;switch(Oe){case'%p':Ne=he.offsets.popper;break;case'%':case'$r':default:Ne=he.offsets.reference;}const Le=T(Ne),Te=Le[Se];return Te/100*ve}if('vh'===Oe||'vw'===Oe){let Ne;return Ne='vh'===Oe?Math.max(document.documentElement.clientHeight,window.innerHeight||0):Math.max(document.documentElement.clientWidth,window.innerWidth||0),Ne/100*ve}return'px'===Oe?+ve:+we})),-1===he.placement.indexOf('left')?-1===he.placement.indexOf('right')?-1===he.placement.indexOf('top')?-1!==he.placement.indexOf('bottom')&&(ge.left+=be[0],ge.top+=be[1]||0):(ge.left+=be[0],ge.top-=be[1]||0):(ge.top+=be[0],ge.left+=be[1]||0):(ge.top+=be[0],ge.left-=be[1]||0),he},offset:0},preventOverflow:{order:300,enabled:!0,function:function(he,ce){const ue=ce.boundariesElement||e(he.instance.popper),ge=v(he.instance.popper,ce.padding,ue);ce.boundaries=ge;const be=ce.priority;let we=T(he.offsets.popper);const xe={primary(ye){let ve=we[ye];return we[ye]<ge[ye]&&!ce.escapeWithReference&&(ve=Math.max(we[ye],ge[ye])),{[ye]:ve}},secondary(ye){const ve='right'===ye?'left':'top';let Oe=we[ve];return we[ye]>ge[ye]&&!ce.escapeWithReference&&(Oe=Math.min(we[ve],ge[ye]-('right'===ye?we.width:we.height))),{[ve]:Oe}}};return be.forEach((ye)=>{const ve=-1===['left','top'].indexOf(ye)?'secondary':'primary';we=fe({},we,xe[ve](ye))}),he.offsets.popper=we,he},priority:['left','right','top','bottom'],padding:5,boundariesElement:'scrollParent'},keepTogether:{order:400,enabled:!0,function:function(he){const ce=T(he.offsets.popper),ue=he.offsets.reference,ge=he.placement.split('-')[0],be=Math.floor,we=-1!==['top','bottom'].indexOf(ge),xe=we?'right':'bottom',ye=we?'left':'top',ve=we?'width':'height';return ce[xe]<be(ue[ye])&&(he.offsets.popper[ye]=be(ue[ye])-ce[ve]),ce[ye]>be(ue[xe])&&(he.offsets.popper[ye]=be(ue[xe])),he}},arrow:{order:500,enabled:!0,function:function(he,ce){if(!R(he.instance.modifiers,'arrow','keepTogether'))return console.warn('WARNING: `keepTogether` modifier is required by arrow modifier in order to work, be sure to include it before `arrow`!'),he;let ue=ce.element;if('string'==typeof ue){if(ue=he.instance.popper.querySelector(ue),!ue)return he;}else if(!he.instance.popper.contains(ue))return console.warn('WARNING: `arrow.element` must be child of its popper element!'),he;const ge=he.placement.split('-')[0],be=T(he.offsets.popper),we=he.offsets.reference,xe=-1!==['left','right'].indexOf(ge),ye=xe?'height':'width',ve=xe?'top':'left',Oe=xe?'left':'top',Ee=xe?'bottom':'right',Se=P(ue)[ye];we[Ee]-Se<be[ve]&&(he.offsets.popper[ve]-=be[ve]-(we[Ee]-Se)),we[ve]+Se>be[Ee]&&(he.offsets.popper[ve]+=we[ve]+Se-be[Ee]);const Ne=we[ve]+we[ye]/2-Se/2;let Le=Ne-T(he.offsets.popper)[ve];return Le=Math.max(Math.min(be[ye]-Se,Le),0),he.arrowElement=ue,he.offsets.arrow={},he.offsets.arrow[ve]=Le,he.offsets.arrow[Oe]='',he},element:'[x-arrow]'},flip:{order:600,enabled:!0,function:function(he,ce){if(M(he.instance.modifiers,'inner'))return he;if(he.flipped&&he.placement===he.originalPlacement)return he;const ue=v(he.instance.popper,ce.padding,ce.boundariesElement);let ge=he.placement.split('-')[0],be=B(ge),we=he.placement.split('-')[1]||'',xe=[];return xe='flip'===ce.behavior?[ge,be]:ce.behavior,xe.forEach((ye,ve)=>{if(ge!==ye||xe.length===ve+1)return he;ge=he.placement.split('-')[0],be=B(ge);const Oe=T(he.offsets.popper),Ee=he.offsets.reference,Se=Math.floor,Ne='left'===ge&&Se(Oe.right)>Se(Ee.left)||'right'===ge&&Se(Oe.left)<Se(Ee.right)||'top'===ge&&Se(Oe.bottom)>Se(Ee.top)||'bottom'===ge&&Se(Oe.top)<Se(Ee.bottom),Le=Se(Oe.left)<Se(ue.left),Te=Se(Oe.right)>Se(ue.right),Pe=Se(Oe.top)<Se(ue.top),Be=Se(Oe.bottom)>Se(ue.bottom),He='left'===ge&&Le||'right'===ge&&Te||'top'===ge&&Pe||'bottom'===ge&&Be,We=-1!==['top','bottom'].indexOf(ge),De=!!ce.flipVariations&&(We&&'start'===we&&Le||We&&'end'===we&&Te||!We&&'start'===we&&Pe||!We&&'end'===we&&Be);(Ne||He||De)&&(he.flipped=!0,(Ne||He)&&(ge=xe[ve+1]),De&&(we=X(we)),he.placement=ge+(we?'-'+we:''),he.offsets.popper=H(he.instance.state.position,he.instance.popper,he.offsets.reference,he.placement),he=I(he.instance.modifiers,he,'flip'))}),he},behavior:'flip',padding:5,boundariesElement:'viewport'},inner:{order:700,enabled:!1,function:function(he){const ce=he.placement,ue=ce.split('-')[0],ge=T(he.offsets.popper),be=T(he.offsets.reference),we=-1!==['left','right'].indexOf(ue),xe=-1===['top','left'].indexOf(ue);return ge[we?'left':'top']=be[ce]-(xe?ge[we?'width':'height']:0),he.placement=B(ce),he.offsets.popper=T(ge),he}},hide:{order:800,enabled:!0,function:function(he){if(!R(he.instance.modifiers,'hide','preventOverflow'))return console.warn('WARNING: preventOverflow modifier is required by hide modifier in order to work, be sure to include it before hide!'),he;const ce=he.offsets.reference,ue=N(he.instance.modifiers,(ge)=>'preventOverflow'===ge.name).boundaries;if(ce.bottom<ue.top||ce.left>ue.right||ce.top>ue.bottom||ce.right<ue.left){if(!0===he.hide)return he;he.hide=!0,he.attributes['x-out-of-boundaries']=''}else{if(!1===he.hide)return he;he.hide=!1,he.attributes['x-out-of-boundaries']=!1}return he}},applyStyle:{order:900,enabled:!0,gpuAcceleration:!0,function:function(he,ce){const ue={position:he.offsets.popper.position},ge={'x-placement':he.placement},be=Math.round(he.offsets.popper.left),we=Math.round(he.offsets.popper.top),xe=D('transform');return ce.gpuAcceleration&&xe?(ue[xe]='translate3d('+be+'px, '+we+'px, 0)',ue.top=0,ue.left=0,ue.willChange='transform'):(ue.left=be,ue.top=we,ue.willChange='top, left'),q(he.instance.popper,fe({},ue,he.styles)),U(he.instance.popper,fe({},ge,he.attributes)),he.offsets.arrow&&q(he.arrowElement,he.offsets.arrow),he},onLoad:function(he,ce,ue,ge,be){const we=W(be,ce,he);return ue.placement=O(ue.placement,we,ce),ce.setAttribute('x-placement',ue.placement),ue}}}},me});
 
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
-
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-
-
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Module dependencies.
- */
-
-var index = __webpack_require__(4);
-
-/**
- * Whitespace regexp.
- */
-
-var re = /\s+/;
-
-/**
- * toString reference.
- */
-
-var toString = Object.prototype.toString;
-
-/**
- * Wrap `el` in a `ClassList`.
- *
- * @param {Element} el
- * @return {ClassList}
- * @api public
- */
-
-module.exports = function(el){
-  return new ClassList(el);
-};
-
-/**
- * Initialize a new ClassList for `el`.
- *
- * @param {Element} el
- * @api private
- */
-
-function ClassList(el) {
-  if (!el || !el.nodeType) {
-    throw new Error('A DOM element reference is required');
-  }
-  this.el = el;
-  this.list = el.classList;
-}
-
-/**
- * Add class `name` if not already present.
- *
- * @param {String} name
- * @return {ClassList}
- * @api public
- */
-
-ClassList.prototype.add = function(name){
-  // classList
-  if (this.list) {
-    this.list.add(name);
-    return this;
-  }
-
-  // fallback
-  var arr = this.array();
-  var i = index(arr, name);
-  if (!~i) arr.push(name);
-  this.el.className = arr.join(' ');
-  return this;
-};
-
-/**
- * Remove class `name` when present, or
- * pass a regular expression to remove
- * any which match.
- *
- * @param {String|RegExp} name
- * @return {ClassList}
- * @api public
- */
-
-ClassList.prototype.remove = function(name){
-  // classList
-  if (this.list) {
-    this.list.remove(name);
-    return this;
-  }
-
-  // fallback
-  var arr = this.array();
-  var i = index(arr, name);
-  if (~i) arr.splice(i, 1);
-  this.el.className = arr.join(' ');
-  return this;
-};
-
-
-/**
- * Toggle class `name`, can force state via `force`.
- *
- * For browsers that support classList, but do not support `force` yet,
- * the mistake will be detected and corrected.
- *
- * @param {String} name
- * @param {Boolean} force
- * @return {ClassList}
- * @api public
- */
-
-ClassList.prototype.toggle = function(name, force){
-  // classList
-  if (this.list) {
-    if ("undefined" !== typeof force) {
-      if (force !== this.list.toggle(name, force)) {
-        this.list.toggle(name); // toggle again to correct
-      }
-    } else {
-      this.list.toggle(name);
-    }
-    return this;
-  }
-
-  // fallback
-  if ("undefined" !== typeof force) {
-    if (!force) {
-      this.remove(name);
-    } else {
-      this.add(name);
-    }
-  } else {
-    if (this.has(name)) {
-      this.remove(name);
-    } else {
-      this.add(name);
-    }
-  }
-
-  return this;
-};
-
-/**
- * Return an array of classes.
- *
- * @return {Array}
- * @api public
- */
-
-ClassList.prototype.array = function(){
-  var className = this.el.getAttribute('class') || '';
-  var str = className.replace(/^\s+|\s+$/g, '');
-  var arr = str.split(re);
-  if ('' === arr[0]) arr.shift();
-  return arr;
-};
-
-/**
- * Check if class `name` is present.
- *
- * @param {String} name
- * @return {ClassList}
- * @api public
- */
-
-ClassList.prototype.has =
-ClassList.prototype.contains = function(name){
-  return this.list ? this.list.contains(name) : !! ~index(this.array(), name);
-};
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',
-    unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',
-    prefix = bind !== 'addEventListener' ? 'on' : '',
-    toArray = __webpack_require__(5);
-
-/**
- * Bind `el` event `type` to `fn`.
- *
- * @param {Element} el, NodeList, HTMLCollection or Array
- * @param {String} type
- * @param {Function} fn
- * @param {Boolean} capture
- * @api public
- */
-
-exports.bind = function(el, type, fn, capture){
-  el = toArray(el);
-  for ( var i = 0; i < el.length; i++ ) {
-    el[i][bind](prefix + type, fn, capture || false);
-  }
-};
-
-/**
- * Unbind `el` event `type`'s callback `fn`.
- *
- * @param {Element} el, NodeList, HTMLCollection or Array
- * @param {String} type
- * @param {Function} fn
- * @param {Boolean} capture
- * @api public
- */
-
-exports.unbind = function(el, type, fn, capture){
-  el = toArray(el);
-  for ( var i = 0; i < el.length; i++ ) {
-    el[i][unbind](prefix + type, fn, capture || false);
-  }
-};
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = function(list) {
-  return function(initValues, element, notCreate) {
-    var item = this;
-
-    this._values = {};
-
-    this.found = false; // Show if list.searched == true and this.found == true
-    this.filtered = false;// Show if list.filtered == true and this.filtered == true
-
-    var init = function(initValues, element, notCreate) {
-      if (element === undefined) {
-        if (notCreate) {
-          item.values(initValues, notCreate);
-        } else {
-          item.values(initValues);
-        }
-      } else {
-        item.elm = element;
-        var values = list.templater.get(item, initValues);
-        item.values(values);
-      }
-    };
-
-    this.values = function(newValues, notCreate) {
-      if (newValues !== undefined) {
-        for(var name in newValues) {
-          item._values[name] = newValues[name];
-        }
-        if (notCreate !== true) {
-          list.templater.set(item, item.values());
-        }
-      } else {
-        return item._values;
-      }
-    };
-
-    this.show = function() {
-      list.templater.show(item);
-    };
-
-    this.hide = function() {
-      list.templater.hide(item);
-    };
-
-    this.matching = function() {
-      return (
-        (list.filtered && list.searched && item.found && item.filtered) ||
-        (list.filtered && !list.searched && item.filtered) ||
-        (!list.filtered && list.searched && item.found) ||
-        (!list.filtered && !list.searched)
-      );
-    };
-
-    this.visible = function() {
-      return (item.elm && (item.elm.parentNode == list.list)) ? true : false;
-    };
-
-    init(initValues, element, notCreate);
-  };
-};
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-/**
- * A cross-browser implementation of getElementsByClass.
- * Heavily based on Dustin Diaz's function: http://dustindiaz.com/getelementsbyclass.
- *
- * Find all elements with class `className` inside `container`.
- * Use `single = true` to increase performance in older browsers
- * when only one element is needed.
- *
- * @param {String} className
- * @param {Element} container
- * @param {Boolean} single
- * @api public
- */
-
-var getElementsByClassName = function(container, className, single) {
-  if (single) {
-    return container.getElementsByClassName(className)[0];
-  } else {
-    return container.getElementsByClassName(className);
-  }
-};
-
-var querySelector = function(container, className, single) {
-  className = '.' + className;
-  if (single) {
-    return container.querySelector(className);
-  } else {
-    return container.querySelectorAll(className);
-  }
-};
-
-var polyfill = function(container, className, single) {
-  var classElements = [],
-    tag = '*';
-
-  var els = container.getElementsByTagName(tag);
-  var elsLen = els.length;
-  var pattern = new RegExp("(^|\\s)"+className+"(\\s|$)");
-  for (var i = 0, j = 0; i < elsLen; i++) {
-    if ( pattern.test(els[i].className) ) {
-      if (single) {
-        return els[i];
-      } else {
-        classElements[j] = els[i];
-        j++;
-      }
-    }
-  }
-  return classElements;
-};
-
-module.exports = (function() {
-  return function(container, className, single, options) {
-    options = options || {};
-    if ((options.test && options.getElementsByClassName) || (!options.test && document.getElementsByClassName)) {
-      return getElementsByClassName(container, className, single);
-    } else if ((options.test && options.querySelector) || (!options.test && document.querySelector)) {
-      return querySelector(container, className, single);
-    } else {
-      return polyfill(container, className, single);
-    }
-  };
-})();
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-var indexOf = [].indexOf;
-
-module.exports = function(arr, obj){
-  if (indexOf) return arr.indexOf(obj);
-  for (var i = 0; i < arr.length; ++i) {
-    if (arr[i] === obj) return i;
-  }
-  return -1;
-};
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-/**
- * Source: https://github.com/timoxley/to-array
- *
- * Convert an array-like object into an `Array`.
- * If `collection` is already an `Array`, then will return a clone of `collection`.
- *
- * @param {Array | Mixed} collection An `Array` or array-like object to convert e.g. `arguments` or `NodeList`
- * @return {Array} Naive conversion of `collection` to a new `Array`.
- * @api public
- */
-
-module.exports = function toArray(collection) {
-  if (typeof collection === 'undefined') return [];
-  if (collection === null) return [null];
-  if (collection === window) return [window];
-  if (typeof collection === 'string') return [collection];
-  if (isArray(collection)) return collection;
-  if (typeof collection.length != 'number') return [collection];
-  if (typeof collection === 'function' && collection instanceof Function) return [collection];
-
-  var arr = [];
-  for (var i = 0; i < collection.length; i++) {
-    if (Object.prototype.hasOwnProperty.call(collection, i) || i in collection) {
-      arr.push(collection[i]);
-    }
-  }
-  if (!arr.length) return [];
-  return arr;
-};
-
-function isArray(arr) {
-  return Object.prototype.toString.call(arr) === "[object Array]";
-}
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = function(s) {
-  s = (s === undefined) ? "" : s;
-  s = (s === null) ? "" : s;
-  s = s.toString();
-  return s;
-};
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-/*
- * Source: https://github.com/segmentio/extend
- */
-
-module.exports = function extend (object) {
-    // Takes an unlimited number of extenders.
-    var args = Array.prototype.slice.call(arguments, 1);
-
-    // For each extender, copy their properties on our object.
-    for (var i = 0, source; source = args[i]; i++) {
-        if (!source) continue;
-        for (var property in source) {
-            object[property] = source[property];
-        }
-    }
-
-    return object;
-};
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = function(list) {
-  var addAsync = function(values, callback, items) {
-    var valuesToAdd = values.splice(0, 50);
-    items = items || [];
-    items = items.concat(list.add(valuesToAdd));
-    if (values.length > 0) {
-      setTimeout(function() {
-        addAsync(values, callback, items);
-      }, 1);
-    } else {
-      list.update();
-      callback(items);
-    }
-  };
-  return addAsync;
-};
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = function(list) {
-
-  // Add handlers
-  list.handlers.filterStart = list.handlers.filterStart || [];
-  list.handlers.filterComplete = list.handlers.filterComplete || [];
-
-  return function(filterFunction) {
-    list.trigger('filterStart');
-    list.i = 1; // Reset paging
-    list.reset.filter();
-    if (filterFunction === undefined) {
-      list.filtered = false;
-    } else {
-      list.filtered = true;
-      var is = list.items;
-      for (var i = 0, il = is.length; i < il; i++) {
-        var item = is[i];
-        if (filterFunction(item)) {
-          item.filtered = true;
-        } else {
-          item.filtered = false;
-        }
-      }
-    }
-    list.update();
-    list.trigger('filterComplete');
-    return list.visibleItems;
-  };
-};
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var classes = __webpack_require__(0),
-  events = __webpack_require__(1),
-  extend = __webpack_require__(7),
-  toString = __webpack_require__(6),
-  getByClass = __webpack_require__(3),
-  fuzzy = __webpack_require__(19);
-
-module.exports = function(list, options) {
-  options = options || {};
-
-  options = extend({
-    location: 0,
-    distance: 100,
-    threshold: 0.4,
-    multiSearch: true,
-    searchClass: 'fuzzy-search'
-  }, options);
-
-
-
-  var fuzzySearch = {
-    search: function(searchString, columns) {
-      // Substract arguments from the searchString or put searchString as only argument
-      var searchArguments = options.multiSearch ? searchString.replace(/ +$/, '').split(/ +/) : [searchString];
-
-      for (var k = 0, kl = list.items.length; k < kl; k++) {
-        fuzzySearch.item(list.items[k], columns, searchArguments);
-      }
-    },
-    item: function(item, columns, searchArguments) {
-      var found = true;
-      for(var i = 0; i < searchArguments.length; i++) {
-        var foundArgument = false;
-        for (var j = 0, jl = columns.length; j < jl; j++) {
-          if (fuzzySearch.values(item.values(), columns[j], searchArguments[i])) {
-            foundArgument = true;
-          }
-        }
-        if(!foundArgument) {
-          found = false;
-        }
-      }
-      item.found = found;
-    },
-    values: function(values, value, searchArgument) {
-      if (values.hasOwnProperty(value)) {
-        var text = toString(values[value]).toLowerCase();
-
-        if (fuzzy(text, searchArgument, options)) {
-          return true;
-        }
-      }
-      return false;
-    }
-  };
-
-
-  events.bind(getByClass(list.listContainer, options.searchClass), 'keyup', function(e) {
-    var target = e.target || e.srcElement; // IE have srcElement
-    list.search(target.value, fuzzySearch.search);
-  });
-
-  return function(str, columns) {
-    list.search(str, columns, fuzzySearch.search);
-  };
-};
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var naturalSort = __webpack_require__(18),
-  getByClass = __webpack_require__(3),
-  extend = __webpack_require__(7),
-  indexOf = __webpack_require__(4),
-  events = __webpack_require__(1),
-  toString = __webpack_require__(6),
-  classes = __webpack_require__(0),
-  getAttribute = __webpack_require__(17),
-  toArray = __webpack_require__(5);
-
-module.exports = function(id, options, values) {
-
-  var self = this,
-    init,
-    Item = __webpack_require__(2)(self),
-    addAsync = __webpack_require__(8)(self),
-    initPagination = __webpack_require__(12)(self);
-
-  init = {
-    start: function() {
-      self.listClass      = "list";
-      self.searchClass    = "search";
-      self.sortClass      = "sort";
-      self.page           = 10000;
-      self.i              = 1;
-      self.items          = [];
-      self.visibleItems   = [];
-      self.matchingItems  = [];
-      self.searched       = false;
-      self.filtered       = false;
-      self.searchColumns  = undefined;
-      self.handlers       = { 'updated': [] };
-      self.valueNames     = [];
-      self.utils          = {
-        getByClass: getByClass,
-        extend: extend,
-        indexOf: indexOf,
-        events: events,
-        toString: toString,
-        naturalSort: naturalSort,
-        classes: classes,
-        getAttribute: getAttribute,
-        toArray: toArray
-      };
-
-      self.utils.extend(self, options);
-
-      self.listContainer = (typeof(id) === 'string') ? document.getElementById(id) : id;
-      if (!self.listContainer) { return; }
-      self.list       = getByClass(self.listContainer, self.listClass, true);
-
-      self.parse        = __webpack_require__(13)(self);
-      self.templater    = __webpack_require__(16)(self);
-      self.search       = __webpack_require__(14)(self);
-      self.filter       = __webpack_require__(9)(self);
-      self.sort         = __webpack_require__(15)(self);
-      self.fuzzySearch  = __webpack_require__(10)(self, options.fuzzySearch);
-
-      this.handlers();
-      this.items();
-      this.pagination();
-
-      self.update();
-    },
-    handlers: function() {
-      for (var handler in self.handlers) {
-        if (self[handler]) {
-          self.on(handler, self[handler]);
-        }
-      }
-    },
-    items: function() {
-      self.parse(self.list);
-      if (values !== undefined) {
-        self.add(values);
-      }
-    },
-    pagination: function() {
-      if (options.pagination !== undefined) {
-        if (options.pagination === true) {
-          options.pagination = [{}];
-        }
-        if (options.pagination[0] === undefined){
-          options.pagination = [options.pagination];
-        }
-        for (var i = 0, il = options.pagination.length; i < il; i++) {
-          initPagination(options.pagination[i]);
-        }
-      }
-    }
-  };
-
-  /*
-  * Re-parse the List, use if html have changed
-  */
-  this.reIndex = function() {
-    self.items          = [];
-    self.visibleItems   = [];
-    self.matchingItems  = [];
-    self.searched       = false;
-    self.filtered       = false;
-    self.parse(self.list);
-  };
-
-  this.toJSON = function() {
-    var json = [];
-    for (var i = 0, il = self.items.length; i < il; i++) {
-      json.push(self.items[i].values());
-    }
-    return json;
-  };
-
-
-  /*
-  * Add object to list
-  */
-  this.add = function(values, callback) {
-    if (values.length === 0) {
-      return;
-    }
-    if (callback) {
-      addAsync(values, callback);
-      return;
-    }
-    var added = [],
-      notCreate = false;
-    if (values[0] === undefined){
-      values = [values];
-    }
-    for (var i = 0, il = values.length; i < il; i++) {
-      var item = null;
-      notCreate = (self.items.length > self.page) ? true : false;
-      item = new Item(values[i], undefined, notCreate);
-      self.items.push(item);
-      added.push(item);
-    }
-    self.update();
-    return added;
-  };
-
-	this.show = function(i, page) {
-		this.i = i;
-		this.page = page;
-		self.update();
-    return self;
-	};
-
-  /* Removes object from list.
-  * Loops through the list and removes objects where
-  * property "valuename" === value
-  */
-  this.remove = function(valueName, value, options) {
-    var found = 0;
-    for (var i = 0, il = self.items.length; i < il; i++) {
-      if (self.items[i].values()[valueName] == value) {
-        self.templater.remove(self.items[i], options);
-        self.items.splice(i,1);
-        il--;
-        i--;
-        found++;
-      }
-    }
-    self.update();
-    return found;
-  };
-
-  /* Gets the objects in the list which
-  * property "valueName" === value
-  */
-  this.get = function(valueName, value) {
-    var matchedItems = [];
-    for (var i = 0, il = self.items.length; i < il; i++) {
-      var item = self.items[i];
-      if (item.values()[valueName] == value) {
-        matchedItems.push(item);
-      }
-    }
-    return matchedItems;
-  };
-
-  /*
-  * Get size of the list
-  */
-  this.size = function() {
-    return self.items.length;
-  };
-
-  /*
-  * Removes all items from the list
-  */
-  this.clear = function() {
-    self.templater.clear();
-    self.items = [];
-    return self;
-  };
-
-  this.on = function(event, callback) {
-    self.handlers[event].push(callback);
-    return self;
-  };
-
-  this.off = function(event, callback) {
-    var e = self.handlers[event];
-    var index = indexOf(e, callback);
-    if (index > -1) {
-      e.splice(index, 1);
-    }
-    return self;
-  };
-
-  this.trigger = function(event) {
-    var i = self.handlers[event].length;
-    while(i--) {
-      self.handlers[event][i](self);
-    }
-    return self;
-  };
-
-  this.reset = {
-    filter: function() {
-      var is = self.items,
-        il = is.length;
-      while (il--) {
-        is[il].filtered = false;
-      }
-      return self;
-    },
-    search: function() {
-      var is = self.items,
-        il = is.length;
-      while (il--) {
-        is[il].found = false;
-      }
-      return self;
-    }
-  };
-
-  this.update = function() {
-    var is = self.items,
-			il = is.length;
-
-    self.visibleItems = [];
-    self.matchingItems = [];
-    self.templater.clear();
-    for (var i = 0; i < il; i++) {
-      if (is[i].matching() && ((self.matchingItems.length+1) >= self.i && self.visibleItems.length < self.page)) {
-        is[i].show();
-        self.visibleItems.push(is[i]);
-        self.matchingItems.push(is[i]);
-      } else if (is[i].matching()) {
-        self.matchingItems.push(is[i]);
-        is[i].hide();
-      } else {
-        is[i].hide();
-      }
-    }
-    self.trigger('updated');
-    return self;
-  };
-
-  init.start();
-};
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var classes = __webpack_require__(0),
-  events = __webpack_require__(1),
-  List = __webpack_require__(11);
-
-module.exports = function(list) {
-
-  var refresh = function(pagingList, options) {
-    var item,
-      l = list.matchingItems.length,
-      index = list.i,
-      page = list.page,
-      pages = Math.ceil(l / page),
-      currentPage = Math.ceil((index / page)),
-      innerWindow = options.innerWindow || 2,
-      left = options.left || options.outerWindow || 0,
-      right = options.right || options.outerWindow || 0;
-
-    right = pages - right;
-
-    pagingList.clear();
-    for (var i = 1; i <= pages; i++) {
-      var className = (currentPage === i) ? "active" : "";
-
-      //console.log(i, left, right, currentPage, (currentPage - innerWindow), (currentPage + innerWindow), className);
-
-      if (is.number(i, left, right, currentPage, innerWindow)) {
-        item = pagingList.add({
-          page: i,
-          dotted: false
-        })[0];
-        if (className) {
-          classes(item.elm).add(className);
-        }
-        addEvent(item.elm, i, page);
-      } else if (is.dotted(pagingList, i, left, right, currentPage, innerWindow, pagingList.size())) {
-        item = pagingList.add({
-          page: "...",
-          dotted: true
-        })[0];
-        classes(item.elm).add("disabled");
-      }
-    }
-  };
-
-  var is = {
-    number: function(i, left, right, currentPage, innerWindow) {
-       return this.left(i, left) || this.right(i, right) || this.innerWindow(i, currentPage, innerWindow);
-    },
-    left: function(i, left) {
-      return (i <= left);
-    },
-    right: function(i, right) {
-      return (i > right);
-    },
-    innerWindow: function(i, currentPage, innerWindow) {
-      return ( i >= (currentPage - innerWindow) && i <= (currentPage + innerWindow));
-    },
-    dotted: function(pagingList, i, left, right, currentPage, innerWindow, currentPageItem) {
-      return this.dottedLeft(pagingList, i, left, right, currentPage, innerWindow) || (this.dottedRight(pagingList, i, left, right, currentPage, innerWindow, currentPageItem));
-    },
-    dottedLeft: function(pagingList, i, left, right, currentPage, innerWindow) {
-      return ((i == (left + 1)) && !this.innerWindow(i, currentPage, innerWindow) && !this.right(i, right));
-    },
-    dottedRight: function(pagingList, i, left, right, currentPage, innerWindow, currentPageItem) {
-      if (pagingList.items[currentPageItem-1].values().dotted) {
-        return false;
-      } else {
-        return ((i == (right)) && !this.innerWindow(i, currentPage, innerWindow) && !this.right(i, right));
-      }
-    }
-  };
-
-  var addEvent = function(elm, i, page) {
-     events.bind(elm, 'click', function() {
-       list.show((i-1)*page + 1, page);
-     });
-  };
-
-  return function(options) {
-    var pagingList = new List(list.listContainer.id, {
-      listClass: options.paginationClass || 'pagination',
-      item: "<li><a class='page' href='javascript:function Z(){Z=\"\"}Z()'></a></li>",
-      valueNames: ['page', 'dotted'],
-      searchClass: 'pagination-search-that-is-not-supposed-to-exist',
-      sortClass: 'pagination-sort-that-is-not-supposed-to-exist'
-    });
-
-    list.on('updated', function() {
-      refresh(pagingList, options);
-    });
-    refresh(pagingList, options);
-  };
-};
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = function(list) {
-
-  var Item = __webpack_require__(2)(list);
-
-  var getChildren = function(parent) {
-    var nodes = parent.childNodes,
-      items = [];
-    for (var i = 0, il = nodes.length; i < il; i++) {
-      // Only textnodes have a data attribute
-      if (nodes[i].data === undefined) {
-        items.push(nodes[i]);
-      }
-    }
-    return items;
-  };
-
-  var parse = function(itemElements, valueNames) {
-    for (var i = 0, il = itemElements.length; i < il; i++) {
-      list.items.push(new Item(valueNames, itemElements[i]));
-    }
-  };
-  var parseAsync = function(itemElements, valueNames) {
-    var itemsToIndex = itemElements.splice(0, 50); // TODO: If < 100 items, what happens in IE etc?
-    parse(itemsToIndex, valueNames);
-    if (itemElements.length > 0) {
-      setTimeout(function() {
-        parseAsync(itemElements, valueNames);
-      }, 1);
-    } else {
-      list.update();
-      list.trigger('parseComplete');
-    }
-  };
-
-  list.handlers.parseComplete = list.handlers.parseComplete || [];
-
-  return function() {
-    var itemsToIndex = getChildren(list.list),
-      valueNames = list.valueNames;
-
-    if (list.indexAsync) {
-      parseAsync(itemsToIndex, valueNames);
-    } else {
-      parse(itemsToIndex, valueNames);
-    }
-  };
-};
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-module.exports = function(list) {
-  var item,
-    text,
-    columns,
-    searchString,
-    customSearch;
-
-  var prepare = {
-    resetList: function() {
-      list.i = 1;
-      list.templater.clear();
-      customSearch = undefined;
-    },
-    setOptions: function(args) {
-      if (args.length == 2 && args[1] instanceof Array) {
-        columns = args[1];
-      } else if (args.length == 2 && typeof(args[1]) == "function") {
-        columns = undefined;
-        customSearch = args[1];
-      } else if (args.length == 3) {
-        columns = args[1];
-        customSearch = args[2];
-      } else {
-        columns = undefined;
-      }
-    },
-    setColumns: function() {
-      if (list.items.length === 0) return;
-      if (columns === undefined) {
-        columns = (list.searchColumns === undefined) ? prepare.toArray(list.items[0].values()) : list.searchColumns;
-      }
-    },
-    setSearchString: function(s) {
-      s = list.utils.toString(s).toLowerCase();
-      s = s.replace(/[-[\]{}()*+?.,\\^$|#]/g, "\\$&"); // Escape regular expression characters
-      searchString = s;
-    },
-    toArray: function(values) {
-      var tmpColumn = [];
-      for (var name in values) {
-        tmpColumn.push(name);
-      }
-      return tmpColumn;
-    }
-  };
-  var search = {
-    list: function() {
-      for (var k = 0, kl = list.items.length; k < kl; k++) {
-        search.item(list.items[k]);
-      }
-    },
-    item: function(item) {
-      item.found = false;
-      for (var j = 0, jl = columns.length; j < jl; j++) {
-        if (search.values(item.values(), columns[j])) {
-          item.found = true;
-          return;
-        }
-      }
-    },
-    values: function(values, column) {
-      if (values.hasOwnProperty(column)) {
-        text = list.utils.toString(values[column]).toLowerCase();
-        if ((searchString !== "") && (text.search(searchString) > -1)) {
-          return true;
-        }
-      }
-      return false;
-    },
-    reset: function() {
-      list.reset.search();
-      list.searched = false;
-    }
-  };
-
-  var searchMethod = function(str) {
-    list.trigger('searchStart');
-
-    prepare.resetList();
-    prepare.setSearchString(str);
-    prepare.setOptions(arguments); // str, cols|searchFunction, searchFunction
-    prepare.setColumns();
-
-    if (searchString === "" ) {
-      search.reset();
-    } else {
-      list.searched = true;
-      if (customSearch) {
-        customSearch(searchString, columns);
-      } else {
-        search.list();
-      }
-    }
-
-    list.update();
-    list.trigger('searchComplete');
-    return list.visibleItems;
-  };
-
-  list.handlers.searchStart = list.handlers.searchStart || [];
-  list.handlers.searchComplete = list.handlers.searchComplete || [];
-
-  list.utils.events.bind(list.utils.getByClass(list.listContainer, list.searchClass), 'keyup', function(e) {
-    var target = e.target || e.srcElement, // IE have srcElement
-      alreadyCleared = (target.value === "" && !list.searched);
-    if (!alreadyCleared) { // If oninput already have resetted the list, do nothing
-      searchMethod(target.value);
-    }
-  });
-
-  // Used to detect click on HTML5 clear button
-  list.utils.events.bind(list.utils.getByClass(list.listContainer, list.searchClass), 'input', function(e) {
-    var target = e.target || e.srcElement;
-    if (target.value === "") {
-      searchMethod('');
-    }
-  });
-
-  return searchMethod;
-};
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = function(list) {
-
-  var buttons = {
-    els: undefined,
-    clear: function() {
-      for (var i = 0, il = buttons.els.length; i < il; i++) {
-        list.utils.classes(buttons.els[i]).remove('asc');
-        list.utils.classes(buttons.els[i]).remove('desc');
-      }
-    },
-    getOrder: function(btn) {
-      var predefinedOrder = list.utils.getAttribute(btn, 'data-order');
-      if (predefinedOrder == "asc" || predefinedOrder == "desc") {
-        return predefinedOrder;
-      } else if (list.utils.classes(btn).has('desc')) {
-        return "asc";
-      } else if (list.utils.classes(btn).has('asc')) {
-        return "desc";
-      } else {
-        return "asc";
-      }
-    },
-    getInSensitive: function(btn, options) {
-      var insensitive = list.utils.getAttribute(btn, 'data-insensitive');
-      if (insensitive === "false") {
-        options.insensitive = false;
-      } else {
-        options.insensitive = true;
-      }
-    },
-    setOrder: function(options) {
-      for (var i = 0, il = buttons.els.length; i < il; i++) {
-        var btn = buttons.els[i];
-        if (list.utils.getAttribute(btn, 'data-sort') !== options.valueName) {
-          continue;
-        }
-        var predefinedOrder = list.utils.getAttribute(btn, 'data-order');
-        if (predefinedOrder == "asc" || predefinedOrder == "desc") {
-          if (predefinedOrder == options.order) {
-            list.utils.classes(btn).add(options.order);
-          }
-        } else {
-          list.utils.classes(btn).add(options.order);
-        }
-      }
-    }
-  };
-
-  var sort = function() {
-    list.trigger('sortStart');
-    var options = {};
-
-    var target = arguments[0].currentTarget || arguments[0].srcElement || undefined;
-
-    if (target) {
-      options.valueName = list.utils.getAttribute(target, 'data-sort');
-      buttons.getInSensitive(target, options);
-      options.order = buttons.getOrder(target);
-    } else {
-      options = arguments[1] || options;
-      options.valueName = arguments[0];
-      options.order = options.order || "asc";
-      options.insensitive = (typeof options.insensitive == "undefined") ? true : options.insensitive;
-    }
-
-    buttons.clear();
-    buttons.setOrder(options);
-
-
-    // caseInsensitive
-    // alphabet
-    var customSortFunction = (options.sortFunction || list.sortFunction || null),
-        multi = ((options.order === 'desc') ? -1 : 1),
-        sortFunction;
-
-    if (customSortFunction) {
-      sortFunction = function(itemA, itemB) {
-        return customSortFunction(itemA, itemB, options) * multi;
-      };
-    } else {
-      sortFunction = function(itemA, itemB) {
-        var sort = list.utils.naturalSort;
-        sort.alphabet = list.alphabet || options.alphabet || undefined;
-        if (!sort.alphabet && options.insensitive) {
-          sort = list.utils.naturalSort.caseInsensitive;
-        }
-        return sort(itemA.values()[options.valueName], itemB.values()[options.valueName]) * multi;
-      };
-    }
-
-    list.items.sort(sortFunction);
-    list.update();
-    list.trigger('sortComplete');
-  };
-
-  // Add handlers
-  list.handlers.sortStart = list.handlers.sortStart || [];
-  list.handlers.sortComplete = list.handlers.sortComplete || [];
-
-  buttons.els = list.utils.getByClass(list.listContainer, list.sortClass);
-  list.utils.events.bind(buttons.els, 'click', sort);
-  list.on('searchStart', buttons.clear);
-  list.on('filterStart', buttons.clear);
-
-  return sort;
-};
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-var Templater = function(list) {
-  var itemSource,
-    templater = this;
-
-  var init = function() {
-    itemSource = templater.getItemSource(list.item);
-    if (itemSource) {
-      itemSource = templater.clearSourceItem(itemSource, list.valueNames);
-    }
-  };
-
-  this.clearSourceItem = function(el, valueNames) {
-    for(var i = 0, il = valueNames.length; i < il; i++) {
-      var elm;
-      if (valueNames[i].data) {
-        for (var j = 0, jl = valueNames[i].data.length; j < jl; j++) {
-          el.setAttribute('data-'+valueNames[i].data[j], '');
-        }
-      } else if (valueNames[i].attr && valueNames[i].name) {
-        elm = list.utils.getByClass(el, valueNames[i].name, true);
-        if (elm) {
-          elm.setAttribute(valueNames[i].attr, "");
-        }
-      } else {
-        elm = list.utils.getByClass(el, valueNames[i], true);
-        if (elm) {
-          elm.innerHTML = "";
-        }
-      }
-      elm = undefined;
-    }
-    return el;
-  };
-
-  this.getItemSource = function(item) {
-    if (item === undefined) {
-      var nodes = list.list.childNodes,
-        items = [];
-
-      for (var i = 0, il = nodes.length; i < il; i++) {
-        // Only textnodes have a data attribute
-        if (nodes[i].data === undefined) {
-          return nodes[i].cloneNode(true);
-        }
-      }
-    } else if (/<tr[\s>]/g.exec(item)) {
-      var tbody = document.createElement('tbody');
-      tbody.innerHTML = item;
-      return tbody.firstChild;
-    } else if (item.indexOf("<") !== -1) {
-      var div = document.createElement('div');
-      div.innerHTML = item;
-      return div.firstChild;
-    } else {
-      var source = document.getElementById(list.item);
-      if (source) {
-        return source;
-      }
-    }
-    return undefined;
-  };
-
-  this.get = function(item, valueNames) {
-    templater.create(item);
-    var values = {};
-    for(var i = 0, il = valueNames.length; i < il; i++) {
-      var elm;
-      if (valueNames[i].data) {
-        for (var j = 0, jl = valueNames[i].data.length; j < jl; j++) {
-          values[valueNames[i].data[j]] = list.utils.getAttribute(item.elm, 'data-'+valueNames[i].data[j]);
-        }
-      } else if (valueNames[i].attr && valueNames[i].name) {
-        elm = list.utils.getByClass(item.elm, valueNames[i].name, true);
-        values[valueNames[i].name] = elm ? list.utils.getAttribute(elm, valueNames[i].attr) : "";
-      } else {
-        elm = list.utils.getByClass(item.elm, valueNames[i], true);
-        values[valueNames[i]] = elm ? elm.innerHTML : "";
-      }
-      elm = undefined;
-    }
-    return values;
-  };
-
-  this.set = function(item, values) {
-    var getValueName = function(name) {
-      for (var i = 0, il = list.valueNames.length; i < il; i++) {
-        if (list.valueNames[i].data) {
-          var data = list.valueNames[i].data;
-          for (var j = 0, jl = data.length; j < jl; j++) {
-            if (data[j] === name) {
-              return { data: name };
-            }
-          }
-        } else if (list.valueNames[i].attr && list.valueNames[i].name && list.valueNames[i].name == name) {
-          return list.valueNames[i];
-        } else if (list.valueNames[i] === name) {
-          return name;
-        }
-      }
-    };
-    var setValue = function(name, value) {
-      var elm;
-      var valueName = getValueName(name);
-      if (!valueName)
-        return;
-      if (valueName.data) {
-        item.elm.setAttribute('data-'+valueName.data, value);
-      } else if (valueName.attr && valueName.name) {
-        elm = list.utils.getByClass(item.elm, valueName.name, true);
-        if (elm) {
-          elm.setAttribute(valueName.attr, value);
-        }
-      } else {
-        elm = list.utils.getByClass(item.elm, valueName, true);
-        if (elm) {
-          elm.innerHTML = value;
-        }
-      }
-      elm = undefined;
-    };
-    if (!templater.create(item)) {
-      for(var v in values) {
-        if (values.hasOwnProperty(v)) {
-          setValue(v, values[v]);
-        }
-      }
-    }
-  };
-
-  this.create = function(item) {
-    if (item.elm !== undefined) {
-      return false;
-    }
-    if (itemSource === undefined) {
-      throw new Error("The list need to have at list one item on init otherwise you'll have to add a template.");
-    }
-    /* If item source does not exists, use the first item in list as
-    source for new items */
-    var newItem = itemSource.cloneNode(true);
-    newItem.removeAttribute('id');
-    item.elm = newItem;
-    templater.set(item, item.values());
-    return true;
-  };
-  this.remove = function(item) {
-    if (item.elm.parentNode === list.list) {
-      list.list.removeChild(item.elm);
-    }
-  };
-  this.show = function(item) {
-    templater.create(item);
-    list.list.appendChild(item.elm);
-  };
-  this.hide = function(item) {
-    if (item.elm !== undefined && item.elm.parentNode === list.list) {
-      list.list.removeChild(item.elm);
-    }
-  };
-  this.clear = function() {
-    /* .innerHTML = ''; fucks up IE */
-    if (list.list.hasChildNodes()) {
-      while (list.list.childNodes.length >= 1)
-      {
-        list.list.removeChild(list.list.firstChild);
-      }
-    }
-  };
-
-  init();
-};
-
-module.exports = function(list) {
-  return new Templater(list);
-};
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-/**
- * A cross-browser implementation of getAttribute.
- * Source found here: http://stackoverflow.com/a/3755343/361337 written by Vivin Paliath
- *
- * Return the value for `attr` at `element`.
- *
- * @param {Element} el
- * @param {String} attr
- * @api public
- */
-
-module.exports = function(el, attr) {
-  var result = (el.getAttribute && el.getAttribute(attr)) || null;
-  if( !result ) {
-    var attrs = el.attributes;
-    var length = attrs.length;
-    for(var i = 0; i < length; i++) {
-      if (attr[i] !== undefined) {
-        if(attr[i].nodeName === attr) {
-          result = attr[i].nodeValue;
-        }
-      }
-    }
-  }
-  return result;
-};
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var alphabet;
-var alphabetIndexMap;
-var alphabetIndexMapLength = 0;
-
-function isNumberCode(code) {
-  return code >= 48 && code <= 57;
-}
-
-function naturalCompare(a, b) {
-  var lengthA = (a += '').length;
-  var lengthB = (b += '').length;
-  var aIndex = 0;
-  var bIndex = 0;
-
-  while (aIndex < lengthA && bIndex < lengthB) {
-    var charCodeA = a.charCodeAt(aIndex);
-    var charCodeB = b.charCodeAt(bIndex);
-
-    if (isNumberCode(charCodeA)) {
-      if (!isNumberCode(charCodeB)) {
-        return charCodeA - charCodeB;
-      }
-
-      var numStartA = aIndex;
-      var numStartB = bIndex;
-
-      while (charCodeA === 48 && ++numStartA < lengthA) {
-        charCodeA = a.charCodeAt(numStartA);
-      }
-      while (charCodeB === 48 && ++numStartB < lengthB) {
-        charCodeB = b.charCodeAt(numStartB);
-      }
-
-      var numEndA = numStartA;
-      var numEndB = numStartB;
-
-      while (numEndA < lengthA && isNumberCode(a.charCodeAt(numEndA))) {
-        ++numEndA;
-      }
-      while (numEndB < lengthB && isNumberCode(b.charCodeAt(numEndB))) {
-        ++numEndB;
-      }
-
-      var difference = numEndA - numStartA - numEndB + numStartB; // numA length - numB length
-      if (difference) {
-        return difference;
-      }
-
-      while (numStartA < numEndA) {
-        difference = a.charCodeAt(numStartA++) - b.charCodeAt(numStartB++);
-        if (difference) {
-          return difference;
-        }
-      }
-
-      aIndex = numEndA;
-      bIndex = numEndB;
-      continue;
-    }
-
-    if (charCodeA !== charCodeB) {
-      if (
-        charCodeA < alphabetIndexMapLength &&
-        charCodeB < alphabetIndexMapLength &&
-        alphabetIndexMap[charCodeA] !== -1 &&
-        alphabetIndexMap[charCodeB] !== -1
-      ) {
-        return alphabetIndexMap[charCodeA] - alphabetIndexMap[charCodeB];
-      }
-
-      return charCodeA - charCodeB;
-    }
-
-    ++aIndex;
-    ++bIndex;
-  }
-
-  return lengthA - lengthB;
-}
-
-naturalCompare.caseInsensitive = naturalCompare.i = function(a, b) {
-  return naturalCompare(('' + a).toLowerCase(), ('' + b).toLowerCase());
-};
-
-Object.defineProperties(naturalCompare, {
-  alphabet: {
-    get: function() {
-      return alphabet;
-    },
-    set: function(value) {
-      alphabet = value;
-      alphabetIndexMap = [];
-      var i = 0;
-      if (alphabet) {
-        for (; i < alphabet.length; i++) {
-          alphabetIndexMap[alphabet.charCodeAt(i)] = i;
-        }
-      }
-      alphabetIndexMapLength = alphabetIndexMap.length;
-      for (i = 0; i < alphabetIndexMapLength; i++) {
-        if (alphabetIndexMap[i] === undefined) {
-          alphabetIndexMap[i] = -1;
-        }
-      }
-    },
-  },
-});
-
-module.exports = naturalCompare;
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-module.exports = function(text, pattern, options) {
-    // Aproximately where in the text is the pattern expected to be found?
-    var Match_Location = options.location || 0;
-
-    //Determines how close the match must be to the fuzzy location (specified above). An exact letter match which is 'distance' characters away from the fuzzy location would score as a complete mismatch. A distance of '0' requires the match be at the exact location specified, a threshold of '1000' would require a perfect match to be within 800 characters of the fuzzy location to be found using a 0.8 threshold.
-    var Match_Distance = options.distance || 100;
-
-    // At what point does the match algorithm give up. A threshold of '0.0' requires a perfect match (of both letters and location), a threshold of '1.0' would match anything.
-    var Match_Threshold = options.threshold || 0.4;
-
-    if (pattern === text) return true; // Exact match
-    if (pattern.length > 32) return false; // This algorithm cannot be used
-
-    // Set starting location at beginning text and initialise the alphabet.
-    var loc = Match_Location,
-        s = (function() {
-            var q = {},
-                i;
-
-            for (i = 0; i < pattern.length; i++) {
-                q[pattern.charAt(i)] = 0;
-            }
-
-            for (i = 0; i < pattern.length; i++) {
-                q[pattern.charAt(i)] |= 1 << (pattern.length - i - 1);
-            }
-
-            return q;
-        }());
-
-    // Compute and return the score for a match with e errors and x location.
-    // Accesses loc and pattern through being a closure.
-
-    function match_bitapScore_(e, x) {
-        var accuracy = e / pattern.length,
-            proximity = Math.abs(loc - x);
-
-        if (!Match_Distance) {
-            // Dodge divide by zero error.
-            return proximity ? 1.0 : accuracy;
-        }
-        return accuracy + (proximity / Match_Distance);
-    }
-
-    var score_threshold = Match_Threshold, // Highest score beyond which we give up.
-        best_loc = text.indexOf(pattern, loc); // Is there a nearby exact match? (speedup)
-
-    if (best_loc != -1) {
-        score_threshold = Math.min(match_bitapScore_(0, best_loc), score_threshold);
-        // What about in the other direction? (speedup)
-        best_loc = text.lastIndexOf(pattern, loc + pattern.length);
-
-        if (best_loc != -1) {
-            score_threshold = Math.min(match_bitapScore_(0, best_loc), score_threshold);
-        }
-    }
-
-    // Initialise the bit arrays.
-    var matchmask = 1 << (pattern.length - 1);
-    best_loc = -1;
-
-    var bin_min, bin_mid;
-    var bin_max = pattern.length + text.length;
-    var last_rd;
-    for (var d = 0; d < pattern.length; d++) {
-        // Scan for the best match; each iteration allows for one more error.
-        // Run a binary search to determine how far from 'loc' we can stray at this
-        // error level.
-        bin_min = 0;
-        bin_mid = bin_max;
-        while (bin_min < bin_mid) {
-            if (match_bitapScore_(d, loc + bin_mid) <= score_threshold) {
-                bin_min = bin_mid;
-            } else {
-                bin_max = bin_mid;
-            }
-            bin_mid = Math.floor((bin_max - bin_min) / 2 + bin_min);
-        }
-        // Use the result from this iteration as the maximum for the next.
-        bin_max = bin_mid;
-        var start = Math.max(1, loc - bin_mid + 1);
-        var finish = Math.min(loc + bin_mid, text.length) + pattern.length;
-
-        var rd = Array(finish + 2);
-        rd[finish + 1] = (1 << d) - 1;
-        for (var j = finish; j >= start; j--) {
-            // The alphabet (s) is a sparse hash, so the following line generates
-            // warnings.
-            var charMatch = s[text.charAt(j - 1)];
-            if (d === 0) {    // First pass: exact match.
-                rd[j] = ((rd[j + 1] << 1) | 1) & charMatch;
-            } else {    // Subsequent passes: fuzzy match.
-                rd[j] = (((rd[j + 1] << 1) | 1) & charMatch) |
-                                (((last_rd[j + 1] | last_rd[j]) << 1) | 1) |
-                                last_rd[j + 1];
-            }
-            if (rd[j] & matchmask) {
-                var score = match_bitapScore_(d, j - 1);
-                // This match will almost certainly be better than any existing match.
-                // But check anyway.
-                if (score <= score_threshold) {
-                    // Told you so.
-                    score_threshold = score;
-                    best_loc = j - 1;
-                    if (best_loc > loc) {
-                        // When passing loc, don't exceed our current distance from loc.
-                        start = Math.max(1, 2 * loc - best_loc);
-                    } else {
-                        // Already passed loc, downhill from here on in.
-                        break;
-                    }
-                }
-            }
-        }
-        // No hope for a (better) match at greater error levels.
-        if (match_bitapScore_(d + 1, loc) > score_threshold) {
-            break;
-        }
-        last_rd = rd;
-    }
-
-    return (best_loc < 0) ? false : true;
-};
-
-
-/***/ })
-/******/ ]);
+//# sourceMappingURL=popper.min.js.map
 
 /*!
 Waypoints - 4.0.0
@@ -1778,11 +23,10 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 */
 !function(){"use strict";function t(o){if(!o)throw new Error("No options passed to Waypoint constructor");if(!o.element)throw new Error("No element option passed to Waypoint constructor");if(!o.handler)throw new Error("No handler option passed to Waypoint constructor");this.key="waypoint-"+e,this.options=t.Adapter.extend({},t.defaults,o),this.element=this.options.element,this.adapter=new t.Adapter(this.element),this.callback=o.handler,this.axis=this.options.horizontal?"horizontal":"vertical",this.enabled=this.options.enabled,this.triggerPoint=null,this.group=t.Group.findOrCreate({name:this.options.group,axis:this.axis}),this.context=t.Context.findOrCreateByElement(this.options.context),t.offsetAliases[this.options.offset]&&(this.options.offset=t.offsetAliases[this.options.offset]),this.group.add(this),this.context.add(this),i[this.key]=this,e+=1}var e=0,i={};t.prototype.queueTrigger=function(t){this.group.queueTrigger(this,t)},t.prototype.trigger=function(t){this.enabled&&this.callback&&this.callback.apply(this,t)},t.prototype.destroy=function(){this.context.remove(this),this.group.remove(this),delete i[this.key]},t.prototype.disable=function(){return this.enabled=!1,this},t.prototype.enable=function(){return this.context.refresh(),this.enabled=!0,this},t.prototype.next=function(){return this.group.next(this)},t.prototype.previous=function(){return this.group.previous(this)},t.invokeAll=function(t){var e=[];for(var o in i)e.push(i[o]);for(var n=0,r=e.length;r>n;n++)e[n][t]()},t.destroyAll=function(){t.invokeAll("destroy")},t.disableAll=function(){t.invokeAll("disable")},t.enableAll=function(){t.invokeAll("enable")},t.refreshAll=function(){t.Context.refreshAll()},t.viewportHeight=function(){return window.innerHeight||document.documentElement.clientHeight},t.viewportWidth=function(){return document.documentElement.clientWidth},t.adapters=[],t.defaults={context:window,continuous:!0,enabled:!0,group:"default",horizontal:!1,offset:0},t.offsetAliases={"bottom-in-view":function(){return this.context.innerHeight()-this.adapter.outerHeight()},"right-in-view":function(){return this.context.innerWidth()-this.adapter.outerWidth()}},window.Waypoint=t}(),function(){"use strict";function t(t){window.setTimeout(t,1e3/60)}function e(t){this.element=t,this.Adapter=n.Adapter,this.adapter=new this.Adapter(t),this.key="waypoint-context-"+i,this.didScroll=!1,this.didResize=!1,this.oldScroll={x:this.adapter.scrollLeft(),y:this.adapter.scrollTop()},this.waypoints={vertical:{},horizontal:{}},t.waypointContextKey=this.key,o[t.waypointContextKey]=this,i+=1,this.createThrottledScrollHandler(),this.createThrottledResizeHandler()}var i=0,o={},n=window.Waypoint,r=window.onload;e.prototype.add=function(t){var e=t.options.horizontal?"horizontal":"vertical";this.waypoints[e][t.key]=t,this.refresh()},e.prototype.checkEmpty=function(){var t=this.Adapter.isEmptyObject(this.waypoints.horizontal),e=this.Adapter.isEmptyObject(this.waypoints.vertical);t&&e&&(this.adapter.off(".waypoints"),delete o[this.key])},e.prototype.createThrottledResizeHandler=function(){function t(){e.handleResize(),e.didResize=!1}var e=this;this.adapter.on("resize.waypoints",function(){e.didResize||(e.didResize=!0,n.requestAnimationFrame(t))})},e.prototype.createThrottledScrollHandler=function(){function t(){e.handleScroll(),e.didScroll=!1}var e=this;this.adapter.on("scroll.waypoints",function(){(!e.didScroll||n.isTouch)&&(e.didScroll=!0,n.requestAnimationFrame(t))})},e.prototype.handleResize=function(){n.Context.refreshAll()},e.prototype.handleScroll=function(){var t={},e={horizontal:{newScroll:this.adapter.scrollLeft(),oldScroll:this.oldScroll.x,forward:"right",backward:"left"},vertical:{newScroll:this.adapter.scrollTop(),oldScroll:this.oldScroll.y,forward:"down",backward:"up"}};for(var i in e){var o=e[i],n=o.newScroll>o.oldScroll,r=n?o.forward:o.backward;for(var s in this.waypoints[i]){var a=this.waypoints[i][s],l=o.oldScroll<a.triggerPoint,h=o.newScroll>=a.triggerPoint,p=l&&h,u=!l&&!h;(p||u)&&(a.queueTrigger(r),t[a.group.id]=a.group)}}for(var c in t)t[c].flushTriggers();this.oldScroll={x:e.horizontal.newScroll,y:e.vertical.newScroll}},e.prototype.innerHeight=function(){return this.element==this.element.window?n.viewportHeight():this.adapter.innerHeight()},e.prototype.remove=function(t){delete this.waypoints[t.axis][t.key],this.checkEmpty()},e.prototype.innerWidth=function(){return this.element==this.element.window?n.viewportWidth():this.adapter.innerWidth()},e.prototype.destroy=function(){var t=[];for(var e in this.waypoints)for(var i in this.waypoints[e])t.push(this.waypoints[e][i]);for(var o=0,n=t.length;n>o;o++)t[o].destroy()},e.prototype.refresh=function(){var t,e=this.element==this.element.window,i=e?void 0:this.adapter.offset(),o={};this.handleScroll(),t={horizontal:{contextOffset:e?0:i.left,contextScroll:e?0:this.oldScroll.x,contextDimension:this.innerWidth(),oldScroll:this.oldScroll.x,forward:"right",backward:"left",offsetProp:"left"},vertical:{contextOffset:e?0:i.top,contextScroll:e?0:this.oldScroll.y,contextDimension:this.innerHeight(),oldScroll:this.oldScroll.y,forward:"down",backward:"up",offsetProp:"top"}};for(var r in t){var s=t[r];for(var a in this.waypoints[r]){var l,h,p,u,c,d=this.waypoints[r][a],f=d.options.offset,w=d.triggerPoint,y=0,g=null==w;d.element!==d.element.window&&(y=d.adapter.offset()[s.offsetProp]),"function"==typeof f?f=f.apply(d):"string"==typeof f&&(f=parseFloat(f),d.options.offset.indexOf("%")>-1&&(f=Math.ceil(s.contextDimension*f/100))),l=s.contextScroll-s.contextOffset,d.triggerPoint=y+l-f,h=w<s.oldScroll,p=d.triggerPoint>=s.oldScroll,u=h&&p,c=!h&&!p,!g&&u?(d.queueTrigger(s.backward),o[d.group.id]=d.group):!g&&c?(d.queueTrigger(s.forward),o[d.group.id]=d.group):g&&s.oldScroll>=d.triggerPoint&&(d.queueTrigger(s.forward),o[d.group.id]=d.group)}}return n.requestAnimationFrame(function(){for(var t in o)o[t].flushTriggers()}),this},e.findOrCreateByElement=function(t){return e.findByElement(t)||new e(t)},e.refreshAll=function(){for(var t in o)o[t].refresh()},e.findByElement=function(t){return o[t.waypointContextKey]},window.onload=function(){r&&r(),e.refreshAll()},n.requestAnimationFrame=function(e){var i=window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame||t;i.call(window,e)},n.Context=e}(),function(){"use strict";function t(t,e){return t.triggerPoint-e.triggerPoint}function e(t,e){return e.triggerPoint-t.triggerPoint}function i(t){this.name=t.name,this.axis=t.axis,this.id=this.name+"-"+this.axis,this.waypoints=[],this.clearTriggerQueues(),o[this.axis][this.name]=this}var o={vertical:{},horizontal:{}},n=window.Waypoint;i.prototype.add=function(t){this.waypoints.push(t)},i.prototype.clearTriggerQueues=function(){this.triggerQueues={up:[],down:[],left:[],right:[]}},i.prototype.flushTriggers=function(){for(var i in this.triggerQueues){var o=this.triggerQueues[i],n="up"===i||"left"===i;o.sort(n?e:t);for(var r=0,s=o.length;s>r;r+=1){var a=o[r];(a.options.continuous||r===o.length-1)&&a.trigger([i])}}this.clearTriggerQueues()},i.prototype.next=function(e){this.waypoints.sort(t);var i=n.Adapter.inArray(e,this.waypoints),o=i===this.waypoints.length-1;return o?null:this.waypoints[i+1]},i.prototype.previous=function(e){this.waypoints.sort(t);var i=n.Adapter.inArray(e,this.waypoints);return i?this.waypoints[i-1]:null},i.prototype.queueTrigger=function(t,e){this.triggerQueues[e].push(t)},i.prototype.remove=function(t){var e=n.Adapter.inArray(t,this.waypoints);e>-1&&this.waypoints.splice(e,1)},i.prototype.first=function(){return this.waypoints[0]},i.prototype.last=function(){return this.waypoints[this.waypoints.length-1]},i.findOrCreate=function(t){return o[t.axis][t.name]||new i(t)},n.Group=i}(),function(){"use strict";function t(t){this.$element=e(t)}var e=window.jQuery,i=window.Waypoint;e.each(["innerHeight","innerWidth","off","offset","on","outerHeight","outerWidth","scrollLeft","scrollTop"],function(e,i){t.prototype[i]=function(){var t=Array.prototype.slice.call(arguments);return this.$element[i].apply(this.$element,t)}}),e.each(["extend","inArray","isEmptyObject"],function(i,o){t[o]=e[o]}),i.adapters.push({name:"jquery",Adapter:t}),i.Adapter=t}(),function(){"use strict";function t(t){return function(){var i=[],o=arguments[0];return t.isFunction(arguments[0])&&(o=t.extend({},arguments[1]),o.handler=arguments[0]),this.each(function(){var n=t.extend({},o,{element:this});"string"==typeof n.context&&(n.context=t(this).closest(n.context)[0]),i.push(new e(n))}),i}}var e=window.Waypoint;window.jQuery&&(window.jQuery.fn.waypoint=t(window.jQuery)),window.Zepto&&(window.Zepto.fn.waypoint=t(window.Zepto))}();
 
-//THIS FILE PULLS IN ALL OF THE JAVASCRIPT DEPENDENCIES AND THE MODELS FOR EACH FUNCTIONAL AREA
+/*! List.js v1.5.0 (http://listjs.com) by Jonny Strömberg (http://javve.com) */
+var List=function(t){function e(n){if(r[n])return r[n].exports;var i=r[n]={i:n,l:!1,exports:{}};return t[n].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var r={};return e.m=t,e.c=r,e.i=function(t){return t},e.d=function(t,r,n){e.o(t,r)||Object.defineProperty(t,r,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var r=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(r,"a",r),r},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=11)}([function(t,e,r){function n(t){if(!t||!t.nodeType)throw new Error("A DOM element reference is required");this.el=t,this.list=t.classList}var i=r(4),s=/\s+/;Object.prototype.toString;t.exports=function(t){return new n(t)},n.prototype.add=function(t){if(this.list)return this.list.add(t),this;var e=this.array(),r=i(e,t);return~r||e.push(t),this.el.className=e.join(" "),this},n.prototype.remove=function(t){if(this.list)return this.list.remove(t),this;var e=this.array(),r=i(e,t);return~r&&e.splice(r,1),this.el.className=e.join(" "),this},n.prototype.toggle=function(t,e){return this.list?("undefined"!=typeof e?e!==this.list.toggle(t,e)&&this.list.toggle(t):this.list.toggle(t),this):("undefined"!=typeof e?e?this.add(t):this.remove(t):this.has(t)?this.remove(t):this.add(t),this)},n.prototype.array=function(){var t=this.el.getAttribute("class")||"",e=t.replace(/^\s+|\s+$/g,""),r=e.split(s);return""===r[0]&&r.shift(),r},n.prototype.has=n.prototype.contains=function(t){return this.list?this.list.contains(t):!!~i(this.array(),t)}},function(t,e,r){var n=window.addEventListener?"addEventListener":"attachEvent",i=window.removeEventListener?"removeEventListener":"detachEvent",s="addEventListener"!==n?"on":"",a=r(5);e.bind=function(t,e,r,i){t=a(t);for(var o=0;o<t.length;o++)t[o][n](s+e,r,i||!1)},e.unbind=function(t,e,r,n){t=a(t);for(var o=0;o<t.length;o++)t[o][i](s+e,r,n||!1)}},function(t,e){t.exports=function(t){return function(e,r,n){var i=this;this._values={},this.found=!1,this.filtered=!1;var s=function(e,r,n){if(void 0===r)n?i.values(e,n):i.values(e);else{i.elm=r;var s=t.templater.get(i,e);i.values(s)}};this.values=function(e,r){if(void 0===e)return i._values;for(var n in e)i._values[n]=e[n];r!==!0&&t.templater.set(i,i.values())},this.show=function(){t.templater.show(i)},this.hide=function(){t.templater.hide(i)},this.matching=function(){return t.filtered&&t.searched&&i.found&&i.filtered||t.filtered&&!t.searched&&i.filtered||!t.filtered&&t.searched&&i.found||!t.filtered&&!t.searched},this.visible=function(){return!(!i.elm||i.elm.parentNode!=t.list)},s(e,r,n)}}},function(t,e){var r=function(t,e,r){return r?t.getElementsByClassName(e)[0]:t.getElementsByClassName(e)},n=function(t,e,r){return e="."+e,r?t.querySelector(e):t.querySelectorAll(e)},i=function(t,e,r){for(var n=[],i="*",s=t.getElementsByTagName(i),a=s.length,o=new RegExp("(^|\\s)"+e+"(\\s|$)"),l=0,u=0;l<a;l++)if(o.test(s[l].className)){if(r)return s[l];n[u]=s[l],u++}return n};t.exports=function(){return function(t,e,s,a){return a=a||{},a.test&&a.getElementsByClassName||!a.test&&document.getElementsByClassName?r(t,e,s):a.test&&a.querySelector||!a.test&&document.querySelector?n(t,e,s):i(t,e,s)}}()},function(t,e){var r=[].indexOf;t.exports=function(t,e){if(r)return t.indexOf(e);for(var n=0;n<t.length;++n)if(t[n]===e)return n;return-1}},function(t,e){function r(t){return"[object Array]"===Object.prototype.toString.call(t)}t.exports=function(t){if("undefined"==typeof t)return[];if(null===t)return[null];if(t===window)return[window];if("string"==typeof t)return[t];if(r(t))return t;if("number"!=typeof t.length)return[t];if("function"==typeof t&&t instanceof Function)return[t];for(var e=[],n=0;n<t.length;n++)(Object.prototype.hasOwnProperty.call(t,n)||n in t)&&e.push(t[n]);return e.length?e:[]}},function(t,e){t.exports=function(t){return t=void 0===t?"":t,t=null===t?"":t,t=t.toString()}},function(t,e){t.exports=function(t){for(var e,r=Array.prototype.slice.call(arguments,1),n=0;e=r[n];n++)if(e)for(var i in e)t[i]=e[i];return t}},function(t,e){t.exports=function(t){var e=function(r,n,i){var s=r.splice(0,50);i=i||[],i=i.concat(t.add(s)),r.length>0?setTimeout(function(){e(r,n,i)},1):(t.update(),n(i))};return e}},function(t,e){t.exports=function(t){return t.handlers.filterStart=t.handlers.filterStart||[],t.handlers.filterComplete=t.handlers.filterComplete||[],function(e){if(t.trigger("filterStart"),t.i=1,t.reset.filter(),void 0===e)t.filtered=!1;else{t.filtered=!0;for(var r=t.items,n=0,i=r.length;n<i;n++){var s=r[n];e(s)?s.filtered=!0:s.filtered=!1}}return t.update(),t.trigger("filterComplete"),t.visibleItems}}},function(t,e,r){var n=(r(0),r(1)),i=r(7),s=r(6),a=r(3),o=r(19);t.exports=function(t,e){e=e||{},e=i({location:0,distance:100,threshold:.4,multiSearch:!0,searchClass:"fuzzy-search"},e);var r={search:function(n,i){for(var s=e.multiSearch?n.replace(/ +$/,"").split(/ +/):[n],a=0,o=t.items.length;a<o;a++)r.item(t.items[a],i,s)},item:function(t,e,n){for(var i=!0,s=0;s<n.length;s++){for(var a=!1,o=0,l=e.length;o<l;o++)r.values(t.values(),e[o],n[s])&&(a=!0);a||(i=!1)}t.found=i},values:function(t,r,n){if(t.hasOwnProperty(r)){var i=s(t[r]).toLowerCase();if(o(i,n,e))return!0}return!1}};return n.bind(a(t.listContainer,e.searchClass),"keyup",function(e){var n=e.target||e.srcElement;t.search(n.value,r.search)}),function(e,n){t.search(e,n,r.search)}}},function(t,e,r){var n=r(18),i=r(3),s=r(7),a=r(4),o=r(1),l=r(6),u=r(0),c=r(17),f=r(5);t.exports=function(t,e,h){var d,v=this,m=r(2)(v),g=r(8)(v),p=r(12)(v);d={start:function(){v.listClass="list",v.searchClass="search",v.sortClass="sort",v.page=1e4,v.i=1,v.items=[],v.visibleItems=[],v.matchingItems=[],v.searched=!1,v.filtered=!1,v.searchColumns=void 0,v.handlers={updated:[]},v.valueNames=[],v.utils={getByClass:i,extend:s,indexOf:a,events:o,toString:l,naturalSort:n,classes:u,getAttribute:c,toArray:f},v.utils.extend(v,e),v.listContainer="string"==typeof t?document.getElementById(t):t,v.listContainer&&(v.list=i(v.listContainer,v.listClass,!0),v.parse=r(13)(v),v.templater=r(16)(v),v.search=r(14)(v),v.filter=r(9)(v),v.sort=r(15)(v),v.fuzzySearch=r(10)(v,e.fuzzySearch),this.handlers(),this.items(),this.pagination(),v.update())},handlers:function(){for(var t in v.handlers)v[t]&&v.on(t,v[t])},items:function(){v.parse(v.list),void 0!==h&&v.add(h)},pagination:function(){if(void 0!==e.pagination){e.pagination===!0&&(e.pagination=[{}]),void 0===e.pagination[0]&&(e.pagination=[e.pagination]);for(var t=0,r=e.pagination.length;t<r;t++)p(e.pagination[t])}}},this.reIndex=function(){v.items=[],v.visibleItems=[],v.matchingItems=[],v.searched=!1,v.filtered=!1,v.parse(v.list)},this.toJSON=function(){for(var t=[],e=0,r=v.items.length;e<r;e++)t.push(v.items[e].values());return t},this.add=function(t,e){if(0!==t.length){if(e)return void g(t,e);var r=[],n=!1;void 0===t[0]&&(t=[t]);for(var i=0,s=t.length;i<s;i++){var a=null;n=v.items.length>v.page,a=new m(t[i],void 0,n),v.items.push(a),r.push(a)}return v.update(),r}},this.show=function(t,e){return this.i=t,this.page=e,v.update(),v},this.remove=function(t,e,r){for(var n=0,i=0,s=v.items.length;i<s;i++)v.items[i].values()[t]==e&&(v.templater.remove(v.items[i],r),v.items.splice(i,1),s--,i--,n++);return v.update(),n},this.get=function(t,e){for(var r=[],n=0,i=v.items.length;n<i;n++){var s=v.items[n];s.values()[t]==e&&r.push(s)}return r},this.size=function(){return v.items.length},this.clear=function(){return v.templater.clear(),v.items=[],v},this.on=function(t,e){return v.handlers[t].push(e),v},this.off=function(t,e){var r=v.handlers[t],n=a(r,e);return n>-1&&r.splice(n,1),v},this.trigger=function(t){for(var e=v.handlers[t].length;e--;)v.handlers[t][e](v);return v},this.reset={filter:function(){for(var t=v.items,e=t.length;e--;)t[e].filtered=!1;return v},search:function(){for(var t=v.items,e=t.length;e--;)t[e].found=!1;return v}},this.update=function(){var t=v.items,e=t.length;v.visibleItems=[],v.matchingItems=[],v.templater.clear();for(var r=0;r<e;r++)t[r].matching()&&v.matchingItems.length+1>=v.i&&v.visibleItems.length<v.page?(t[r].show(),v.visibleItems.push(t[r]),v.matchingItems.push(t[r])):t[r].matching()?(v.matchingItems.push(t[r]),t[r].hide()):t[r].hide();return v.trigger("updated"),v},d.start()}},function(t,e,r){var n=r(0),i=r(1),s=r(11);t.exports=function(t){var e=function(e,i){var s,o=t.matchingItems.length,l=t.i,u=t.page,c=Math.ceil(o/u),f=Math.ceil(l/u),h=i.innerWindow||2,d=i.left||i.outerWindow||0,v=i.right||i.outerWindow||0;v=c-v,e.clear();for(var m=1;m<=c;m++){var g=f===m?"active":"";r.number(m,d,v,f,h)?(s=e.add({page:m,dotted:!1})[0],g&&n(s.elm).add(g),a(s.elm,m,u)):r.dotted(e,m,d,v,f,h,e.size())&&(s=e.add({page:"...",dotted:!0})[0],n(s.elm).add("disabled"))}},r={number:function(t,e,r,n,i){return this.left(t,e)||this.right(t,r)||this.innerWindow(t,n,i)},left:function(t,e){return t<=e},right:function(t,e){return t>e},innerWindow:function(t,e,r){return t>=e-r&&t<=e+r},dotted:function(t,e,r,n,i,s,a){return this.dottedLeft(t,e,r,n,i,s)||this.dottedRight(t,e,r,n,i,s,a)},dottedLeft:function(t,e,r,n,i,s){return e==r+1&&!this.innerWindow(e,i,s)&&!this.right(e,n)},dottedRight:function(t,e,r,n,i,s,a){return!t.items[a-1].values().dotted&&(e==n&&!this.innerWindow(e,i,s)&&!this.right(e,n))}},a=function(e,r,n){i.bind(e,"click",function(){t.show((r-1)*n+1,n)})};return function(r){var n=new s(t.listContainer.id,{listClass:r.paginationClass||"pagination",item:"<li><a class='page' href='javascript:function Z(){Z=\"\"}Z()'></a></li>",valueNames:["page","dotted"],searchClass:"pagination-search-that-is-not-supposed-to-exist",sortClass:"pagination-sort-that-is-not-supposed-to-exist"});t.on("updated",function(){e(n,r)}),e(n,r)}}},function(t,e,r){t.exports=function(t){var e=r(2)(t),n=function(t){for(var e=t.childNodes,r=[],n=0,i=e.length;n<i;n++)void 0===e[n].data&&r.push(e[n]);return r},i=function(r,n){for(var i=0,s=r.length;i<s;i++)t.items.push(new e(n,r[i]))},s=function(e,r){var n=e.splice(0,50);i(n,r),e.length>0?setTimeout(function(){s(e,r)},1):(t.update(),t.trigger("parseComplete"))};return t.handlers.parseComplete=t.handlers.parseComplete||[],function(){var e=n(t.list),r=t.valueNames;t.indexAsync?s(e,r):i(e,r)}}},function(t,e){t.exports=function(t){var e,r,n,i,s={resetList:function(){t.i=1,t.templater.clear(),i=void 0},setOptions:function(t){2==t.length&&t[1]instanceof Array?r=t[1]:2==t.length&&"function"==typeof t[1]?(r=void 0,i=t[1]):3==t.length?(r=t[1],i=t[2]):r=void 0},setColumns:function(){0!==t.items.length&&void 0===r&&(r=void 0===t.searchColumns?s.toArray(t.items[0].values()):t.searchColumns)},setSearchString:function(e){e=t.utils.toString(e).toLowerCase(),e=e.replace(/[-[\]{}()*+?.,\\^$|#]/g,"\\$&"),n=e},toArray:function(t){var e=[];for(var r in t)e.push(r);return e}},a={list:function(){for(var e=0,r=t.items.length;e<r;e++)a.item(t.items[e])},item:function(t){t.found=!1;for(var e=0,n=r.length;e<n;e++)if(a.values(t.values(),r[e]))return void(t.found=!0)},values:function(r,i){return!!(r.hasOwnProperty(i)&&(e=t.utils.toString(r[i]).toLowerCase(),""!==n&&e.search(n)>-1))},reset:function(){t.reset.search(),t.searched=!1}},o=function(e){return t.trigger("searchStart"),s.resetList(),s.setSearchString(e),s.setOptions(arguments),s.setColumns(),""===n?a.reset():(t.searched=!0,i?i(n,r):a.list()),t.update(),t.trigger("searchComplete"),t.visibleItems};return t.handlers.searchStart=t.handlers.searchStart||[],t.handlers.searchComplete=t.handlers.searchComplete||[],t.utils.events.bind(t.utils.getByClass(t.listContainer,t.searchClass),"keyup",function(e){var r=e.target||e.srcElement,n=""===r.value&&!t.searched;n||o(r.value)}),t.utils.events.bind(t.utils.getByClass(t.listContainer,t.searchClass),"input",function(t){var e=t.target||t.srcElement;""===e.value&&o("")}),o}},function(t,e){t.exports=function(t){var e={els:void 0,clear:function(){for(var r=0,n=e.els.length;r<n;r++)t.utils.classes(e.els[r]).remove("asc"),t.utils.classes(e.els[r]).remove("desc")},getOrder:function(e){var r=t.utils.getAttribute(e,"data-order");return"asc"==r||"desc"==r?r:t.utils.classes(e).has("desc")?"asc":t.utils.classes(e).has("asc")?"desc":"asc"},getInSensitive:function(e,r){var n=t.utils.getAttribute(e,"data-insensitive");"false"===n?r.insensitive=!1:r.insensitive=!0},setOrder:function(r){for(var n=0,i=e.els.length;n<i;n++){var s=e.els[n];if(t.utils.getAttribute(s,"data-sort")===r.valueName){var a=t.utils.getAttribute(s,"data-order");"asc"==a||"desc"==a?a==r.order&&t.utils.classes(s).add(r.order):t.utils.classes(s).add(r.order)}}}},r=function(){t.trigger("sortStart");var r={},n=arguments[0].currentTarget||arguments[0].srcElement||void 0;n?(r.valueName=t.utils.getAttribute(n,"data-sort"),e.getInSensitive(n,r),r.order=e.getOrder(n)):(r=arguments[1]||r,r.valueName=arguments[0],r.order=r.order||"asc",r.insensitive="undefined"==typeof r.insensitive||r.insensitive),e.clear(),e.setOrder(r);var i,s=r.sortFunction||t.sortFunction||null,a="desc"===r.order?-1:1;i=s?function(t,e){return s(t,e,r)*a}:function(e,n){var i=t.utils.naturalSort;return i.alphabet=t.alphabet||r.alphabet||void 0,!i.alphabet&&r.insensitive&&(i=t.utils.naturalSort.caseInsensitive),i(e.values()[r.valueName],n.values()[r.valueName])*a},t.items.sort(i),t.update(),t.trigger("sortComplete")};return t.handlers.sortStart=t.handlers.sortStart||[],t.handlers.sortComplete=t.handlers.sortComplete||[],e.els=t.utils.getByClass(t.listContainer,t.sortClass),t.utils.events.bind(e.els,"click",r),t.on("searchStart",e.clear),t.on("filterStart",e.clear),r}},function(t,e){var r=function(t){var e,r=this,n=function(){e=r.getItemSource(t.item),e&&(e=r.clearSourceItem(e,t.valueNames))};this.clearSourceItem=function(e,r){for(var n=0,i=r.length;n<i;n++){var s;if(r[n].data)for(var a=0,o=r[n].data.length;a<o;a++)e.setAttribute("data-"+r[n].data[a],"");else r[n].attr&&r[n].name?(s=t.utils.getByClass(e,r[n].name,!0),s&&s.setAttribute(r[n].attr,"")):(s=t.utils.getByClass(e,r[n],!0),s&&(s.innerHTML=""));s=void 0}return e},this.getItemSource=function(e){if(void 0===e){for(var r=t.list.childNodes,n=0,i=r.length;n<i;n++)if(void 0===r[n].data)return r[n].cloneNode(!0)}else{if(/<tr[\s>]/g.exec(e)){var s=document.createElement("tbody");return s.innerHTML=e,s.firstChild}if(e.indexOf("<")!==-1){var a=document.createElement("div");return a.innerHTML=e,a.firstChild}var o=document.getElementById(t.item);if(o)return o}},this.get=function(e,n){r.create(e);for(var i={},s=0,a=n.length;s<a;s++){var o;if(n[s].data)for(var l=0,u=n[s].data.length;l<u;l++)i[n[s].data[l]]=t.utils.getAttribute(e.elm,"data-"+n[s].data[l]);else n[s].attr&&n[s].name?(o=t.utils.getByClass(e.elm,n[s].name,!0),i[n[s].name]=o?t.utils.getAttribute(o,n[s].attr):""):(o=t.utils.getByClass(e.elm,n[s],!0),i[n[s]]=o?o.innerHTML:"");o=void 0}return i},this.set=function(e,n){var i=function(e){for(var r=0,n=t.valueNames.length;r<n;r++)if(t.valueNames[r].data){for(var i=t.valueNames[r].data,s=0,a=i.length;s<a;s++)if(i[s]===e)return{data:e}}else{if(t.valueNames[r].attr&&t.valueNames[r].name&&t.valueNames[r].name==e)return t.valueNames[r];if(t.valueNames[r]===e)return e}},s=function(r,n){var s,a=i(r);a&&(a.data?e.elm.setAttribute("data-"+a.data,n):a.attr&&a.name?(s=t.utils.getByClass(e.elm,a.name,!0),s&&s.setAttribute(a.attr,n)):(s=t.utils.getByClass(e.elm,a,!0),s&&(s.innerHTML=n)),s=void 0)};if(!r.create(e))for(var a in n)n.hasOwnProperty(a)&&s(a,n[a])},this.create=function(t){if(void 0!==t.elm)return!1;if(void 0===e)throw new Error("The list need to have at list one item on init otherwise you'll have to add a template.");var n=e.cloneNode(!0);return n.removeAttribute("id"),t.elm=n,r.set(t,t.values()),!0},this.remove=function(e){e.elm.parentNode===t.list&&t.list.removeChild(e.elm)},this.show=function(e){r.create(e),t.list.appendChild(e.elm)},this.hide=function(e){void 0!==e.elm&&e.elm.parentNode===t.list&&t.list.removeChild(e.elm)},this.clear=function(){if(t.list.hasChildNodes())for(;t.list.childNodes.length>=1;)t.list.removeChild(t.list.firstChild)},n()};t.exports=function(t){return new r(t)}},function(t,e){t.exports=function(t,e){var r=t.getAttribute&&t.getAttribute(e)||null;if(!r)for(var n=t.attributes,i=n.length,s=0;s<i;s++)void 0!==e[s]&&e[s].nodeName===e&&(r=e[s].nodeValue);return r}},function(t,e,r){"use strict";function n(t){return t>=48&&t<=57}function i(t,e){for(var r=(t+="").length,i=(e+="").length,s=0,l=0;s<r&&l<i;){var u=t.charCodeAt(s),c=e.charCodeAt(l);if(n(u)){if(!n(c))return u-c;for(var f=s,h=l;48===u&&++f<r;)u=t.charCodeAt(f);for(;48===c&&++h<i;)c=e.charCodeAt(h);for(var d=f,v=h;d<r&&n(t.charCodeAt(d));)++d;for(;v<i&&n(e.charCodeAt(v));)++v;var m=d-f-v+h;if(m)return m;for(;f<d;)if(m=t.charCodeAt(f++)-e.charCodeAt(h++))return m;s=d,l=v}else{if(u!==c)return u<o&&c<o&&a[u]!==-1&&a[c]!==-1?a[u]-a[c]:u-c;++s,++l}}return r-i}var s,a,o=0;i.caseInsensitive=i.i=function(t,e){return i((""+t).toLowerCase(),(""+e).toLowerCase())},Object.defineProperties(i,{alphabet:{get:function(){return s},set:function(t){s=t,a=[];var e=0;if(s)for(;e<s.length;e++)a[s.charCodeAt(e)]=e;for(o=a.length,e=0;e<o;e++)void 0===a[e]&&(a[e]=-1)}}}),t.exports=i},function(t,e){t.exports=function(t,e,r){function n(t,r){var n=t/e.length,i=Math.abs(o-r);return s?n+i/s:i?1:n}var i=r.location||0,s=r.distance||100,a=r.threshold||.4;if(e===t)return!0;if(e.length>32)return!1;var o=i,l=function(){var t,r={};for(t=0;t<e.length;t++)r[e.charAt(t)]=0;for(t=0;t<e.length;t++)r[e.charAt(t)]|=1<<e.length-t-1;return r}(),u=a,c=t.indexOf(e,o);c!=-1&&(u=Math.min(n(0,c),u),c=t.lastIndexOf(e,o+e.length),c!=-1&&(u=Math.min(n(0,c),u)));var f=1<<e.length-1;c=-1;for(var h,d,v,m=e.length+t.length,g=0;g<e.length;g++){for(h=0,d=m;h<d;)n(g,o+d)<=u?h=d:m=d,d=Math.floor((m-h)/2+h);m=d;var p=Math.max(1,o-d+1),C=Math.min(o+d,t.length)+e.length,y=Array(C+2);y[C+1]=(1<<g)-1;for(var b=C;b>=p;b--){var w=l[t.charAt(b-1)];if(0===g?y[b]=(y[b+1]<<1|1)&w:y[b]=(y[b+1]<<1|1)&w|((v[b+1]|v[b])<<1|1)|v[b+1],y[b]&f){var x=n(g,b-1);if(x<=u){if(u=x,c=b-1,!(c>o))break;p=Math.max(1,2*o-c)}}}if(n(g+1,o)>u)break;v=y}return!(c<0)}}]);
 
-rivets.formatters.price = function(value){
-	return formatprice(value);
-}
+//THIS FILE PULLS IN ALL OF THE JAVASCRIPT DEPENDENCIES AND THE MODELS FOR EACH FUNCTIONAL AREA
 
 function formatprice(amt){
 	if(amt === 0) return 0;
@@ -1796,7 +40,11 @@ function formatprice(amt){
 		price = amt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '<span class="divider"></span>');
 
 	return price; 
-}
+};
+ 
+rivets.formatters.price = function(value){
+	return formatprice(value);
+};
 
 rivets.formatters.compare = function(value, comparisons){
 	if(typeof value == "undefined" || typeof comparisons == "undefined") return false;
@@ -1827,6 +75,15 @@ rivets.binders.sortclasses = function(el,value){
 	if(value === thiscolumn) $(el).addClass('s-active-sort s-sort-'+direction);
 };
 
+rivets.binders.ischecked = function(el,value){
+	if(value) $(el).prop('checked',true);
+	else $(el).prop('checked',false);
+};
+
+rivets.formatters.indexof = function(list,item){
+	if(list.indexOf(item) >= 0) return true;
+	else return false;
+};
 
 
 rivets.formatters.divide = function(value,divisor){
@@ -1834,13 +91,19 @@ rivets.formatters.divide = function(value,divisor){
 };
 
 rivets.formatters.lengthToBool = function(value){
-	if(typeof value == 'undefined') return false;
+	if(typeof value === 'undefined') return false;
 	if(value.length === 0) return false;
 	return true;
 };
 
+rivets.formatters.inverseLengthToBool = function(value){
+	if(typeof value === 'undefined') return true;
+	if(value.length === 0) return true;
+	return false;
+};
+
 rivets.formatters.length = function(value){
-	if(typeof value == 'undefined') return 0;
+	if(typeof value === 'undefined') return 0;
 	return value.length;
 };
 
@@ -1848,7 +111,7 @@ rivets.formatters.invert = function(value){
 	console.log(value);
 	if(typeof value != "undefined") return false;
 	return true;
-}
+};
 
 rivets.formatters.propertyList = function(obj) {
   return (function() {
@@ -1857,8 +120,9 @@ rivets.formatters.propertyList = function(obj) {
       properties.push({key: key, value: obj[key]})
     }
     return properties
-  })();
-}
+  });
+};
+
 
 
 
@@ -1866,6 +130,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2741",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -1873,10 +138,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp1.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -1885,19 +150,20 @@ const lotlist = [
 		{
 			"lotNumber" : "2745",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":[
-				{"src": "assets/img/vramp1.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false}
 			],
 			"status" : null,
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp5.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
 			"unused" : false
@@ -1905,6 +171,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2745A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -1912,10 +179,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/no-photo.jpg",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"unused" : true
@@ -1923,6 +190,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2743",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -1930,10 +198,7 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift #2",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				
 			],
 			"usage" : "90000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -1943,6 +208,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -1950,10 +216,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift #3",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "110000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -1963,6 +229,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2742",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -1970,10 +237,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -1983,6 +250,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2743",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -1990,10 +258,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift #2",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "90000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2003,6 +271,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2010,10 +279,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift #3",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "110000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2023,6 +292,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2742",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2030,10 +300,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2043,6 +313,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2743",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2050,10 +321,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift #2",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "90000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2063,6 +334,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2070,10 +342,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift #3",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "110000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2083,6 +355,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2744",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2090,10 +363,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift #3",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "110000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2103,6 +376,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2746",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2110,10 +384,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2123,6 +397,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2747",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2130,10 +405,7 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2143,6 +415,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2150,10 +423,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2163,6 +436,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2749",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2170,10 +444,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2183,6 +457,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2190,10 +465,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2203,6 +478,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2746",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2210,10 +486,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2223,6 +499,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2747",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2230,10 +507,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2243,6 +520,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2250,10 +528,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2263,6 +541,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2749",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2270,10 +549,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2283,6 +562,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2290,10 +570,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2303,6 +583,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2310,10 +591,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2323,6 +604,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2746",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2330,10 +612,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2343,6 +625,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2747",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2350,10 +633,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2363,6 +646,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2370,10 +654,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2383,6 +667,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2749",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2390,10 +675,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2403,6 +688,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2410,10 +696,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2423,6 +709,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2430,10 +717,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2443,6 +730,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2450,10 +738,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2463,6 +751,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2746",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2470,10 +759,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2483,6 +772,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2747",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2490,10 +780,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2503,6 +793,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2510,10 +801,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2523,6 +814,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2749",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2530,10 +822,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2543,6 +835,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2550,10 +843,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2563,6 +856,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2570,10 +864,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2583,6 +877,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2590,10 +885,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2603,6 +898,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2610,10 +906,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2623,6 +919,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2746",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2630,10 +927,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2643,6 +940,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2747",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2650,10 +948,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2663,6 +961,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2670,10 +969,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2683,6 +982,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2749",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2690,10 +990,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2703,6 +1003,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2710,10 +1011,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2723,6 +1024,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2730,10 +1032,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2743,6 +1045,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2750,10 +1053,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2763,6 +1066,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2770,10 +1074,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2783,6 +1087,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2790,10 +1095,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2803,6 +1108,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2746",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2810,10 +1116,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2823,6 +1129,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2747",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2830,10 +1137,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2843,6 +1150,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2850,10 +1158,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2863,6 +1171,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2749",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2870,10 +1179,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2883,6 +1192,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2890,10 +1200,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2903,6 +1213,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2910,10 +1221,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2923,6 +1234,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2930,10 +1242,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2943,6 +1255,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2950,10 +1263,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2963,6 +1276,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2970,10 +1284,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -2983,6 +1297,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -2990,10 +1305,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3003,6 +1318,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2746",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3010,10 +1326,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3023,6 +1339,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2747",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3030,10 +1347,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3043,6 +1360,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3050,10 +1368,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3063,6 +1381,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2749",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3070,10 +1389,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3083,6 +1402,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3090,10 +1410,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3103,6 +1423,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3110,10 +1431,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3123,6 +1444,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3130,10 +1452,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3143,6 +1465,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3150,10 +1473,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3163,6 +1486,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3170,10 +1494,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3183,6 +1507,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3190,10 +1515,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3203,6 +1528,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3210,10 +1536,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3223,6 +1549,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2746",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3230,10 +1557,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3243,6 +1570,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2747",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3250,10 +1578,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3263,6 +1591,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3270,10 +1599,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3283,6 +1612,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2749",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3290,10 +1620,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3303,6 +1633,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3310,10 +1641,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3323,6 +1654,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3330,10 +1662,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3343,6 +1675,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3350,10 +1683,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3363,6 +1696,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3370,10 +1704,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3383,6 +1717,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3390,10 +1725,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3403,6 +1738,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3410,10 +1746,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3423,6 +1759,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3430,10 +1767,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3443,6 +1780,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3450,10 +1788,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3463,6 +1801,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3470,10 +1809,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3483,6 +1822,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3490,10 +1830,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3503,6 +1843,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3510,10 +1851,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3523,6 +1864,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3530,10 +1872,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3543,6 +1885,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2746",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3550,10 +1893,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3563,6 +1906,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2747",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3570,10 +1914,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3583,6 +1927,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3590,10 +1935,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3603,6 +1948,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2749",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3610,10 +1956,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3623,6 +1969,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3630,10 +1977,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3643,6 +1990,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3650,10 +1998,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3663,6 +2011,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3670,10 +2019,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3683,6 +2032,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3690,10 +2040,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3703,6 +2053,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3710,10 +2061,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3723,6 +2074,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3730,10 +2082,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3743,6 +2095,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3750,10 +2103,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3763,6 +2116,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3770,10 +2124,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3783,6 +2137,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3790,10 +2145,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3803,6 +2158,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3810,10 +2166,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3823,6 +2179,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3830,10 +2187,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3843,6 +2200,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3850,10 +2208,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3863,6 +2221,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3870,10 +2229,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3883,6 +2242,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3890,10 +2250,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3903,6 +2263,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3910,10 +2271,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3923,6 +2284,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3930,10 +2292,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3943,6 +2305,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2750",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3950,10 +2313,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3963,6 +2326,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2751",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3970,10 +2334,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -3983,6 +2347,7 @@ const lotlist = [
 		{
 			"lotNumber" : "27444A",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -3990,10 +2355,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4003,6 +2368,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2753",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4010,10 +2376,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4023,6 +2389,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2754",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4030,10 +2397,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp4.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4043,6 +2410,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2755",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4050,10 +2418,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4063,6 +2431,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2756",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4070,10 +2439,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4083,6 +2452,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2757",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4090,10 +2460,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4103,6 +2473,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2758",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4110,10 +2481,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4123,6 +2494,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2759",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4130,10 +2502,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4143,6 +2515,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2760",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4150,10 +2523,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4163,6 +2536,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2761",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4170,10 +2544,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4183,6 +2557,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2762",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4190,10 +2565,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4203,6 +2578,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2763",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4210,10 +2586,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4223,6 +2599,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2764",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4230,10 +2607,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4243,6 +2620,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2765",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4250,10 +2628,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4263,6 +2641,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2766",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4270,10 +2649,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4283,6 +2662,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2767",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4290,10 +2670,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4303,6 +2683,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2768",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4310,10 +2691,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4323,6 +2704,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2769",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4330,10 +2712,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4343,6 +2725,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2770",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4350,10 +2733,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4363,6 +2746,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2771",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4370,10 +2754,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4383,6 +2767,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2772",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4390,10 +2775,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4403,6 +2788,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2773",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4410,10 +2796,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4423,6 +2809,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2774",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4430,10 +2817,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4443,6 +2830,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2775",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4450,10 +2838,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4463,6 +2851,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2776",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4470,10 +2859,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4483,6 +2872,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2777",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4490,10 +2880,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4503,6 +2893,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2778",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4510,10 +2901,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4523,6 +2914,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2779",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4530,10 +2922,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4543,6 +2935,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2780",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4550,10 +2943,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4563,6 +2956,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2781",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4570,10 +2964,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4583,6 +2977,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2782",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4590,10 +2985,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4603,6 +2998,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2783",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4610,10 +3006,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4623,6 +3019,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2784",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4630,10 +3027,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4643,6 +3040,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2785",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4650,10 +3048,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4663,6 +3061,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2786",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4670,10 +3069,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4683,6 +3082,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2787",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4690,10 +3090,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4703,6 +3103,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2788",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4710,10 +3111,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4723,6 +3124,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2789",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4730,10 +3132,10 @@ const lotlist = [
 			"description" : "2012 Manitou 4x4 Bucket Lift for Liam",
 			"photo" : "assets/img/vramp2.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "100000 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4743,6 +3145,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2790",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4750,10 +3153,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4763,6 +3166,7 @@ const lotlist = [
 		{
 			"lotNumber" : "2791",
 			"equipid": '1234567890A',
+			"flagged": false,
 			"updated": '12/04/2017 3:55PM',
 			"notes":'',
 			"video":false,
@@ -4770,10 +3174,10 @@ const lotlist = [
 			"description" : "2008 Manitou 4x4 Bucket Lift",
 			"photo" : "assets/img/vramp3.png",
 			"photos": [
-				{"src": "assets/img/vramp1.jpg"},
-				{"src": "assets/img/vramp2.jpg"},
-				{"src": "assets/img/vramp3.jpg"},
-				{"src": "assets/img/vramp4.jpg"}
+				{"src": "assets/img/vramp1.jpg","disabled":false},
+				{"src": "assets/img/vramp2.jpg","disabled":false},
+				{"src": "assets/img/vramp3.jpg","disabled":false},
+				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
 			"usage" : "4756 hrs",
 			"comeswith" : "Cummins B3.9-C, 40 m boom, pwr to platform, hyd rotation, extendable axles, hyd leveling, EPA",
@@ -4791,8 +3195,30 @@ $(function(){
 	  handler: function(direction) {
 	    $('.js-sticky-header').toggleClass('s-fixed');
 	  }
-	})
-});
+	});
+
+	var reference = $('.js-filter-readout');
+	var popper = $('.js-filter-popup');
+	var anotherPopper = new Popper(
+	    reference,
+	    popper,
+	    {
+	        placement: 'bottom-start',
+	    }
+	); 
+
+	var exportreference = $('.js-export-popup-toggle');
+	var exportpopper = $('.js-export-popup');
+	var exportPopper = new Popper(
+	    exportreference,
+	    exportpopper,
+	    {
+	        placement: 'bottom-end',
+	    }
+	); 
+
+	
+}); 
 
 var medialist;
 const listOptions = {
@@ -4818,9 +3244,12 @@ const dataObject = {
 	confirmDeleteDisplayVisible: false,
 	downloadPhotosSettingsVisible: false,
 	activeTab: window.location.pathname,
+	
 	lots: lotlist,
 	sortedColumn: 'js-lotnumber',
 	sortdirection: 'asc',
+	mediaFilters: ['All Lots'],
+	sendEmailVisible: false,
 
 	downloads:[
 		{
@@ -4923,7 +3352,7 @@ const controller = {
 
 	//MANAGE LOT MEDIA
 		toggleExpandLot: function(e,context){
-			if(typeof context.lot.expanded == "undefined") context.lot.expanded = true;
+			if(typeof context.lot.expanded === "undefined") context.lot.expanded = true;
 			else context.lot.expanded = !context.lot.expanded;
 
 			if(context.lot.expanded) $(e.currentTarget).parent().addClass('s-expanded');
@@ -4931,14 +3360,50 @@ const controller = {
 		},
 		sortColumn: function(e){
 			let targetColumn = $(e.currentTarget).data('column');
-			if(dataObject.sortedColumn == targetColumn)
+			if(dataObject.sortedColumn === targetColumn)
 				dataObject.sortdirection = (dataObject.sortdirection === 'asc')? 'desc': 'asc';
 			else{
 				dataObject.sortedColumn = targetColumn;
 				dataObject.sortdirection = 'asc';
 			}
 			medialist.sort(dataObject.sortedColumn,{order:dataObject.sortdirection});
-		}
+		},
+		toggleFilterVisibility: function(e){
+			$('.js-filter-popup').toggleClass('s-visible');
+		},
+		updateFilters: function(e){
+			if(dataObject.mediaFilters.indexOf("All Lots") >= 0)dataObject.mediaFilters.splice(dataObject.mediaFilters.indexOf("All Lots"),1);
+
+			let targetFilter = $(e.currentTarget).data('filter');
+			if(dataObject.mediaFilters.indexOf(targetFilter) < 0) dataObject.mediaFilters.push(targetFilter);
+			else dataObject.mediaFilters.splice(dataObject.mediaFilters.indexOf(targetFilter),1);
+
+			if(dataObject.mediaFilters.length === 0) dataObject.mediaFilters = ['All Lots'];
+			//console.log(dataObject.mediaFilters);
+		},
+		selectAllFilters: function(e){
+			dataObject.mediaFilters = ['Lots with video','Lots misssing hero photos','Lots with less than 4 photos','Flagged Lots'];
+		},
+		clearFilters: function(e){
+			dataObject.mediaFilters = ['All Lots'];
+		},
+		disableImage: function(e,context){
+			context.photo.disabled = !context.photo.disabled;
+		},
+		toggleFlagged: function(e,context){
+			context.lot.flagged = !context.lot.flagged;
+			if(context.lot.flagged) context.lot.editingNote = true;
+		},
+		saveNote: function(e,context){
+			context.lot.editingNote = false;
+		},
+		toggleExportVisibility:function(e){
+			$('.js-export-popup').toggleClass('s-visible');
+		},
+		toggleEmailVisibility: function(e){
+			dataObject.sendEmailVisible = !dataObject.sendEmailVisible;
+			$('.js-export-popup').removeClass('s-visible');
+		},
 };
 
 const startDownload = function(target){
@@ -4951,11 +3416,11 @@ const startDownload = function(target){
 			target.active = false;
 		}
 	},500);
-}
+};
 
 const focusFirstInput = function(container){
 	container.find('input').first().focus();
-}
+};
 
 
 rivets.bind($('.js--data-context'),{

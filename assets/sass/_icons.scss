@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'ritchie-icons';
-    src:    url('../fonts/ritchie-icons.eot?apmwp8');
-    src:    url('../fonts/ritchie-icons.eot?apmwp8#iefix') format('embedded-opentype'),
-        url('../fonts/ritchie-icons.ttf?apmwp8') format('truetype'),
-        url('../fonts/ritchie-icons.woff?apmwp8') format('woff'),
-        url('../fonts/ritchie-icons.svg?apmwp8#ritchie-icons') format('svg');
+    src:    url('../fonts/ritchie-icons.eot?q7opb8');
+    src:    url('../fonts/ritchie-icons.eot?q7opb8#iefix') format('embedded-opentype'),
+        url('../fonts/ritchie-icons.ttf?q7opb8') format('truetype'),
+        url('../fonts/ritchie-icons.woff?q7opb8') format('woff'),
+        url('../fonts/ritchie-icons.svg?q7opb8#ritchie-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 } 
@@ -36,13 +36,37 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+$icon-small: 8px;
+$icon-medium: 16px;
 
-
-.i-size-med{
-    font-size: 20px;
+.icon-size--small{
+    font-size: $icon-small;
     vertical-align: middle;
 }
 
+.icon-size--medium{
+    font-size: $icon-medium;
+    vertical-align: middle;
+}
+
+.icon-server:before {
+  content: "\e910";
+}
+.icon-database:before {
+  content: "\e910";
+}
+.icon-flag:before {
+  content: "\e928";
+}
+.icon-repeat:before {
+  content: "\e903";
+}
+.icon-play:before {
+  content: "\e929";
+}
+.icon-player:before {
+  content: "\e929";
+}
 .icon-mic:before {
   content: "\e900";
 }

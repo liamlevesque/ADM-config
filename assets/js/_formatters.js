@@ -1,7 +1,3 @@
-rivets.formatters.price = function(value){
-	return formatprice(value);
-}
-
 function formatprice(amt){
 	if(amt === 0) return 0;
 	else if(!amt) return null;
@@ -14,7 +10,11 @@ function formatprice(amt){
 		price = amt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '<span class="divider"></span>');
 
 	return price; 
-}
+};
+ 
+rivets.formatters.price = function(value){
+	return formatprice(value);
+};
 
 rivets.formatters.compare = function(value, comparisons){
 	if(typeof value == "undefined" || typeof comparisons == "undefined") return false;
@@ -45,6 +45,15 @@ rivets.binders.sortclasses = function(el,value){
 	if(value === thiscolumn) $(el).addClass('s-active-sort s-sort-'+direction);
 };
 
+rivets.binders.ischecked = function(el,value){
+	if(value) $(el).prop('checked',true);
+	else $(el).prop('checked',false);
+};
+
+rivets.formatters.indexof = function(list,item){
+	if(list.indexOf(item) >= 0) return true;
+	else return false;
+};
 
 
 rivets.formatters.divide = function(value,divisor){
@@ -52,13 +61,19 @@ rivets.formatters.divide = function(value,divisor){
 };
 
 rivets.formatters.lengthToBool = function(value){
-	if(typeof value == 'undefined') return false;
+	if(typeof value === 'undefined') return false;
 	if(value.length === 0) return false;
 	return true;
 };
 
+rivets.formatters.inverseLengthToBool = function(value){
+	if(typeof value === 'undefined') return true;
+	if(value.length === 0) return true;
+	return false;
+};
+
 rivets.formatters.length = function(value){
-	if(typeof value == 'undefined') return 0;
+	if(typeof value === 'undefined') return 0;
 	return value.length;
 };
 
@@ -66,7 +81,7 @@ rivets.formatters.invert = function(value){
 	console.log(value);
 	if(typeof value != "undefined") return false;
 	return true;
-}
+};
 
 rivets.formatters.propertyList = function(obj) {
   return (function() {
@@ -75,6 +90,7 @@ rivets.formatters.propertyList = function(obj) {
       properties.push({key: key, value: obj[key]})
     }
     return properties
-  })();
-}
+  });
+};
+
 

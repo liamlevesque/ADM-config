@@ -1,0 +1,17 @@
+.o-lot-media{
+	display: inline-block;
+	max-width: 150px;
+	position: relative;
+	margin-right: spacing(small);
+	overflow: hidden;
+	
+	img{
+		width: 100%;
+		max-width: 100%;
+	}
+}
+
+	.o-lot-media--filename{
+		display: block;
+		@include ellipsize;
+	}
