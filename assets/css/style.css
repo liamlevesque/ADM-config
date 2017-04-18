@@ -210,6 +210,10 @@ h1, h2, h3, h4, h5 {
   font-size: 2rem;
   font-weight: 400; }
 
+.h2 {
+  font-size: 1.4rem;
+  font-weight: 700; }
+
 .h3 {
   font-size: 1.2rem;
   text-transform: uppercase;
@@ -379,13 +383,6 @@ hr {
 .h-pos-relative {
   position: relative; }
 
-.h-pos-center {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center; }
-
 .h-va-center {
   position: absolute;
   top: 50%;
@@ -414,8 +411,8 @@ hr {
 .h-ws-nowrap {
   white-space: nowrap; }
 
-.h-icon--large {
-  font-size: 25px; }
+.h-shadow {
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5); }
 
 .s-viewer-mode .h-viewer-hidden {
   display: none; }
@@ -960,12 +957,16 @@ hr {
 
 .o-input--range {
   -webkit-appearance: none;
+  background-color: transparent;
   margin: 18px 0;
   width: 100%; }
   .o-input--range:focus {
     outline: none; }
     .o-input--range:focus::-webkit-slider-runnable-track {
       background: rgba(54, 174, 79, 0.5); }
+    .o-input--range:focus::-moz-range-track {
+      background: rgba(54, 174, 79, 0.5);
+      outline: none; }
   .o-input--range::-webkit-slider-runnable-track {
     width: 100%;
     height: 10px;
@@ -974,7 +975,35 @@ hr {
     background: #bfc0be;
     border-radius: 5px;
     border: 2px solid white; }
+  .o-input--range::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #bfc0be;
+    border-radius: 5px;
+    border: 2px solid white; }
   .o-input--range::-webkit-slider-thumb {
+    border: 2px solid white;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    background: #36AE4F;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -12px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5); }
+  .o-input--range::-moz-range-thumb {
+    border: 2px solid white;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    background: #36AE4F;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -12px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5); }
+  .o-input--range::-ms-thumb {
     border: 2px solid white;
     height: 30px;
     width: 30px;
@@ -1685,6 +1714,13 @@ hr {
   left: 0;
   top: 0; }
 
+.l-abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; }
+
 .l-input-inline_med {
   display: inline-block;
   width: 200px; }
@@ -2167,7 +2203,12 @@ hr {
     background-color: transparent; }
 
 .o-mktg-media {
-  cursor: grab; }
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab; }
+  .o-mktg-media > * {
+    user-select: none; }
   .o-mktg-media:hover .o-lot-media--overlay:after {
     background-color: rgba(88, 88, 88, 0.8); }
   .o-mktg-media:hover .o-lot-media--delete {
@@ -2187,3 +2228,71 @@ hr {
   white-space: nowrap;
   word-wrap: break-word;
   text-overflow: ellipsis; }
+
+.c-presentation-preview {
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5);
+  position: relative;
+  color: white;
+  margin: 5px; }
+  .c-presentation-preview img {
+    max-width: 100%;
+    width: 100%;
+    display: block; }
+
+.o-presentation-upper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 40%;
+  padding: 15px; }
+
+.o-presentation-lower {
+  position: absolute;
+  top: 40%;
+  right: 0;
+  width: 30%;
+  height: 52%;
+  padding: 15px; }
+
+.o-presentation-main {
+  position: absolute;
+  top: 0;
+  bottom: 7%;
+  left: 0;
+  right: 30%; }
+
+.presentation--paused {
+  color: #E87722;
+  width: 80%;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.4em; }
+
+.o-presentation-footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 7%;
+  padding-top: 5px; }
+
+.presentation--ring2, .presentation--ring3, .presentation--tal {
+  box-sizing: border-box;
+  position: relative;
+  vertical-align: top;
+  padding-left: 45px;
+  padding-right: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  word-wrap: break-word;
+  text-overflow: ellipsis; }
+  @media (min-width: 48em) {
+    .presentation--ring2, .presentation--ring3, .presentation--tal {
+      display: inline-block;
+      vertical-align: top;
+      width: 32%;
+      margin-right: 0.5%; }
+      .presentation--ring2:last-child, .presentation--ring3:last-child, .presentation--tal:last-child {
+        float: right;
+        margin-right: 0; } }

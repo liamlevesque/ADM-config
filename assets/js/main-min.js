@@ -3190,42 +3190,55 @@ const lotlist = [
 	];
 
 $(function(){
-	medialist = new List('js-media-list',listOptions);
-	medialist.sort(dataObject.sortedColumn,{order:dataObject.sortdirection});
+	if($('#js-media-list').length > 0){
+		medialist = new List('js-media-list',listOptions);
+		medialist.sort(dataObject.sortedColumn,{order:dataObject.sortdirection});
+	}
 
-	var waypoint = new Waypoint({
-	  element: $('.js-header-waypoint'),
-	  handler: function(direction) {
-	    $('.js-sticky-header').toggleClass('s-fixed');
-	  }
-	});
+	if($('.js-header-waypoint').length > 0){
+		var waypoint = new Waypoint({
+		  element: $('.js-header-waypoint'),
+		  handler: function(direction) {
+		    $('.js-sticky-header').toggleClass('s-fixed');
+		  }
+		});
+	}
 
-	var reference = $('.js-filter-readout');
-	var popper = $('.js-filter-popup');
-	var anotherPopper = new Popper(
-	    reference,
-	    popper,
-	    {
-	        placement: 'bottom-start',
-	    }
-	); 
+	if($('.js-filter-readout').length > 0){
+		var reference = $('.js-filter-readout');
+		var popper = $('.js-filter-popup');
+		var anotherPopper = new Popper(
+		    reference,
+		    popper,
+		    {
+		        placement: 'bottom-start',
+		    }
+		); 
+	}
 
-	var exportreference = $('.js-export-popup-toggle');
-	var exportpopper = $('.js-export-popup');
-	var exportPopper = new Popper(
-	    exportreference,
-	    exportpopper,
-	    {
-	        placement: 'bottom-end',
-	    }
-	); 
+	if($('.js-export-popup-toggle').length > 0){
+		var exportreference = $('.js-export-popup-toggle');
+		var exportpopper = $('.js-export-popup');
+		var exportPopper = new Popper(
+		    exportreference,
+		    exportpopper,
+		    {
+		        placement: 'bottom-end',
+		    }
+		); 
+	}
 
-
-	dragula([$('js-media-drag')]);
-
+	if($('.js-media-drag').length > 0){
+		drake = dragula([$('.js-media-drag')], { revertOnSpill: true , direction: 'horizontal'});
+		console.log(drake);
+		drake.on('drag',function(e){
+			console.log('drag');
+		});
+	}
 	
 }); 
 
+var drake;
 var medialist;
 const listOptions = {
 	valueNames:["js-lotnumber",
@@ -3267,6 +3280,23 @@ const dataObject = {
 				{"src": "assets/img/vramp3.jpg","disabled":false},
 				{"src": "assets/img/vramp4.jpg","disabled":false}
 			],
+	deleteSlideVisible: false,
+	presentation: {
+		ring: 'Ring 1',
+		lots: 'Lots 1 - 451, 8001 - 8012',
+		welcomeMsg: '',
+		startLabel: '',
+		startTime: '',
+		bidEnded: '',
+		tomorrowLabel: '',
+		tomorrowTime: '',
+		tomorrowLots: '',
+		pausedExplanation: 'We are currently experiencing technical difficulties and will resume shortly.',
+		pausedMsg: '',
+		ring2start: 'Starts ~ 09:00',
+		ring3start: 'Starts ~ 11:00',
+		talstart: 'Lots start closing Tuesday'
+	},
 
 	downloads:[
 		{
@@ -3426,6 +3456,9 @@ const controller = {
 		toggleSlideshowSettingVisibility: function(e){
 			dataObject.slideshowSettingVisibile = !dataObject.slideshowSettingVisibile;
 		},
+		toggleDeleteSlideVisible: function(e){
+			dataObject.deleteSlideVisible = !dataObject.deleteSlideVisible;
+		}
 };
 
 const startDownload = function(target){

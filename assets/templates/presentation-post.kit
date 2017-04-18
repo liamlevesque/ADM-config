@@ -6,38 +6,57 @@
 
 	<div class="o-width-wrapper h-mt-300">
 		<section class="c-container-box">
-			<div>
+			<div class="h-overflow-hidden">
 				<div class="l-grid-third">
 					<h3 class="h3 h-mb-200">Custom Field Content</h3>
 				
 					<div class="h-overflow-hidden h-mb-200">
 						<label for="" class="t-smalllabel">Bidding Ended Message</label>
-						<input type="text" class="o-input--text" placeholder="eg. Bidding Ended">
+						<input type="text" class="o-input--text" placeholder="eg. Bidding Ended" rv-value="dataObject.presentation.bidEnded">
 					</div>
 					<div class="h-overflow-hidden h-mb-200">
 						<label for="" class="t-smalllabel">Next Day Label</label>
-						<input type="text" class="o-input--text" placeholder="eg. Starts tomorrow at:">
+						<input type="text" class="o-input--text" placeholder="eg. Starts tomorrow at:" rv-value="dataObject.presentation.tomorrowLabel">
 					</div>
 					<div class="h-overflow-hidden h-mb-200">
 						<label for="" class="t-smalllabel">Next Day Start Time</label><label class="h-float-right t-smalllabel">(Optional)</label>
-						<input type="text" class="o-input--text" placeholder="eg. 08:00">
+						<input type="text" class="o-input--text" placeholder="eg. 08:00" rv-value="dataObject.presentation.tomorrowTime">
 					</div>
 					<div class="h-overflow-hidden h-mb-200">
 						<label for="" class="t-smalllabel">Next Day Lot Range</label>
-						<input type="text" class="o-input--text" placeholder="eg. 1 - 500">
+						<input type="text" class="o-input--text" placeholder="eg. Lots 1 - 500" rv-value="dataObject.presentation.tomorrowLots">
 					</div>
 				</div>
-				<div class="l-grid-two-thirds"></div>
+				<div class="l-grid-two-thirds">
+					<div class="c-presentation-preview">
+						<img src="/assets/img/post-base.png">
+						<div class="o-presentation-upper">
+							<div class="presentation--post-label">{dataObject.presentation.ring}</div>
+							<div class="presentation--post-label">{dataObject.presentation.lots}</div>
+							<div class="presentation--post-label h-color-brand">{dataObject.presentation.bidEnded}</div>
+						</div>
+						<div class="o-presentation-lower">
+							<div class="presentation--time-label">{dataObject.presentation.tomorrowLabel}</div>
+							<div class="presentation--time">{dataObject.presentation.tomorrowTime}</div>
+							<div class="presentation--time">{dataObject.presentation.tomorrowLots}</div>
+						</div>
+						<div class="o-presentation-footer">
+							<div class="presentation--ring2">{dataObject.presentation.ring2start}</div>
+							<div class="presentation--ring3">{dataObject.presentation.ring3start}</div>
+							<div class="presentation--tal">{dataObject.presentation.talstart}</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<hr class="h-mb-200">
 			<div>
 				<h3 class="h3 h-mb-200 h-d-inline-block">Slideshow Content</h3>
 				<button class="o-button--outline h-float-right" rv-on-click="controller.toggleSlideshowSettingVisibility"><i class="icon-settings h-mr-100"></i>Slideshow Settings</button>
-				<div id="js-media-drag">
+				<div class="js-media-drag">
 					<div class="o-mktg-media" rv-each-photo="dataObject.mktgpres" rv-class-s-disabled="photo.disabled">
 						<div class="o-lot-media--overlay">
 							<img rv-src="photo.src" alt="">
-							<button class="o-button--outline_white o-lot-media--delete"><i class="icon-trash"></i></button>
+							<button class="o-button--outline_white o-lot-media--delete" rv-on-click="controller.toggleDeleteSlideVisible"><i class="icon-trash"></i></button>
 						</div>
 						<span class="o-lot-media--filename"><strong>{index}</strong> { photo.src }</span>
 					</div>
@@ -46,6 +65,24 @@
 			</div>
 		</section>
 	</div>
+
+	<div class="c-modal" rv-class-s-visible="dataObject.deleteSlideVisible">
+		<div class="c-modal--content">
+			<div class="c-modal--body">
+				<h3 class="o-container--header h-color-error">Delete This Slide?</h3>
+				
+				<p>Are you sure you want to delete this slide?</p>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleDeleteSlideVisible">Cancel</button>
+				<button class="o-button_error h-float-right">Yes, Delete Slide</button>
+			</div>
+
+		</div>
+
+	</div> 
 
 	<!-- @include '/assets/partials/mktg-presentation-settings' --> 
 

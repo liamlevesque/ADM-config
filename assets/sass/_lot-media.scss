@@ -33,7 +33,14 @@
 	}
 
 	.o-mktg-media{
+		cursor: move;
 		cursor: grab;
+		cursor: -moz-grab;
+		cursor: -webkit-grab;
+
+		&>*{
+			user-select: none;
+		}
 
 		&:hover{
 		 	.o-lot-media--overlay:after{

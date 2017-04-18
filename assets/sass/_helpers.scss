@@ -136,14 +136,7 @@
 		position: relative;
 	}
 
-	.h-pos-center{
-		position: absolute;
-		top: 20px;
-		left: 50%;
-		transform: translateX(-50%);
-
-		text-align: center;
-	}
+	
 
 	.h-va-center{
 		position: absolute;
@@ -181,8 +174,8 @@
 		white-space: nowrap;
 	}
 
-	.h-icon--large{
-	    font-size: 25px;
+	.h-shadow{
+		box-shadow: $ritchie-shadow;
 	}
 
 	.h-viewer-hidden{

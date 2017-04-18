@@ -1,0 +1,62 @@
+.c-presentation-preview{
+	box-shadow: $ritchie-shadow;
+	position: relative;
+	color: white;
+	margin: 5px;
+
+	img{
+		max-width: 100%;
+		width: 100%;
+		display: block;
+	}
+}
+
+	.o-presentation-upper{
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 30%;
+		height: 40%;
+		padding: 15px;
+	}
+
+	.o-presentation-lower{
+		position: absolute;
+		top: 40%;
+		right: 0;
+		width: 30%;
+		height: 52%;
+		padding: 15px;
+	}
+
+	.o-presentation-main{
+		position: absolute;
+		top: 0;
+		bottom: 7%;
+		left: 0;
+		right: 30%;
+	}
+
+		.presentation--paused{
+			color: palette(brand);
+			width: 80%;
+			font-weight: 700;
+			font-size: fontsize(300);
+			line-height: 1.4em;
+		}
+
+	.o-presentation-footer{
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		height: 7%;
+		padding-top: 5px;
+	}
+
+		.presentation--ring2,.presentation--ring3,.presentation--tal{
+			@include grid-third;
+			padding-left: 45px;
+			padding-right: 5px;
+			@include ellipsize;
+		}

@@ -20,6 +20,15 @@
 	top: 0;
 }
 
+.l-abs-center{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+
+	text-align: center;
+}
+
 .l-input-inline_med{
 	display: inline-block;
 	width: 200px;

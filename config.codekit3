@@ -151,6 +151,39 @@
 		"oT": 1,
 		"q": 100
 		},
+	"\/assets\/img\/paused-base.png": {
+		"ft": 32768,
+		"iS": 12759,
+		"oA": 0,
+		"oAP": "\/assets\/img\/paused-base.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/assets\/img\/post-base.png": {
+		"ft": 32768,
+		"iS": 14802,
+		"oA": 0,
+		"oAP": "\/assets\/img\/post-base.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/assets\/img\/pre-base.png": {
+		"ft": 32768,
+		"iS": 14802,
+		"oA": 0,
+		"oAP": "\/assets\/img\/pre-base.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"\/assets\/img\/right-arrow.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -643,6 +676,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/assets\/css\/_nav-tabs.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/assets\/sass\/_presentation-preview.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/assets\/css\/_presentation-preview.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1

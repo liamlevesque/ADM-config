@@ -6,24 +6,42 @@
 
 	<div class="o-width-wrapper h-mt-300">
 		<section class="c-container-box">
-			<div>
+			<div class="h-overflow-hidden">
 				<div class="l-grid-third">
 					<h3 class="h3 h-mb-200">Custom Field Content</h3>
 				
 					<div class="h-overflow-hidden h-mb-200">
 						<label for="" class="t-smalllabel">Header Message</label><label class="h-float-right t-smalllabel">(Optional)</label>
-						<input type="text" class="o-input--text" placeholder="eg. Welcome to Ring 1">
+						<input type="text" class="o-input--text" placeholder="eg. Welcome to Ring 1" rv-value="dataObject.presentation.welcomeMsg">
 					</div>
 					<div class="h-overflow-hidden h-mb-200">
 						<label for="" class="t-smalllabel">Start Time Label</label>
-						<input type="text" class="o-input--text" placeholder="eg. Starts at:">
+						<input type="text" class="o-input--text" placeholder="eg. Starts at:" rv-value="dataObject.presentation.startLabel">
 					</div>
 					<div class="h-overflow-hidden h-mb-200">
 						<label for="" class="t-smalllabel">Start Time</label><label class="h-float-right t-smalllabel">(Optional)</label>
-						<input type="text" class="o-input--text" placeholder="eg. Welcome to Ring 1">
+						<input type="text" class="o-input--text" placeholder="eg. Welcome to Ring 1" rv-value="dataObject.presentation.startTime">
 					</div>
 				</div>
-				<div class="l-grid-two-thirds"></div>
+				<div class="l-grid-two-thirds">
+					<div class="c-presentation-preview">
+						<img src="/assets/img/pre-base.png">
+						<div class="o-presentation-upper">
+							<div class="presentation--post-label">{dataObject.presentation.ring}</div>
+							<div class="presentation--post-label">{dataObject.presentation.lots}</div>
+						</div>
+						<div class="o-presentation-lower">
+							<div class="presentation--time-label">{dataObject.presentation.welcomeMsg}</div>
+							<div class="presentation--time">{dataObject.presentation.startLabel}</div>
+							<div class="presentation--time">{dataObject.presentation.startTime}</div>
+						</div>
+						<div class="o-presentation-footer">
+							<div class="presentation--ring2">{dataObject.presentation.ring2start}</div>
+							<div class="presentation--ring3">{dataObject.presentation.ring3start}</div>
+							<div class="presentation--tal">{dataObject.presentation.talstart}</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<hr class="h-mb-200">
 			<div>
