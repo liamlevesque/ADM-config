@@ -18,7 +18,7 @@ rivets.formatters.price = function(value){
 
 rivets.formatters.compare = function(value, comparisons){
 	if(typeof value == "undefined" || typeof comparisons == "undefined") return false;
-	console.log(value,comparisons);
+	
 	if(typeof comparisons == "string"){
 		var args = comparisons.split(',');
 		if(args.includes(value)) return true;
