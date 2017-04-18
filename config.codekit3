@@ -802,38 +802,38 @@
 	"\/assets\/templates\/advanced.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/assets\/templates\/advanced.html",
-		"oF": 0
+		"oAP": "\/advanced.html",
+		"oF": 2
 		},
 	"\/assets\/templates\/event.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/assets\/templates\/event.html",
-		"oF": 0
+		"oAP": "\/event.html",
+		"oF": 2
 		},
 	"\/assets\/templates\/index.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/assets\/templates\/index.html",
-		"oF": 0
+		"oAP": "\/index.html",
+		"oF": 2
 		},
 	"\/assets\/templates\/managemedia.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/assets\/templates\/managemedia.html",
-		"oF": 0
+		"oAP": "\/managemedia.html",
+		"oF": 2
 		},
 	"\/assets\/templates\/presentation.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/assets\/templates\/presentation.html",
-		"oF": 0
+		"oAP": "\/presentation.html",
+		"oF": 2
 		},
 	"\/assets\/templates\/reports.kit": {
 		"ft": 2048,
 		"oA": 0,
-		"oAP": "\/assets\/templates\/reports.html",
-		"oF": 0
+		"oAP": "\/reports.html",
+		"oF": 2
 		},
 	"\/bower.json": {
 		"ft": 524288,
