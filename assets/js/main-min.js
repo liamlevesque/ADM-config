@@ -3254,6 +3254,9 @@ $(function(){
 		); 
 	}
 
+	if($('.swiper-container').length > 0){
+		initializeSlideshow();
+	};
 	
 
 	$('.js-pres-settings').on('change keyup',function(){
@@ -3327,6 +3330,14 @@ const dataObject = {
 	savePresChangeVisible: false,
 	savedConfirmationVisible: false,
 	slideDuration: 8,
+	slideAutoPlay: true,
+	cycleChoiceGroup: true,
+	lotpres: [
+				{"src": "assets/img/lot1.jpg","disabled":false},
+				{"src": "assets/img/lot2.jpg","disabled":false},
+				{"src": "assets/img/lot3.jpg","disabled":false},
+				{"src": "assets/img/lot4.jpg","disabled":false}
+			],
 	slideshowSettingVisibile:false,
 	mktgSlideDuration: 8,
 	mktgpres: [
@@ -3373,6 +3384,18 @@ const dataObject = {
 	downloadStarted: false,
 };
 
+var mySwiper = null;
+
+const initializeSlideshow = function(){
+	if(mySwiper != null) mySwiper.destroy(false,true);
+	mySwiper = new Swiper ('.swiper-container', {
+		direction: 'horizontal',
+		loop: true,
+		autoplay: (dataObject.slideAutoPlay)? dataObject.slideDuration * 1000 : 0,
+		speed: 300,
+		effect: "coverflow",
+	})
+};
 
 
 const controller = {
@@ -3386,13 +3409,7 @@ const controller = {
 		dataObject.activeTab = target;
 
 		if($('.swiper-container').length > 0){
-			var mySwiper = new Swiper ('.swiper-container', {
-				direction: 'horizontal',
-				loop: true,
-				autoplay: 8000,
-				speed: 300,
-				effect: "coverflow",
-			})
+			initializeSlideshow();
 		};
 
 		if($('.js-media-drag').length > 0){
@@ -3562,6 +3579,12 @@ const controller = {
 			setTimeout(function(){
 				dataObject.savedConfirmationVisible = false;
 			},2000);
+		},
+		clearSpecialMsg: function(e){
+			dataObject.presentation.specialMsg = '';
+		},
+		slideshowUpdate: function(e){
+			initializeSlideshow();
 		},
 
 };

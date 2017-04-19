@@ -154,25 +154,31 @@
 								<div class="h-overflow-hidden h-mb-200">
 									<span>Autoplay</span>
 									<label class="h-float-right o-input--setting-toggle">
-										<input type="checkbox" class="o-input--toggle" checked>
+										<input type="checkbox" class="o-input--toggle" rv-checked="dataObject.slideAutoPlay" rv-on-change="controller.slideshowUpdate">
 										<div class="toggle-control"></div>
 									</label>
 								</div>
 								<div class="h-overflow-hidden h-mb-200">
-									<span>Image Duration(seconds)</span>
-									<input type="range" min="5" max="20" class="o-input--range" rv-value="dataObject.slideDuration">
-									<span rv-text="dataObject.slideDuration">0</span>
+									<span>Image Duration</span><span class="h-float-right t-bold">{ dataObject.slideDuration } Seconds</span>
+									<input type="range" min="5" max="20" class="o-input--range" rv-value="dataObject.slideDuration" rv-on-change="controller.slideshowUpdate">
+									
 								</div>
 								<div class="h-overflow-hidden h-mb-200">
 									<span>Cycle Through Choice Group</span>
 									<label class="h-float-right o-input--setting-toggle">
-										<input type="checkbox" class="o-input--toggle" checked>
+										<input type="checkbox" class="o-input--toggle" rv-checked="dataObject.cycleChoiceGroup">
 										<div class="toggle-control"></div>
 									</label>
 								</div>
 							</div>
 							<div>
-								<label for="" class="t-settings-header">Overlay Message</label>
+								<label for="" class="t-settings-header">Overlay Message
+									<span class="h-float-right" rv-on-click="controller.clearSpecialMsg" rv-show="dataObject.presentation.specialMsg | lengthToBool">
+										<button class="o-icon-button--medium h-color-error">
+											<i class="icon-close h-mr-50"></i> Clear
+										</button>
+									</span>
+								</label>
 								<textarea class="o-input--textarea" placeholder="enter a persistent message for special situations" rv-value="dataObject.presentation.specialMsg"></textarea>
 							</div>
 						</div>
@@ -184,8 +190,15 @@
 									<div class="l-abs-center">{dataObject.presentation.specialMsg}</div>
 								</div>
 		
-								<div class="o-presentation-main">
-		
+								<div class="o-presentation-main_lot" rv-show="dataObject.lotpres | lengthToBool">
+									<div class="swiper-container">
+										<div class="swiper-wrapper">
+					                    	<!-- Slides -->
+						                    <div class="swiper-slide" rv-each-photo="dataObject.lotpres">
+						                        <img rv-src="photo.src" />
+						                    </div>
+						                </div>
+						            </div>
 								</div>
 		
 								<div class="o-presentation-footer">

@@ -196,6 +196,9 @@
   font-style: italic;
   color: #bfc0be; }
 
+.t-bold {
+  font-weight: 700; }
+
 body {
   font-family: 'Trebuchet MS', Verdana, sans-serif;
   font-size: 16px; }
@@ -2473,12 +2476,15 @@ hr {
 .presentation--post-label {
   margin-top: 15px; }
 
-.o-presentation-main {
+.o-presentation-main, .o-presentation-main_lot {
   position: absolute;
   top: 0;
   bottom: 7%;
   left: 0;
   right: 30%; }
+
+.o-presentation-main_lot {
+  top: 13%; }
 
 .swiper-container {
   width: 100%;

@@ -115,26 +115,6 @@
 		"oAP": "\/assets\/fonts\/ritchie-icons.woff",
 		"oF": 0
 		},
-	"\/assets\/img\/8666603_1.jpg": {
-		"ft": 16384,
-		"iS": 22022,
-		"oA": 0,
-		"oAP": "\/assets\/img\/8666603_1.jpg",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"q": 100
-		},
-	"\/assets\/img\/8686158_1.jpg": {
-		"ft": 16384,
-		"iS": 22497,
-		"oA": 0,
-		"oAP": "\/assets\/img\/8686158_1.jpg",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"q": 100
-		},
 	"\/assets\/img\/8699592_1.jpg": {
 		"ft": 16384,
 		"iS": 24526,
@@ -150,26 +130,6 @@
 		"iS": 23745,
 		"oA": 0,
 		"oAP": "\/assets\/img\/8699594_1.jpg",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"q": 100
-		},
-	"\/assets\/img\/8709802_1.jpg": {
-		"ft": 16384,
-		"iS": 24740,
-		"oA": 0,
-		"oAP": "\/assets\/img\/8709802_1.jpg",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"q": 100
-		},
-	"\/assets\/img\/8709802_2.jpg": {
-		"ft": 16384,
-		"iS": 324346,
-		"oA": 0,
-		"oAP": "\/assets\/img\/8709802_2.jpg",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 0,
@@ -211,6 +171,46 @@
 		"oIPL": 0,
 		"opt": 0,
 		"oT": 1,
+		"q": 100
+		},
+	"\/assets\/img\/lot1.jpg": {
+		"ft": 16384,
+		"iS": 211497,
+		"oA": 0,
+		"oAP": "\/assets\/img\/lot1.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/assets\/img\/lot2.jpg": {
+		"ft": 16384,
+		"iS": 252194,
+		"oA": 0,
+		"oAP": "\/assets\/img\/lot2.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/assets\/img\/lot3.jpg": {
+		"ft": 16384,
+		"iS": 241650,
+		"oA": 0,
+		"oAP": "\/assets\/img\/lot3.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/assets\/img\/lot4.jpg": {
+		"ft": 16384,
+		"iS": 222454,
+		"oA": 0,
+		"oAP": "\/assets\/img\/lot4.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
 		"q": 100
 		},
 	"\/assets\/img\/mktg1.jpg": {

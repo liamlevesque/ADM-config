@@ -57,13 +57,17 @@
 			margin-top: spacing(small);
 		}
 
-	.o-presentation-main{
+	.o-presentation-main, .o-presentation-main_lot{
 		position: absolute;
 		top: 0;
 		bottom: 7%;
 		left: 0;
 		right: 30%;
 	}
+
+		.o-presentation-main_lot{
+			top: 13%;
+		}
 
 		.swiper-container{
 			width: 100%;
