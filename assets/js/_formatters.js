@@ -93,6 +93,9 @@ rivets.formatters.propertyList = function(obj) {
   });
 };
 
+rivets.binders.backgroundsrc = function(el,value){
+	$(el).css({'background-image':value});
+}
 
 rivets.formatters.formatThousands = function(value){
 	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

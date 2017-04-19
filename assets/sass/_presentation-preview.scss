@@ -3,8 +3,9 @@
 	position: relative;
 	color: white;
 	margin: 5px;
+	font-family: 'Frutiger LT Std', 'Trebuchet MS', Verdana, sans-serif;
 
-	img{
+	&>img{
 		max-width: 100%;
 		width: 100%;
 		display: block;
@@ -19,6 +20,14 @@
 		height: 40%;
 		padding: 15px;
 	}
+		.presentation--ring-number{
+			font-size: fontsize(600);
+			text-transform: uppercase;
+		}
+
+		.presentation--lot-numbers{
+			font-size: fontsize(100);
+		}
 
 	.o-presentation-lower, .o-presentation-lower_special{
 		position: absolute;
@@ -27,12 +36,25 @@
 		width: 30%;
 		height: 52%;
 		padding: 15px;
+		text-align: center;
 	}
 
 		.o-presentation-lower_special{
 			background-color: palette(grey,dark);
 			width: 29.8%;
 			height: 53%;
+		}
+
+		.presentation--time-label{
+			font-size: fontsize(300);
+		}
+
+		.presentation--time{
+			font-size: fontsize(600);
+		}
+
+		.presentation--post-label{
+			margin-top: spacing(small);
 		}
 
 	.o-presentation-main{
@@ -42,6 +64,25 @@
 		left: 0;
 		right: 30%;
 	}
+
+		.swiper-container{
+			width: 100%;
+			height: 100%;
+			background-color: palette(grey,x-dark);
+		}
+
+		.swiper-slide{
+			display: flex;
+			justify-content: center;
+		    align-items: center;
+		    overflow: hidden;
+
+		   	img{
+		   		flex-shrink: 0;
+			    max-width: 100%;
+			    max-height: 100%;
+		   	}
+		}
 
 		.presentation--paused{
 			color: palette(brand);
@@ -67,32 +108,5 @@
 			@include ellipsize;
 		}
 
-@mixin footer-toast{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	padding: 5px spacing(medium);
 
-	transform: translateY(100%);
-	transition: $transition;
-
-	&.s-visible{
-		transform: translateY(0);
-	}
-}
-
-.presentation--save-changes{
-	@include footer-toast;
-	background-color: palette(grey,dark);
-	
-}
-
-.presentation--save-confirmation{
-	@include footer-toast;
-	line-height: $input-height;
-	background-color: palette(affirmative);
-	color: white;
-	text-align: center;
-}
 

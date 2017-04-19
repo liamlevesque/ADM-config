@@ -37,17 +37,12 @@ $(function(){
 		); 
 	}
 
-	if($('.js-media-drag').length > 0){
-		drake = dragula([$('.js-media-drag')], { revertOnSpill: true , direction: 'horizontal'});
-		console.log(drake);
-		drake.on('drag',function(e){
-			console.log('drag');
-		});
-	}
+	
 
 	$('.js-pres-settings').on('change keyup',function(){
 		dataObject.savePresChangeVisible = true;
 	});
+
 	
 }); 
 
@@ -118,11 +113,12 @@ const dataObject = {
 	slideshowSettingVisibile:false,
 	mktgSlideDuration: 8,
 	mktgpres: [
-				{"src": "assets/img/vramp1.jpg","disabled":false},
-				{"src": "assets/img/vramp2.jpg","disabled":false},
-				{"src": "assets/img/vramp3.jpg","disabled":false},
-				{"src": "assets/img/vramp4.jpg","disabled":false}
+				{"src": "assets/img/mktg1.jpg","disabled":false},
+				{"src": "assets/img/mktg2.jpg","disabled":false},
+				{"src": "assets/img/mktg3.jpg","disabled":false},
+				{"src": "assets/img/mktg4.jpg","disabled":false}
 			],
+	mktgprespre: [],
 	deleteSlideVisible: false,
 	presentation: {
 		ring: 'Ring 1',
@@ -171,6 +167,23 @@ const controller = {
 	gotoTab: function(e){
 		let target = $(e.currentTarget).data('targetpage');
 		dataObject.activeTab = target;
+
+		if($('.swiper-container').length > 0){
+			var mySwiper = new Swiper ('.swiper-container', {
+				direction: 'horizontal',
+				loop: true,
+				autoplay: 8000,
+				speed: 300,
+				effect: "coverflow",
+			})
+		};
+
+		if($('.js-media-drag').length > 0){
+			drake = dragula([$('.js-media-drag')], { revertOnSpill: true , direction: 'vertical'}).on('drag',function(e){
+				console.log('drag');
+			});
+			console.log(drake);
+		}
 	},
 
 	toggleGetOtherSales: function(e){

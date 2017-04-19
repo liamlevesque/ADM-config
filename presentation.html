@@ -237,13 +237,23 @@
 							<div class="c-presentation-preview">
 								<img src="assets/img/pre-base.png">
 								<div class="o-presentation-upper">
-									<div class="presentation--post-label">{dataObject.presentation.ring}</div>
-									<div class="presentation--post-label">{dataObject.presentation.lots}</div>
+									<div class="presentation--ring-number">{dataObject.presentation.ring}</div>
+									<div class="presentation--lot-numbers">{dataObject.presentation.lots}</div>
 								</div>
 								<div class="o-presentation-lower">
 									<div class="presentation--time-label">{dataObject.presentation.welcomeMsg}</div>
-									<div class="presentation--time">{dataObject.presentation.startLabel}</div>
+									<div class="presentation--time-label">{dataObject.presentation.startLabel}</div>
 									<div class="presentation--time">{dataObject.presentation.startTime}</div>
+								</div>
+								<div class="o-presentation-main" rv-show="dataObject.mktgprespre | lengthToBool">
+									<div class="swiper-container">
+										<div class="swiper-wrapper">
+					                    	<!-- Slides -->
+						                    <div class="swiper-slide" rv-each-photo="dataObject.mktgpres">
+						                        <img rv-src="photo.src" />
+						                    </div>
+						                </div>
+						            </div>
 								</div>
 								<div class="o-presentation-footer">
 									<div class="presentation--ring2">{dataObject.presentation.ring2start}</div>
@@ -255,10 +265,21 @@
 					</div>
 					<hr class="h-mb-200">
 					<div>
-						<h3 class="h3 h-mb-200 h-d-inline-block">Slideshow Content</h3>
-						<button class="o-button--outline h-float-right" rv-on-click="controller.toggleSlideshowSettingVisibility"><i class="icon-settings h-mr-100"></i>Slideshow Settings</button>
+						<div class="h-overflow-hidden">
+							<h3 class="h3 h-mb-200 h-d-inline-block">Slideshow Content</h3>
+							<button class="o-button--outline h-float-right" rv-on-click="controller.toggleSlideshowSettingVisibility"><i class="icon-settings h-mr-100"></i>Slideshow Settings</button>
+						</div>
 						<div>
-							<p class="t-empty">There is no media for the post-auction presentation</p>
+							<p class="t-empty" rv-hide="dataObject.mktgprespre | lengthToBool">There is no media for the post-auction presentation</p>
+							<div class="js-media-drag h-mb-200" rv-show="dataObject.mktgprespre | lengthToBool">
+								<div class="o-mktg-media" rv-each-photo="dataObject.mktgprespre" rv-class-s-disabled="photo.disabled">
+									<div class="o-lot-media--overlay">
+										<img rv-src="photo.src" alt="">
+										<button class="o-button--outline_white o-lot-media--delete" rv-on-click="controller.toggleDeleteSlideVisible"><i class="icon-trash"></i></button>
+									</div>
+									<span class="o-lot-media--filename"><strong>{index}</strong> { photo.src }</span>
+								</div>
+							</div>
 							<button class="o-button">+ Add Media</button>
 						</div>
 					</div>
@@ -291,14 +312,24 @@
 							<div class="c-presentation-preview">
 								<img src="assets/img/post-base.png">
 								<div class="o-presentation-upper">
-									<div class="presentation--post-label">{dataObject.presentation.ring}</div>
-									<div class="presentation--post-label">{dataObject.presentation.lots}</div>
+									<div class="presentation--ring-number">{dataObject.presentation.ring}</div>
+									<div class="presentation--lot-numbers">{dataObject.presentation.lots}</div>
 									<div class="presentation--post-label h-color-brand">{dataObject.presentation.bidEnded}</div>
 								</div>
 								<div class="o-presentation-lower">
 									<div class="presentation--time-label">{dataObject.presentation.tomorrowLabel}</div>
 									<div class="presentation--time">{dataObject.presentation.tomorrowTime}</div>
-									<div class="presentation--time">{dataObject.presentation.tomorrowLots}</div>
+									<div class="presentation--time-label">{dataObject.presentation.tomorrowLots}</div>
+								</div>
+								<div class="o-presentation-main" rv-show="dataObject.mktgpres | lengthToBool">
+									<div class="swiper-container">
+										<div class="swiper-wrapper">
+					                    	<!-- Slides -->
+						                    <div class="swiper-slide" rv-each-photo="dataObject.mktgpres">
+						                        <img rv-src="photo.src" />
+						                    </div>
+						                </div>
+						            </div>
 								</div>
 								<div class="o-presentation-footer">
 									<div class="presentation--ring2">{dataObject.presentation.ring2start}</div>
@@ -310,18 +341,23 @@
 					</div>
 					<hr class="h-mb-200">
 					<div>
-						<h3 class="h3 h-mb-200 h-d-inline-block">Slideshow Content</h3>
-						<button class="o-button--outline h-float-right" rv-on-click="controller.toggleSlideshowSettingVisibility"><i class="icon-settings h-mr-100"></i>Slideshow Settings</button>
-						<div class="js-media-drag">
-							<div class="o-mktg-media" rv-each-photo="dataObject.mktgpres" rv-class-s-disabled="photo.disabled">
-								<div class="o-lot-media--overlay">
-									<img rv-src="photo.src" alt="">
-									<button class="o-button--outline_white o-lot-media--delete" rv-on-click="controller.toggleDeleteSlideVisible"><i class="icon-trash"></i></button>
-								</div>
-								<span class="o-lot-media--filename"><strong>{index}</strong> { photo.src }</span>
-							</div>
+						<div class="h-overflow-hidden">
+							<h3 class="h3 h-mb-200 h-d-inline-block">Slideshow Content</h3>
+							<button class="o-button--outline h-float-right" rv-on-click="controller.toggleSlideshowSettingVisibility"><i class="icon-settings h-mr-100"></i>Slideshow Settings</button>
 						</div>
-						<button class="o-button">+ Add Media</button>
+						<div>
+							<p class="t-empty" rv-hide="dataObject.mktgpres | lengthToBool">There is no media for the post-auction presentation</p>
+							<div class="h-mb-200" rv-show="dataObject.mktgpres | lengthToBool">
+								<div class="o-mktg-media" rv-each-photo="dataObject.mktgpres" rv-class-s-disabled="photo.disabled">
+									<div class="o-lot-media--overlay">
+										<img rv-src="photo.src" alt="">
+										<button class="o-button--outline_white o-lot-media--delete" rv-on-click="controller.toggleDeleteSlideVisible"><i class="icon-trash"></i></button>
+									</div>
+									<span class="o-lot-media--filename"><strong>{index}</strong> { photo.src }</span>
+								</div>
+							</div>
+							<button class="o-button">+ Add Media</button>
+						</div>
 					</div>
 				</section>
 			</div>
@@ -359,8 +395,8 @@
 							<div class="c-presentation-preview">
 								<img src="assets/img/paused-base.png">
 								<div class="o-presentation-upper">
-									<div class="presentation--post-label">{dataObject.presentation.ring}</div>
-									<div class="presentation--post-label">{dataObject.presentation.lots}</div>
+									<div class="presentation--ring-number">{dataObject.presentation.ring}</div>
+									<div class="presentation--lot-numbers">{dataObject.presentation.lots}</div>
 								</div>
 								<div class="o-presentation-lower">
 									<div class="presentation--time-label">{dataObject.presentation.pausedMsg}</div>
@@ -382,11 +418,11 @@
 			</div> 	
 	</div>
 
-	<div class="presentation--save-changes" rv-class-s-visible="dataObject.savePresChangeVisible">
+	<div class="o-toast--prompt-save-changes" rv-class-s-visible="dataObject.savePresChangeVisible">
 		<button class="o-button_affirmative h-float-right" rv-on-click="controller.showSavedConfirmation">Save Changes</button>
 	</div>
 
-	<div class="presentation--save-confirmation" rv-class-s-visible="dataObject.savedConfirmationVisible">
+	<div class="o-toast--confirm-save-changes" rv-class-s-visible="dataObject.savedConfirmationVisible">
 		Changes Saved
 	</div>
 

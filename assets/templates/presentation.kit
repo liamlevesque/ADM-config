@@ -11,11 +11,11 @@
 		<!-- @include '/assets/partials/pres-paused' --> 	
 	</div>
 
-	<div class="presentation--save-changes" rv-class-s-visible="dataObject.savePresChangeVisible">
+	<div class="o-toast--prompt-save-changes" rv-class-s-visible="dataObject.savePresChangeVisible">
 		<button class="o-button_affirmative h-float-right" rv-on-click="controller.showSavedConfirmation">Save Changes</button>
 	</div>
 
-	<div class="presentation--save-confirmation" rv-class-s-visible="dataObject.savedConfirmationVisible">
+	<div class="o-toast--confirm-save-changes" rv-class-s-visible="dataObject.savedConfirmationVisible">
 		Changes Saved
 	</div>
 
