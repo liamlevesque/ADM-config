@@ -56,7 +56,13 @@
 	.l-grid-sixth{
 		@include g-cell(15.6%,1%)
 	}
-
 	.l-grid-fivesixths{
 		@include g-cell(82.3%,1%)
+	}
+
+	.l-grid-eigth{
+		@include g-cell(11.5%,1%)
+	}
+	.l-grid-seveneigths{
+		@include g-cell(87.5%,1%)
 	}

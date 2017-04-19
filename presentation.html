@@ -134,7 +134,7 @@
 	
 	<div class="js-pres-settings">
 		<div class="o-width-wrapper h-mt-300 h-mb-300" rv-if="dataObject.activeTab | compare 'general'">
-				<section class="c-container-box">
+				<section class="c-container-box h-mb-300">
 					<div class="h-overflow-hidden">
 						<div class="l-grid-third">
 							<h3 class="h3 h-mb-200">Slideshow Settings</h3>
@@ -179,7 +179,7 @@
 										</button>
 									</span>
 								</label>
-								<textarea class="o-input--textarea" placeholder="enter a persistent message for special situations" rv-value="dataObject.presentation.specialMsg"></textarea>
+								<textarea class="o-input--textarea" placeholder="enter a message that will always stay visible for special situations" rv-value="dataObject.presentation.specialMsg"></textarea>
 							</div>
 						</div>
 						<div class="l-grid-two-thirds">
@@ -226,7 +226,71 @@
 						</div>
 					</div>
 				</section>
-			</div> 	
+		
+				<section class="c-container-box">
+					<div>
+						<div class="h-overflow-hidden h-mb-100">
+							<h3 class="h3 h-mb-200 h-d-inline-block">Clerk Message Shortcuts</h3>
+							<button class="o-button h-float-right" rv-on-click="controller.toggleManageMessageGroupVisible">Create Custom Clerk Messages</button>
+						</div>
+						<div rv-if="dataObject.customKeyboardShortcuts.exists">
+							<nav class="o-navigation--sub-tabs h-mt-200">
+								<div class="o-navigation--sub-tab" rv-class-s-active="dataObject.activeTab | compare 'general'" rv-on-click="controller.gotoTab" data-targetpage="general">
+									Default
+								</div>
+								<div class="o-navigation--sub-tab" rv-class-s-active="dataObject.activeTab | compare 'pre'" rv-on-click="controller.gotoTab" data-targetpage="pre">
+									{dataObject.customKeyboardShortcuts.name}
+								</div>
+							</nav>
+						</div>
+						
+						<div class="c-list-grid--header">
+							<div class="l-grid-eigth h-ta-center">Shortcut</div>
+							<div class="l-grid-seveneigths">Message</div>
+						</div>
+						<ul class="c-list-grid">
+							<li class="c-list-grid--item" rv-each-key="dataObject.keyboardShortcuts">
+								<div class="l-grid-eigth h-ta-center"><div class="o-keyboard-key">{key.key}</div></div>
+								<div class="l-grid-seveneigths">{key.message}</div>
+							</li>
+						</ul>
+		
+		
+					</div>
+				</section>
+		
+		
+			</div>
+		
+			<div class="c-modal" rv-class-s-visible="dataObject.manageMessageGroupVisible">
+				<div class="c-modal--content_large">
+					<div class="c-modal--body">
+						<h3 class="o-container--header">Custom Message Group</h3>
+						
+						<label for="" class="t-smalllabel">Group Name</label>
+						<input type="text" class="o-input--text" rv-value="dataObject.customKeyboardShortcuts.Name">
+						
+						<label for="" class="t-settings-header">Messages</label>
+						<ul class="c-list-grid">
+							<li class="c-list-grid--item" rv-each-key="dataObject.customKeyboardShortcuts.shortcuts">
+								<div class="l-grid-eigth h-ta-center"><div class="o-keyboard-key">{key.key}</div></div>
+								<div class="l-grid-three-quarters"><input type="text" class="o-input--text" rv-value="key.message"></div>
+								<div class="l-grid-eigth">
+									<button class="o-icon-button--medium" rv-on-click="controller.clearKeyboardMsg"><i class="icon-close"></i></button>
+								</div>
+							</li>
+						</ul>
+						
+					</div>
+		
+					<div class="c-modal--footer">
+						<button class="o-text-button--large" rv-on-click="controller.toggleManageMessageGroupVisible">Cancel</button>
+						<button class="o-button h-float-right" rv-on-click="controller.createCustomMessageGroup">Save Message Group</button>
+					</div>
+		
+				</div>
+		
+			</div>  	
 		<div class="o-width-wrapper h-mt-300 h-mb-300" rv-if="dataObject.activeTab | compare 'pre'">
 				<section class="c-container-box">
 					<div class="h-overflow-hidden">
@@ -297,7 +361,36 @@
 						</div>
 					</div>
 				</section>
-			</div> 	
+		
+				<div class="c-modal" rv-class-s-visible="dataObject.slideshowSettingVisibile">
+						<div class="c-modal--content_small">
+							<div class="c-modal--body">
+								<h3 class="o-container--header">Pre/Post Slideshow Settings</h3>
+								
+								<div class="h-overflow-hidden h-mb-200">
+									<span>Autoplay</span>
+									<label class="h-float-right o-input--setting-toggle">
+										<input type="checkbox" class="o-input--toggle" checked>
+										<div class="toggle-control"></div>
+									</label>
+								</div>
+								<div class="h-overflow-hidden h-mb-200">
+									<span>Image Duration</span><span class="h-float-right">{ dataObject.mktgSlideDuration } Seconds</span>
+									<input type="range" min="5" max="20" class="o-input--range" rv-value="dataObject.mktgSlideDuration">
+								</div>
+							</div>
+				
+							<div class="c-modal--footer">
+								<button class="o-text-button--large" rv-on-click="controller.toggleSlideshowSettingVisibility">Cancel</button>
+								<button class="o-button h-float-right" rv-on-click="controller.toggleSlideshowSettingVisibility">Done</button>
+							</div>
+				
+						</div>
+				
+					</div>  
+			</div>
+		
+		 	
 		<div class="o-width-wrapper h-mt-300 h-mb-300" rv-if="dataObject.activeTab | compare 'post'">
 				<section class="c-container-box">
 					<div class="h-overflow-hidden">
@@ -373,6 +466,32 @@
 						</div>
 					</div>
 				</section>
+				<div class="c-modal" rv-class-s-visible="dataObject.slideshowSettingVisibile">
+						<div class="c-modal--content_small">
+							<div class="c-modal--body">
+								<h3 class="o-container--header">Pre/Post Slideshow Settings</h3>
+								
+								<div class="h-overflow-hidden h-mb-200">
+									<span>Autoplay</span>
+									<label class="h-float-right o-input--setting-toggle">
+										<input type="checkbox" class="o-input--toggle" checked>
+										<div class="toggle-control"></div>
+									</label>
+								</div>
+								<div class="h-overflow-hidden h-mb-200">
+									<span>Image Duration</span><span class="h-float-right">{ dataObject.mktgSlideDuration } Seconds</span>
+									<input type="range" min="5" max="20" class="o-input--range" rv-value="dataObject.mktgSlideDuration">
+								</div>
+							</div>
+				
+							<div class="c-modal--footer">
+								<button class="o-text-button--large" rv-on-click="controller.toggleSlideshowSettingVisibility">Cancel</button>
+								<button class="o-button h-float-right" rv-on-click="controller.toggleSlideshowSettingVisibility">Done</button>
+							</div>
+				
+						</div>
+				
+					</div>  
 			</div>
 		
 			<div class="c-modal" rv-class-s-visible="dataObject.deleteSlideVisible">
@@ -391,7 +510,9 @@
 		
 				</div>
 		
-			</div>  	
+			</div> 
+		
+		 	
 		<div class="o-width-wrapper h-mt-300 h-mb-300"  rv-if="dataObject.activeTab | compare 'paused'">
 				<section class="c-container-box">
 					<div class="h-overflow-hidden">

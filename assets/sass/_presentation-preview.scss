@@ -114,3 +114,16 @@
 
 
 
+.o-keyboard-key{
+	display: inline-block;
+	border: 2px solid palette(grey,dark);
+	line-height: 20px;
+	height: $input-height;
+	width: $input-height;
+	text-align: right;
+	padding: 2px 3px 10px 10px;
+	border-radius: 5px;
+
+	color: palette(grey,dark);
+}
+

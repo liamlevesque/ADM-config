@@ -3365,6 +3365,98 @@ const dataObject = {
 		talstart: 'Lots start closing Tuesday'
 	},
 
+	manageMessageGroupVisible: false,
+	keyboardShortcuts:[
+		{
+			key: 'f1',
+			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+		},
+		{
+			key: 'f2',
+			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+		},
+		{
+			key: 'f3',
+			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+		},
+		{
+			key: 'f4',
+			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+		},
+		{
+			key: 'f6',
+			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+		},
+		{
+			key: 'f7',
+			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+		},
+		{
+			key: 'f8',
+			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+		},
+		{
+			key: 'f9',
+			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+		},
+		{
+			key: 'f10',
+			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+		},
+		{
+			key: 'f12',
+			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+		},
+		
+	],
+	customKeyboardShortcuts:{
+		customName: '',
+		exists: false,
+		shortcuts: [
+			{
+				key: 'f1',
+				message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+			},
+			{
+				key: 'f2',
+				message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+			},
+			{
+				key: 'f3',
+				message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+			},
+			{
+				key: 'f4',
+				message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+			},
+			{
+				key: 'f6',
+				message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+			},
+			{
+				key: 'f7',
+				message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+			},
+			{
+				key: 'f8',
+				message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+			},
+			{
+				key: 'f9',
+				message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+			},
+			{
+				key: 'f10',
+				message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+			},
+			{
+				key: 'f12',
+				message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
+			},
+			
+		]
+	},
+
 	downloads:[
 		{
 			title: "Downloading Photos",
@@ -3586,6 +3678,20 @@ const controller = {
 		slideshowUpdate: function(e){
 			initializeSlideshow();
 		},
+		toggleManageMessageGroupVisible: function(e){
+			dataObject.manageMessageGroupVisible = !dataObject.manageMessageGroupVisible;
+		},
+		clearKeyboardMsg: function(e,context){
+			context.key.message = '';
+		},
+		createCustomMessageGroup: function(){
+			dataObject.customKeyboardShortcuts.exists = true;
+			dataObject.manageMessageGroupVisible = false;
+		},
+		deleteCustomMessageGroup: function(){
+			dataObject.customKeyboardShortcuts.exists = false;	
+			dataObject.customKeyboardShortcuts.name = '';
+		}
 
 };
 
