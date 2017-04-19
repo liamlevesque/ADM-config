@@ -17,7 +17,10 @@
 							<label class="">Lots Downloaded</label>
 						</div>
 						<hr>
-						<div class="t-empty">No data yet. Please get latest inventory.</div>
+						<div rv-unless="dataObject.auctionLots.haveData" class="t-empty">No data yet. Please get latest inventory.</div>
+						<div rv-if="dataObject.auctionLots.haveData">
+							<div class="t-data-point">{ dataObject.auctionLots.downloaded | formatThousands}</div>
+						</div>
 						<hr>
 						<button class="o-button h-mt-200" rv-on-click="controller.startLotDownload" rv-disabled="dataObject.downloads.1.active">
 							<span rv-unless="dataObject.downloads.1.active">Get Latest Inventory</span>
@@ -33,7 +36,12 @@
 							<div class="l-grid-third">Lots With Video</div>
 						</div>
 						<hr>
-						<div class="t-empty">No data yet. Please get latest photos.</div>
+						<div rv-unless="dataObject.auctionPhotos.haveData" class="t-empty">No data yet. Please get latest photos.</div>
+						<div rv-if="dataObject.auctionPhotos.haveData">
+							<div class="l-grid-third t-data-point">{ dataObject.auctionPhotos.downloaded | formatThousands}</div>
+							<div class="l-grid-third t-data-point h-color-error">{ dataObject.auctionPhotos.missingHero | formatThousands}</div>
+							<div class="l-grid-third t-data-point">{ dataObject.auctionPhotos.withVideo | formatThousands}</div>
+						</div>
 						<hr>
 						<button class="o-button h-mt-200" rv-on-click="controller.toggleDownloadPhotosSettingsVisible" rv-disabled="dataObject.downloads.0.active">
 							<span rv-unless="dataObject.downloads.0.active">Get Latest Photos</span>

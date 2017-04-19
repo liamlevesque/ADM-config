@@ -123,10 +123,10 @@
 		</div>
 
 		<div class="o-data-row h-mt-100 h-mb-100">
-			<div class="l-grid-quarter t-data-point">452 <label class="t-smalllabel">Lots</label></div>
-			<div class="l-grid-quarter t-data-point">1,562 <label class="t-smalllabel">Photos Downloaded</label></div>
-			<div class="l-grid-quarter t-data-point h-color-error">7 <label class="t-smalllabel">Missing Hero Photos</label></div>
-			<div class="l-grid-quarter t-data-point">27 <label class="t-smalllabel">Lots with Video</label></div>
+			<div class="l-grid-quarter t-data-point">{ dataObject.auctionLots.downloaded | formatThousands } <label class="t-smalllabel">Lots</label></div>
+			<div class="l-grid-quarter t-data-point">{ dataObject.auctionPhotos.downloaded | formatThousands } <label class="t-smalllabel">Photos Downloaded</label></div>
+			<div class="l-grid-quarter t-data-point h-color-error">{ dataObject.auctionPhotos.missingHero | formatThousands } <label class="t-smalllabel">Missing Hero Photos</label></div>
+			<div class="l-grid-quarter t-data-point">{ dataObject.auctionPhotos.withVideo | formatThousands } <label class="t-smalllabel">Lots with Video</label></div>
 		</div>
 
 		<div class="c-container-box">
@@ -135,9 +135,9 @@
 					<label for="" class="t-smalllabel">Filter By Lot Number:</label>
 					<div class="">
 						<span class="t-smalllabel h-color-black">Lot #</span>
-						<input type="text" class="o-input--text_small" placeholder="from">-
-						<input type="text" class="o-input--text_small" placeholder="to">
-						<button class="o-button">Go</button>
+						<input type="text" class="o-input--text_small" placeholder="from" rv-value="dataObject.filterRangeStart">-
+						<input type="text" class="o-input--text_small" placeholder="to" rv-value="dataObject.filterRangeEnd">
+						<button class="o-button" rv-on-click="controller.filterLotList">Go</button>
 					</div>
 				</div>
 				<div class="h-ml-100 h-float-left">
@@ -147,7 +147,7 @@
 					</div>
 				</div>
 				<div class="h-ml-100 h-float-left">
-					<button class="o-button--outline-small_error h-mt-100"><i class="icon-close icon-size--medium h-mr-100"></i>Clear</button>
+					<button class="o-button--outline-small_error h-mt-100" rv-on-click="controller.clearAllFilters"><i class="icon-close icon-size--medium h-mr-100"></i>Clear</button>
 				</div>
 				<div class="h-float-right">
 					<div class="o-button--outline-small_grey h-mt-100">Expand All</div>
@@ -188,7 +188,7 @@
 			</div>
 			<div id="js-media-list">
 				<ul class="list c-list-grid">
-					<li class="c-list-grid--item" rv-each-lot="dataObject.lots">
+					<li class="c-list-grid--item" rv-each-lot="dataObject.lots" rv-data-lot="index">
 						<div class="media-table--col1 media-table--lot-column js-lotnumber" rv-on-click="controller.toggleExpandLot">
 							Lot {index}
 						</div>

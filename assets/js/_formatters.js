@@ -94,3 +94,7 @@ rivets.formatters.propertyList = function(obj) {
 };
 
 
+rivets.formatters.formatThousands = function(value){
+	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+

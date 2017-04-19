@@ -124,6 +124,10 @@ rivets.formatters.propertyList = function(obj) {
 };
 
 
+rivets.formatters.formatThousands = function(value){
+	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 
 
 const lotlist = [
@@ -3241,6 +3245,7 @@ $(function(){
 
 var drake;
 var medialist;
+
 const listOptions = {
 	valueNames:["js-lotnumber",
 				"js-lotequipid",
@@ -3248,7 +3253,9 @@ const listOptions = {
 				"js-lotphoto",
 				"js-lotnotes",
 				"js-lotflagged",
-				"js-lotupdated"],
+				"js-lotupdated",
+				{data:['lot']},
+			],
 };
 
 const relativeURL = function(target){
@@ -3264,6 +3271,18 @@ const cleanPathname = function(){
 };
 
 const dataObject = {
+	activePage: cleanPathname(),
+
+	auctionLots: {
+		haveData: false,
+		downloaded: 2500,
+	},
+	auctionPhotos:{
+		haveData: false,
+		downloaded: 1582,
+		missingHero: 7,
+		withVideo: 21,
+	},
 	getOtherSalesVisible: false,
 	dataCenterSwitchVisible: false,
 	deleteEventVisible: false,
@@ -3275,11 +3294,12 @@ const dataObject = {
 	CCYSettingsVisible: false,
 	confirmDeleteDisplayVisible: false,
 	downloadPhotosSettingsVisible: false,
-	activePage: cleanPathname(),
 	
 	lots: lotlist,
 	sortedColumn: 'js-lotnumber',
 	sortdirection: 'asc',
+	filterRangeStart: null,
+	filterRangeEnd: null,
 	mediaFilters: ['All Lots'],
 	sendEmailVisible: false,
 
@@ -3437,6 +3457,23 @@ const controller = {
 			}
 			medialist.sort(dataObject.sortedColumn,{order:dataObject.sortdirection});
 		},
+		filterLotList:function(e){
+			let rangeStart = (dataObject.filterRangeStart)? parseInt(dataObject.filterRangeStart) : 0;
+			let rangeEnd = (dataObject.filterRangeEnd)? parseInt(dataObject.filterRangeEnd) : 9999;
+
+			medialist.filter(function(item) {
+				if (item.values().lot >= rangeStart && item.values().lot <= rangeEnd ) {
+				   return true;
+				} else {
+				   return false;
+				}
+			});
+		},
+		clearAllFilters: function(e){
+			medialist.filter();
+			dataObject.filterRangeStart = null;
+			dataObject.filterRangeEnd = null;
+		},
 		toggleFilterVisibility: function(e){
 			$('.js-filter-popup').toggleClass('s-visible');
 		},
@@ -3494,11 +3531,17 @@ const controller = {
 const startDownload = function(target){
 	target.active = true;
 	target.progress = 0;
+	
 	var progressTimer = setInterval(function(){
-		target.progress++;
+		
+		if(target.title === 'Downloading Lots') target.progress+= 10;
+		else target.progress++;
+
 		if(target.progress >= target.items){
 			clearInterval(progressTimer);
 			target.active = false;
+			if(target.title === 'Downloading Lots') dataObject.auctionLots.haveData = true;
+			if(target.title === 'Downloading Photos') dataObject.auctionPhotos.haveData = true;
 		}
 	},500);
 };
