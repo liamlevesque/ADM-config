@@ -3234,6 +3234,10 @@ $(function(){
 		medialist.sort(dataObject.sortedColumn,{order:dataObject.sortdirection});
 	} 
 
+	if($('#js-sale-list').length > 0){
+		saleList = new List('js-sale-list',saleListOptions);
+	} 
+
 	if($('.js-header-waypoint').length > 0){
 		var waypoint = new Waypoint({
 		  element: $('.js-header-waypoint'),
@@ -3291,6 +3295,13 @@ const listOptions = {
 				"js-lotflagged",
 				"js-lotupdated",
 				{data:['lot']},
+			],
+};
+
+var saleList;
+const saleListOptions = {
+	valueNames:["jsSaleName",
+				"jsSaleNumber",
 			],
 };
 
@@ -3467,7 +3478,6 @@ const initializeSlideshow = function(){
 function customKeyboardShortcuts(current,name){
 	let newObj = jQuery.extend(true,{},current);
 	newObj.name = name;
-	console.log(newObj);
 	return newObj;
 }
 
@@ -3497,6 +3507,16 @@ const controller = {
 
 	toggleGetOtherSales: function(e){
 		dataObject.getOtherSalesVisible = !dataObject.getOtherSalesVisible;
+	},
+	filterSales: function(e){
+		let query = $(e.currentTarget).val();
+		saleList.filter(function(item) {
+			if (item.values().jsSaleName.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+			   return true;
+			} else {
+			   return false;
+			}
+		});
 	},
 	toggleDataCenterSwitch: function(e){
 		dataObject.dataCenterSwitchVisible = !dataObject.dataCenterSwitchVisible;	
