@@ -98,15 +98,26 @@
 					<h3 class="h3 h-mb-200 h-d-inline-block">Clerk Message Shortcuts</h3>
 					<button class="o-button h-float-right" rv-on-click="controller.toggleManageMessageGroupVisible">Create Custom Clerk Messages</button>
 				</div>
-				<div rv-if="dataObject.customKeyboardShortcuts.exists">
+				<div class="h-mb-100" rv-if="dataObject.keyboardShortcuts | lengthGreaterThanOne">
 					<nav class="o-navigation--sub-tabs h-mt-200">
-						<div class="o-navigation--sub-tab" rv-class-s-active="dataObject.activeTab | compare 'general'" rv-on-click="controller.gotoTab" data-targetpage="general">
-							Default
-						</div>
-						<div class="o-navigation--sub-tab" rv-class-s-active="dataObject.activeTab | compare 'pre'" rv-on-click="controller.gotoTab" data-targetpage="pre">
-							{dataObject.customKeyboardShortcuts.name}
+						<div class="o-navigation--sub-tab" rv-each-shortcutgroup="dataObject.keyboardShortcuts" rv-on-click="controller.setCurrentShortcuts" rv-data-target="index" rv-class-s-active="dataObject.currentShortcuts | compare index">
+							{shortcutgroup.name}
 						</div>
 					</nav>
+				</div>
+
+				<div class="h-overflow-hidden h-mb-100" rv-unless="dataObject.currentShortcuts | compare 0">
+					<div class="h-float-left">
+						<span class="h-mr-200">Active Message Group</span>
+						<label class="h-float-right o-input--setting-toggle">
+							<input type="checkbox" class="o-input--toggle" checked>
+							<div class="toggle-control"></div>
+						</label>
+					</div>
+					<div class="h-float-right">
+						<button class="o-button--outline" rv-on-click="controller.toggleConfirmDeleteShortcuts">Delete Group</button>
+						<button class="o-button--outline">Edit Group</button>
+					</div>
 				</div>
 				
 				<div class="c-list-grid--header">
@@ -114,7 +125,7 @@
 					<div class="l-grid-seveneigths">Message</div>
 				</div>
 				<ul class="c-list-grid">
-					<li class="c-list-grid--item" rv-each-key="dataObject.keyboardShortcuts">
+					<li class="c-list-grid--item" rv-each-key="dataObject.keyboardShortcuts < currentShortcuts | findShortcuts dataObject.currentShortcuts">
 						<div class="l-grid-eigth h-ta-center"><div class="o-keyboard-key">{key.key}</div></div>
 						<div class="l-grid-seveneigths">{key.message}</div>
 					</li>
@@ -133,11 +144,11 @@
 				<h3 class="o-container--header">Custom Message Group</h3>
 				
 				<label for="" class="t-smalllabel">Group Name</label>
-				<input type="text" class="o-input--text" rv-value="dataObject.customKeyboardShortcuts.Name">
+				<input type="text" class="o-input--text" rv-value="dataObject.clonedshortcuts.name">
 				
 				<label for="" class="t-settings-header">Messages</label>
 				<ul class="c-list-grid">
-					<li class="c-list-grid--item" rv-each-key="dataObject.customKeyboardShortcuts.shortcuts">
+					<li class="c-list-grid--item" rv-each-key="dataObject.clonedshortcuts.shortcuts">
 						<div class="l-grid-eigth h-ta-center"><div class="o-keyboard-key">{key.key}</div></div>
 						<div class="l-grid-three-quarters"><input type="text" class="o-input--text" rv-value="key.message"></div>
 						<div class="l-grid-eigth">
@@ -151,6 +162,24 @@
 			<div class="c-modal--footer">
 				<button class="o-text-button--large" rv-on-click="controller.toggleManageMessageGroupVisible">Cancel</button>
 				<button class="o-button h-float-right" rv-on-click="controller.createCustomMessageGroup">Save Message Group</button>
+			</div>
+
+		</div>
+
+	</div> 
+
+	<div class="c-modal" rv-class-s-visible="dataObject.confirmDeleteShortcutsVisible">
+		<div class="c-modal--content_small">
+			<div class="c-modal--body">
+				<h3 class="o-container--header h-color-error">Delete this set of shortcuts?</h3>
+				
+				<p>Are you sure you want to delete these custom shortcuts?</p>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleConfirmDeleteShortcuts">Cancel</button>
+				<button class="o-button_error h-float-right" rv-on-click="controller.deleteCustomMessageGroup">Yes, Delete Display</button>
 			</div>
 
 		</div>

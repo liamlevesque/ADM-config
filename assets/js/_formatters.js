@@ -66,6 +66,12 @@ rivets.formatters.lengthToBool = function(value){
 	return true;
 };
 
+rivets.formatters.lengthGreaterThanOne = function(value){
+	if(typeof value === 'undefined') return false;
+	if(value.length > 1) return true;
+	return false;
+};
+
 rivets.formatters.inverseLengthToBool = function(value){
 	if(typeof value === 'undefined') return true;
 	if(value.length === 0) return true;
@@ -92,6 +98,13 @@ rivets.formatters.propertyList = function(obj) {
     return properties
   });
 };
+
+rivets.formatters.findShortcuts = function(arr,index){
+	if(typeof arr[index] === 'undefined') return false;
+	return arr[index].shortcuts;
+};
+
+
 
 rivets.binders.backgroundsrc = function(el,value){
 	$(el).css({'background-image':value});

@@ -118,6 +118,12 @@ rivets.formatters.lengthToBool = function(value){
 	return true;
 };
 
+rivets.formatters.lengthGreaterThanOne = function(value){
+	if(typeof value === 'undefined') return false;
+	if(value.length > 1) return true;
+	return false;
+};
+
 rivets.formatters.inverseLengthToBool = function(value){
 	if(typeof value === 'undefined') return true;
 	if(value.length === 0) return true;
@@ -144,6 +150,13 @@ rivets.formatters.propertyList = function(obj) {
     return properties
   });
 };
+
+rivets.formatters.findShortcuts = function(arr,index){
+	if(typeof arr[index] === 'undefined') return false;
+	return arr[index].shortcuts;
+};
+
+
 
 rivets.binders.backgroundsrc = function(el,value){
 	$(el).css({'background-image':value});
@@ -3366,52 +3379,13 @@ const dataObject = {
 	},
 
 	manageMessageGroupVisible: false,
-	keyboardShortcuts:[
-		{
-			key: 'f1',
-			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
-		},
-		{
-			key: 'f2',
-			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
-		},
-		{
-			key: 'f3',
-			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
-		},
-		{
-			key: 'f4',
-			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
-		},
-		{
-			key: 'f6',
-			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
-		},
-		{
-			key: 'f7',
-			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
-		},
-		{
-			key: 'f8',
-			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
-		},
-		{
-			key: 'f9',
-			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
-		},
-		{
-			key: 'f10',
-			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
-		},
-		{
-			key: 'f12',
-			message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tellus lacus, dapibus eu urna nec, facilisis convallis odio',
-		},
-		
+	confirmDeleteShortcutsVisible: false,
+	currentShortcuts: 0,
+	keyboardShortcuts: [
 	],
-	customKeyboardShortcuts:{
-		customName: '',
-		exists: false,
+	clonedshortcuts: {},
+	tempshortcuts: {
+		name: '',
 		shortcuts: [
 			{
 				key: 'f1',
@@ -3457,6 +3431,7 @@ const dataObject = {
 		]
 	},
 
+
 	downloads:[
 		{
 			title: "Downloading Photos",
@@ -3489,6 +3464,14 @@ const initializeSlideshow = function(){
 	})
 };
 
+function customKeyboardShortcuts(current,name){
+	let newObj = jQuery.extend(true,{},current);
+	newObj.name = name;
+	console.log(newObj);
+	return newObj;
+}
+
+dataObject.keyboardShortcuts.push(customKeyboardShortcuts(dataObject.tempshortcuts,'Default'));
 
 const controller = {
 	gotoPage: function(e){
@@ -3680,17 +3663,29 @@ const controller = {
 		},
 		toggleManageMessageGroupVisible: function(e){
 			dataObject.manageMessageGroupVisible = !dataObject.manageMessageGroupVisible;
+			if(dataObject.manageMessageGroupVisible)
+				dataObject.clonedshortcuts = customKeyboardShortcuts(dataObject.tempshortcuts,'');
 		},
 		clearKeyboardMsg: function(e,context){
 			context.key.message = '';
 		},
 		createCustomMessageGroup: function(){
-			dataObject.customKeyboardShortcuts.exists = true;
+			dataObject.keyboardShortcuts.push(dataObject.clonedshortcuts);
+			dataObject.clonedshortcuts = {};
+			dataObject.currentShortcuts = dataObject.keyboardShortcuts.length - 1;
 			dataObject.manageMessageGroupVisible = false;
 		},
 		deleteCustomMessageGroup: function(){
-			dataObject.customKeyboardShortcuts.exists = false;	
-			dataObject.customKeyboardShortcuts.name = '';
+			dataObject.confirmDeleteShortcutsVisible = false;
+			let tempindex = dataObject.currentShortcuts;
+			dataObject.currentShortcuts = 0;
+			dataObject.keyboardShortcuts.splice(tempindex,1);
+		},
+		setCurrentShortcuts: function(e){
+			dataObject.currentShortcuts = parseInt($(e.currentTarget).data('target'));
+		},
+		toggleConfirmDeleteShortcuts: function(e){
+			dataObject.confirmDeleteShortcutsVisible = !dataObject.confirmDeleteShortcutsVisible;
 		}
 
 };
@@ -3722,9 +3717,6 @@ rivets.bind($('.js--data-context'),{
 	dataObject: dataObject,
 	controller: controller
 });
-
-
-
 
 
 
