@@ -89,7 +89,7 @@ const cleanPathname = function(){
 
 const dataObject = {
 	activePage: cleanPathname(),
-
+	auctionName: 'Regina, Sk',
 	auctionLots: {
 		haveData: false,
 		downloaded: 2500,
