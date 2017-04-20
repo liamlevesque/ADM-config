@@ -3460,6 +3460,12 @@ const dataObject = {
 		}
 	],
 	downloadStarted: false,
+
+
+	reportClerkActivity:false,
+	reportRecipient: '',
+	confirmReportSentVisible: false,
+	techReportRecipient: '',
 };
 
 var mySwiper = null;
@@ -3674,7 +3680,7 @@ const controller = {
 			dataObject.savedConfirmationVisible = true;
 			setTimeout(function(){
 				dataObject.savedConfirmationVisible = false;
-			},2000);
+			},toastDuration);
 		},
 		clearSpecialMsg: function(e){
 			dataObject.presentation.specialMsg = '';
@@ -3707,9 +3713,20 @@ const controller = {
 		},
 		toggleConfirmDeleteShortcuts: function(e){
 			dataObject.confirmDeleteShortcutsVisible = !dataObject.confirmDeleteShortcutsVisible;
-		}
+		},
 
+	//REPORTS
+		confirmReportSent: function(e){
+			dataObject.confirmReportSentVisible = true;
+			setTimeout(function(){
+				dataObject.confirmReportSentVisible = false;
+				dataObject.reportRecipient = '';
+				dataObject.reportClerkActivity = false;
+			},toastDuration);
+		},
 };
+
+const toastDuration = 2000;
 
 const startDownload = function(target){
 	target.active = true;

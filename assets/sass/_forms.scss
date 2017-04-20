@@ -47,7 +47,7 @@
 		width: 80px;	
 	}
 
-.o-inpute--text-inline{
+.o-input--text-inline{
 	@include textinput;
 	width: auto;
 	display: inline-block;
@@ -233,7 +233,7 @@ $checkmark-icon_white: url(data:image/svg+xml,%3Csvg%20width%3D%2226px%22%20heig
 	overflow: hidden;
 	cursor: pointer;
 
-	input {
+	input[type="checkbox"], input[type="radio"] {
 		position: absolute;
 		clip: rect(0,0,0,0);
 
@@ -282,8 +282,14 @@ $checkmark-icon_white: url(data:image/svg+xml,%3Csvg%20width%3D%2226px%22%20heig
 	.o-input--toggle_vertical{
 		@include toggle;
 
-		input:checked ~ div:before{
-			opacity: 1;
+		input:checked ~ div{
+			&:before{
+				opacity: 1;
+			}
+
+			.sub-section{
+				display: block;
+			}
 		}
 
 		&>div{
@@ -298,6 +304,16 @@ $checkmark-icon_white: url(data:image/svg+xml,%3Csvg%20width%3D%2226px%22%20heig
 				display: block;
 				color: white;
 				opacity: 0;
+			}
+			
+			.sub-section{
+				display: none;
+			}
+
+			input{
+				margin: 0;
+				margin-top: -1 * spacing(small);
+				margin-bottom: -1 * spacing(small);
 			}
 		}
 

@@ -443,6 +443,12 @@
 		"oAP": "\/assets\/partials\/_header_event.html",
 		"oF": 0
 		},
+	"\/assets\/partials\/_image-download-config.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_image-download-config.html",
+		"oF": 0
+		},
 	"\/assets\/partials\/_mktg-presentation-settings.kit": {
 		"ft": 2048,
 		"oA": 1,
@@ -477,6 +483,12 @@
 		"ft": 2048,
 		"oA": 1,
 		"oAP": "\/assets\/partials\/_presentation-nav.html",
+		"oF": 0
+		},
+	"\/assets\/partials\/_switch-data-center.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_switch-data-center.html",
 		"oF": 0
 		},
 	"\/assets\/sass\/_aligned-fields.scss": {

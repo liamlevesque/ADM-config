@@ -46,36 +46,36 @@
 
 	</header>
 
-		<div class="c-modal" rv-class-s-visible="dataObject.dataCenterSwitchVisible">
-		<div class="c-modal--content">
-			<div class="c-modal--body">
-				<h3 class="o-container--header">Switch Data Centers</h3>
-				
-				<div>
-					<label class="o-input--toggle_vertical">
-						<input type="radio" name="dataswitch" checked>
-						<div>
-							<div class="l-grid-quarter t-allcaps">Primary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
-						</div>
-					</label>
-					<label class="o-input--toggle_vertical">
-						<input type="radio" name="dataswitch">
-						<div>
-							<div class="l-grid-quarter t-allcaps">Secondary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
-						</div>
-					</label>
+	<div class="c-modal" rv-class-s-visible="dataObject.dataCenterSwitchVisible">
+			<div class="c-modal--content">
+				<div class="c-modal--body">
+					<h3 class="o-container--header">Switch Data Centers</h3>
+					
+					<div>
+						<label class="o-input--toggle_vertical">
+							<input type="radio" name="dataswitch" checked>
+							<div>
+								<div class="l-grid-quarter t-allcaps">Primary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
+							</div>
+						</label>
+						<label class="o-input--toggle_vertical">
+							<input type="radio" name="dataswitch">
+							<div>
+								<div class="l-grid-quarter t-allcaps">Secondary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
+							</div>
+						</label>
+					</div>
+					
 				</div>
-				
+	
+				<div class="c-modal--footer">
+					<button class="o-text-button--large" rv-on-click="controller.toggleDataCenterSwitch">Cancel</button>
+					<button class="o-button h-float-right" disabled>Switch</button>
+				</div>
+	
 			</div>
-
-			<div class="c-modal--footer">
-				<button class="o-text-button--large" rv-on-click="controller.toggleDataCenterSwitch">Cancel</button>
-				<button class="o-button h-float-right" disabled>Switch</button>
-			</div>
-
+	
 		</div>
-
-	</div>
 
 	<div>
 
@@ -115,12 +115,106 @@
 	
 </header>
 
-	<div class="o-width-wrapper h-mt-300">
+	<div class="o-width-wrapper h-mt-300 h-mb-300">
 
+		<div class="c-container-box l-grid-half">
+			<h3 class="h3 h-mb-200">System report</h3>
+			
+			<div class="">
+				<div class="h-mb-100">
+					<label for="" class="t-smalllabel">Email Report To:</label><br/>
+					<input type="email" placeholder="e-mail address" class="o-input--text-inline" rv-value="dataObject.reportRecipient">
+					<span>@rbauction.com</span>
+				</div>
+				<div class="h-mb-100">
+					<label for="" class="t-settings-header">Report Type</label>
+					<label class="o-input--checkbox h-mb-100">
+						<input type="checkbox" name="reportType" rv-checked="dataObject.reportClerkActivity">
+						<span class="o-input--checksymbol"></span>
+						<span>Clerk Activity Report</span>
+					</label>
+					<div class="c-modal--sub-box_outline h-mb-100" rv-if="dataObject.reportClerkActivity">
+						<label class="o-input--toggle_vertical">
+							<input type="radio" name="clerkReportType" checked>
+							<div>Entire Ring</div>
+						</label>
+						<label class="o-input--toggle_vertical">
+							<input type="radio" name="clerkReportType">
+							<div class="h-overflow-hidden">
+								<span class="h-float-left h-mr-100">Single Lot</span>
+								<div class="sub-section h-float-left">
+									<input type="text" placeholder="lot #" class="o-input--text-inline">
+								</div>
+							</div>
+						</label>
+						<label class="o-input--toggle_vertical">
+							<input type="radio" name="clerkReportType">
+							<div class="h-overflow-hidden">
+								<span class="h-float-left h-mr-100">Lot Range</span>
+								<div class="sub-section h-float-left">
+									<input type="text" placeholder="from" class="o-input--text_small"> - 
+									<input type="text" placeholder="to" class="o-input--text_small">
+								</div>
+							</div>
+						</label>
+					</div>
+					<label class="o-input--checkbox h-mb-100">
+						<input type="checkbox" name="reportType">
+						<span class="o-input--checksymbol"></span>
+						<span>Sold Log Report</span>
+					</label>
+					<label class="o-input--checkbox h-mb-100">
+						<input type="checkbox" name="reportType">
+						<span class="o-input--checksymbol"></span>
+						<span>Media Log Report</span>
+					</label>
+					<label class="o-input--checkbox h-mb-100">
+						<input type="checkbox" name="reportType">
+						<span class="o-input--checksymbol"></span>
+						<span>Message Log Report</span>
+					</label>
+					
+				</div>
+
+				<div class="">
+					<button class="o-button h-float-right" rv-enabled="dataObject.reportRecipient" rv-on-click="controller.confirmReportSent">Send System Report(s)</button>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="c-container-box l-grid-half">
+			<h3 class="h3 h-mb-200">Technical report</h3>
+			
+			<div class="h-overflow-hidden">
+				<label for="" class="t-smalllabel">Problem Description</label>
+				<textarea class="o-input--textarea" placeholder="a few words on the problem"></textarea>
+			</div>
+			<div class="h-overflow-hidden">
+				<label for="" class="t-smalllabel">Site Location</label>
+				<input type="text" class="o-input--text" placeholder="eg. Orlando, FL">
+			</div>
+			<div class="h-overflow-hidden">
+				<label for="" class="t-smalllabel">Reporter</label>
+				<input type="text" class="o-input--text" placeholder="Your Name">
+			</div>
+			<div class="h-overflow-hidden">
+				<label for="" class="t-smalllabel">Reporter Contact</label>
+				<input type="text" class="o-input--text" placeholder="Email ID or Phone Number" rv-value="dataObject.techReportRecipient">
+			</div>
+			
+			<div class="">
+				<button class="o-button h-float-right" rv-enabled="dataObject.techReportRecipient" rv-on-click="controller.confirmReportSent">Send Technical Report</button>
+			</div>
+		</div>
 		
-
-
 	</div>
+
+	<div class="o-toast--confirm-save-changes" rv-class-s-visible="dataObject.confirmReportSentVisible">
+		Report Sent!
+	</div>
+
 
 	
 	<div class="c-download-monitor" rv-class-s-visible="dataObject.downloadStarted">

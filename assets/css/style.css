@@ -639,7 +639,7 @@ hr {
   display: inline-block;
   width: 80px; }
 
-.o-inpute--text-inline {
+.o-input--text-inline {
   height: 40px;
   width: 100%;
   display: block;
@@ -657,13 +657,13 @@ hr {
   margin-bottom: 20px;
   width: auto;
   display: inline-block; }
-  .o-inpute--text-inline.invalid, .o-inpute--text-inline.s-error {
+  .o-input--text-inline.invalid, .o-input--text-inline.s-error {
     background-color: #F3BFBF; }
-  .o-inpute--text-inline.s-error_border {
+  .o-input--text-inline.s-error_border {
     border: 1px solid #c4483a; }
-  .o-inpute--text-inline:hover {
+  .o-input--text-inline:hover {
     border: 1px solid #E87722; }
-  .o-inpute--text-inline:focus {
+  .o-input--text-inline:focus {
     border: 1px solid #E87722; }
 
 .o-input--textarea {
@@ -885,13 +885,13 @@ hr {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 0px;
           flex: 1 1 0; }
-  .o-input--toggle input {
+  .o-input--toggle input[type="checkbox"], .o-input--toggle input[type="radio"] {
     position: absolute;
     clip: rect(0, 0, 0, 0); }
-    .o-input--toggle input:checked ~ div {
+    .o-input--toggle input[type="checkbox"]:checked ~ div, .o-input--toggle input[type="radio"]:checked ~ div {
       background-color: #E87722;
       color: white; }
-      .o-input--toggle input:checked ~ div:before {
+      .o-input--toggle input[type="checkbox"]:checked ~ div:before, .o-input--toggle input[type="radio"]:checked ~ div:before {
         opacity: 1; }
   .o-input--toggle > div {
     padding: 15px 20px;
@@ -910,13 +910,13 @@ hr {
   display: block;
   overflow: hidden;
   cursor: pointer; }
-  .o-input--toggle_vertical input {
+  .o-input--toggle_vertical input[type="checkbox"], .o-input--toggle_vertical input[type="radio"] {
     position: absolute;
     clip: rect(0, 0, 0, 0); }
-    .o-input--toggle_vertical input:checked ~ div {
+    .o-input--toggle_vertical input[type="checkbox"]:checked ~ div, .o-input--toggle_vertical input[type="radio"]:checked ~ div {
       background-color: #E87722;
       color: white; }
-      .o-input--toggle_vertical input:checked ~ div:before {
+      .o-input--toggle_vertical input[type="checkbox"]:checked ~ div:before, .o-input--toggle_vertical input[type="radio"]:checked ~ div:before {
         opacity: 1; }
   .o-input--toggle_vertical > div {
     padding: 15px 20px;
@@ -924,6 +924,8 @@ hr {
     position: relative; }
   .o-input--toggle_vertical input:checked ~ div:before {
     opacity: 1; }
+  .o-input--toggle_vertical input:checked ~ div .sub-section {
+    display: block; }
   .o-input--toggle_vertical > div {
     padding: 20px;
     padding-left: 60px; }
@@ -942,6 +944,12 @@ hr {
       display: block;
       color: white;
       opacity: 0; }
+    .o-input--toggle_vertical > div .sub-section {
+      display: none; }
+    .o-input--toggle_vertical > div input {
+      margin: 0;
+      margin-top: -15px;
+      margin-bottom: -15px; }
   .o-input--toggle_vertical:first-child > div {
     border-radius: 15px 15px 0 0;
     border-bottom: none; }
@@ -1850,6 +1858,13 @@ hr {
 .c-modal--sub-box {
   background-color: #E9E9E9;
   padding: 20px; }
+
+.c-modal--sub-box_outline {
+  padding: 20px;
+  padding-left: 40px;
+  border: 1px solid #bfc0be;
+  border-right: none;
+  border-left: none; }
 
 .c-combo-pop-up {
   width: 300px;

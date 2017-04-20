@@ -1,0 +1,42 @@
+
+	<div class="c-modal" rv-class-s-visible="dataObject.downloadPhotosSettingsVisible">
+		<div class="c-modal--content_small">
+			<div class="c-modal--body">
+				<h3 class="o-container--header">Download Latest Photos</h3>
+				
+				<label class="o-input--checkbox h-mb-100">
+					<input type="radio" name="downloadType" checked>
+					<span class="o-input--checksymbol"></span>
+					<span>Download All Images</span>
+				</label>
+				<label class="o-input--checkbox h-mb-100">
+					<input type="radio" name="downloadType">
+					<span class="o-input--checksymbol"></span>
+					<span>Download Missing Images</span>
+				</label>
+				<label class="o-input--checkbox h-mb-100">
+					<input type="radio" name="downloadType">
+					<span class="o-input--checksymbol"></span>
+					<span>Download Lot Images:</span>
+				</label>
+				<div class="c-modal--sub-box">
+					<span>From:</span>
+					<div class="l-grid-third">
+						<input type="text" placeholder="lot #" class="o-input--text">
+					</div>
+					<span>To:</span>
+					<div class="l-grid-third">
+						<input type="text" placeholder="lot #" class="o-input--text">
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleDownloadPhotosSettingsVisible">Cancel</button>
+				<button class="o-button h-float-right" rv-on-click="controller.startPhotoDownload">Start Download</button>
+			</div>
+
+		</div>
+
+	</div> 

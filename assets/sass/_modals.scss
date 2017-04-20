@@ -60,3 +60,13 @@
 			background-color: palette(grey,light);
 			padding: spacing(medium);
 		}
+		
+		.c-modal--sub-box_outline{
+			padding: spacing(medium);
+			padding-left: 40px;
+			border: $default-border;
+			border-right: none;
+			border-left: none;
+		}
+
+
