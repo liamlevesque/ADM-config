@@ -3503,6 +3503,7 @@ const controller = {
 	},
 	toggleDeleteEventVisible: function(e){
 		dataObject.deleteEventVisible = !dataObject.deleteEventVisible;
+		e.stopPropagation();
 	},
 	toggleAddDisplayVisible: function(e){
 		dataObject.addDisplayVisible = !dataObject.addDisplayVisible;
