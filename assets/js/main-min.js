@@ -3278,6 +3278,12 @@ $(function(){
 
 	$('.js-pres-settings').on('change keyup',function(){
 		dataObject.savePresChangeVisible = true;
+		dataObject.resetChangesVisible = true;
+	});
+
+	$('.js-advanced-settings').on('change keyup',function(){
+		dataObject.savePresChangeVisible = true;
+		dataObject.resetChangesVisible = true;
 	});
 
 	
@@ -3466,6 +3472,9 @@ const dataObject = {
 	reportRecipient: '',
 	confirmReportSentVisible: false,
 	techReportRecipient: '',
+
+	advancedUserName: '',
+	acceptedGraveResponsibility: false,
 };
 
 var mySwiper = null;
@@ -3682,6 +3691,10 @@ const controller = {
 				dataObject.savedConfirmationVisible = false;
 			},toastDuration);
 		},
+		hideSavedConfirmation: function(e){
+			dataObject.savePresChangeVisible = false;
+			dataObject.resetChangesVisible = false;
+		},
 		clearSpecialMsg: function(e){
 			dataObject.presentation.specialMsg = '';
 		},
@@ -3723,6 +3736,11 @@ const controller = {
 				dataObject.reportRecipient = '';
 				dataObject.reportClerkActivity = false;
 			},toastDuration);
+		},
+
+	//ADVANCED
+		acceptGraveResponsibility: function(e){
+			dataObject.acceptedGraveResponsibility = true;
 		},
 };
 

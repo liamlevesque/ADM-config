@@ -721,8 +721,7 @@ hr {
     display: block; }
 
 .o-input--password_slim, .o-input--text_slim {
-  margin-bottom: 0;
-  border-bottom: none; }
+  margin-bottom: 0; }
 
 .l-input--toggle {
   position: absolute;
@@ -1926,6 +1925,10 @@ hr {
 .l-wrapper {
   max-width: 800px;
   margin: 40px auto; }
+
+.l-small-centered {
+  max-width: 600px;
+  margin: 0 auto; }
 
 .l-full-width {
   display: block;

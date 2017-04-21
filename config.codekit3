@@ -485,6 +485,12 @@
 		"oAP": "\/assets\/partials\/_presentation-nav.html",
 		"oF": 0
 		},
+	"\/assets\/partials\/_save-confirm-toasts.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_save-confirm-toasts.html",
+		"oF": 0
+		},
 	"\/assets\/partials\/_switch-data-center.kit": {
 		"ft": 2048,
 		"oA": 1,

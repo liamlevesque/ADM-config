@@ -117,10 +117,65 @@
 
 	<div class="o-width-wrapper h-mt-300">
 
-		
+		<div class="c-container-box l-small-centered" rv-hide="dataObject.acceptedGraveResponsibility">
+			<h3 class="t-allcaps h-color-error h-mb-200">Edit Advanced Settings?</h3>
+			<p>Are you sure you want to edit these settings? These settings may cause unexpected behaviour if you&rsquo;re not SURE of what you&rsquo;re doing.</p>
+			<p>Enter your username to proceed</p>
+
+			<div class="h-ta-center">
+				<input type="text" class="o-input--text-inline" placeholder="Your Name" rv-value="dataObject.advancedUserName">
+				<br>
+				<button class="o-button_error" rv-enabled="dataObject.advancedUserName" rv-on-click="controller.acceptGraveResponsibility">Edit Advanced Settings</button>
+			</div>
+		</div>
+
+		<div class="c-container-box js-advanced-settings" rv-show="dataObject.acceptedGraveResponsibility">
+			<h3 class="h3 h-mb-200 h-color-brand h-overflow-hidden">
+				Advanced Settings
+				<button class="o-button_error h-float-right" rv-show="dataObject.resetChangesVisible" rv-on-click="controller.hideSavedConfirmation">Reset To Defaults</button>
+			</h3>
+
+			<ul class="c-list-grid">
+				<li class="c-list-grid--item">
+					<div class="l-grid-half">ShowImagesFromLocalInOnlineMode</div>
+					<div class="l-grid-half">
+						<select class="o-input--select">
+							<option selected>true</option>
+							<option>false</option>
+						</select>
+					</div>
+				</li>
+				<li class="c-list-grid--item">
+					<div class="l-grid-half">post_auction_start_again_time</div>
+					<div class="l-grid-half">
+						<input type="text" class="o-input--text_slim" value="08:00">
+					</div>
+				</li>
+				<li class="c-list-grid--item">
+					<div class="l-grid-half">buildVersion</div>
+					<div class="l-grid-half">
+						9.2.26
+					</div>
+				</li>
+				<li class="c-list-grid--item">
+					<div class="l-grid-half">asset_video_location</div>
+					<div class="l-grid-half">
+						<input type="text" class="o-input--text_slim" value="C:\ADM\Videos">
+					</div>
+				</li>
+			</ul>
+		</div>
 
 
-	</div>
+	</div> 
+
+		<div class="o-toast--prompt-save-changes" rv-class-s-visible="dataObject.savePresChangeVisible">
+			<button class="o-button_affirmative h-float-right" rv-on-click="controller.showSavedConfirmation">Save Changes</button>
+		</div>
+	
+		<div class="o-toast--confirm-save-changes" rv-class-s-visible="dataObject.savedConfirmationVisible">
+			Changes Saved
+		</div> 
 
 	
 	<div class="c-download-monitor" rv-class-s-visible="dataObject.downloadStarted">
