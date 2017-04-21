@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'ritchie-icons';
-    src:    url('../fonts/ritchie-icons.eot?q7opb8');
-    src:    url('../fonts/ritchie-icons.eot?q7opb8#iefix') format('embedded-opentype'),
-        url('../fonts/ritchie-icons.ttf?q7opb8') format('truetype'),
-        url('../fonts/ritchie-icons.woff?q7opb8') format('woff'),
-        url('../fonts/ritchie-icons.svg?q7opb8#ritchie-icons') format('svg');
+    src:    url('../fonts/ritchie-icons.eot?k6m3nd');
+    src:    url('../fonts/ritchie-icons.eot?k6m3nd#iefix') format('embedded-opentype'),
+        url('../fonts/ritchie-icons.ttf?k6m3nd') format('truetype'),
+        url('../fonts/ritchie-icons.woff?k6m3nd') format('woff'),
+        url('../fonts/ritchie-icons.svg?k6m3nd#ritchie-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 } 
@@ -49,6 +49,18 @@ $icon-medium: 16px;
     vertical-align: middle;
 }
 
+.icon-Configure:before {
+  content: "\e92a";
+}
+.icon-Media:before {
+  content: "\e92b";
+}
+.icon-Presentation:before {
+  content: "\e92c";
+}
+.icon-Reports:before {
+  content: "\e92d";
+}
 .icon-server:before {
   content: "\e910";
 }
