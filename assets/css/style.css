@@ -1,5 +1,4 @@
-@import url(../../bower_components/swiper/dist/css/swiper.min.css);
-@import url(../../bower_components/dragula.js/dist/dragula.css);
+@import url(swiper.min.css);
 @font-face {
   font-family: 'ritchie-icons';
   src: url("../fonts/ritchie-icons.eot?k6m3nd");
