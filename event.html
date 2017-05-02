@@ -59,7 +59,7 @@
 							</div>
 						</label>
 						<label class="o-input--toggle_vertical">
-							<input type="radio" name="dataswitch">
+							<input type="radio" name="dataswitch" rv-checked="dataObject.dataCenter2">
 							<div>
 								<div class="l-grid-quarter t-allcaps">Secondary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
 							</div>
@@ -70,12 +70,30 @@
 	
 				<div class="c-modal--footer">
 					<button class="o-text-button--large" rv-on-click="controller.toggleDataCenterSwitch">Cancel</button>
-					<button class="o-button h-float-right" disabled>Switch</button>
+					<button class="o-button h-float-right" rv-on-click="controller.toggleConfirmSwitchDataCenter" rv-enabled="dataObject.dataCenter2">Switch</button>
 				</div>
 	
 			</div>
 	
 		</div>
+	
+		<div class="c-modal" rv-class-s-visible="dataObject.confirmSwitchDataCenter">
+			<div class="c-modal--content_small">
+				<div class="c-modal--body">
+					<h3 class="o-container--header h-color-error">Are you sure?</h3>
+					
+					<p>Are you sure you want to switch data centers? This is a big switch - only do this if it's necessary!</p>
+					
+				</div>
+	
+				<div class="c-modal--footer">
+					<button class="o-text-button--large" rv-on-click="controller.toggleConfirmSwitchDataCenter">Cancel</button>
+					<button class="o-button_error h-float-right" rv-on-click="controller.toggleConfirmSwitchDataCenter">Switch Data Center</button>
+				</div>
+	
+			</div>
+	
+		</div> 
 
 	<div>
 
@@ -87,7 +105,7 @@
 	<div class="o-width-wrapper">
 		<div class="h-mb-200 h-pt-200">
 			<h1 class="h1 h-mb-100">{ dataObject.auctionName } &middot; Ring 1</h1>
-			<div> Lots: 1 - 451, 8001 - 8012 <span class="h-color-offwhite">(491 Lots)</span></div>
+			<div> Lots: 1 - 451, 8001 - 8012</div>
 			<div class="l-abs-right h-pt-200">
 				<button class="o-button--outline_white " rv-on-click="controller.toggleGetOtherSales">Refresh Event Data</button>
 				<button class="o-button--light">Launch Clerk</button>
@@ -115,7 +133,7 @@
 	
 </header>
 
-	<div class="o-width-wrapper h-mt-300">
+	<div class="o-width-wrapper h-overflow-hidden h-p-100 h-mt-300 h-mb-300">
 
 		<section class="c-container-box h-mb-300">
 			<div class="h-overflow-hidden">
@@ -164,36 +182,42 @@
 				</div>
 			</div>
 
-			<div class="c-container-box--footer">
+			<div class="c-container-box--footer" rv-if="dataObject.hasDownloaded">
 				<div class="c-history">
 					<div class="l-grid-sixth">
-						<span class="t-allcaps">Transfer history</span>
-						<button class="o-text-button_white" rv-on-click="controller.toggleHistoryExpanded"><span rv-if="dataObject.historyExpanded">Hide</span><span rv-unless="dataObject.historyExpanded">Show All</span></button>
+						<span class="t-allcaps">Latest Download</span>
 					</div>
 					<div class="l-grid-fivesixths">
-						<div class="l-grid-half c-history--header">15/12 3:14PM - 721 Lots Downloaded</div>
-						<div class="l-grid-half c-history--header s-error">15/12 3:14PM - Error Completing Download</div>
+						<div class="h-overflow-hidden">
+							<div class="l-grid-half">
+								<div class="c-history--header" rv-if="dataObject.auctionLots.haveData">15/12 3:14PM - 12 Lots Downloaded</div>
+							</div>
+							<div class="l-grid-half">
+								<div class="c-history--header s-error" rv-if="dataObject.auctionPhotos.haveData">15/12 3:14PM - Error Completing Download</div>
+							</div>
+						</div>
+						<div class="h-overflow-hidden" rv-if="dataObject.historyExpanded">
+							<div class="l-grid-half">
+								<ul class="c-history--list" rv-if="dataObject.auctionLots.haveData">
+									<li class="c-history--item">15/12 3:12PM - 128 Lots Downloaded</li>
+									<li class="c-history--item s-error">15/12 12:31PM - Error Completing Download</li>
+									<li class="c-history--item">15/12 7:21AM - 2,360 Lots Downloaded</li>
+								</ul>
+							</div>
+							<div class="l-grid-half">
+								<ul class="c-history--list" rv-if="dataObject.auctionPhotos.haveData">
+									<li class="c-history--item">15/12 3:14PM - 84 Photos Downloaded</li>
+									<li class="c-history--item">15/12 2:22PM - 177 Photos Downloaded</li>
+									<li class="c-history--item">15/12 1:21PM - 1,321 Photos Downloaded</li>
+								</ul>
+							</div>
+						</div>
+						<div class="h-ta-center">
+							<button class="o-text-button_white" rv-on-click="controller.toggleHistoryExpanded"><span rv-if="dataObject.historyExpanded">Hide History</span><span rv-unless="dataObject.historyExpanded">Show Complete Download History</span></button>
+						</div>
 					</div>
 				</div>
-				<div class="c-history--body" rv-if="dataObject.historyExpanded">
-					<div class="l-grid-sixth"></div>
-					<div class="l-grid-fivesixths">
-						<div class="l-grid-half">
-							<ul class="c-history--list">
-								<li class="c-history--item">15/12 3:14PM - 721 Lots Downloaded</li>
-								<li class="c-history--item s-error">15/12 3:14PM - Error Completing Download</li>
-								<li class="c-history--item">15/12 3:14PM - 721 Lots Downloaded</li>
-							</ul>
-						</div>
-						<div class="l-grid-half">
-							<ul class="c-history--list">
-								<li class="c-history--item">15/12 3:14PM - 2000 Photos Downloaded</li>
-								<li class="c-history--item">15/12 3:14PM - 2000 Photos Downloaded</li>
-								<li class="c-history--item">15/12 3:14PM - 2000 Photos Downloaded</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</section>
 
@@ -641,18 +665,18 @@
 						<span>Download Missing Images</span>
 					</label>
 					<label class="o-input--checkbox h-mb-100">
-						<input type="radio" name="downloadType">
+						<input type="radio" name="downloadType" class="js-downloadLotImages">
 						<span class="o-input--checksymbol"></span>
 						<span>Download Lot Images:</span>
 					</label>
 					<div class="c-modal--sub-box">
 						<span>From:</span>
 						<div class="l-grid-third">
-							<input type="text" placeholder="lot #" class="o-input--text">
+							<input type="text" placeholder="lot #" class="o-input--text" rv-on-click="controller.checkDownloadLotImages">
 						</div>
 						<span>To:</span>
 						<div class="l-grid-third">
-							<input type="text" placeholder="lot #" class="o-input--text">
+							<input type="text" placeholder="lot #" class="o-input--text" rv-on-click="controller.checkDownloadLotImages">
 						</div>
 					</div>
 					
@@ -686,13 +710,31 @@
 
 	</div> 
 
+	<div class="c-modal" rv-class-s-visible="dataObject.noInventoryErrorVisible">
+		<div class="c-modal--content_small">
+			<div class="c-modal--body">
+				<h3 class="o-container--header h-color-error">No inventory for this sale!</h3>
+				
+				<p>Woops - can't start the download because there's no inventory loaded for this sale.</p>
+				<p>Contact OAO Support for help</p>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleNoInventoryErrorVisible">Done</button>
+			</div>
+
+		</div>
+
+	</div> 
+
 	
 	<div class="c-download-monitor" rv-class-s-visible="dataObject.downloadStarted">
 		<div class="c-download-monitor--item" rv-each-download="dataObject.downloads" rv-class-s-error="download.error" rv-show="download.active">
 			<div class="o-download-item--header">
-				<i class="icon-photo"></i>{ download.title }
+				<span  rv-on-click="controller.throwDownloadError">{ download.title }</span>
 				<button class="o-text-button h-float-right" rv-unless="download.error" rv-on-click="controller.cancelDownload">Cancel</button>
-				<button class="o-text-button_white h-float-right" rv-if="download.error">Dismiss</button>
+				<button class="o-text-button_white h-float-right" rv-if="download.error" rv-on-click="controller.errorDismiss">Dismiss</button>
 			</div>
 			<div class="o-download-item--body" rv-unless="download.error">
 				<div class="">
@@ -705,11 +747,14 @@
 			</div>
 			<div class="o-download-item--error" rv-if="download.error">
 				There was an error downloading inventory.
-				<button class="o-text-button_white">Retry</button>
-				<button class="o-text-button_white h-float-right">View Error</button>
+				<button class="o-text-button_white" rv-on-click="controller.errorRetry">Retry</button>
+				<button class="o-text-button_white h-float-right" rv-on-click="controller.toggleHistoryExpanded">View Error</button>
 			</div>
 		</div>
 	</div> 
+
+
+<div class="h-mt-300">&nbsp;</div>
 
 
 <script type="text/javascript" src="assets/js/main-min.js"></script>

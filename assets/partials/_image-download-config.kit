@@ -15,18 +15,18 @@
 					<span>Download Missing Images</span>
 				</label>
 				<label class="o-input--checkbox h-mb-100">
-					<input type="radio" name="downloadType">
+					<input type="radio" name="downloadType" class="js-downloadLotImages">
 					<span class="o-input--checksymbol"></span>
 					<span>Download Lot Images:</span>
 				</label>
 				<div class="c-modal--sub-box">
 					<span>From:</span>
 					<div class="l-grid-third">
-						<input type="text" placeholder="lot #" class="o-input--text">
+						<input type="text" placeholder="lot #" class="o-input--text" rv-on-click="controller.checkDownloadLotImages">
 					</div>
 					<span>To:</span>
 					<div class="l-grid-third">
-						<input type="text" placeholder="lot #" class="o-input--text">
+						<input type="text" placeholder="lot #" class="o-input--text" rv-on-click="controller.checkDownloadLotImages">
 					</div>
 				</div>
 				

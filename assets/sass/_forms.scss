@@ -53,10 +53,14 @@
 	display: inline-block;
 }
 
-.o-input--textarea{
+.o-input--textarea, [class^="o-input--textarea_"]{
 	@include textinput;
 	height: 2*$input-height;
 }
+
+	.o-input--textarea_slim{
+		margin-bottom: 0;
+	}
 
 .o-input--password, [class^="o-input--password_"]{
 	@include textinput;

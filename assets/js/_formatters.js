@@ -28,6 +28,13 @@ rivets.formatters.compare = function(value, comparisons){
 	return false;
 };
 
+rivets.formatters.greaterthan = function(value, comparisons){
+	if(typeof value == "undefined" || typeof comparisons == "undefined") return false;
+
+	if(value > comparisons) return true;
+	else return false;
+};
+
 rivets.binders.addtextclass = function(el,value){
 	if(value === "") return false;
 	$(el).removeClass().addClass('s-'+ value);

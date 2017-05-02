@@ -59,7 +59,7 @@
 							</div>
 						</label>
 						<label class="o-input--toggle_vertical">
-							<input type="radio" name="dataswitch">
+							<input type="radio" name="dataswitch" rv-checked="dataObject.dataCenter2">
 							<div>
 								<div class="l-grid-quarter t-allcaps">Secondary</div><div class="l-grid-three-quarters o-input--toggle--label">http://ashrba5wc01.ashburn.auctionsolutions.com</div>
 							</div>
@@ -70,12 +70,30 @@
 	
 				<div class="c-modal--footer">
 					<button class="o-text-button--large" rv-on-click="controller.toggleDataCenterSwitch">Cancel</button>
-					<button class="o-button h-float-right" disabled>Switch</button>
+					<button class="o-button h-float-right" rv-on-click="controller.toggleConfirmSwitchDataCenter" rv-enabled="dataObject.dataCenter2">Switch</button>
 				</div>
 	
 			</div>
 	
 		</div>
+	
+		<div class="c-modal" rv-class-s-visible="dataObject.confirmSwitchDataCenter">
+			<div class="c-modal--content_small">
+				<div class="c-modal--body">
+					<h3 class="o-container--header h-color-error">Are you sure?</h3>
+					
+					<p>Are you sure you want to switch data centers? This is a big switch - only do this if it's necessary!</p>
+					
+				</div>
+	
+				<div class="c-modal--footer">
+					<button class="o-text-button--large" rv-on-click="controller.toggleConfirmSwitchDataCenter">Cancel</button>
+					<button class="o-button_error h-float-right" rv-on-click="controller.toggleConfirmSwitchDataCenter">Switch Data Center</button>
+				</div>
+	
+			</div>
+	
+		</div> 
 
 	<div>
 
@@ -87,7 +105,7 @@
 	<div class="o-width-wrapper">
 		<div class="h-mb-200 h-pt-200">
 			<h1 class="h1 h-mb-100">{ dataObject.auctionName } &middot; Ring 1</h1>
-			<div> Lots: 1 - 451, 8001 - 8012 <span class="h-color-offwhite">(491 Lots)</span></div>
+			<div> Lots: 1 - 451, 8001 - 8012</div>
 			<div class="l-abs-right h-pt-200">
 				<button class="o-button--outline_white " rv-on-click="controller.toggleGetOtherSales">Refresh Event Data</button>
 				<button class="o-button--light">Launch Clerk</button>
@@ -170,7 +188,10 @@
 	</div> 
 
 		<div class="o-toast--prompt-save-changes" rv-class-s-visible="dataObject.savePresChangeVisible">
-			<button class="o-button_affirmative h-float-right" rv-on-click="controller.showSavedConfirmation">Save Changes</button>
+			<div class="o-width-wrapper">
+				<button class="o-button_affirmative h-float-right" rv-on-click="controller.showSavedConfirmation">Save Changes</button>
+				<span class="o-toast--caveat">You have unsaved changes. Click save to put them into effect</span>
+			</div>
 		</div>
 	
 		<div class="o-toast--confirm-save-changes" rv-class-s-visible="dataObject.savedConfirmationVisible">
@@ -181,9 +202,9 @@
 	<div class="c-download-monitor" rv-class-s-visible="dataObject.downloadStarted">
 		<div class="c-download-monitor--item" rv-each-download="dataObject.downloads" rv-class-s-error="download.error" rv-show="download.active">
 			<div class="o-download-item--header">
-				<i class="icon-photo"></i>{ download.title }
+				<span  rv-on-click="controller.throwDownloadError">{ download.title }</span>
 				<button class="o-text-button h-float-right" rv-unless="download.error" rv-on-click="controller.cancelDownload">Cancel</button>
-				<button class="o-text-button_white h-float-right" rv-if="download.error">Dismiss</button>
+				<button class="o-text-button_white h-float-right" rv-if="download.error" rv-on-click="controller.errorDismiss">Dismiss</button>
 			</div>
 			<div class="o-download-item--body" rv-unless="download.error">
 				<div class="">
@@ -196,11 +217,14 @@
 			</div>
 			<div class="o-download-item--error" rv-if="download.error">
 				There was an error downloading inventory.
-				<button class="o-text-button_white">Retry</button>
-				<button class="o-text-button_white h-float-right">View Error</button>
+				<button class="o-text-button_white" rv-on-click="controller.errorRetry">Retry</button>
+				<button class="o-text-button_white h-float-right" rv-on-click="controller.toggleHistoryExpanded">View Error</button>
 			</div>
 		</div>
 	</div> 
+
+
+<div class="h-mt-300">&nbsp;</div>
 
 
 <script type="text/javascript" src="assets/js/main-min.js"></script>

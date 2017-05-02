@@ -6,15 +6,16 @@
 
 }
 
-	.o-event-tile{
+	.o-event-tile, [class^="o-event-tile_"]{
 		border-radius: $default-border-radius;
 		box-shadow: $ritchie-shadow;
 		background-color: palette(grey,light);
 		padding: spacing(medium);
-		width: 220px;
-		height: 220px;
+		width: 18%;
+		min-width: 200px;
+		height: 160px;
 		position: relative;
-		margin-right: spacing(medium);
+		margin-right: 2%;
 		margin-bottom: spacing(medium);
 		cursor: pointer;
 
@@ -30,6 +31,15 @@
 			}
 		}
 	}
+
+		.o-event-tile_add{
+			background-color: transparent;
+			border: 3px solid palette(brand);
+			box-shadow: none;
+
+			text-align: center;
+			color: palette(brand);
+		}
 		
 		.o-event-tile--name{
 			//margin-bottom: spacing(xx-small);

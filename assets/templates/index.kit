@@ -3,58 +3,25 @@
 	<header class="o-subheader--small">
 		<div class="o-width-wrapper">
 			<h1 class="o-subheader--text h-color-white">All Events</h1>
-			<button class="o-button--outline_white h-float-right h-mt-100" rv-on-click="controller.toggleGetOtherSales">+ Get Other Sales</button>
+			<button class="o-button--outline_white h-float-right h-mt-100" rv-on-click="controller.toggleGetOtherSales">+ Get <span rv-if="dataObject.salesList | lengthToBool">Other</span> Sales</button>
 		</div>
 	</header>
 
 	<div class="o-width-wrapper"> 
 		<section class="c-event-list">
 
-			<div class="o-event-tile" rv-on-click="controller.gotoPage" data-targetpage="/event.html">
-				<h2 class="o-event-tile--name">Regina Sk</h2>
-				<h3 class="o-event-tile--ring">Ring 1</h3>
-				<div class="o-event-tile--number">2017554-1</div>
-				<div class="o-event-tile--footer">115 Lots
-					<div class="h-float-right">450 Photos</div>
-				</div>
+			<div class="o-event-tile" rv-each-sale="dataObject.salesList" rv-on-click="controller.gotoPage" data-targetpage="/event.html">
+				<h2 class="o-event-tile--name">{ sale.name }</h2>
+				<h3 class="o-event-tile--ring">Ring { sale.ring }</h3>
+				<div class="o-event-tile--number">{ sale.number }</div>
 				<button class="o-button--outline_white o-event-tile--delete" rv-on-click="controller.toggleDeleteEventVisible"><i class="icon-trash"></i></button>
 			</div>
 
-			<div class="o-event-tile" rv-on-click="controller.gotoPage" data-targetpage="/event.html">
-				<h2 class="o-event-tile--name">Regina Sk</h2>
-				<h3 class="o-event-tile--ring">Ring 1</h3>
-				<div class="o-event-tile--number">2017554-1</div>
-				<div class="o-event-tile--footer">115 Lots
-					<div class="h-float-right">450 Photos</div>
+			<div class="o-event-tile_add" rv-on-click="controller.toggleGetOtherSales">
+				<div class="h-abs-middle">
+					<div class="h-mb-100"><i class="icon-plus icon-size--xxlarge"></i></div>
+					<span class="t-allcaps t-bold">Get <span rv-if="dataObject.salesList | lengthToBool">Other</span> Sales</span>
 				</div>
-				<button class="o-button--outline_white o-event-tile--delete" rv-on-click="controller.toggleDeleteEventVisible"><i class="icon-trash"></i></button>
-			</div>
-			<div class="o-event-tile" rv-on-click="controller.gotoPage" data-targetpage="/event.html">
-				<h2 class="o-event-tile--name">Regina Sk</h2>
-				<h3 class="o-event-tile--ring">Ring 1</h3>
-				<div class="o-event-tile--number">2017554-1</div>
-				<div class="o-event-tile--footer">115 Lots
-					<div class="h-float-right">450 Photos</div>
-				</div>
-				<button class="o-button--outline_white o-event-tile--delete" rv-on-click="controller.toggleDeleteEventVisible"><i class="icon-trash"></i></button>
-			</div>
-			<div class="o-event-tile" rv-on-click="controller.gotoPage" data-targetpage="/event.html">
-				<h2 class="o-event-tile--name">Regina Sk</h2>
-				<h3 class="o-event-tile--ring">Ring 1</h3>
-				<div class="o-event-tile--number">2017554-1</div>
-				<div class="o-event-tile--footer">115 Lots
-					<div class="h-float-right">450 Photos</div>
-				</div>
-				<button class="o-button--outline_white o-event-tile--delete" rv-on-click="controller.toggleDeleteEventVisible"><i class="icon-trash"></i></button>
-			</div>
-			<div class="o-event-tile" rv-on-click="controller.gotoPage" data-targetpage="/event.html">
-				<h2 class="o-event-tile--name">Regina Sk</h2>
-				<h3 class="o-event-tile--ring">Ring 1</h3>
-				<div class="o-event-tile--number">2017554-1</div>
-				<div class="o-event-tile--footer">115 Lots
-					<div class="h-float-right">450 Photos</div>
-				</div>
-				<button class="o-button--outline_white o-event-tile--delete" rv-on-click="controller.toggleDeleteEventVisible"><i class="icon-trash"></i></button>
 			</div>
 		</section>
 	</div>

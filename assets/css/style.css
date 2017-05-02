@@ -27,6 +27,14 @@
   font-size: 16px;
   vertical-align: middle; }
 
+.icon-size--large {
+  font-size: 24px;
+  vertical-align: middle; }
+
+.icon-size--xxlarge {
+  font-size: 48px;
+  vertical-align: middle; }
+
 .icon-Configure:before {
   content: "\e92a"; }
 
@@ -207,6 +215,9 @@
   font-style: italic;
   color: #bfc0be; }
 
+.t-italic {
+  font-style: italic; }
+
 .t-bold {
   font-weight: 700; }
 
@@ -359,6 +370,13 @@ hr {
           transform: translateY(-50%);
   position: absolute; }
 
+.h-abs-middle {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  position: absolute; }
+
 .h-mt-50 {
   margin-top: 10px !important; }
 
@@ -409,6 +427,9 @@ hr {
 
 .h-p-0 {
   padding: 0; }
+
+.h-p-100 {
+  padding: 15px !important; }
 
 .h-lh-200 {
   line-height: 2; }
@@ -462,10 +483,10 @@ hr {
 .s-viewer-mode .h-viewer-hidden {
   display: none; }
 
-.h-viewer-shown {
-  display: none; }
-  .s-viewer-mode .h-viewer-shown {
-    display: initial; }
+.h-hidden {
+  visibility: hidden; }
+  .h-hidden.s-visible {
+    visibility: visible; }
 
 .h-color-white {
   color: white !important; }
@@ -677,7 +698,7 @@ hr {
   .o-input--text-inline:focus {
     border: 1px solid #E87722; }
 
-.o-input--textarea {
+.o-input--textarea, [class^="o-input--textarea_"] {
   height: 40px;
   width: 100%;
   display: block;
@@ -694,14 +715,17 @@ hr {
   font-size: 1rem;
   margin-bottom: 20px;
   height: 80px; }
-  .o-input--textarea.invalid, .o-input--textarea.s-error {
+  .o-input--textarea.invalid, .o-input--textarea.s-error, [class^="o-input--textarea_"].invalid, [class^="o-input--textarea_"].s-error {
     background-color: #F3BFBF; }
-  .o-input--textarea.s-error_border {
+  .o-input--textarea.s-error_border, [class^="o-input--textarea_"].s-error_border {
     border: 1px solid #c4483a; }
-  .o-input--textarea:hover {
+  .o-input--textarea:hover, [class^="o-input--textarea_"]:hover {
     border: 1px solid #E87722; }
-  .o-input--textarea:focus {
+  .o-input--textarea:focus, [class^="o-input--textarea_"]:focus {
     border: 1px solid #E87722; }
+
+.o-input--textarea_slim {
+  margin-bottom: 0; }
 
 .o-input--password, [class^="o-input--password_"] {
   height: 40px;
@@ -1900,6 +1924,13 @@ hr {
 .c-combo-pop-up--item input {
   margin-right: 15px; }
 
+.o-toast--caveat {
+  float: right;
+  color: white;
+  margin-right: 20px;
+  line-height: 40px;
+  font-style: italic; }
+
 .o-toast--prompt-save-changes {
   position: fixed;
   bottom: 0;
@@ -1910,6 +1941,7 @@ hr {
           transform: translateY(100%);
   -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
   transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+  z-index: 1000;
   background-color: #585858; }
   .o-toast--prompt-save-changes.s-visible {
     -webkit-transform: translateY(0);
@@ -1925,6 +1957,7 @@ hr {
           transform: translateY(100%);
   -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
   transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+  z-index: 1000;
   line-height: 40px;
   background-color: #36AE4F;
   color: white;
@@ -2015,24 +2048,32 @@ hr {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
 
-.o-event-tile {
+.o-event-tile, [class^="o-event-tile_"] {
   border-radius: 5px;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5);
   background-color: #E9E9E9;
   padding: 20px;
-  width: 220px;
-  height: 220px;
+  width: 18%;
+  min-width: 200px;
+  height: 160px;
   position: relative;
-  margin-right: 20px;
+  margin-right: 2%;
   margin-bottom: 20px;
   cursor: pointer; }
-  .o-event-tile:hover {
+  .o-event-tile:hover, [class^="o-event-tile_"]:hover {
     background-color: #585858;
     color: white; }
-    .o-event-tile:hover .o-event-tile--delete {
+    .o-event-tile:hover .o-event-tile--delete, [class^="o-event-tile_"]:hover .o-event-tile--delete {
       display: block; }
-    .o-event-tile:hover .o-event-tile--footer {
+    .o-event-tile:hover .o-event-tile--footer, [class^="o-event-tile_"]:hover .o-event-tile--footer {
       display: none; }
+
+.o-event-tile_add {
+  background-color: transparent;
+  border: 3px solid #E87722;
+  box-shadow: none;
+  text-align: center;
+  color: #E87722; }
 
 .o-event-tile--ring {
   color: #E87722;
@@ -2135,7 +2176,9 @@ hr {
   overflow: hidden; }
 
 .c-history--header {
-  padding: 10px; }
+  padding: 10px;
+  background-color: white;
+  color: #585858; }
   .c-history--header.s-error {
     background-color: #c4483a;
     color: white; }
@@ -2147,7 +2190,8 @@ hr {
   height: 200px;
   overflow-y: auto;
   background-color: white;
-  color: #585858; }
+  color: #585858;
+  border-top: 1px solid #bfc0be; }
 
 .c-history--item {
   padding: 10px; }
@@ -2500,6 +2544,31 @@ hr {
     max-width: 100%;
     width: 100%;
     display: block; }
+  .c-presentation-preview.s-no-ring .presentation--ring2, .c-presentation-preview.s-no-ring .presentation--ring3, .c-presentation-preview.s-no-ring .presentation--tal {
+    display: none; }
+  .c-presentation-preview.s-no-ring .o-presentation-main_lot {
+    bottom: 0; }
+  .c-presentation-preview.s-tal-only .presentation--ring2, .c-presentation-preview.s-tal-only .presentation--ring3 {
+    display: none; }
+  .c-presentation-preview.s-tal-only .o-presentation-main_lot {
+    bottom: 0; }
+  .c-presentation-preview.s-tal-only .presentation--tal {
+    padding-left: 70px; }
+  .c-presentation-preview.s-2-ring .presentation--ring3 {
+    display: none; }
+  .c-presentation-preview.s-2-ring .presentation--ring2, .c-presentation-preview.s-2-ring .presentation--tal {
+    box-sizing: border-box;
+    position: relative;
+    vertical-align: top; }
+    @media (min-width: 48em) {
+      .c-presentation-preview.s-2-ring .presentation--ring2, .c-presentation-preview.s-2-ring .presentation--tal {
+        display: inline-block;
+        vertical-align: top;
+        width: 49%;
+        margin-right: 1%; }
+        .c-presentation-preview.s-2-ring .presentation--ring2:last-child, .c-presentation-preview.s-2-ring .presentation--tal:last-child {
+          float: right;
+          margin-right: 0; } }
 
 .o-presentation-upper {
   position: absolute;

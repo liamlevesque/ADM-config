@@ -80,6 +80,13 @@ rivets.formatters.compare = function(value, comparisons){
 	return false;
 };
 
+rivets.formatters.greaterthan = function(value, comparisons){
+	if(typeof value == "undefined" || typeof comparisons == "undefined") return false;
+
+	if(value > comparisons) return true;
+	else return false;
+};
+
 rivets.binders.addtextclass = function(el,value){
 	if(value === "") return false;
 	$(el).removeClass().addClass('s-'+ value);
@@ -3336,6 +3343,8 @@ const dataObject = {
 		missingHero: 7,
 		withVideo: 21,
 	},
+	auctionOtherRings: 1,
+
 	getOtherSalesVisible: false,
 	dataCenterSwitchVisible: false,
 	deleteEventVisible: false,
@@ -3347,6 +3356,43 @@ const dataObject = {
 	CCYSettingsVisible: false,
 	confirmDeleteDisplayVisible: false,
 	downloadPhotosSettingsVisible: false,
+
+	dataCenter2: false,
+	confirmSwitchDataCenter: false,
+	salesList: [
+		{
+			name: "Orlando, FL",
+			number: "2017345-1",
+			ring: 1,
+			totalRings: 3,
+			hasTal: true,
+		},
+		{
+			name: "Regina, SK",
+			number: "2017101-1",
+			ring: 1,
+			totalRings: 3,
+			hasTal: true,
+		},
+		{
+			name: "Regina, SK",
+			number: "2017101-2",
+			ring: 2,
+			totalRings: 3,
+			hasTal: true,
+		},
+		{
+			name: "Edmonton, AB",
+			number: "2017345-1",
+			ring: 1,
+			totalRings: 3,
+			hasTal: true,
+		},
+
+	],
+
+	haveTriedToDownload: false,
+	noInventoryErrorVisible: false,
 	
 	lots: lotlist,
 	sortedColumn: 'js-lotnumber',
@@ -3466,7 +3512,7 @@ const dataObject = {
 		}
 	],
 	downloadStarted: false,
-
+	hasDownloaded: false,
 
 	reportClerkActivity:false,
 	reportRecipient: '',
@@ -3520,6 +3566,16 @@ const controller = {
 		}
 	},
 
+	checkDownloadLotImages: function(e){
+		$('.js-downloadLotImages').attr('checked','true');
+	},
+
+	toggleConfirmSwitchDataCenter: function(e){
+		dataObject.confirmSwitchDataCenter = !dataObject.confirmSwitchDataCenter;
+
+		if(!dataObject.confirmSwitchDataCenter) dataObject.dataCenterSwitchVisible = false;
+	},
+
 	toggleGetOtherSales: function(e){
 		dataObject.getOtherSalesVisible = !dataObject.getOtherSalesVisible;
 	},
@@ -3552,9 +3608,20 @@ const controller = {
 		dataObject.CCYSettingsVisible = !dataObject.CCYSettingsVisible;
 	},
 	toggleDownloadPhotosSettingsVisible: function(){
+		if(controller.checkIfNoInventoryError()) return;
 		dataObject.downloadPhotosSettingsVisible = !dataObject.downloadPhotosSettingsVisible;
 	},
-
+	toggleNoInventoryErrorVisible: function(){
+		dataObject.noInventoryErrorVisible = !dataObject.noInventoryErrorVisible;
+	},
+	checkIfNoInventoryError: function(){
+		if(!dataObject.haveTriedToDownload){
+			dataObject.noInventoryErrorVisible = true;
+			dataObject.haveTriedToDownload = true;
+			return true;
+		}
+		else return false;
+	},
 	goToEventList: function(){
 		window.location = "index.html";
 	},
@@ -3598,11 +3665,31 @@ const controller = {
 
 		},
 		startLotDownload:function(){
+			if(controller.checkIfNoInventoryError()) return;
 			dataObject.downloadStarted = true;
 			startDownload(dataObject.downloads[1]);
 		},
 		cancelDownload: function(e,context){
 			context.download.active = false;
+		},
+
+		throwDownloadError: function(e,context){
+			context.download.error = true;
+			clearInterval(progressTimer);
+			dataObject.hasDownloaded = true;
+			if(context.download.title === 'Downloading Lots') dataObject.auctionLots.haveData = true;
+			else dataObject.auctionPhotos.haveData = true;
+		},
+		errorRetry: function(e,context){
+			context.download.error = false;
+			clearInterval(progressTimer);
+			if(context.download.title === 'Downloading Lots') controller.startLotDownload();
+			else controller.startPhotoDownload();
+		},
+
+		errorDismiss: function(e,context){
+			context.download.active = false;
+			context.download.error = false;
 		},
 
 	//MANAGE LOT MEDIA
@@ -3746,11 +3833,13 @@ const controller = {
 
 const toastDuration = 2000;
 
+var progressTimer;
+
 const startDownload = function(target){
 	target.active = true;
 	target.progress = 0;
 	
-	var progressTimer = setInterval(function(){
+	progressTimer = setInterval(function(){
 		
 		if(target.title === 'Downloading Lots') target.progress+= 10;
 		else target.progress++;
@@ -3760,6 +3849,7 @@ const startDownload = function(target){
 			target.active = false;
 			if(target.title === 'Downloading Lots') dataObject.auctionLots.haveData = true;
 			if(target.title === 'Downloading Photos') dataObject.auctionPhotos.haveData = true;
+			dataObject.hasDownloaded = true;
 		}
 	},500);
 };

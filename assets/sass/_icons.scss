@@ -38,6 +38,8 @@
 
 $icon-small: 8px;
 $icon-medium: 16px;
+$icon-large: 24px;
+$icon-xxlarge: 48px;
 
 .icon-size--small{
     font-size: $icon-small;
@@ -46,6 +48,16 @@ $icon-medium: 16px;
 
 .icon-size--medium{
     font-size: $icon-medium;
+    vertical-align: middle;
+}
+
+.icon-size--large{
+    font-size: $icon-large;
+    vertical-align: middle;
+}
+
+.icon-size--xxlarge{
+    font-size: $icon-xxlarge;
     vertical-align: middle;
 }
 

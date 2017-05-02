@@ -2,9 +2,9 @@
 <div class="c-download-monitor" rv-class-s-visible="dataObject.downloadStarted">
 	<div class="c-download-monitor--item" rv-each-download="dataObject.downloads" rv-class-s-error="download.error" rv-show="download.active">
 		<div class="o-download-item--header">
-			<i class="icon-photo"></i>{ download.title }
+			<span  rv-on-click="controller.throwDownloadError">{ download.title }</span>
 			<button class="o-text-button h-float-right" rv-unless="download.error" rv-on-click="controller.cancelDownload">Cancel</button>
-			<button class="o-text-button_white h-float-right" rv-if="download.error">Dismiss</button>
+			<button class="o-text-button_white h-float-right" rv-if="download.error" rv-on-click="controller.errorDismiss">Dismiss</button>
 		</div>
 		<div class="o-download-item--body" rv-unless="download.error">
 			<div class="">
@@ -17,8 +17,8 @@
 		</div>
 		<div class="o-download-item--error" rv-if="download.error">
 			There was an error downloading inventory.
-			<button class="o-text-button_white">Retry</button>
-			<button class="o-text-button_white h-float-right">View Error</button>
+			<button class="o-text-button_white" rv-on-click="controller.errorRetry">Retry</button>
+			<button class="o-text-button_white h-float-right" rv-on-click="controller.toggleHistoryExpanded">View Error</button>
 		</div>
 	</div>
 </div>

@@ -10,6 +10,40 @@
 		width: 100%;
 		display: block;
 	}
+
+	&.s-no-ring{
+		.presentation--ring2,.presentation--ring3,.presentation--tal{
+			display: none;
+		}
+
+		.o-presentation-main_lot{
+			bottom: 0;
+		}
+	}
+
+	&.s-tal-only{
+		.presentation--ring2,.presentation--ring3{
+			display: none;
+		}
+
+		.o-presentation-main_lot{
+			bottom: 0;
+		}
+
+		.presentation--tal{
+			padding-left: 70px;
+		}
+	}
+
+	&.s-2-ring{
+		.presentation--ring3{
+			display: none;
+		}
+
+		.presentation--ring2, .presentation--tal{
+			@include grid-half;
+		}
+	}
 }
 
 	.o-presentation-upper{

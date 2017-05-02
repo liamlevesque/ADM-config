@@ -4,6 +4,8 @@
 
 	.c-history--header{
 		padding: spacing(x-small);
+		background-color: white;
+		color: palette(grey,dark);
 
 		&.s-error{
 			background-color: palette(error);
@@ -20,6 +22,7 @@
 		overflow-y: auto;
 		background-color: white;
 		color: palette(grey,dark);
+		border-top: $default-border;
 	}
 
 		.c-history--item{

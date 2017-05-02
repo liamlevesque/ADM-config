@@ -50,6 +50,12 @@
 		position: absolute;
 	}
 	
+	.h-abs-middle{
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		position: absolute;
+	}
 
 	.h-mt-50{
 		margin-top: spacing(x-small) !important;
@@ -120,6 +126,10 @@
 		padding: 0;
 	}
 
+	.h-p-100{
+		padding: spacing(small) !important;
+	}
+
 	.h-lh-200{
 		line-height: 2;
 	}
@@ -188,11 +198,11 @@
 		}
 	}
 
-	.h-viewer-shown{
-		display: none;
+	.h-hidden{
+		visibility: hidden;
 
-		.s-viewer-mode &{
-			display: initial;
+		&.s-visible{
+			visibility: visible;
 		}
 	}
 

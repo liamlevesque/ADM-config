@@ -3,17 +3,6 @@
 			<div class="h-overflow-hidden">
 				<div class="l-grid-third">
 					<h3 class="h3 h-mb-200">Slideshow Settings</h3>
-					<div class="h-mb-200">
-						<label for="" class="t-settings-header">Videos</label>
-						<div>
-							<span>Show Videos</span>
-							<label class="h-float-right o-input--setting-toggle">
-								<input type="checkbox" class="o-input--toggle" checked>
-								<div class="toggle-control"></div>
-							</label>
-						</div>
-					</div>
-
 					<div class="">
 						<label for="" class="t-settings-header">Slideshow</label>
 						<div class="h-overflow-hidden h-mb-200">
@@ -28,7 +17,10 @@
 							<input type="range" min="5" max="20" class="o-input--range" rv-value="dataObject.slideDuration" rv-on-change="controller.slideshowUpdate">
 							
 						</div>
-						<div class="h-overflow-hidden h-mb-200">
+					</div>
+					<div class="h-mb-200 h-overflow-hidden">
+						<label for="" class="t-settings-header">Choice Groups</label>
+						<div>
 							<span>Cycle Through Choice Group</span>
 							<label class="h-float-right o-input--setting-toggle">
 								<input type="checkbox" class="o-input--toggle" rv-checked="dataObject.cycleChoiceGroup">
@@ -36,20 +28,22 @@
 							</label>
 						</div>
 					</div>
-					<div>
-						<label for="" class="t-settings-header">Overlay Message
-							<span class="h-float-right" rv-on-click="controller.clearSpecialMsg" rv-show="dataObject.presentation.specialMsg | lengthToBool">
-								<button class="o-icon-button--medium h-color-error">
-									<i class="icon-close h-mr-50"></i> Clear
-								</button>
-							</span>
-						</label>
-						<textarea class="o-input--textarea" placeholder="enter a message that will always stay visible for special situations" rv-value="dataObject.presentation.specialMsg"></textarea>
+					<div class="h-mt-200">
+						<label for="" class="t-settings-header">Overlay Message</label>
+						<textarea class="o-input--textarea_slim" placeholder="enter a message that will always stay visible for special situations" rv-value="dataObject.presentation.specialMsg"></textarea>
+						<span class="h-mb-200 h-hidden" rv-on-click="controller.clearSpecialMsg" rv-class-s-visible="dataObject.presentation.specialMsg | lengthToBool">
+							<button class="o-icon-button--medium h-color-error">
+								<i class="icon-close h-mr-50"></i> Clear Overlay Message
+							</button>
+						</span>
 					</div>
 				</div>
 				<div class="l-grid-two-thirds">
-					<div class="c-presentation-preview">
-						<img src="assets/img/presentation-base.png">
+					<div class="c-presentation-preview" rv-class-s-no-ring="dataObject.auctionOtherRings | compare 0" rv-class-s-tal-only="dataObject.auctionOtherRings | compare 1" rv-class-s-2-ring="dataObject.auctionOtherRings | compare 2">
+						<img src="assets/img/presentation-base.png" rv-if="dataObject.auctionOtherRings | compare 3">
+						<img src="assets/img/presentation-base_2ring.png" rv-if="dataObject.auctionOtherRings | compare 2">
+						<img src="assets/img/presentation-base_tal-only.png" rv-if="dataObject.auctionOtherRings | compare 1">
+						<img src="assets/img/presentation-base_no-rings.png" rv-if="dataObject.auctionOtherRings | compare 0">
 						
 						<div class="o-presentation-lower_special" rv-if="dataObject.presentation.specialMsg">
 							<div class="l-abs-center">{dataObject.presentation.specialMsg}</div>
@@ -75,17 +69,17 @@
 				</div>
 			</div>
 			<hr class="h-mb-200">
-			<div>
+			<div class="h-overflow-hidden" rv-unless="dataObject.auctionOtherRings | compare 0">
 				<h3 class="h3 h-mb-200">Other Rings</h3>
-				<div class="l-grid-third">
+				<div class="l-grid-third" rv-if="dataObject.auctionOtherRings | greaterthan 1">
 					<label for="" class="t-smalllabel">Ring 2 Start Time</label>
 					<input type="text" class="o-input--text" placeholder="eg. Starts - 9:00AM" rv-value="dataObject.presentation.ring2start">
 				</div>
-				<div class="l-grid-third">
+				<div class="l-grid-third" rv-if="dataObject.auctionOtherRings | greaterthan 2">
 					<label for="" class="t-smalllabel">Ring 3 Start Time</label>
 					<input type="text" class="o-input--text" placeholder="eg. Starts - 10:00AM" rv-value="dataObject.presentation.ring3start">
 				</div>
-				<div class="l-grid-third">
+				<div class="l-grid-third" rv-if="dataObject.auctionOtherRings | greaterthan 0">
 					<label for="" class="t-smalllabel">TAL Message</label>
 					<input type="text" class="o-input--text" placeholder="eg. Lots start closing Tuesday" rv-value="dataObject.presentation.talstart">
 				</div>

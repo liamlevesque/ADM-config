@@ -307,6 +307,39 @@
 		"oT": 1,
 		"q": 100
 		},
+	"\/assets\/img\/presentation-base_2ring.png": {
+		"ft": 32768,
+		"iS": 78836,
+		"oA": 0,
+		"oAP": "\/assets\/img\/presentation-base_2ring.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/assets\/img\/presentation-base_no-rings.png": {
+		"ft": 32768,
+		"iS": 68761,
+		"oA": 0,
+		"oAP": "\/assets\/img\/presentation-base_no-rings.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/assets\/img\/presentation-base_tal-only.png": {
+		"ft": 32768,
+		"iS": 76838,
+		"oA": 0,
+		"oAP": "\/assets\/img\/presentation-base_tal-only.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"\/assets\/img\/right-arrow.svg": {
 		"ft": 2097152,
 		"miP": 0,

@@ -2,7 +2,7 @@
 
 <!-- @include '/assets/partials/eventSubhead' -->
 
-	<div class="o-width-wrapper h-mt-300">
+	<div class="o-width-wrapper h-overflow-hidden h-p-100 h-mt-300 h-mb-300">
 
 		<section class="c-container-box h-mb-300">
 			<div class="h-overflow-hidden">
@@ -51,36 +51,42 @@
 				</div>
 			</div>
 
-			<div class="c-container-box--footer">
+			<div class="c-container-box--footer" rv-if="dataObject.hasDownloaded">
 				<div class="c-history">
 					<div class="l-grid-sixth">
-						<span class="t-allcaps">Transfer history</span>
-						<button class="o-text-button_white" rv-on-click="controller.toggleHistoryExpanded"><span rv-if="dataObject.historyExpanded">Hide</span><span rv-unless="dataObject.historyExpanded">Show All</span></button>
+						<span class="t-allcaps">Latest Download</span>
 					</div>
 					<div class="l-grid-fivesixths">
-						<div class="l-grid-half c-history--header">15/12 3:14PM - 721 Lots Downloaded</div>
-						<div class="l-grid-half c-history--header s-error">15/12 3:14PM - Error Completing Download</div>
+						<div class="h-overflow-hidden">
+							<div class="l-grid-half">
+								<div class="c-history--header" rv-if="dataObject.auctionLots.haveData">15/12 3:14PM - 12 Lots Downloaded</div>
+							</div>
+							<div class="l-grid-half">
+								<div class="c-history--header s-error" rv-if="dataObject.auctionPhotos.haveData">15/12 3:14PM - Error Completing Download</div>
+							</div>
+						</div>
+						<div class="h-overflow-hidden" rv-if="dataObject.historyExpanded">
+							<div class="l-grid-half">
+								<ul class="c-history--list" rv-if="dataObject.auctionLots.haveData">
+									<li class="c-history--item">15/12 3:12PM - 128 Lots Downloaded</li>
+									<li class="c-history--item s-error">15/12 12:31PM - Error Completing Download</li>
+									<li class="c-history--item">15/12 7:21AM - 2,360 Lots Downloaded</li>
+								</ul>
+							</div>
+							<div class="l-grid-half">
+								<ul class="c-history--list" rv-if="dataObject.auctionPhotos.haveData">
+									<li class="c-history--item">15/12 3:14PM - 84 Photos Downloaded</li>
+									<li class="c-history--item">15/12 2:22PM - 177 Photos Downloaded</li>
+									<li class="c-history--item">15/12 1:21PM - 1,321 Photos Downloaded</li>
+								</ul>
+							</div>
+						</div>
+						<div class="h-ta-center">
+							<button class="o-text-button_white" rv-on-click="controller.toggleHistoryExpanded"><span rv-if="dataObject.historyExpanded">Hide History</span><span rv-unless="dataObject.historyExpanded">Show Complete Download History</span></button>
+						</div>
 					</div>
 				</div>
-				<div class="c-history--body" rv-if="dataObject.historyExpanded">
-					<div class="l-grid-sixth"></div>
-					<div class="l-grid-fivesixths">
-						<div class="l-grid-half">
-							<ul class="c-history--list">
-								<li class="c-history--item">15/12 3:14PM - 721 Lots Downloaded</li>
-								<li class="c-history--item s-error">15/12 3:14PM - Error Completing Download</li>
-								<li class="c-history--item">15/12 3:14PM - 721 Lots Downloaded</li>
-							</ul>
-						</div>
-						<div class="l-grid-half">
-							<ul class="c-history--list">
-								<li class="c-history--item">15/12 3:14PM - 2000 Photos Downloaded</li>
-								<li class="c-history--item">15/12 3:14PM - 2000 Photos Downloaded</li>
-								<li class="c-history--item">15/12 3:14PM - 2000 Photos Downloaded</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 		</section>
 
@@ -168,6 +174,24 @@
 			<div class="c-modal--footer">
 				<button class="o-text-button--large" rv-on-click="controller.toggleDeleteEventVisible">Cancel</button>
 				<button class="o-button_error h-float-right">Yes, Delete Display</button>
+			</div>
+
+		</div>
+
+	</div> 
+
+	<div class="c-modal" rv-class-s-visible="dataObject.noInventoryErrorVisible">
+		<div class="c-modal--content_small">
+			<div class="c-modal--body">
+				<h3 class="o-container--header h-color-error">No inventory for this sale!</h3>
+				
+				<p>Woops - can't start the download because there's no inventory loaded for this sale.</p>
+				<p>Contact OAO Support for help</p>
+				
+			</div>
+
+			<div class="c-modal--footer">
+				<button class="o-text-button--large" rv-on-click="controller.toggleNoInventoryErrorVisible">Done</button>
 			</div>
 
 		</div>

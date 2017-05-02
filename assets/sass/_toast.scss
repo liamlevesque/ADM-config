@@ -8,10 +8,20 @@
 	transform: translateY(100%);
 	transition: $transition;
 
+	z-index: 1000;
+
 	&.s-visible{
 		transform: translateY(0);
 	}
 }
+
+	.o-toast--caveat{
+		float: right;
+		color: white;
+		margin-right: spacing(medium);
+		line-height: 40px;
+		font-style: italic;
+	}
 
 .o-toast--prompt-save-changes{
 	@include footer-toast;

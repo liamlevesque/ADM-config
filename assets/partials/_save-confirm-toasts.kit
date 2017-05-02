@@ -1,5 +1,8 @@
 	<div class="o-toast--prompt-save-changes" rv-class-s-visible="dataObject.savePresChangeVisible">
-		<button class="o-button_affirmative h-float-right" rv-on-click="controller.showSavedConfirmation">Save Changes</button>
+		<div class="o-width-wrapper">
+			<button class="o-button_affirmative h-float-right" rv-on-click="controller.showSavedConfirmation">Save Changes</button>
+			<span class="o-toast--caveat">You have unsaved changes. Click save to put them into effect</span>
+		</div>
 	</div>
 
 	<div class="o-toast--confirm-save-changes" rv-class-s-visible="dataObject.savedConfirmationVisible">
