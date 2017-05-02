@@ -138,9 +138,12 @@
 				<h3 class="o-container--header">Custom Message Group</h3>
 				
 				<label for="" class="t-smalllabel">Group Name</label>
-				<input type="text" class="o-input--text" rv-value="dataObject.clonedshortcuts.name">
+				<input type="text" class="o-input--text_slim" rv-value="dataObject.clonedshortcuts.name">
+				<span rv-show="dataObject.clonedshortcuts.name | lengthToBool">
+					<span class="h-color-error" rv-hide="dataObject.clonedshortcuts.name | invalidinput">Invalid Name - Can only include letters, numbers, dashes and underscores</span>
+				</span>
 				
-				<label for="" class="t-settings-header">Messages</label>
+				<label for="" class="t-settings-header h-mt-200">Messages</label>
 				<ul class="c-list-grid">
 					<li class="c-list-grid--item" rv-each-key="dataObject.clonedshortcuts.shortcuts">
 						<div class="l-grid-eigth h-ta-center"><div class="o-keyboard-key">{key.key}</div></div>
@@ -155,7 +158,7 @@
 
 			<div class="c-modal--footer">
 				<button class="o-text-button--large" rv-on-click="controller.toggleManageMessageGroupVisible">Cancel</button>
-				<button class="o-button h-float-right" rv-on-click="controller.createCustomMessageGroup">Save Message Group</button>
+				<button class="o-button h-float-right" rv-on-click="controller.createCustomMessageGroup" rv-enabled="dataObject.clonedshortcuts.name | invalidinput">Save Message Group</button>
 			</div>
 
 		</div>

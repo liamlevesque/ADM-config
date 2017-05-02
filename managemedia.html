@@ -108,7 +108,7 @@
 			<div> Lots: 1 - 451, 8001 - 8012</div>
 			<div class="l-abs-right h-pt-200">
 				<button class="o-button--outline_white " rv-on-click="controller.toggleGetOtherSales">Refresh Event Data</button>
-				<button class="o-button--light">Launch Clerk</button>
+				<button class="o-button--light_on-orange" rv-enabled="dataObject.auctionLots.haveData">Launch Clerk</button>
 			</div>
 		</div>
 
@@ -207,7 +207,7 @@
 			</div>
 			<div id="js-media-list">
 				<ul class="list c-list-grid">
-					<li class="c-list-grid--item" rv-each-lot="dataObject.lots" rv-data-lot="index">
+					<li class="c-list-grid--item" rv-each-lot="dataObject.lots" rv-data-lot="index" rv-lotgroupdecor="lot.group">
 						<div class="media-table--col1 media-table--lot-column js-lotnumber" rv-on-click="controller.toggleExpandLot">
 							Lot {index}
 						</div>
@@ -297,7 +297,12 @@
 			</li>
 			<li class="c-combo-pop-up--item">
 				<label>
-					<input type="checkbox" rv-on-change="controller.updateFilters" rv-ischecked="dataObject.mediaFilters | indexof 'Flagged Lots'" data-filter="Flagged Lots">Flagged Lots
+					<input type="checkbox" rv-on-change="controller.updateFilters" rv-ischecked="dataObject.mediaFilters | indexof 'Flagged lots'" data-filter="Flagged lots">Flagged lots
+				</label>
+			</li>
+			<li class="c-combo-pop-up--item">
+				<label>
+					<input type="checkbox" rv-on-change="controller.updateFilters" rv-ischecked="dataObject.mediaFilters | indexof 'Lots with disabled media'" data-filter="Lots with disabled media">Lots with disabled media
 				</label>
 			</li>
 		</ul>
@@ -356,19 +361,22 @@
 					<div class="c-modal--sub-box">
 						<span>From:</span>
 						<div class="l-grid-third">
-							<input type="text" placeholder="lot #" class="o-input--text" rv-on-click="controller.checkDownloadLotImages">
+							<input type="text" placeholder="lot #" class="o-input--text_small" rv-on-click="controller.checkDownloadLotImages" rv-value="dataObject.photoDownloadLotInput">
 						</div>
 						<span>To:</span>
 						<div class="l-grid-third">
-							<input type="text" placeholder="lot #" class="o-input--text" rv-on-click="controller.checkDownloadLotImages">
+							<input type="text" placeholder="lot #" class="o-input--text_small" rv-on-click="controller.checkDownloadLotImages">
 						</div>
 					</div>
-					
+				</div>
+	
+				<div class="c-modal--error">
+					No matching lots found
 				</div>
 	
 				<div class="c-modal--footer">
 					<button class="o-text-button--large" rv-on-click="controller.toggleDownloadPhotosSettingsVisible">Cancel</button>
-					<button class="o-button h-float-right" rv-on-click="controller.startPhotoDownload">Start Download</button>
+					<button class="o-button h-float-right" rv-on-click="controller.startPhotoDownload" rv-enabled="dataObject.photoDownloadLotSelected | disablePhotoDownload dataObject.photoDownloadLotInput">Start Download</button>
 				</div>
 	
 			</div>
@@ -392,9 +400,9 @@
 				</div>
 			</div>
 			<div class="o-download-item--error" rv-if="download.error">
-				There was an error downloading inventory.
-				<button class="o-text-button_white" rv-on-click="controller.errorRetry">Retry</button>
-				<button class="o-text-button_white h-float-right" rv-on-click="controller.toggleHistoryExpanded">View Error</button>
+				<p>There was an error downloading inventory.</p>
+				<button class="o-button--outline_white" rv-on-click="controller.errorRetry">Retry</button>
+				<button class="o-button--outline_white h-float-right" rv-on-click="controller.toggleHistoryExpanded">View Error</button>
 			</div>
 		</div>
 	</div> 

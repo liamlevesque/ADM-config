@@ -16,7 +16,7 @@
 				<div class="h-mb-100">
 					<label for="" class="t-settings-header">Report Type</label>
 					<label class="o-input--checkbox h-mb-100">
-						<input type="checkbox" name="reportType" rv-checked="dataObject.reportClerkActivity">
+						<input type="checkbox" name="reportType" rv-checked="dataObject.reportClerkActivity" rv-on-click="controller.setSystemReportTypeSelected">
 						<span class="o-input--checksymbol"></span>
 						<span>Clerk Activity Report</span>
 					</label>
@@ -46,17 +46,17 @@
 						</label>
 					</div>
 					<label class="o-input--checkbox h-mb-100">
-						<input type="checkbox" name="reportType">
+						<input type="checkbox" name="reportType" rv-on-click="controller.setSystemReportTypeSelected">
 						<span class="o-input--checksymbol"></span>
 						<span>Sold Log Report</span>
 					</label>
 					<label class="o-input--checkbox h-mb-100">
-						<input type="checkbox" name="reportType">
+						<input type="checkbox" name="reportType" rv-on-click="controller.setSystemReportTypeSelected">
 						<span class="o-input--checksymbol"></span>
 						<span>Media Log Report</span>
 					</label>
 					<label class="o-input--checkbox h-mb-100">
-						<input type="checkbox" name="reportType">
+						<input type="checkbox" name="reportType" rv-on-click="controller.setSystemReportTypeSelected">
 						<span class="o-input--checksymbol"></span>
 						<span>Message Log Report</span>
 					</label>
@@ -64,7 +64,7 @@
 				</div>
 
 				<div class="">
-					<button class="o-button h-float-right" rv-enabled="dataObject.reportRecipient" rv-on-click="controller.confirmReportSent">Send System Report(s)</button>
+					<button class="o-button h-float-right" rv-enabled="dataObject.reportRecipient | and dataObject.systemReportTypeSelected" rv-on-click="controller.confirmReportSent">Send System Report(s)</button>
 				</div>
 
 			</div>

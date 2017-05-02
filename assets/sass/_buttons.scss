@@ -139,6 +139,10 @@
 	@include button(palette(contrast), white, palette(contrast));
 }
 
+.o-button--light_on-orange{
+	@include button(palette(contrast), white, palette(contrast,dark));
+}
+
 .o-button_error{
 	@include button(white, palette(error), palette(error,dark));
 }
@@ -151,6 +155,11 @@
 .o-button--outline{
 	@include button(palette(brand), transparent, palette(brand), white);
 	border-color: palette(brand);
+}
+
+.o-button--outline_error{
+	@include button(palette(error), transparent, palette(error), white);
+	border-color: palette(error);
 }
 
 .o-button--outline_grey{
@@ -189,6 +198,10 @@
 
 .o-text-button_white{
 	@include text-button(white,palette(brand),50);
+}
+
+.o-text-button_error{
+	@include text-button(palette(error),palette(error,dark),50);
 }
 
 .o-text-button--large{

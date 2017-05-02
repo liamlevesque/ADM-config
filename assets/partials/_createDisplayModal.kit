@@ -171,12 +171,12 @@
 					<hr>
 					<div class="o-input--row">
 						<label class="o-input--label">Display Name</label>
-						<input type="text" class="o-input--text" rv-on-keyup="controller.updateDisplayName" rv-value="dataObject.tempDisplay.name">
+						<input type="text" class="o-input--text" rv-value="dataObject.tempDisplay.name">
 					</div>
 					<div class="o-input--row">
 						<label class="o-input--label">IP Address</label>
 						<div>
-							<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">
+							<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small" rv-on-keyup="controller.updateDisplayName">
 						</div>
 					</div>
 					<div class="o-input--row">
@@ -238,7 +238,7 @@
 						</div>
 					</div>
 					<div class="o-input--row">
-						<label class="o-input--label">Language</label>
+						<label class="o-input--label">Brightness</label>
 						<select class="o-input--select">
 							<option selected>55%</option>
 							<option>65%</option>
@@ -252,7 +252,7 @@
 				
 				<div class="h-ta-center" rv-if="dataObject.tempDisplay.editing">
 					<hr>
-					<button class="o-button--outline" rv-on-click="controller.toggleConfirmDeleteDisplay">Delete This Display</button>
+					<button class="o-button--outline_error" rv-on-click="controller.toggleConfirmDeleteDisplay">Delete This Display</button>
 				</div>
 
 			</div>
@@ -260,7 +260,12 @@
 
 			<div class="c-modal--footer">
 				<button class="o-text-button--large" rv-on-click="controller.toggleAddDisplayVisible">Cancel</button>
-				<button class="o-button h-float-right" rv-enabled="dataObject.saveDisplayAllowed" rv-on-click="controller.createDisplay">Create Display</button>
+				<button rv-unless="dataObject.tempDisplay.editing" class="o-button h-float-right" rv-enabled="dataObject.saveDisplayAllowed" rv-on-click="controller.createDisplay">
+					Create Display
+				</button>
+				<button rv-if="dataObject.tempDisplay.editing" class="o-button h-float-right" rv-on-click="controller.toggleAddDisplayVisible">
+					Save Changes
+				</button>
 			</div>
 
 		</div>

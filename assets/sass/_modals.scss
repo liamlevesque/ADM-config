@@ -49,6 +49,12 @@
 
 		}
 
+		.c-modal--error{
+			background-color: palette(error);
+			color: white;
+			padding: spacing(x-small) spacing(medium);
+		}
+
 		.c-modal--footer{
 			flex: 75px;
 			padding: spacing(small) spacing(large);

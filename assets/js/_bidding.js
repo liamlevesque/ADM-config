@@ -106,7 +106,7 @@ const dataObject = {
 		missingHero: 7,
 		withVideo: 21,
 	},
-	auctionOtherRings: 1,
+	auctionOtherRings: 3,
 
 	getOtherSalesVisible: false,
 	dataCenterSwitchVisible: false,
@@ -276,11 +276,15 @@ const dataObject = {
 	],
 	downloadStarted: false,
 	hasDownloaded: false,
+	photoDownloadInput: '',
+	photoDownloadLotSelected: false,
+	photoDownloadLotInput: '',
 
 	reportClerkActivity:false,
 	reportRecipient: '',
 	confirmReportSentVisible: false,
 	techReportRecipient: '',
+	systemReportTypeSelected: false,
 
 	advancedUserName: '',
 	acceptedGraveResponsibility: false,
@@ -331,6 +335,7 @@ const controller = {
 
 	checkDownloadLotImages: function(e){
 		$('.js-downloadLotImages').attr('checked','true');
+		dataObject.photoDownloadLotSelected = true;
 	},
 
 	toggleConfirmSwitchDataCenter: function(e){
@@ -435,7 +440,6 @@ const controller = {
 		cancelDownload: function(e,context){
 			context.download.active = false;
 		},
-
 		throwDownloadError: function(e,context){
 			context.download.error = true;
 			clearInterval(progressTimer);
@@ -449,7 +453,6 @@ const controller = {
 			if(context.download.title === 'Downloading Lots') controller.startLotDownload();
 			else controller.startPhotoDownload();
 		},
-
 		errorDismiss: function(e,context){
 			context.download.active = false;
 			context.download.error = false;
@@ -586,6 +589,9 @@ const controller = {
 				dataObject.reportRecipient = '';
 				dataObject.reportClerkActivity = false;
 			},toastDuration);
+		},
+		setSystemReportTypeSelected: function(e){
+			dataObject.systemReportTypeSelected = $('input[name=reportType]:checked').val();
 		},
 
 	//ADVANCED

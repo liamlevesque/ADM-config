@@ -76,7 +76,7 @@
 			</div>
 			<div id="js-media-list">
 				<ul class="list c-list-grid">
-					<li class="c-list-grid--item" rv-each-lot="dataObject.lots" rv-data-lot="index">
+					<li class="c-list-grid--item" rv-each-lot="dataObject.lots" rv-data-lot="index" rv-lotgroupdecor="lot.group">
 						<div class="media-table--col1 media-table--lot-column js-lotnumber" rv-on-click="controller.toggleExpandLot">
 							Lot {index}
 						</div>
@@ -166,7 +166,12 @@
 			</li>
 			<li class="c-combo-pop-up--item">
 				<label>
-					<input type="checkbox" rv-on-change="controller.updateFilters" rv-ischecked="dataObject.mediaFilters | indexof 'Flagged Lots'" data-filter="Flagged Lots">Flagged Lots
+					<input type="checkbox" rv-on-change="controller.updateFilters" rv-ischecked="dataObject.mediaFilters | indexof 'Flagged lots'" data-filter="Flagged lots">Flagged lots
+				</label>
+			</li>
+			<li class="c-combo-pop-up--item">
+				<label>
+					<input type="checkbox" rv-on-change="controller.updateFilters" rv-ischecked="dataObject.mediaFilters | indexof 'Lots with disabled media'" data-filter="Lots with disabled media">Lots with disabled media
 				</label>
 			</li>
 		</ul>

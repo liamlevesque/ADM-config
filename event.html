@@ -108,7 +108,7 @@
 			<div> Lots: 1 - 451, 8001 - 8012</div>
 			<div class="l-abs-right h-pt-200">
 				<button class="o-button--outline_white " rv-on-click="controller.toggleGetOtherSales">Refresh Event Data</button>
-				<button class="o-button--light">Launch Clerk</button>
+				<button class="o-button--light_on-orange" rv-enabled="dataObject.auctionLots.haveData">Launch Clerk</button>
 			</div>
 		</div>
 
@@ -136,86 +136,83 @@
 	<div class="o-width-wrapper h-overflow-hidden h-p-100 h-mt-300 h-mb-300">
 
 		<section class="c-container-box h-mb-300">
-			<div class="h-overflow-hidden">
-				<div class="l-grid-sixth">
-					<span class="t-allcaps">Sale Data</span>
-				</div>
-				<div class="l-grid-fivesixths h-ta-center">
-					<div class="l-grid-half">
-						<h3 class="h3">Inventory</h3>
-						<hr>
-						<div class="c-list-grid--header">
-							<label class="">Lots Downloaded</label>
-						</div>
-						<hr>
-						<div rv-unless="dataObject.auctionLots.haveData" class="t-empty">No data yet. Please get latest inventory.</div>
-						<div rv-if="dataObject.auctionLots.haveData">
-							<div class="t-data-point">{ dataObject.auctionLots.downloaded | formatThousands}</div>
-						</div>
-						<hr>
-						<button class="o-button h-mt-200" rv-on-click="controller.startLotDownload" rv-disabled="dataObject.downloads.1.active">
-							<span rv-unless="dataObject.downloads.1.active">Get Latest Inventory</span>
-							<span rv-if="dataObject.downloads.1.active">Downloading...</span>
-						</button>
+			<div class="h-overflow-hidden h-ta-center">
+				
+				<div class="l-grid-half">
+					<h3 class="h3">Inventory</h3>
+					<hr>
+					<div class="c-list-grid--header">
+						<label class="">Lots Downloaded</label>
 					</div>
-					<div class="l-grid-half">
-						<h3 class="h3">Photos</h3>
-						<hr>
-						<div class="c-list-grid--header">
-							<div class="l-grid-third">Photos Downloaded</div>
-							<div class="l-grid-third">Missing Hero Photo</div>
-							<div class="l-grid-third">Lots With Video</div>
-						</div>
-						<hr>
-						<div rv-unless="dataObject.auctionPhotos.haveData" class="t-empty">No data yet. Please get latest photos.</div>
-						<div rv-if="dataObject.auctionPhotos.haveData">
-							<div class="l-grid-third t-data-point">{ dataObject.auctionPhotos.downloaded | formatThousands}</div>
-							<div class="l-grid-third t-data-point h-color-error">{ dataObject.auctionPhotos.missingHero | formatThousands}</div>
-							<div class="l-grid-third t-data-point">{ dataObject.auctionPhotos.withVideo | formatThousands}</div>
-						</div>
-						<hr>
-						<button class="o-button h-mt-200" rv-on-click="controller.toggleDownloadPhotosSettingsVisible" rv-disabled="dataObject.downloads.0.active">
-							<span rv-unless="dataObject.downloads.0.active">Get Latest Photos</span>
-							<span rv-if="dataObject.downloads.0.active">Downloading...</span>
-						</button>
+					<hr>
+					<div rv-unless="dataObject.auctionLots.haveData" class="t-empty">No data yet. Please get latest inventory.</div>
+					<div rv-if="dataObject.auctionLots.haveData">
+						<div class="t-data-point">{ dataObject.auctionLots.downloaded | formatThousands}</div>
 					</div>
+					<hr>
+					<button class="o-button h-mt-200" rv-on-click="controller.startLotDownload" rv-disabled="dataObject.downloads.1.active">
+						<span rv-unless="dataObject.downloads.1.active">Get Latest Inventory</span>
+						<span rv-if="dataObject.downloads.1.active">Downloading...</span>
+					</button>
 				</div>
+				<div class="l-grid-half">
+					<h3 class="h3">Photos</h3>
+					<hr>
+					<div class="c-list-grid--header">
+						<div class="l-grid-third">Photos Downloaded</div>
+						<div class="l-grid-third">Missing Hero Photo</div>
+						<div class="l-grid-third">Lots With Video</div>
+					</div>
+					<hr>
+					<div rv-unless="dataObject.auctionPhotos.haveData" class="t-empty">No data yet. Please get latest photos.</div>
+					<div rv-if="dataObject.auctionPhotos.haveData">
+						<div class="l-grid-third t-data-point">{ dataObject.auctionPhotos.downloaded | formatThousands}</div>
+						<div class="l-grid-third t-data-point h-color-error">{ dataObject.auctionPhotos.missingHero | formatThousands}</div>
+						<div class="l-grid-third t-data-point">{ dataObject.auctionPhotos.withVideo | formatThousands}</div>
+					</div>
+					<hr>
+					<button class="o-button h-mt-200" rv-on-click="controller.toggleDownloadPhotosSettingsVisible" rv-disabled="dataObject.downloads.0.active">
+						<span rv-unless="dataObject.downloads.0.active">Get Latest Photos</span>
+						<span rv-if="dataObject.downloads.0.active">Downloading...</span>
+					</button>
+				</div>
+
 			</div>
 
-			<div class="c-container-box--footer" rv-if="dataObject.hasDownloaded">
+			<div class="c-container-box--footer">
 				<div class="c-history">
-					<div class="l-grid-sixth">
-						<span class="t-allcaps">Latest Download</span>
+					<div class="h-overflow-hidden">
+						<h3 class="h5 h-d-inline-block h-color-white">Latest Downloads</h3>
+						<button class="h-float-right o-text-button_white h-mt-undo" rv-on-click="controller.toggleHistoryExpanded"><span rv-if="dataObject.historyExpanded">Hide History</span><span rv-unless="dataObject.historyExpanded">Show History</span></button>
 					</div>
-					<div class="l-grid-fivesixths">
-						<div class="h-overflow-hidden">
-							<div class="l-grid-half">
-								<div class="c-history--header" rv-if="dataObject.auctionLots.haveData">15/12 3:14PM - 12 Lots Downloaded</div>
-							</div>
-							<div class="l-grid-half">
-								<div class="c-history--header s-error" rv-if="dataObject.auctionPhotos.haveData">15/12 3:14PM - Error Completing Download</div>
-							</div>
+
+					<div class="h-overflow-hidden">
+						<div class="l-grid-half">
+							<div class="c-history--header" rv-if="dataObject.auctionLots.haveData">15/12 3:14PM - 12 Lots Downloaded</div>
+							<div class="h-ta-center t-empty" rv-unless="dataObject.auctionLots.haveData">No inventory downloaded yet</div>
 						</div>
-						<div class="h-overflow-hidden" rv-if="dataObject.historyExpanded">
-							<div class="l-grid-half">
-								<ul class="c-history--list" rv-if="dataObject.auctionLots.haveData">
-									<li class="c-history--item">15/12 3:12PM - 128 Lots Downloaded</li>
-									<li class="c-history--item s-error">15/12 12:31PM - Error Completing Download</li>
-									<li class="c-history--item">15/12 7:21AM - 2,360 Lots Downloaded</li>
-								</ul>
-							</div>
-							<div class="l-grid-half">
-								<ul class="c-history--list" rv-if="dataObject.auctionPhotos.haveData">
-									<li class="c-history--item">15/12 3:14PM - 84 Photos Downloaded</li>
-									<li class="c-history--item">15/12 2:22PM - 177 Photos Downloaded</li>
-									<li class="c-history--item">15/12 1:21PM - 1,321 Photos Downloaded</li>
-								</ul>
-							</div>
-						</div>
-						<div class="h-ta-center">
-							<button class="o-text-button_white" rv-on-click="controller.toggleHistoryExpanded"><span rv-if="dataObject.historyExpanded">Hide History</span><span rv-unless="dataObject.historyExpanded">Show Complete Download History</span></button>
+						<div class="l-grid-half">
+							<div class="c-history--header s-error" rv-if="dataObject.auctionPhotos.haveData">15/12 3:14PM - Error Completing Download</div>
+							<div class="h-ta-center t-empty" rv-unless="dataObject.auctionPhotos.haveData">No photos downloaded yet</div>
 						</div>
 					</div>
+					<div class="h-overflow-hidden" rv-if="dataObject.historyExpanded">
+						<div class="l-grid-half">
+							<ul class="c-history--list" rv-if="dataObject.auctionLots.haveData">
+								<li class="c-history--item">15/12 3:12PM - 128 Lots Downloaded</li>
+								<li class="c-history--item s-error">15/12 12:31PM - Error Completing Download</li>
+								<li class="c-history--item">15/12 7:21AM - 2,360 Lots Downloaded</li>
+							</ul>
+						</div>
+						<div class="l-grid-half">
+							<ul class="c-history--list" rv-if="dataObject.auctionPhotos.haveData">
+								<li class="c-history--item">15/12 3:14PM - 84 Photos Downloaded</li>
+								<li class="c-history--item">15/12 2:22PM - 177 Photos Downloaded</li>
+								<li class="c-history--item">15/12 1:21PM - 1,321 Photos Downloaded</li>
+							</ul>
+						</div>
+					</div>
+
 				</div>
 				
 			</div>
@@ -459,12 +456,12 @@
 						<hr>
 						<div class="o-input--row">
 							<label class="o-input--label">Display Name</label>
-							<input type="text" class="o-input--text" rv-on-keyup="controller.updateDisplayName" rv-value="dataObject.tempDisplay.name">
+							<input type="text" class="o-input--text" rv-value="dataObject.tempDisplay.name">
 						</div>
 						<div class="o-input--row">
 							<label class="o-input--label">IP Address</label>
 							<div>
-								<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">
+								<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small">&nbsp;.&nbsp;<input type="text" class="o-input--text_small" rv-on-keyup="controller.updateDisplayName">
 							</div>
 						</div>
 						<div class="o-input--row">
@@ -526,7 +523,7 @@
 							</div>
 						</div>
 						<div class="o-input--row">
-							<label class="o-input--label">Language</label>
+							<label class="o-input--label">Brightness</label>
 							<select class="o-input--select">
 								<option selected>55%</option>
 								<option>65%</option>
@@ -540,7 +537,7 @@
 					
 					<div class="h-ta-center" rv-if="dataObject.tempDisplay.editing">
 						<hr>
-						<button class="o-button--outline" rv-on-click="controller.toggleConfirmDeleteDisplay">Delete This Display</button>
+						<button class="o-button--outline_error" rv-on-click="controller.toggleConfirmDeleteDisplay">Delete This Display</button>
 					</div>
 	
 				</div>
@@ -548,7 +545,12 @@
 	
 				<div class="c-modal--footer">
 					<button class="o-text-button--large" rv-on-click="controller.toggleAddDisplayVisible">Cancel</button>
-					<button class="o-button h-float-right" rv-enabled="dataObject.saveDisplayAllowed" rv-on-click="controller.createDisplay">Create Display</button>
+					<button rv-unless="dataObject.tempDisplay.editing" class="o-button h-float-right" rv-enabled="dataObject.saveDisplayAllowed" rv-on-click="controller.createDisplay">
+						Create Display
+					</button>
+					<button rv-if="dataObject.tempDisplay.editing" class="o-button h-float-right" rv-on-click="controller.toggleAddDisplayVisible">
+						Save Changes
+					</button>
 				</div>
 	
 			</div>
@@ -601,11 +603,11 @@
 							<input type="text" class="o-input--text">
 						</div>
 						<div class="l-grid-quarter">
-							<input type="text" class="o-input--text">
+							<input type="text" class="o-input--text" readonly>
 						</div>
-						<div class="l-grid-quarter h-color-error">
-							<i class="icon-trash"></i>Clear
-						</div>
+						<button class="o-text-button_error">
+							<i class="icon-trash h-mr-50"></i>Clear
+						</button>
 					</div>
 					
 					<div class="c-list-grid--header">
@@ -629,11 +631,11 @@
 							<input type="text" class="o-input--text">
 						</div>
 						<div class="l-grid-quarter">
-							<input type="text" class="o-input--text">
+							<input type="text" class="o-input--text" readonly>
 						</div>
-						<div class="l-grid-quarter h-color-error">
-							<i class="icon-trash"></i>Clear
-						</div>
+						<button class="o-text-button_error">
+							<i class="icon-trash h-mr-50"></i>Clear
+						</button>
 					</div>
 					
 					
@@ -672,19 +674,22 @@
 					<div class="c-modal--sub-box">
 						<span>From:</span>
 						<div class="l-grid-third">
-							<input type="text" placeholder="lot #" class="o-input--text" rv-on-click="controller.checkDownloadLotImages">
+							<input type="text" placeholder="lot #" class="o-input--text_small" rv-on-click="controller.checkDownloadLotImages" rv-value="dataObject.photoDownloadLotInput">
 						</div>
 						<span>To:</span>
 						<div class="l-grid-third">
-							<input type="text" placeholder="lot #" class="o-input--text" rv-on-click="controller.checkDownloadLotImages">
+							<input type="text" placeholder="lot #" class="o-input--text_small" rv-on-click="controller.checkDownloadLotImages">
 						</div>
 					</div>
-					
+				</div>
+	
+				<div class="c-modal--error">
+					No matching lots found
 				</div>
 	
 				<div class="c-modal--footer">
 					<button class="o-text-button--large" rv-on-click="controller.toggleDownloadPhotosSettingsVisible">Cancel</button>
-					<button class="o-button h-float-right" rv-on-click="controller.startPhotoDownload">Start Download</button>
+					<button class="o-button h-float-right" rv-on-click="controller.startPhotoDownload" rv-enabled="dataObject.photoDownloadLotSelected | disablePhotoDownload dataObject.photoDownloadLotInput">Start Download</button>
 				</div>
 	
 			</div>
@@ -720,8 +725,8 @@
 				
 			</div>
 
-			<div class="c-modal--footer">
-				<button class="o-text-button--large" rv-on-click="controller.toggleNoInventoryErrorVisible">Done</button>
+			<div class="c-modal--footer h-overflow-hidden">
+				<button class="o-text-button--large h-float-right" rv-on-click="controller.toggleNoInventoryErrorVisible">Done</button>
 			</div>
 
 		</div>
@@ -746,9 +751,9 @@
 				</div>
 			</div>
 			<div class="o-download-item--error" rv-if="download.error">
-				There was an error downloading inventory.
-				<button class="o-text-button_white" rv-on-click="controller.errorRetry">Retry</button>
-				<button class="o-text-button_white h-float-right" rv-on-click="controller.toggleHistoryExpanded">View Error</button>
+				<p>There was an error downloading inventory.</p>
+				<button class="o-button--outline_white" rv-on-click="controller.errorRetry">Retry</button>
+				<button class="o-button--outline_white h-float-right" rv-on-click="controller.toggleHistoryExpanded">View Error</button>
 			</div>
 		</div>
 	</div> 

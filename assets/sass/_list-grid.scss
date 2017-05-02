@@ -1,4 +1,12 @@
 .c-list-grid{
+
+	&:empty{
+		text-align: center;
+		&:after{
+			content: 'No results found';
+			@extend .t-empty;
+		}
+	}
 }
 
 	.c-list-grid--header{
@@ -36,9 +44,33 @@
 		overflow: hidden;
 		cursor: pointer;
 		line-height: $input-height;
+		position: relative;
 
 		&:nth-child(odd){
 			background-color: palette(grey,x-light);
+		}
+
+		&.s-group-start, &.s-group-end, &.s-group{
+			&:before{
+				content: "";
+				display: block;
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				width: 7px;
+				background-color: palette(grey);
+			}
+		}
+
+		&.s-group-start:before{
+			border-radius: $default-border-radius 0 0 0;
+			top: 1px;
+		}
+
+		&.s-group-end:before{
+			border-radius: 0 0 0 $default-border-radius;
+			bottom: 1px;
 		}
 	}
 

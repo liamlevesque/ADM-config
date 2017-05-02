@@ -22,19 +22,22 @@
 				<div class="c-modal--sub-box">
 					<span>From:</span>
 					<div class="l-grid-third">
-						<input type="text" placeholder="lot #" class="o-input--text" rv-on-click="controller.checkDownloadLotImages">
+						<input type="text" placeholder="lot #" class="o-input--text_small" rv-on-click="controller.checkDownloadLotImages" rv-value="dataObject.photoDownloadLotInput">
 					</div>
 					<span>To:</span>
 					<div class="l-grid-third">
-						<input type="text" placeholder="lot #" class="o-input--text" rv-on-click="controller.checkDownloadLotImages">
+						<input type="text" placeholder="lot #" class="o-input--text_small" rv-on-click="controller.checkDownloadLotImages">
 					</div>
 				</div>
-				
+			</div>
+
+			<div class="c-modal--error">
+				No matching lots found
 			</div>
 
 			<div class="c-modal--footer">
 				<button class="o-text-button--large" rv-on-click="controller.toggleDownloadPhotosSettingsVisible">Cancel</button>
-				<button class="o-button h-float-right" rv-on-click="controller.startPhotoDownload">Start Download</button>
+				<button class="o-button h-float-right" rv-on-click="controller.startPhotoDownload" rv-enabled="dataObject.photoDownloadLotSelected | disablePhotoDownload dataObject.photoDownloadLotInput">Start Download</button>
 			</div>
 
 		</div>

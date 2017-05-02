@@ -57,6 +57,12 @@ rivets.binders.ischecked = function(el,value){
 	else $(el).prop('checked',false);
 };
 
+rivets.binders.lotgroupdecor = function(el,value){
+	if(value === 'start') $(el).addClass('s-group-start');
+	if(value === 'mid') $(el).addClass('s-group');
+	if(value === 'end') $(el).addClass('s-group-end');
+};
+
 rivets.formatters.indexof = function(list,item){
 	if(list.indexOf(item) >= 0) return true;
 	else return false;
@@ -70,6 +76,13 @@ rivets.formatters.divide = function(value,divisor){
 rivets.formatters.lengthToBool = function(value){
 	if(typeof value === 'undefined') return false;
 	if(value.length === 0) return false;
+	return true;
+};
+
+rivets.formatters.invalidinput = function(value){
+	if(typeof value === 'undefined') return false;
+	if(value.length === 0) return false;
+	if(value.match(/[^A-Za-z0-9-_]/gi) != null) return false;
 	return true;
 };
 
@@ -111,7 +124,10 @@ rivets.formatters.findShortcuts = function(arr,index){
 	return arr[index].shortcuts;
 };
 
-
+rivets.formatters.and = function(value,item){
+	if(value && item) return true;
+	return false;
+};
 
 rivets.binders.backgroundsrc = function(el,value){
 	$(el).css({'background-image':value});
@@ -120,4 +136,12 @@ rivets.binders.backgroundsrc = function(el,value){
 rivets.formatters.formatThousands = function(value){
 	return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+rivets.formatters.disablePhotoDownload = function(value, arg){
+	if(typeof value == "undefined" || typeof arg == "undefined") return true;
+	if(arg.length === 0 && value) return false;
+	return true;
+}
+
+
 
