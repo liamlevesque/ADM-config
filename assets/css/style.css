@@ -1,3 +1,4 @@
+@import url(tooltipster.bundle.min.css);
 @import url(swiper.min.css);
 @font-face {
   font-family: 'ritchie-icons';
@@ -2095,6 +2096,21 @@ hr {
 .l-input-inline_med {
   display: inline-block;
   width: 200px; }
+
+.ritchie-tooltips .tooltipster-box {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-top: 0 !important; }
+
+.ritchie-tooltips .tooltipster-arrow {
+  display: none; }
+
+.ritchie-tooltips .tooltipster-content {
+  padding: 2px;
+  color: initial;
+  line-height: initial;
+  overflow: hidden; }
 
 .c-header--upper {
   background-color: black;
