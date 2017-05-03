@@ -17,29 +17,41 @@ $(function(){
 		});
 	} 
 
-	if($('.js-filter-readout').length > 0){
-		var reference = $('.js-filter-readout');
-		var popper = $('.js-filter-popup');
-		var anotherPopper = new Popper(
-		    reference,
-		    popper,
-		    {
-		        placement: 'bottom-start',
-		    }
-		); 
-	}
+	$('.js-filter-readout').tooltipster({
+		content: $('.js-filter-popup'),
+		animation: 'fade',
+		animationDuration: 0,
+		arrow: false,
+		theme: 'ritchie-tooltips',
+		trigger: 'custom',
+		interactive: true,
+		delay: 0,
+		triggerOpen: {
+	        click: true
+	    },
+	    triggerClose: {
+	        click: true,
+	    },
+		side: 'bottom',
+	});
 
-	if($('.js-export-popup-toggle').length > 0){
-		var exportreference = $('.js-export-popup-toggle');
-		var exportpopper = $('.js-export-popup');
-		var exportPopper = new Popper(
-		    exportreference,
-		    exportpopper,
-		    {
-		        placement: 'bottom-end',
-		    }
-		); 
-	}
+	$('.js-export-popup-toggle').tooltipster({
+		content: $('.js-export-popup'),
+		animation: 'fade',
+		animationDuration: 0,
+		arrow: false,
+		theme: 'ritchie-tooltips',
+		trigger: 'custom',
+		interactive: true,
+		delay: 0,
+		triggerOpen: {
+	        click: true
+	    },
+	    triggerClose: {
+	        click: true,
+	    },
+		side: 'bottom',
+	});
 
 	if($('.swiper-container').length > 0){
 		initializeSlideshow();
@@ -507,7 +519,7 @@ const controller = {
 			//console.log(dataObject.mediaFilters);
 		},
 		selectAllFilters: function(e){
-			dataObject.mediaFilters = ['Lots with video','Lots misssing hero photos','Lots with less than 4 photos','Flagged Lots'];
+			dataObject.mediaFilters = ['Lots with video','Lots misssing hero photos','Lots with less than 4 photos','Flagged lots','Lots with disabled media'];
 		},
 		clearFilters: function(e){
 			dataObject.mediaFilters = ['All Lots'];
