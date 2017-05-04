@@ -1170,6 +1170,17 @@ hr {
     margin-top: -12px;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5); }
 
+@keyframes waitingslide {
+  0% {
+    left: 0;
+    right: 100%; }
+  50% {
+    left: 0;
+    right: 0; }
+  100% {
+    left: 100%;
+    right: 0; } }
+
 .o-icon-button--sort {
   font-weight: 700;
   outline: none;
@@ -1181,6 +1192,7 @@ hr {
   height: 45px;
   border: 2px solid transparent;
   padding: 8px 20px;
+  position: relative;
   padding: 2px;
   font-size: 8px;
   background-color: transparent;
@@ -1190,6 +1202,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-icon-button--sort:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-icon-button--sort.s-loading {
+    pointer-events: none; }
+    .o-icon-button--sort.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-icon-button--sort.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-icon-button--sort.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-icon-button--sort:hover, .o-icon-button--sort:focus {
     color: black; }
   .s-sort-asc .o-icon-button--sort {
@@ -1207,6 +1260,7 @@ hr {
   height: 45px;
   border: 2px solid transparent;
   padding: 8px 20px;
+  position: relative;
   padding: 2px;
   font-size: 8px;
   background-color: transparent;
@@ -1216,6 +1270,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-icon-button--small:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-icon-button--small.s-loading {
+    pointer-events: none; }
+    .o-icon-button--small.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-icon-button--small.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-icon-button--small.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-icon-button--small:hover, .o-icon-button--small:focus {
     color: black; }
 
@@ -1230,6 +1325,7 @@ hr {
   height: 45px;
   border: 2px solid transparent;
   padding: 8px 20px;
+  position: relative;
   padding: 2px;
   font-size: 16px;
   background-color: transparent;
@@ -1239,6 +1335,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-icon-button--medium:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-icon-button--medium.s-loading {
+    pointer-events: none; }
+    .o-icon-button--medium.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-icon-button--medium.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-icon-button--medium.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-icon-button--medium:hover, .o-icon-button--medium:focus {
     color: black; }
 
@@ -1253,6 +1390,7 @@ hr {
   height: 45px;
   border: 2px solid transparent;
   padding: 8px 20px;
+  position: relative;
   padding: 2px;
   font-size: 14px;
   background-color: transparent;
@@ -1267,6 +1405,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-icon-button--toggle-round:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-icon-button--toggle-round.s-loading {
+    pointer-events: none; }
+    .o-icon-button--toggle-round.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-icon-button--toggle-round.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-icon-button--toggle-round.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-icon-button--toggle-round:hover, .o-icon-button--toggle-round:focus {
     color: white; }
   .o-icon-button--toggle-round:hover {
@@ -1308,6 +1487,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1317,6 +1497,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button.s-loading {
+    pointer-events: none; }
+    .o-button.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button:hover {
     background-color: #C1631C;
     color: white; }
@@ -1336,6 +1557,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1345,6 +1567,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button--contrast:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button--contrast.s-loading {
+    pointer-events: none; }
+    .o-button--contrast.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button--contrast.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button--contrast.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button--contrast:hover {
     background-color: #C1631C;
     color: white; }
@@ -1364,6 +1627,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1373,6 +1637,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button--light:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button--light.s-loading {
+    pointer-events: none; }
+    .o-button--light.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button--light.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button--light.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button--light:hover {
     background-color: #E87722;
     color: white; }
@@ -1392,6 +1697,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1401,6 +1707,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button--light_on-orange:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button--light_on-orange.s-loading {
+    pointer-events: none; }
+    .o-button--light_on-orange.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button--light_on-orange.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button--light_on-orange.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button--light_on-orange:hover {
     background-color: #C1631C;
     color: white; }
@@ -1420,6 +1767,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1429,6 +1777,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button_error:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button_error.s-loading {
+    pointer-events: none; }
+    .o-button_error.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button_error.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button_error.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button_error:hover {
     background-color: #A62F21;
     color: white; }
@@ -1448,6 +1837,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1457,6 +1847,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button_affirmative:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button_affirmative.s-loading {
+    pointer-events: none; }
+    .o-button_affirmative.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button_affirmative.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button_affirmative.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button_affirmative:hover {
     background-color: #248838;
     color: white; }
@@ -1476,6 +1907,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1486,6 +1918,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button--outline:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button--outline.s-loading {
+    pointer-events: none; }
+    .o-button--outline.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button--outline.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button--outline.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button--outline:hover {
     background-color: #E87722;
     color: white; }
@@ -1505,6 +1978,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1515,6 +1989,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button--outline_error:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button--outline_error.s-loading {
+    pointer-events: none; }
+    .o-button--outline_error.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button--outline_error.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button--outline_error.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button--outline_error:hover {
     background-color: #c4483a;
     color: white; }
@@ -1534,6 +2049,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1544,6 +2060,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button--outline_grey:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button--outline_grey.s-loading {
+    pointer-events: none; }
+    .o-button--outline_grey.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button--outline_grey.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button--outline_grey.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button--outline_grey:hover {
     background-color: #E87722;
     color: white; }
@@ -1563,6 +2120,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1573,6 +2131,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button--outline_white:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button--outline_white.s-loading {
+    pointer-events: none; }
+    .o-button--outline_white.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button--outline_white.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button--outline_white.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button--outline_white:hover {
     background-color: white;
     color: #E87722; }
@@ -1592,6 +2191,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1607,6 +2207,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button--outline-small_grey:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button--outline-small_grey.s-loading {
+    pointer-events: none; }
+    .o-button--outline-small_grey.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button--outline-small_grey.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button--outline-small_grey.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button--outline-small_grey:hover {
     background-color: #585858;
     color: white; }
@@ -1626,6 +2267,7 @@ hr {
   border: 2px solid transparent;
   padding: 8px 20px;
   position: relative;
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   font-size: 1rem;
@@ -1641,6 +2283,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button--outline-small_error:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button--outline-small_error.s-loading {
+    pointer-events: none; }
+    .o-button--outline-small_error.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button--outline-small_error.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button--outline-small_error.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button--outline-small_error:hover {
     background-color: #c4483a;
     color: white; }
@@ -1659,6 +2342,7 @@ hr {
   height: 45px;
   border: 2px solid transparent;
   padding: 8px 20px;
+  position: relative;
   font-size: 0.8rem;
   background-color: transparent;
   color: #E87722; }
@@ -1666,6 +2350,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-text-button:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-text-button.s-loading {
+    pointer-events: none; }
+    .o-text-button.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-text-button.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-text-button.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-text-button:hover, .o-text-button:focus {
     color: #C1631C; }
 
@@ -1680,6 +2405,7 @@ hr {
   height: 45px;
   border: 2px solid transparent;
   padding: 8px 20px;
+  position: relative;
   font-size: 0.8rem;
   background-color: transparent;
   color: white; }
@@ -1687,6 +2413,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-text-button_white:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-text-button_white.s-loading {
+    pointer-events: none; }
+    .o-text-button_white.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-text-button_white.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-text-button_white.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-text-button_white:hover, .o-text-button_white:focus {
     color: #E87722; }
 
@@ -1701,6 +2468,7 @@ hr {
   height: 45px;
   border: 2px solid transparent;
   padding: 8px 20px;
+  position: relative;
   font-size: 0.8rem;
   background-color: transparent;
   color: #c4483a; }
@@ -1708,6 +2476,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-text-button_error:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-text-button_error.s-loading {
+    pointer-events: none; }
+    .o-text-button_error.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-text-button_error.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-text-button_error.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-text-button_error:hover, .o-text-button_error:focus {
     color: #A62F21; }
 
@@ -1722,6 +2531,7 @@ hr {
   height: 45px;
   border: 2px solid transparent;
   padding: 8px 20px;
+  position: relative;
   font-size: 1rem;
   background-color: transparent;
   color: #E87722; }
@@ -1729,6 +2539,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-text-button--large:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-text-button--large.s-loading {
+    pointer-events: none; }
+    .o-text-button--large.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-text-button--large.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-text-button--large.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-text-button--large:hover, .o-text-button--large:focus {
     color: #C1631C; }
 
@@ -1743,6 +2594,7 @@ hr {
   height: 45px;
   border: 2px solid transparent;
   padding: 8px 20px;
+  position: relative;
   font-size: 1rem;
   background-color: transparent;
   color: white; }
@@ -1750,6 +2602,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-text-button--large_white:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-text-button--large_white.s-loading {
+    pointer-events: none; }
+    .o-text-button--large_white.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-text-button--large_white.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-text-button--large_white.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-text-button--large_white:hover, .o-text-button--large_white:focus {
     color: #E87722; }
 
@@ -1764,6 +2657,7 @@ hr {
   height: 45px;
   border: 2px solid transparent;
   padding: 8px 20px;
+  position: relative;
   font-size: 0.8rem;
   background-color: transparent;
   color: #585858;
@@ -1775,6 +2669,47 @@ hr {
     opacity: 0.4;
     cursor: normal;
     pointer-events: none; }
+  .o-button--combo-item:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    -webkit-transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    transition: 0.2s cubic-bezier(0.63, 0.005, 0.365, 1);
+    line-height: 45px; }
+  .o-button--combo-item.s-loading {
+    pointer-events: none; }
+    .o-button--combo-item.s-loading:before {
+      content: "fetching updates...";
+      background-color: white;
+      color: #E87722;
+      top: 0; }
+    .o-button--combo-item.s-loading:after {
+      display: block;
+      position: absolute;
+      content: " ";
+      left: 0;
+      right: 100%;
+      height: 4px;
+      bottom: 0;
+      background-color: #C1631C;
+      -webkit-animation-name: waitingslide;
+              animation-name: waitingslide;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+      -webkit-animation-timing-function: linear;
+              animation-timing-function: linear; }
+  .o-button--combo-item.s-success:before {
+    content: "Done!";
+    top: 0;
+    background-color: #36AE4F;
+    color: white; }
   .o-button--combo-item:hover, .o-button--combo-item:focus {
     color: #E87722; }
   .o-button--combo-item:last-child {

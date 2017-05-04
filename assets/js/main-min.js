@@ -3751,6 +3751,18 @@ const controller = {
 		}
 	},
 
+	refreshData: function(e){
+		$(e.currentTarget).addClass('s-loading');
+		setTimeout(function(){
+			$(e.currentTarget).removeClass('s-loading').addClass('s-success');
+
+			setTimeout(function(){
+				$(e.currentTarget).removeClass('s-success');
+			},3000);
+
+		},5000);
+	},
+
 	checkDownloadLotImages: function(e){
 		$('.js-downloadLotImages').attr('checked','true');
 		dataObject.photoDownloadLotSelected = true;
