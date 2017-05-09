@@ -199,12 +199,16 @@
 
 			<div class="c-modal--footer">
 				<button class="o-text-button--large" rv-on-click="controller.toggleEmailVisibility">Cancel</button>
-				<button class="o-button h-float-right">Send</button>
+				<button class="o-button h-float-right" rv-on-click="controller.showSendMediaSuccess">Send</button>
 			</div>
 
 		</div>
 
 	</div> 
+
+	<div class="o-toast--confirm-save-changes" rv-class-s-visible="dataObject.confirmMediaSentVisible">
+		List Sent!
+	</div>
 
 	<!-- @include '/assets/partials/image-download-config' --> 
 	<!-- @include '/assets/partials/downloadMonitor' --> 

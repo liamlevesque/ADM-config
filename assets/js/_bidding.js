@@ -274,6 +274,7 @@ const dataObject = {
 		{
 			title: "Downloading Photos",
 			progress: 8,
+			checkprogress: 0,
 			items: 20,
 			error: false,
 			active: false,
@@ -291,6 +292,7 @@ const dataObject = {
 	photoDownloadInput: '',
 	photoDownloadLotSelected: false,
 	photoDownloadLotInput: '',
+	confirmMediaSentVisible: false,
 
 	reportClerkActivity:false,
 	reportRecipient: '',
@@ -614,6 +616,13 @@ const controller = {
 				dataObject.reportClerkActivity = false;
 			},toastDuration);
 		},
+		showSendMediaSuccess: function(e){
+			dataObject.confirmMediaSentVisible = true;
+			dataObject.sendEmailVisible = false;
+			setTimeout(function(){
+				dataObject.confirmMediaSentVisible = false;
+			},toastDuration);
+		},
 		setSystemReportTypeSelected: function(e){
 			dataObject.systemReportTypeSelected = $('input[name=reportType]:checked').val();
 		},
@@ -635,7 +644,10 @@ const startDownload = function(target){
 	progressTimer = setInterval(function(){
 		
 		if(target.title === 'Downloading Lots') target.progress+= 10;
-		else target.progress++;
+		else{
+			if(target.checkprogress >= target.items) target.progress++;
+			else target.checkprogress+=5;
+		}
 
 		if(target.progress >= target.items){
 			clearInterval(progressTimer);

@@ -741,13 +741,24 @@
 				<button class="o-text-button h-float-right" rv-unless="download.error" rv-on-click="controller.cancelDownload">Cancel</button>
 				<button class="o-text-button_white h-float-right" rv-if="download.error" rv-on-click="controller.errorDismiss">Dismiss</button>
 			</div>
-			<div class="o-download-item--body" rv-unless="download.error">
-				<div class="">
-					<span>{ download.progress | divide download.items }%</span>
-					<span class="h-float-right">{ download.progress } of { download.items } Lots downloaded</span>
+			<div rv-unless="download.error">
+				<div class="o-download-item--body h-mb-100" rv-if="download.title | compare 'Downloading Photos'">
+					<div class="">
+						<span>{ download.checkprogress | divide download.items }%</span>
+						<span class="h-float-right">Checking Photos</span>
+					</div>
+					<div class="o-download-item--progress">
+						<div class="o-download-item--progress-indicator" rv-percenttowidth="download.checkprogress | divide download.items"></div>
+					</div>
 				</div>
-				<div class="o-download-item--progress">
-					<div class="o-download-item--progress-indicator" rv-percenttowidth="download.progress | divide download.items"></div>
+				<div class="o-download-item--body" rv-unless="download.error">
+					<div class="">
+						<span>{ download.progress | divide download.items }%</span>
+						<span class="h-float-right">{ download.progress } of { download.items } Lots downloaded</span>
+					</div>
+					<div class="o-download-item--progress">
+						<div class="o-download-item--progress-indicator" rv-percenttowidth="download.progress | divide download.items"></div>
+					</div>
 				</div>
 			</div>
 			<div class="o-download-item--error" rv-if="download.error">
