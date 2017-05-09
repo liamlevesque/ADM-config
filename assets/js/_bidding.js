@@ -132,6 +132,47 @@ const dataObject = {
 	confirmDeleteDisplayVisible: false,
 	downloadPhotosSettingsVisible: false,
 
+	altccys:[
+		{
+			ccy: 'AUD',
+			symbol: '$',
+			rate: 1.01,
+			format: '$999,999,999.99'
+		},
+		{
+			ccy: 'JPY',
+			symbol: '$',
+			rate: 107.2,
+			format: '¥999,999,999.99'
+		}
+	],
+	ccys: [
+		{
+			ccy: 'CAD',
+			symbol: '$',
+			rate: 0.79,
+			format: '$999,999,999.99'
+		},
+		{
+			ccy: 'USD',
+			symbol: '$',
+			rate: 1.213,
+			format: '$999,999,999.99'
+		},
+		{
+			ccy: 'AUD',
+			symbol: '$',
+			rate: 1.01,
+			format: '$999,999,999.99'
+		},
+		{
+			ccy: 'JPY',
+			symbol: '$',
+			rate: 107.2,
+			format: '¥999,999,999.99'
+		},
+	],
+
 	dataCenter2: false,
 	confirmSwitchDataCenter: false,
 	salesList: [
@@ -166,9 +207,6 @@ const dataObject = {
 
 	],
 
-	haveTriedToDownload: false,
-	noInventoryErrorVisible: false,
-	
 	lots: lotlist,
 	sortedColumn: 'js-lotnumber',
 	sortdirection: 'asc',
@@ -180,6 +218,7 @@ const dataObject = {
 	activeTab: 'general',
 	savePresChangeVisible: false,
 	savedConfirmationVisible: false,
+	resetChangesVisible: false,
 	slideDuration: 8,
 	slideAutoPlay: true,
 	cycleChoiceGroup: true,
@@ -269,7 +308,8 @@ const dataObject = {
 		]
 	},
 
-
+	haveTriedToDownload: false,
+	noInventoryErrorVisible: false,
 	downloads:[
 		{
 			title: "Downloading Photos",
@@ -403,6 +443,18 @@ const controller = {
 	toggleCCYSettingsVisible: function(){
 		dataObject.CCYSettingsVisible = !dataObject.CCYSettingsVisible;
 	},
+
+	setCCY: function(e){
+		let target = $(e.currentTarget).data('index');
+		let index = parseInt($(e.currentTarget).val());
+		
+		dataObject.altccys[target] = (dataObject.ccys[index]);
+	},
+	clearCCY: function(e){
+		let target = $(e.currentTarget).data('index');
+		dataObject.altccys[target] = null;
+	},
+
 	toggleDownloadPhotosSettingsVisible: function(){
 		if(controller.checkIfNoInventoryError()) return;
 		dataObject.downloadPhotosSettingsVisible = !dataObject.downloadPhotosSettingsVisible;
@@ -572,6 +624,7 @@ const controller = {
 		},
 		showSavedConfirmation: function(e){
 			dataObject.savePresChangeVisible = false;
+			dataObject.resetChangesVisible = true;
 			dataObject.savedConfirmationVisible = true;
 			setTimeout(function(){
 				dataObject.savedConfirmationVisible = false;
@@ -579,7 +632,6 @@ const controller = {
 		},
 		hideSavedConfirmation: function(e){
 			dataObject.savePresChangeVisible = false;
-			dataObject.resetChangesVisible = false;
 		},
 		clearSpecialMsg: function(e){
 			dataObject.presentation.specialMsg = '';

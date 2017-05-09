@@ -40,6 +40,11 @@ rivets.binders.addtextclass = function(el,value){
 	$(el).removeClass().addClass('s-'+ value);
 };
 
+rivets.binders.ccyclass = function(el,value){
+	if(value === "") return false;
+	$(el).addClass(value);
+};
+
 rivets.binders.percenttowidth = function(el,value){
 	$(el).css({'transform':"scaleX("+value/100+")"});
 };

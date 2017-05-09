@@ -11,22 +11,18 @@
 				</div>
 				<div class="h-overflow-hidden">
 					<div class="l-grid-quarter">
-						<select class="o-input--select">
+						<select class="o-input--select" rv-on-change="controller.setCCY" data-index="0">
 							<option selected disabled>Select</option>
-							<option>USD</option>
-							<option>CAD</option>
-							<option>AUD</option>
-							<option>GBP</option>
-							<option>EUR</option>
+							<option rv-each-ccy="dataObject.ccys" rv-value="index">{ccy.ccy}</option>
 						</select>
 					</div>
 					<div class="l-grid-quarter">
-						<input type="text" class="o-input--text">
+						<input type="text" class="o-input--text" rv-value="dataObject.altccys.0.rate">
 					</div>
 					<div class="l-grid-quarter">
-						<input type="text" class="o-input--text" readonly>
+						<input type="text" class="o-input--text" rv-value="dataObject.altccys.0.format" readonly>
 					</div>
-					<button class="o-text-button_error">
+					<button class="o-text-button_error" rv-on-click="controller.clearCCY" data-index="0">
 						<i class="icon-trash h-mr-50"></i>Clear
 					</button>
 				</div>
@@ -39,22 +35,18 @@
 				</div>
 				<div class="h-overflow-hidden">
 					<div class="l-grid-quarter">
-						<select class="o-input--select">
+						<select class="o-input--select" rv-on-change="controller.setCCY" data-index="1">
 							<option selected disabled>Select</option>
-							<option>USD</option>
-							<option>CAD</option>
-							<option>AUD</option>
-							<option>GBP</option>
-							<option>EUR</option>
+							<option rv-each-ccy="dataObject.ccys" rv-value="index">{ccy.ccy}</option>
 						</select>
 					</div>
 					<div class="l-grid-quarter">
-						<input type="text" class="o-input--text">
+						<input type="text" class="o-input--text" rv-value="dataObject.altccys.1.rate">
 					</div>
 					<div class="l-grid-quarter">
-						<input type="text" class="o-input--text" readonly>
+						<input type="text" class="o-input--text" rv-value="dataObject.altccys.1.format" readonly>
 					</div>
-					<button class="o-text-button_error">
+					<button class="o-text-button_error" rv-on-click="controller.clearCCY" data-index="1">
 						<i class="icon-trash h-mr-50"></i>Clear
 					</button>
 				</div>

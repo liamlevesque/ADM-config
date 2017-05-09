@@ -135,18 +135,15 @@
 				<div class="l-grid-half h-ta-right"><i class="icon-settings o-button--icon_large" rv-on-click="controller.toggleCCYSettingsVisible"></i></div>
 			</div>
 			<hr>
-			<ul class="c-list-grid">
-				<li class="c-list-grid--item">
-					<div class="l-grid-half">$ CAD <span class="h-ml-100 ccy-flag CAD"></span></div>
-					<div class="l-grid-half">@ 1.231</div>
-				</li>
-				<li class="c-list-grid--item">
-					<div class="l-grid-half">$ AUD <span class="h-ml-100 ccy-flag AUD"></span></div>
-					<div class="l-grid-half">@ 1.051</div>
+			<ul class="c-list-grid" rv-if="dataObject.altccys | lengthToBool">
+				<li class="c-list-grid--item" rv-each-altccy="dataObject.altccys">
+					<div class="l-grid-half">{altccy.symbol} {altccy.ccy}<span class="h-ml-100 ccy-flag" rv-ccyclass="altccy.ccy"></span></div>
+					<div class="l-grid-half">@ {altccy.rate}</div>
 				</li>
 			</ul>
-
-
+			<div class="t-empty h-ta-center" rv-unless="dataObject.altccys | lengthToBool">
+				No currencies configured yet.
+			</div>
 		</section>
 
 	</div>
