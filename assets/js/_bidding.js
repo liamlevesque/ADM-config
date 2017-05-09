@@ -293,6 +293,8 @@ const dataObject = {
 	photoDownloadLotSelected: false,
 	photoDownloadLotInput: '',
 	confirmMediaSentVisible: false,
+	cancelDownloadVisible: false,
+	cancelDownloadContext: null,
 
 	reportClerkActivity:false,
 	reportRecipient: '',
@@ -463,8 +465,13 @@ const controller = {
 			dataObject.downloadStarted = true;
 			startDownload(dataObject.downloads[1]);
 		},
-		cancelDownload: function(e,context){
-			context.download.active = false;
+		confirmCancelDownload: function(e,context){
+			dataObject.cancelDownloadVisible = !dataObject.cancelDownloadVisible;
+			dataObject.cancelDownloadContext = context;
+		},
+		cancelDownload: function(e){
+			dataObject.cancelDownloadVisible = false;
+			dataObject.cancelDownloadContext.download.active = false;
 		},
 		throwDownloadError: function(e,context){
 			context.download.error = true;

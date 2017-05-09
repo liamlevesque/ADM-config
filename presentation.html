@@ -612,7 +612,7 @@
 		<div class="c-download-monitor--item" rv-each-download="dataObject.downloads" rv-class-s-error="download.error" rv-show="download.active">
 			<div class="o-download-item--header">
 				<span  rv-on-click="controller.throwDownloadError">{ download.title }</span>
-				<button class="o-text-button h-float-right" rv-unless="download.error" rv-on-click="controller.cancelDownload">Cancel</button>
+				<button class="o-text-button h-float-right" rv-unless="download.error" rv-on-click="controller.confirmCancelDownload">Cancel</button>
 				<button class="o-text-button_white h-float-right" rv-if="download.error" rv-on-click="controller.errorDismiss">Dismiss</button>
 			</div>
 			<div rv-unless="download.error">
@@ -641,7 +641,25 @@
 				<button class="o-button--outline_white h-float-right" rv-on-click="controller.toggleHistoryExpanded">View Error</button>
 			</div>
 		</div>
-	</div> 
+	</div>
+	
+	<div class="c-modal" rv-class-s-visible="dataObject.cancelDownloadVisible">
+		<div class="c-modal--content_small">
+			<div class="c-modal--body">
+				<h3 class="o-container--header h-color-error">Cancel Download?</h3>
+				
+				<p>Are you sure you want to cancel this download</p>
+				
+			</div>
+	
+			<div class="c-modal--footer h-overflow-hidden">
+				<button class="o-text-button--large" rv-on-click="controller.confirmCancelDownload">Cancel</button>
+				<button class="o-button_error h-float-right" rv-on-click="controller.cancelDownload">Yes, Cancel Download</button>
+			</div>
+	
+		</div>
+	
+	</div>  
 
 
 <div class="h-mt-300">&nbsp;</div>
