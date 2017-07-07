@@ -7,7 +7,7 @@
 		"uuidString": "D952D603-6C63-474B-BD31-F9340FE2EB56"
 		}
 	],
-"creatorBuild": "25813",
+"creatorBuild": "25849",
 "files": {
 	"\/.gitignore": {
 		"ft": 8192,
@@ -50,6 +50,34 @@
 		"oAP": "\/assets\/css\/tooltipster.bundle.min-min.css",
 		"oF": 0,
 		"oS": 0
+		},
+	"\/assets\/fonts\/ADMIcons.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/assets\/fonts\/ADMIcons.eot",
+		"oF": 0
+		},
+	"\/assets\/fonts\/ADMIcons.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/assets\/fonts\/ADMIcons.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/assets\/fonts\/ADMIcons.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/assets\/fonts\/ADMIcons.ttf",
+		"oF": 0
+		},
+	"\/assets\/fonts\/ADMIcons.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/assets\/fonts\/ADMIcons.woff",
+		"oF": 0
 		},
 	"\/assets\/fonts\/FrutigerLTStd-BlackCn.eot": {
 		"ft": 8192,
@@ -105,34 +133,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/assets\/fonts\/FrutigerLTStd-BoldCn.woff",
-		"oF": 0
-		},
-	"\/assets\/fonts\/ritchie-icons.eot": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/assets\/fonts\/ritchie-icons.eot",
-		"oF": 0
-		},
-	"\/assets\/fonts\/ritchie-icons.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "\/assets\/fonts\/ritchie-icons.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"\/assets\/fonts\/ritchie-icons.ttf": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/assets\/fonts\/ritchie-icons.ttf",
-		"oF": 0
-		},
-	"\/assets\/fonts\/ritchie-icons.woff": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/assets\/fonts\/ritchie-icons.woff",
 		"oF": 0
 		},
 	"\/assets\/img\/8699592_1.jpg": {
@@ -8827,6 +8827,7 @@
 		},
 	"languageDefaultsUserDefined": [
 		],
+	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
 	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules",
 	"sourceFolderName": "source",
