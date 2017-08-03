@@ -3625,6 +3625,11 @@ const dataObject = {
 	filterRangeEnd: null,
 	mediaFilters: ['All Lots'],
 	sendEmailVisible: false,
+	mediaImportVisible: false,
+	mediaProcessingVisible: false,
+	mediaConflictVisible: false,
+	mediaDoneVisible: false,
+
 
 	activeTab: 'general',
 	savePresChangeVisible: false,
@@ -3884,6 +3889,31 @@ const controller = {
 	goToEventList: function(){
 		window.location = "index.html";
 	},
+
+	//MEDIA IMPORT
+
+		toggleMediaImport: function(){
+			dataObject.mediaImportVisible = !dataObject.mediaImportVisible;
+		},
+
+		startMediaProcessing: function(){
+			dataObject.mediaImportVisible = false;
+			dataObject.mediaProcessingVisible = true;
+		},
+
+		stopMediaProcessing: function(){
+			dataObject.mediaProcessingVisible = false;
+		},
+
+		toggleMediaConflict: function(){
+			dataObject.mediaProcessingVisible = false;
+			dataObject.mediaConflictVisible = !dataObject.mediaConflictVisible;
+		},
+
+		toggleMediaDoneVisible: function(){
+			dataObject.mediaConflictVisible = false;
+			dataObject.mediaDoneVisible = !dataObject.mediaDoneVisible;
+		},
 
 	//DISPLAY SETUP CONTROLS
 		setDisplayType: function(e){

@@ -56,3 +56,9 @@ $transition: $transition-time_1 $transition-function;
     }
 
 
+.o-progressSlider{
+    position: relative;
+    height: 4px;
+    background-color: palette(grey,light);
+    @include loading(palette(affirmative));
+}

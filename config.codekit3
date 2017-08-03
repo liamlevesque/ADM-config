@@ -182,6 +182,17 @@
 		"oAP": "\/assets\/img\/favicon.ico",
 		"oF": 0
 		},
+	"\/assets\/img\/import.png": {
+		"ft": 32768,
+		"iS": 112731,
+		"oA": 0,
+		"oAP": "\/assets\/img\/import.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"\/assets\/img\/logo-square.png": {
 		"ft": 32768,
 		"iS": 760,
@@ -500,6 +511,12 @@
 		"ft": 2048,
 		"oA": 1,
 		"oAP": "\/assets\/partials\/_image-download-config.html",
+		"oF": 0
+		},
+	"\/assets\/partials\/_mediaImport.kit": {
+		"ft": 2048,
+		"oA": 1,
+		"oAP": "\/assets\/partials\/_mediaImport.html",
 		"oF": 0
 		},
 	"\/assets\/partials\/_mktg-presentation-settings.kit": {

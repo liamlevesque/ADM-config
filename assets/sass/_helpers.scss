@@ -210,6 +210,17 @@
 		}
 	}
 
+.h-photo-box{
+	img{
+		width: 100%;
+		max-width: 100%;
+		display: block;
+	}
+	
+	padding: 5px;
+	border: 1px solid black;
+}
+
 
 .h-color-white{
 	color: white !important;
@@ -229,6 +240,10 @@
 
 .h-color-brand{
 	color: palette(brand) !important;
+}
+
+.h-color-inactive{
+	color: palette(grey) !important;
 }
 
 .h-color-active{

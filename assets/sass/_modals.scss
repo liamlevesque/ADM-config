@@ -41,6 +41,25 @@
 			width: 800px;
 		}
 
+		.c-modal--content_importMedia{
+			width: 700px;
+			position: relative;
+
+			button{
+				position: absolute;
+				bottom: 14px;
+				right: 5px;
+				width: 75px;
+				height: 23px;
+				background-color: rgba(0,0,0,0.3);
+				cursor: pointer;
+				
+				& + button{
+					right: 85px;
+				}
+			}
+		}
+
 		.c-modal--body{
 			padding: spacing(large);	
 			flex: auto;

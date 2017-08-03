@@ -244,6 +244,30 @@ hr {
     left: 100%;
     right: 0; } }
 
+.o-progressSlider {
+  position: relative;
+  height: 4px;
+  background-color: #E9E9E9; }
+  .o-progressSlider:after {
+    display: block;
+    position: absolute;
+    content: " ";
+    left: 0;
+    right: 100%;
+    height: 4px;
+    bottom: 0;
+    background-color: #36AE4F;
+    -webkit-animation-name: waitingslide;
+            animation-name: waitingslide;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear; }
+
 /*******************
 	HELPER CLASSES
 ********************/
@@ -411,6 +435,14 @@ hr {
   .h-hidden.s-visible {
     visibility: visible; }
 
+.h-photo-box {
+  padding: 5px;
+  border: 1px solid black; }
+  .h-photo-box img {
+    width: 100%;
+    max-width: 100%;
+    display: block; }
+
 .h-color-white {
   color: white !important; }
 
@@ -425,6 +457,9 @@ hr {
 
 .h-color-brand {
   color: #E87722 !important; }
+
+.h-color-inactive {
+  color: #bfc0be !important; }
 
 .h-color-active {
   color: #20579E !important; }
@@ -2790,6 +2825,20 @@ hr {
 
 .c-modal--content_large {
   width: 800px; }
+
+.c-modal--content_importMedia {
+  width: 700px;
+  position: relative; }
+  .c-modal--content_importMedia button {
+    position: absolute;
+    bottom: 14px;
+    right: 5px;
+    width: 75px;
+    height: 23px;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer; }
+    .c-modal--content_importMedia button + button {
+      right: 85px; }
 
 .c-modal--body {
   padding: 30px;

@@ -137,8 +137,8 @@
 
 		<div class="h-overflow-hidden">
 			<h3 class="h3 h-d-inline-block">Sale Media</h3>
-			<button class="o-button h-float-right">+ Import Media</button>
-			<button class="o-button--outline h-float-right h-mr-100" rv-on-click="controller.toggleDownloadPhotosSettingsVisible">Download Lot Media</button>
+			<button class="o-button h-float-right" rv-on-click="controller.toggleMediaImport">+ Import Media </button>
+			<button class="o-button--outline h-float-right h-mr-100" rv-on-click="controller.toggleDownloadPhotosSettingsVisible">Get Latest Photos</button>
 		</div>
 
 		<div class="o-data-row h-mt-100 h-mb-100">
@@ -437,6 +437,144 @@
 			</div>
 	
 		</div>
+	
+	</div>  
+	<div class="c-modal" rv-class-s-visible="dataObject.mediaImportVisible">
+	    <div class="c-modal--content_importMedia">
+	        <img src="/assets/img/import.png">
+	        
+	        <button class="h-float-right" rv-on-click="controller.startMediaProcessing"></button>
+	        <button class="h-float-right" rv-on-click="controller.toggleMediaImport"></button>
+	
+	    </div>
+	
+	</div> 
+	
+	
+	
+	<div class="c-modal" rv-class-s-visible="dataObject.mediaProcessingVisible">
+	    <div class="c-modal--content">
+	        <div class="c-modal--body">
+	            <h3 class="o-container--header">Importing Files</h3>
+	            <div class="o-progressSlider"></div>
+	            <ul class="c-list-grid">
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12345_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-affirmative">Imported Succesfully to lot 45</div>
+	                </li>
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12346_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-error">Not Imported: No matching equipment id</div>
+	                </li>
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12347_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-affirmative">Imported Succesfully to lot 47</div>
+	                </li>
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12348_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-error">Conflict</div>
+	                </li>
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12349_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-active">Importing...</div>
+	                </li>
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12350_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-inactive">Waiting...</div>
+	                </li>
+	            </ul>
+	        </div>
+			    
+	        <div class="c-modal--footer">
+	            <button class="o-text-button--large" rv-on-click="controller.stopMediaProcessing">Cancel Download</button>
+	            <button rv-on-click="controller.toggleMediaConflict">Simulate Finish Download</button>
+	            <!-- <button class="o-button h-float-right" rv-on-click="controller.startMediaProcessing">Start Download</button> -->
+	        </div>
+	
+	    </div>
+	
+	</div> 
+	
+	
+	
+	<div class="c-modal" rv-class-s-visible="dataObject.mediaConflictVisible">
+	    <div class="c-modal--content_large">
+	        <div class="c-modal--body h-ta-center">
+	            <h3 class="o-container--header h-color-error">File Conflict!</h3>
+	            <p>You are importing a file with the same name as an existing image/video.<br/>What would you like to do?</p>
+	
+	            <div class="l-grid-half">
+	                <label for="" class="t-smalllabel h-color-black">Existing</label>
+	                <div class="h-photo-box">
+	                    <img src="/assets/img/lot1.jpg"/>
+	                </div>
+	            </div>
+	            <div class="l-grid-half">
+	                <label for="" class="t-smalllabel h-color-black">New Import</label>
+	                <div class="h-photo-box">
+	                    <img src="/assets/img/lot2.jpg"/>
+	                </div>
+	            </div>
+	        </div>
+			    
+	        <div class="c-modal--footer h-overflow-hidden">
+	            <label>
+	                <input type="checkbox"/> Apply to all conflicts
+	            </label>
+	
+	            <div class="h-float-right">
+	                <button class="o-button h-float-right" rv-on-click="controller.toggleMediaDoneVisible">Replace Existing</button>
+	                <button class="o-button h-float-right h-mr-100" rv-on-click="controller.toggleMediaDoneVisible">Keep Existing</button>
+	            </div>
+	        </div>
+	
+	    </div>
+	
+	</div> 
+	
+	
+	<div class="c-modal" rv-class-s-visible="dataObject.mediaDoneVisible">
+	    <div class="c-modal--content">
+	        <div class="c-modal--body">
+	            <h3 class="o-container--header">Importing Files</h3>
+	
+	            <div class="h-color-affirmative h-mb-100">4 Items Imported Succesfully</div>
+	            <div class="h-mb-100"><span class="h-color-error">2 Items Not Imported</span><div class="h-float-right">Show Errors</div></div>
+	
+	            <ul class="c-list-grid">
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12345_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-affirmative">Imported Succesfully to lot 45</div>
+	                </li>
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12346_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-error">Not Imported: No matching equipment id</div>
+	                </li>
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12347_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-affirmative">Imported Succesfully to lot 47</div>
+	                </li>
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12348_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-error">Conflict: Rejected new image</div>
+	                </li>
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12347_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-affirmative">Imported Succesfully to lot 48</div>
+	                </li>
+	                <li class="c-list-grid--item">
+	                    <div class="l-grid-third">File 12347_1.jpg</div>
+	                    <div class="l-grid-two-thirds h-color-affirmative">Imported Succesfully to lot 49</div>
+	                </li>
+	            </ul>
+	        </div>
+			    
+	        <div class="c-modal--footer h-overflow-hidden">
+	            <button class="o-button h-float-right" rv-on-click="controller.toggleMediaDoneVisible">Done</button>
+	            <!-- <button class="o-button h-float-right" rv-on-click="controller.startMediaProcessing">Start Download</button> -->
+	        </div>
+	
+	    </div>
 	
 	</div>  
 
