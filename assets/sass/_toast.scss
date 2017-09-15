@@ -36,3 +36,28 @@
 	color: white;
 	text-align: center;
 }
+
+.o-toast--process-save-changes{
+	@include footer-toast;
+	line-height: $input-height;
+	background-color: palette(grey,dark);
+	color: white;
+	text-align: center;
+	@include loading(palette(affirmative));
+
+	&:after{
+		top: 0;
+		bottom: auto;
+	}
+}
+
+
+.o-page-blocker{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.8);
+	z-index: 999;
+}

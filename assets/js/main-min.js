@@ -3634,6 +3634,7 @@ const dataObject = {
 	activeTab: 'general',
 	savePresChangeVisible: false,
 	savedConfirmationVisible: false,
+	processingChangeVisible: false,
 	resetChangesVisible: false,
 	slideDuration: 8,
 	slideAutoPlay: true,
@@ -4066,10 +4067,15 @@ const controller = {
 		showSavedConfirmation: function(e){
 			dataObject.savePresChangeVisible = false;
 			dataObject.resetChangesVisible = true;
-			dataObject.savedConfirmationVisible = true;
+			dataObject.processingChangeVisible = true;
 			setTimeout(function(){
-				dataObject.savedConfirmationVisible = false;
-			},toastDuration);
+				dataObject.processingChangeVisible = false;
+				dataObject.savedConfirmationVisible = true;
+				setTimeout(function(){
+					dataObject.savedConfirmationVisible = false;
+				},toastDuration);
+			},10000);
+			
 		},
 		hideSavedConfirmation: function(e){
 			dataObject.savePresChangeVisible = false;

@@ -606,6 +606,10 @@
 				<span class="o-toast--caveat">You have unsaved changes. Click save to put them into effect</span>
 			</div>
 		</div>
+		<div class="o-page-blocker" rv-if="dataObject.processingChangeVisible"></div>
+		<div class="o-toast--process-save-changes" rv-class-s-visible="dataObject.processingChangeVisible">
+			Processing Changes... Please stick around until we're done working!
+		</div>
 	
 		<div class="o-toast--confirm-save-changes" rv-class-s-visible="dataObject.savedConfirmationVisible">
 			Changes Saved
