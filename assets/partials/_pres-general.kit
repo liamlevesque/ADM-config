@@ -20,10 +20,17 @@
 					</div>
 					<div class="h-mb-200 h-overflow-hidden">
 						<label for="" class="t-settings-header">Choice Groups</label>
-						<div>
+						<div class="h-overflow-hidden h-mb-200">
 							<span>Cycle Through Choice Group</span>
 							<label class="h-float-right o-input--setting-toggle">
 								<input type="checkbox" class="o-input--toggle" rv-checked="dataObject.cycleChoiceGroup">
+								<div class="toggle-control"></div>
+							</label>
+						</div>
+						<div class="h-overflow-hidden h-mb-200" rv-if="dataObject.cycleChoiceGroup">
+							<span>Cycle Through First Images Only</span>
+							<label class="h-float-right o-input--setting-toggle">
+								<input type="checkbox" class="o-input--toggle" rv-checked="dataObject.cycleChoiceFirsts">
 								<div class="toggle-control"></div>
 							</label>
 						</div>

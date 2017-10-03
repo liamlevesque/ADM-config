@@ -3638,7 +3638,7 @@ const dataObject = {
 	resetChangesVisible: false,
 	slideDuration: 8,
 	slideAutoPlay: true,
-	cycleChoiceGroup: true,
+	cycleChoiceGroup: false,
 	lotpres: [
 				{"src": "assets/img/lot1.jpg","disabled":false},
 				{"src": "assets/img/lot2.jpg","disabled":false},
